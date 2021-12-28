@@ -13,12 +13,12 @@ package kr.ac.kaist.safe.parser
 
 import java.io._
 import java.nio.charset.Charset
-import scala.util.{ Try, Success, Failure }
-import xtc.parser.{ Result, ParseError, SemanticValue }
+import scala.util.{Failure, Success, Try}
+import xtc.parser.{ParseError, Result, SemanticValue}
 import kr.ac.kaist.safe.errors.ExcLog
-import kr.ac.kaist.safe.errors.error.{ ParserError, NotJSFileError, AlreadyMergedSourceError }
+import kr.ac.kaist.safe.errors.error.{AlreadyMergedSourceError, NotJSFileError, ParserError}
 import kr.ac.kaist.safe.nodes.ast._
-import kr.ac.kaist.safe.util.{ NodeUtil => NU, _ }
+import kr.ac.kaist.safe.util.{NodeUtil => NU, _}
 
 object Parser {
   // Used by DynamicRewriter
@@ -31,7 +31,8 @@ object Parser {
       case (e, log) =>
         (NU.AddLinesWalker.addLines(e, line - 1, offset - 1), log)
     }
-    in.close; sr.close
+    in.close();
+    sr.close()
     result
   }
 
@@ -149,7 +150,7 @@ object Parser {
         val pair = parsePgm(in, fileName, 0).flatMap {
           case (p, e) => getInfoStmts(p).map((_, e))
         }
-        in.close; sr.close; fs.close
+        in.close(); sr.close(); fs.close()
         pair
       }
       case HTMLFile => JSFromHTML.parseScripts(fileName)

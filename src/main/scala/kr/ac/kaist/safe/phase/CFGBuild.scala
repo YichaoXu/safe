@@ -44,18 +44,18 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
     }
 
     // Pretty print to file.
-    config.outFile.map(out => {
+    config.outFile.foreach(out => {
       val (fw, writer) = Useful.fileNameToWriters(out)
       writer.write(cfg.toString(0))
-      writer.close
-      fw.close
+      writer.close()
+      fw.close()
       println("Dumped CFG to " + out)
     })
 
     // print dot file: {dotName}.gv, {dotName}.pdf
-    config.dotName.map(name => {
+    config.dotName.foreach(name =>
       DotWriter.spawnDot(cfg, None, None, None, s"$name.gv", s"$name.pdf")
-    })
+    )
 
     Success(cfg)
   }
