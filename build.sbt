@@ -1,4 +1,5 @@
 import java.io.File
+import scala.language.postfixOps
 
 lazy val checkCopyrights = taskKey[Unit]("Checks copyrights of source files")
 lazy val buildParsers = taskKey[Unit]("Builds parsers")
@@ -18,7 +19,7 @@ lazy val root = (project in file(".")).
     organization := "kr.ac.kaist.safe",
     scalaVersion := "2.12.6",
     checkCopyrights in Compile := {
-      val violated: String = (baseDirectory.value + "/bin/checkCopyrights.sh" !!)
+      val violated: String = baseDirectory.value + "/bin/checkCopyrights.sh" !!g
       if (violated != "") {
         throw new Error("\nFix the copyright(s) of the following:\n" + violated)
       }
