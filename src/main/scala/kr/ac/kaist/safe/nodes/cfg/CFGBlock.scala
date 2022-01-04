@@ -11,7 +11,6 @@
 
 package kr.ac.kaist.safe.nodes.cfg
 
-import kr.ac.kaist.safe.analyzer.TracePartition
 import kr.ac.kaist.safe.util._
 import kr.ac.kaist.safe.{ LINE_SEP, MAX_INST_PRINT_SIZE }
 import scala.collection.mutable.{ Map => MMap }

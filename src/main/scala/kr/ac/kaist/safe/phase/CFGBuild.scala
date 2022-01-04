@@ -32,22 +32,19 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
     val cbResult = new DefaultCFGBuilder(ir, safeConfig, config)
     val cfg = cbResult.cfg
     val excLog = cbResult.excLog
-
     // Report errors.
     if (excLog.hasError) {
       println(cfg.relFileName + ":")
       println(excLog)
     }
-
     // Pretty print to file.
-    config.outFile.map(out => {
+    config.outFile.foreach(out => {
       val (fw, writer) = Useful.fileNameToWriters(out)
       writer.write(cfg.toString(0))
-      writer.close
-      fw.close
+      writer.close()
+      fw.close()
       println("Dumped CFG to " + out)
     })
-
     Success(cfg)
   }
 

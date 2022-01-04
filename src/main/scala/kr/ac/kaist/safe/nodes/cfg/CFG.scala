@@ -14,7 +14,6 @@ package kr.ac.kaist.safe.nodes.cfg
 import scala.collection.mutable.{ Map => MMap }
 import scala.util.{ Try, Success, Failure }
 import kr.ac.kaist.safe.LINE_SEP
-import kr.ac.kaist.safe.analyzer.domain.Loc
 import kr.ac.kaist.safe.errors.error._
 import kr.ac.kaist.safe.nodes.ir.IRNode
 import kr.ac.kaist.safe.util._

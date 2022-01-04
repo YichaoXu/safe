@@ -92,7 +92,6 @@ class DefaultCFGBuilder(
   def build: Unit = ir match {
     case IRRoot(_, fds, _, stmts) =>
       val globalFunc = cfg.globalFunc
-      val globalVars = globalFunc.localVars
       val startBlock: NormalBlock = globalFunc.createBlock(None)
       cfg.addEdge(globalFunc.entry, startBlock)
 

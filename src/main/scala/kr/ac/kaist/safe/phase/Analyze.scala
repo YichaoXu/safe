@@ -32,7 +32,7 @@ case object Analyze extends PhaseObj[(CFG, Semantics, TracePartition, HeapBuildC
   ): Try[(CFG, Int, TracePartition, Semantics)] = {
     val (cfg, sem, initTP, heapConfig, iter) = in
 
-    var interOpt: Option[Interactive] =
+    val interOpt: Option[Interactive] =
       if (config.console) Some(new Console(cfg, sem, heapConfig, iter))
       else None
 

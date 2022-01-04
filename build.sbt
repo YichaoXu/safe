@@ -19,7 +19,7 @@ lazy val root = (project in file(".")).
     organization := "kr.ac.kaist.safe",
     scalaVersion := "2.12.6",
     checkCopyrights in Compile := {
-      val violated: String = baseDirectory.value + "/bin/checkCopyrights.sh" !!g
+      val violated: String = (baseDirectory.value + "/bin/checkCopyrights.sh" !!)
       if (violated != "") {
         throw new Error("\nFix the copyright(s) of the following:\n" + violated)
       }
@@ -81,15 +81,66 @@ cleanFiles ++= Seq(file("src/main/java/kr/ac/kaist/safe/parser/"))
 
 libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-library" % scalaVersion.value,
-  "org.scala-lang" % "scala-compiler" % scalaVersion.value % "scala-tool",
+  "org.scala-lang" % "scala-compiler" % scalaVersion.value % "2.13.6",
   "org.scalatest" %% "scalatest" % "3.0.0" % "test" withSources,
   "com.typesafe.akka" %% "akka-http" % "10.0.10",
   "io.spray" %% "spray-json" % "1.3.2",
-  "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.2",
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.13.1" % Test,
   "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.9.1",
-  "org.jline" % "jline" % "3.10.0"
+  "org.jline" % "jline" % "3.20.0"
 )
 
 javacOptions ++= Seq("-encoding", "UTF-8")
 
 retrieveManaged := true
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))
+resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))

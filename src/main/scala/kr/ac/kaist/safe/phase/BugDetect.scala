@@ -32,7 +32,7 @@ case object BugDetect extends PhaseObj[(CFG, Int, TracePartition, Semantics), Bu
 
   // Move to CFGBlock?  Copied from HTMLWriter.
   private def isReachableUserCode(sem: Semantics, block: CFGBlock): Boolean =
-    !sem.getState(block).isEmpty && !NodeUtil.isModeled(block)
+    sem.getState(block).nonEmpty && !NodeUtil.isModeled(block)
 
   // Collect CFG expressions from CFG instructions
   private def collectExprs(i: CFGNormalInst): List[CFGExpr] = i match {

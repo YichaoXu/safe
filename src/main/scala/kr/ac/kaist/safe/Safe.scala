@@ -11,7 +11,10 @@
 
 package kr.ac.kaist.safe
 
-import scala.util.{ Try, Failure }
+import edu.jhu.mssi.seclab.extsafe.command.CmdCfgStatistic
+import edu.jhu.mssi.seclab.extsafe.phase.PhsCfgStatistic
+
+import scala.util.{ Failure, Try }
 import kr.ac.kaist.safe.errors.SafeException
 import kr.ac.kaist.safe.errors.error.{ NoCmdError, NoInputError }
 import kr.ac.kaist.safe.phase._
@@ -24,8 +27,8 @@ object Safe {
   def main(tokens: Array[String]): Unit = {
     (tokens.toList match {
       case str :: args => cmdMap.get(str) match {
-        case Some(CmdAnalyze) => CmdAnalyze(s"-config=$CONFIG_FILE" :: args, false)
-        case Some(cmd) => cmd(args, false)
+        case Some(CmdAnalyze) => CmdAnalyze(s"-config=$CONFIG_FILE" :: args)
+        case Some(cmd) => cmd(args, testMode = false)
         case None => Failure(NoCmdError(str))
       }
       case Nil => Failure(NoInputError)
@@ -78,7 +81,8 @@ object Safe {
     CmdAnalyze,
     CmdBugDetect,
     CmdHelp,
-    CmdWeb
+    CmdWeb,
+    CmdCfgStatistic
   )
   val cmdMap = commands.foldLeft[Map[String, Command]](Map()) {
     case (map, cmd) => map + (cmd.name -> cmd)
@@ -94,7 +98,8 @@ object Safe {
     Analyze,
     BugDetect,
     Help,
-    Web
+    Web,
+    PhsCfgStatistic
   )
 
   // global options
