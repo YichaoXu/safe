@@ -249,8 +249,7 @@ object HTMLWriter {
     if (blockOpt.isDefined) {
       BlockStates(
         "{" + addInsts(blockOpt.get) + "}",
-        "{" + addState(blockOpt.get, sem) + "}"
-      )
+        "{" + addState(blockOpt.get, sem) + "}")
     } else {
       throw new IllegalArgumentException
     }
@@ -259,8 +258,7 @@ object HTMLWriter {
   def drawGraph(
     cfg: CFG,
     sem: Semantics,
-    wlOpt: Option[Worklist]
-  ): String = {
+    wlOpt: Option[Worklist]): String = {
     // computes reachable fid_set
     val reachableFunSet = cfg.getAllFuncs.filter(f => isReachable(f.entry, sem))
 
@@ -290,8 +288,7 @@ object HTMLWriter {
     <body>
         <div id="cy"></div>
     </body>
-</html>"""
-    )
+</html>""")
     sb.toString
   }
 
@@ -299,8 +296,7 @@ object HTMLWriter {
     cfg: CFG,
     sem: Semantics,
     wlOpt: Option[Worklist] = None,
-    htmlfile: String = "cfg.html"
-  ): Unit = {
+    htmlfile: String = "cfg.html"): Unit = {
     try {
       // copy libraries
       val src = new File(Useful.path("src", "main", "resources", "assets"))

@@ -420,8 +420,7 @@ class Translator(program: Program) {
         getLhs(Bracket(info, obj,
           StringLiteral(
             NU.makeASTNodeInfo(member.span),
-            "\"", member.text, false
-          )))
+            "\"", member.text, false)))
       case br: Bracket => Some(br)
       case _ => None
     }
@@ -464,8 +463,7 @@ class Translator(program: Program) {
       IRFunDecl(
         fd,
         IRFunctional(f, true, newName, newParams, args,
-          newFds, newVds, newBody)
-      )
+          newFds, newVds, newBody))
   }
 
   /*
@@ -516,8 +514,7 @@ class Translator(program: Program) {
       val trueS = IRSeq(
         trueB,
         walkStmt(trueB, env),
-        IRBreak(s, lab)
-      )
+        IRBreak(s, lab))
 
       val ifStmt = args.zip(ress).foldRight((trueS, Nil): (IRStmt, List[IRStmt])) {
         case ((arg, (ssi, ri)), (stmt, stmts)) => {
@@ -527,8 +524,7 @@ class Translator(program: Program) {
             (
               IRIf(arg, ri,
                 IRSeq(left, stmts :+ stmt), None),
-                ssi
-            )
+                ssi)
         }
       } match { case (s, _) => s }
       val body = falseB match {
@@ -539,9 +535,7 @@ class Translator(program: Program) {
         s,
         List(IRSeq(
           s,
-          (ress.head match { case (s, _) => s }) :+ IRLabelStmt(s, lab, body)
-        ))
-      )
+          (ress.head match { case (s, _) => s }) :+ IRLabelStmt(s, lab, body))))
 
     case If(_, InfixOpApp(_, left, op, right), trueB, falseB) if op.text.equals("||") =>
       val new1 = freshId(left, left.span, "new1")
@@ -557,8 +551,7 @@ class Translator(program: Program) {
         case Some(stmt) =>
           IRSeq(s, ifStmts ++ List(
             walkStmt(stmt, env),
-            IRBreak(s, lab2)
-          ))
+            IRBreak(s, lab2)))
       }
       val body2 = IRSeq(s, IRLabelStmt(s, lab1, body1), walkStmt(trueB, env))
       IRStmtUnit(s, IRSeq(s, ss1 :+ IRLabelStmt(s, lab2, body2)))
@@ -574,8 +567,7 @@ class Translator(program: Program) {
           falseBranch match {
             case None => None
             case Some(stmt) => Some(walkStmt(stmt, env))
-          })
-      )
+          }))
 
     case Switch(info, cond, frontCases, defCase, backCases) =>
       val condVal = freshId(cond, cond.span, VAL_NAME)
@@ -590,9 +582,7 @@ class Translator(program: Program) {
               defCase, frontCases.reverse,
               addE(
                 addE(env, BREAK_NAME, breakLabel),
-                VAL_NAME, condVal
-              ), List())
-          ))
+                VAL_NAME, condVal), List())))
       IRStmtUnit(s, switchS)
 
     case DoWhile(_, body, cond) =>
@@ -605,8 +595,7 @@ class Translator(program: Program) {
       val newBody = IRSeq(
         s,
         IRLabelStmt(s, cont, walkStmt(body, newEnv)),
-        IRSeq(s, ss)
-      )
+        IRSeq(s, ss))
       isDoWhile = false
       val stmt = IRSeq(s, newBody, IRWhile(s, r, newBody, labelName, cont))
       IRStmtUnit(s, IRLabelStmt(s, labelName, stmt))
@@ -620,8 +609,7 @@ class Translator(program: Program) {
       val ssList = List(IRSeq(s, ss))
       val newBody = IRSeq(
         s,
-        IRLabelStmt(s, cont, walkStmt(body, newEnv)) :: ssList
-      )
+        IRLabelStmt(s, cont, walkStmt(body, newEnv)) :: ssList)
       val stmt = IRSeq(s, ssList :+ IRWhile(s, r, newBody, labelName, cont))
       IRStmtUnit(s, IRLabelStmt(s, labelName, stmt))
 
@@ -650,9 +638,7 @@ class Translator(program: Program) {
             IRSeq(s, front),
             IRWhile(s, TRUE_BOOL, IRSeq(
               s,
-              nbody, IRSeq(s, back)
-            ), labelName, cont)
-          )
+              nbody, IRSeq(s, back)), labelName, cont))
         case Some(cexpr) =>
           val newtwo = freshId(cexpr, cexpr.span, "new2")
           val (ss2, r2) = walkExpr(cexpr, env, newtwo)
@@ -660,8 +646,7 @@ class Translator(program: Program) {
           IRSeq(
             s,
             IRSeq(s, front ++ ss2),
-            IRWhile(s, r2, IRSeq(s, newBody), labelName, cont)
-          )
+            IRWhile(s, r2, IRSeq(s, newBody), labelName, cont))
       }
       IRStmtUnit(s, IRLabelStmt(s, labelName, stmt))
 
@@ -685,18 +670,14 @@ class Translator(program: Program) {
             List(), key, false) match { case (stmts, _) => stmts }) ++
           List(
             IRLabelStmt(body, cont, walkStmt(body, newEnv)),
-            IRSeq(s, iteratorCheck)
-          )
-      )
+            IRSeq(s, iteratorCheck)))
       val stmt = IRSeq(
         s,
         IRSeq(s, ss ++ List(
           mkExprS(expr, obj, r),
           iteratorInit(s, iterator, obj),
-          iteratorCheck
-        )),
-        IRWhile(s, condone, newBody, labelName, cont)
-      )
+          iteratorCheck)),
+        IRWhile(s, condone, newBody, labelName, cont))
       IRStmtUnit(s, IRLabelStmt(s, labelName, stmt))
 
     case _: ForVar =>
@@ -742,9 +723,7 @@ class Translator(program: Program) {
         s,
         ss ++ List(
           toObject(expr, new2, r),
-          IRWith(s, new2, walkStmt(stmt, env))
-        )
-      )
+          IRWith(s, new2, walkStmt(stmt, env))))
 
     case LabelStmt(_, label, stmt) =>
       val id = label2ir(label)
@@ -763,8 +742,7 @@ class Translator(program: Program) {
           locals = name +: locals
           val result = (
             Some(makeUId(text, name, false, st, i.span, false)),
-            Some(IRStmtUnit(st, s.map(walkStmt(_, env))))
-          )
+            Some(IRStmtUnit(st, s.map(walkStmt(_, env)))))
           locals = locals.tail
           result
         case _ => (None, None)
@@ -779,9 +757,7 @@ class Translator(program: Program) {
             case None => None
             case Some(s) =>
               Some(IRStmtUnit(st, s.map(walkStmt(_, env))))
-          }
-        )
-      )
+          }))
 
     case Debugger(_) => IRStmtUnit(s)
     case _: VarStmt =>
@@ -804,8 +780,7 @@ class Translator(program: Program) {
         List(IRFunExpr(i, res,
           IRFunctional(f, true,
             NEW_NAME, newParams, args, newFds, newVds, newBody))),
-        res
-      )
+        res)
   }
 
   /*
@@ -900,8 +875,7 @@ class Translator(program: Program) {
             IRBin(e, newVal,
               if (op.text.equals("++")) PLUS else MINUS,
               ONE_NUM), true) match { case (stmts, _) => stmts },
-          newVal
-        )
+          newVal)
       } else {
         excLog.signal(InvalidUnAssignOpError(u))
         (List(), defaultIRExpr)
@@ -927,8 +901,7 @@ class Translator(program: Program) {
             val tmpBracket = Bracket(sinfo, obj,
               StringLiteral(
                 NU.makeASTNodeInfo(member.span),
-                "\"", member.text, false
-              ))
+                "\"", member.text, false))
             val tmpPrefixOpApp = PrefixOpApp(info, op, tmpBracket)
             walkExpr(tmpPrefixOpApp, env, res)
           case Bracket(_, lhs, e2) =>
@@ -973,12 +946,9 @@ class Translator(program: Program) {
               IRBin(
                 arg1,
                 IRUn(arg1, TYPEOF, cond),
-                EQUALS, IRVal("boolean")
-              ),
+                EQUALS, IRVal("boolean")),
               mkExprS(arg1, res, FALSE_BOOL),
-              Some(mkExprS(arg1, res, cond))
-            )))
-      )
+              Some(mkExprS(arg1, res, cond))))))
       (
         List(argsRest.asInstanceOf[List[Expr]].
           zip(ressRest.asInstanceOf[List[(List[IRStmt], IRExpr)]]).
@@ -994,16 +964,12 @@ class Translator(program: Program) {
                       IRBin(
                         e,
                         IRUn(e, TYPEOF, ie),
-                        EQUALS, IRVal("boolean")
-                      ),
+                        EQUALS, IRVal("boolean")),
                       mkExprS(e, res, FALSE_BOOL),
-                      Some(mkExprS(e, res, ie))
-                    )))
-              )
+                      Some(mkExprS(e, res, ie))))))
             }
           }),
-        res
-      )
+        res)
 
     case InfixOpApp(_, left, op, right) if op.text.equals("||") =>
       val y = freshId(left, left.span, "y")
@@ -1013,8 +979,7 @@ class Translator(program: Program) {
       (ss1 :+ IRIf(e, r1, mkExprS(left, res, r1),
         Some(IRSeq(
           e,
-          ss2 :+ mkExprS(right, res, r2)
-        ))),
+          ss2 :+ mkExprS(right, res, r2)))),
         res)
 
     case InfixOpApp(_, left, op, right) =>
@@ -1110,8 +1075,7 @@ class Translator(program: Program) {
           val results = as.zipWithIndex.map {
             case (arg, index) => (
               newargs.apply(index),
-              walkExpr(arg, env, newargs.apply(index))
-            )
+              walkExpr(arg, env, newargs.apply(index)))
           }
           (f, results.foldLeft(List[IRStmt]()) { case (l, (arg, (stmts, expr))) => l ++ stmts :+ (mkExprS(e, arg, expr)) } :+
             IRArgs(e, arg, newargs.map(p => Some(p))))
@@ -1133,8 +1097,7 @@ class Translator(program: Program) {
           IRNew(e, newObj, fun, List(obj, arg)),
           isObject(e, cond, newObj),
           IRIf(e, cond, mkExprS(e, res, newObj),
-            Some(mkExprS(e, res, obj)))
-        ), res)
+            Some(mkExprS(e, res, obj)))), res)
 
     case FunApp(_, VarRef(_, Id(_, fun, _, _)), args) if (NU.isInternalCall(fun)) =>
       val newArgs = args.zipWithIndex.map {
@@ -1163,12 +1126,9 @@ class Translator(program: Program) {
           Bracket(i, obj,
             StringLiteral(
               NU.makeASTNodeInfo(member.span),
-              "\"", member.text, false
-            )),
-          args
-        ),
-        env, res
-      )
+              "\"", member.text, false)),
+          args),
+        env, res)
 
     case FunApp(_, v @ VarRef(_, fid), args) =>
       val fspan = v.span
@@ -1181,16 +1141,14 @@ class Translator(program: Program) {
       val results = args.zipWithIndex.map {
         case (arg, index) => (
           newargs.apply(index),
-          walkExpr(arg, env, newargs.apply(index))
-        )
+          walkExpr(arg, env, newargs.apply(index)))
       }
       (List(toObject(v, obj, fir)) ++
         results.foldLeft(List[IRStmt]()) { case (l, (arg, (stmts, expr))) => l ++ stmts :+ (mkExprS(e, arg, expr)) } ++
         List(
           IRArgs(e, arg, newargs.map(p => Some(p))),
           getBase(v, fun, fir),
-          IRCall(e, res, obj, fun, arg)
-        ), res)
+          IRCall(e, res, obj, fun, arg)), res)
 
     case FunApp(_, b @ Bracket(i, first, index), args) =>
       val firstspan = first.span
@@ -1207,16 +1165,14 @@ class Translator(program: Program) {
       val results = args.zipWithIndex.map {
         case (arg, index) => (
           newargs.apply(index),
-          walkExpr(arg, env, newargs.apply(index))
-        )
+          walkExpr(arg, env, newargs.apply(index)))
       }
       (((ssl :+ toObject(first, obj, rl)) ++ ssr) ++
         results.foldLeft(List[IRStmt]()) { case (l, (arg, (stmts, expr))) => l ++ stmts :+ (mkExprS(e, arg, expr)) } ++
         List(
           IRArgs(e, arg, newargs.map(p => Some(p))),
           toObject(b, fun, IRLoad(e, obj, rr)),
-          IRCall(e, res, fun, obj, arg)
-        ), res)
+          IRCall(e, res, fun, obj, arg)), res)
 
     case FunApp(_, fun, args) =>
       val fspan = fun.span
@@ -1229,15 +1185,13 @@ class Translator(program: Program) {
       val results = args.zipWithIndex.map {
         case (arg, index) => (
           newargs.apply(index),
-          walkExpr(arg, env, newargs.apply(index))
-        )
+          walkExpr(arg, env, newargs.apply(index)))
       }
       ((ss :+ toObject(fun, obj, r)) ++
         results.foldLeft(List[IRStmt]()) { case (l, (arg, (stmts, expr))) => l ++ stmts :+ (mkExprS(e, arg, expr)) } ++
         List(
           IRArgs(e, arg, newargs.map(p => Some(p))),
-          IRCall(e, res, obj, GLOBAL_TMP_ID, arg)
-        ), res)
+          IRCall(e, res, obj, GLOBAL_TMP_ID, arg)), res)
 
     case (t: This) => (List(), IRThis(t))
 
@@ -1279,9 +1233,7 @@ class Translator(program: Program) {
           IRGetProp(
             m,
             IRFunctional(f, true,
-              newName, newParams, args, newFds, newVds, newBody)
-          )
-        )
+              newName, newParams, args, newFds, newVds, newBody)))
       case SetProp(_, prop, f @ Functional(_, fds, vds, body, name, params, _)) =>
         val (newName, newParams, args, newFds, newVds, newBody) =
           functional(prop.toId, params, fds, vds, body, env, None, true)
@@ -1290,9 +1242,7 @@ class Translator(program: Program) {
           IRSetProp(
             m,
             IRFunctional(f, true,
-              newName, newParams, args, newFds, newVds, newBody)
-          )
-        )
+              newName, newParams, args, newFds, newVds, newBody)))
     }
   }
 
@@ -1315,8 +1265,7 @@ class Translator(program: Program) {
           IRLabelStmt(head, newLabel,
             walkCase(ast, switchSpan, tail, defCase, frontCases, env,
               addCE(caseEnv, Some(condExpr), newLabel))),
-          IRStmtUnit(head, body.map(walkStmt(_, env)))
-        )
+          IRStmtUnit(head, body.map(walkStmt(_, env))))
       case (Nil, Some(stmt), _) =>
         // span is currently set to the default cases
         val span = if (stmt.isEmpty) switchSpan else stmt.head.span
@@ -1327,8 +1276,7 @@ class Translator(program: Program) {
             walkCase(ast, switchSpan, List(), None, frontCases, env,
               addRightCE(caseEnv, newLabel))),
           if (stmt.isEmpty) IRSeq(ast)
-          else IRSeq(ast, stmt.map(walkStmt(_, env)))
-        )
+          else IRSeq(ast, stmt.map(walkStmt(_, env))))
       case (Nil, None, head :: tail) =>
         val Case(info, condExpr, body) = head
         // span is currently set to the head statement of the default case
@@ -1339,14 +1287,12 @@ class Translator(program: Program) {
           IRLabelStmt(head, newLabel,
             walkCase(ast, switchSpan, List(), None, tail, env,
               addCE(caseEnv, Some(condExpr), newLabel))),
-          IRStmtUnit(head, body.map(walkStmt(_, env)))
-        )
+          IRStmtUnit(head, body.map(walkStmt(_, env))))
       case (Nil, None, Nil) =>
         IRSeq(
           ast,
           walkScond(ast, switchSpan, caseEnv, env),
-          IRBreak(ast, getE(env, BREAK_NAME))
-        )
+          IRBreak(ast, getE(env, BREAK_NAME)))
     }
 
   /*
@@ -1384,8 +1330,7 @@ class Translator(program: Program) {
       walkLval(ast, Bracket(info, obj,
         StringLiteral(
           NU.makeASTNodeInfo(member.span),
-          "\"", member.text, false
-        )),
+          "\"", member.text, false)),
         env, stmts, e, keepOld)
     case Bracket(info, first, index) =>
       val span = info.span
@@ -1415,8 +1360,7 @@ class Translator(program: Program) {
       (ss ++ stmts ++ List(
         IRExprStmt(lhs, varIgn(lhs), r, false),
         IRExprStmt(lhs, varIgn(lhs), e, false),
-        IRExprStmt(lhs, varIgn(lhs), REF_ERROR, false)
-      ),
+        IRExprStmt(lhs, varIgn(lhs), REF_ERROR, false)),
         defaultIRExpr)
   }
 

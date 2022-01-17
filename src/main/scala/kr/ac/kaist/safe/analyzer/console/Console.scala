@@ -25,11 +25,10 @@ import org.jline.terminal._
 import scala.collection.JavaConverters._
 
 class Console(
-    override val cfg: CFG,
-    override val sem: Semantics,
-    override val config: HeapBuildConfig,
-    var iter0: Int
-) extends Interactive {
+  override val cfg: CFG,
+  override val sem: Semantics,
+  override val config: HeapBuildConfig,
+  var iter0: Int) extends Interactive {
   ////////////////////////////////////////////////////////////////
   // private variables
   ////////////////////////////////////////////////////////////////
@@ -61,8 +60,7 @@ class Console(
       (st.heap.isBottom && !st.context.isBottom) ||
       (st.context.isBottom && !st.heap.isBottom) ||
       (excSt.heap.isBottom && !excSt.context.isBottom) ||
-      (excSt.context.isBottom && !excSt.heap.isBottom)
-    )
+      (excSt.context.isBottom && !excSt.heap.isBottom))
     if (prepare || alreadyVisited || exitExc || oneSideBot) {
       if (alreadyVisited) println("[STOP] already visited CFGBlock.")
       if (exitExc) println("[STOP] it creates exceptions.")
@@ -127,8 +125,7 @@ class Console(
         setPrompt(
           tpList.zipWithIndex.map {
             case (tp, idx) => s"[$idx] $tp" + LINE_SEP
-          }.mkString + s"select call context index > "
-        )
+          }.mkString + s"select call context index > ")
         while ({
           println
           reader.readLine match {

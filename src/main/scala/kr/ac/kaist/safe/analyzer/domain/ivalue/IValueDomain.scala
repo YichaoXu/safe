@@ -27,7 +27,6 @@ trait IValueDomain extends AbsDomain[IValue] {
 
     def copy(
       value: AbsValue = this.value,
-      fidset: AbsFId = this.fidset
-    ): Elem
+      fidset: AbsFId = this.fidset): Elem
   }
 }

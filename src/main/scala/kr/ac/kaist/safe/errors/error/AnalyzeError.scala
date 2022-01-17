@@ -52,36 +52,29 @@ case class SemanticsNotYetImplementedError(v: AbsValue, cp: ControlPoint) extend
 })
 
 case class ContextAssertionError(funName: String, msg: String) extends AnalyzeError(
-  s"[Assert:$funName]: $msg"
-)
+  s"[Assert:$funName]: $msg")
 
 case class HeapParseError(msg: String) extends AnalyzeError(
-  s"[HeapParseError]: $msg"
-)
+  s"[HeapParseError]: $msg")
 
 case class ModelParseError(msg: String) extends AnalyzeError(
-  s"[ModelParseError]: $msg"
-)
+  s"[ModelParseError]: $msg")
 
 case object LocTopGammaError extends AnalyzeError(
-  "LocSet.Top.gamma is impossible"
-)
+  "LocSet.Top.gamma is impossible")
 
 case object SymTopGammaError extends AnalyzeError(
-  "SymSet.Top.gamma is impossible"
-)
+  "SymSet.Top.gamma is impossible")
 
 case class LocParseError(msg: String) extends AnalyzeError(
-  s"[LocParseError] $msg"
-)
+  s"[LocParseError] $msg")
 
 case class UserAllocSiteError(u: UserAllocSite) extends AnalyzeError({
   s"[UserAllocSiteError]: $u."
 })
 
 case object FIdTopGammaError extends AnalyzeError(
-  "AbsFId.Top.gamma is impossible"
-)
+  "AbsFId.Top.gamma is impossible")
 
 case class NoBlockIdError(fid: Int, bid: Int) extends AnalyzeError({
   s"unknown bid in function[$fid]: $bid"
@@ -94,5 +87,4 @@ case class NoFuncIdError(fid: Int) extends AnalyzeError({
 case object IllFormedBlockStr extends AnalyzeError("")
 
 case class NotYetDefined(name: String) extends AnalyzeError(
-  "[NotYetDefined] $name"
-)
+  "[NotYetDefined] $name")

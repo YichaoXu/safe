@@ -252,8 +252,7 @@ object Helper {
         pv.nullval,
         pv.boolval,
         pv.numval,
-        pv.strval
-      )
+        pv.strval)
     }
 
     val primLPV = typeHelper.ToPrimitive(left)
@@ -476,8 +475,7 @@ object Helper {
     leftPV: AbsPValue,
     rightPV: AbsPValue,
     cmpAbsNum: (AbsNum, AbsNum) => AbsBool,
-    cmpAbsStr: (AbsStr, AbsStr) => AbsBool
-  ): AbsValue = {
+    cmpAbsStr: (AbsStr, AbsStr) => AbsBool): AbsValue = {
     (leftPV.strval.isBottom, rightPV.strval.isBottom) match {
       case (true, _) | (_, true) =>
         val leftAbsNum = typeHelper.ToNumber(leftPV)

@@ -23,10 +23,9 @@ import kr.ac.kaist.safe.util.NodeUtil._
 
 // default CFG builder
 class DefaultCFGBuilder(
-    ir: IRRoot,
-    safeConfig: SafeConfig,
-    config: CFGBuildConfig
-) extends CFGBuilder(ir, safeConfig, config) {
+  ir: IRRoot,
+  safeConfig: SafeConfig,
+  config: CFGBuildConfig) extends CFGBuilder(ir, safeConfig, config) {
   ////////////////////////////////////////////////////////////////
   // results
   ////////////////////////////////////////////////////////////////
@@ -398,8 +397,7 @@ class DefaultCFGBuilder(
         (
           List(call.afterCall),
           lmap.updated(ThrowLabel, (ThrowLabel of lmap) + call + tailBlock)
-          .updated(AfterCatchLabel, (AfterCatchLabel of lmap) + call.afterCatch)
-        )
+          .updated(AfterCatchLabel, (AfterCatchLabel of lmap) + call.afterCatch))
       /* PEI : internal @Call */
       case IRInternalCall(_, lhs, NodeUtil.INTERNAL_CALL, fun :: thisId :: args :: Nil) =>
         val tailBlock: NormalBlock = getTail(blocks, func)
@@ -411,8 +409,7 @@ class DefaultCFGBuilder(
         (
           List(call.afterCall),
           lmap.updated(ThrowLabel, (ThrowLabel of lmap) + call + tailBlock)
-          .updated(AfterCatchLabel, (AfterCatchLabel of lmap) + call.afterCatch)
-        )
+          .updated(AfterCatchLabel, (AfterCatchLabel of lmap) + call.afterCatch))
       /* PEI : internal calls */
       case IRInternalCall(_, lhs, name, args) =>
         val tailBlock: NormalBlock = getTail(blocks, func)
@@ -443,8 +440,7 @@ class DefaultCFGBuilder(
         (
           List(call.afterCall),
           lmap.updated(ThrowLabel, (ThrowLabel of lmap) + call + tailBlock)
-          .updated(AfterCatchLabel, (AfterCatchLabel of lmap) + call.afterCatch)
-        )
+          .updated(AfterCatchLabel, (AfterCatchLabel of lmap) + call.afterCatch))
       /* PEI : construct, after-call */
       case IRNew(_, lhs, cons, args) if (args.length == 2) =>
         val tailBlock: NormalBlock = getTail(blocks, func)
@@ -455,8 +451,7 @@ class DefaultCFGBuilder(
         (
           List(call.afterCall),
           lmap.updated(ThrowLabel, (ThrowLabel of lmap) + call + tailBlock)
-          .updated(AfterCatchLabel, (AfterCatchLabel of lmap) + call.afterCatch)
-        )
+          .updated(AfterCatchLabel, (AfterCatchLabel of lmap) + call.afterCatch))
       case c @ IRNew(_, _, _, _) =>
         excLog.signal(NewArgNumError(c))
         (Nil, lmap)

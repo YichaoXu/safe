@@ -53,21 +53,18 @@ object DefaultIValue extends IValueDomain {
       val (left, right) = (this, that)
       Elem(
         left.value ⊔ right.value,
-        left.fidset ⊔ right.fidset
-      )
+        left.fidset ⊔ right.fidset)
     }
 
     def ⊓(that: Elem): Elem = {
       val (left, right) = (this, that)
       Elem(
         left.value ⊓ right.value,
-        left.fidset ⊓ right.fidset
-      )
+        left.fidset ⊓ right.fidset)
     }
 
     def copy(
       value: AbsValue,
-      fidset: AbsFId
-    ): Elem = Elem(value, fidset)
+      fidset: AbsFId): Elem = Elem(value, fidset)
   }
 }

@@ -16,5 +16,4 @@ case class Desc(
   value: Option[Value],
   writable: Option[Bool],
   enumerable: Option[Bool],
-  configurable: Option[Bool]
-)
+  configurable: Option[Bool])

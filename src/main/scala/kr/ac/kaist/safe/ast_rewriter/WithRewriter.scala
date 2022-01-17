@@ -38,8 +38,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
   private case class ConsEnv(
     withs: List[Id],
     names: List[List[String]],
-    isNested: Boolean
-  ) extends Env
+    isNested: Boolean) extends Env
 
   // default values
   private val TO_OBJ_INFO = NU.makeASTNodeInfo(Span("genToObject"))
@@ -56,17 +55,13 @@ class WithRewriter(program: Program, forTest: Boolean) {
       List(
         VarStmt(
           TO_OBJ_INFO,
-          List(VarDecl(TO_OBJ_INFO, mkId("type"), TYPEOF_CALL, false))
-        ),
-        mkIf("number", mkVarRef(mkId("Number")), FALSE)
-      ), false
-    )
+          List(VarDecl(TO_OBJ_INFO, mkId("type"), TYPEOF_CALL, false))),
+        mkIf("number", mkVarRef(mkId("Number")), FALSE)), false)
   private lazy val TO_OBJ_FN_DECL =
     FunDecl(
       TO_OBJ_INFO,
       Functional(TO_OBJ_INFO, List(), List(), TO_OBJ_BODY, TO_OBJ_FN_ID, List(mkId("x")), NU.GENERATED_STR),
-      false
-    )
+      false)
 
   ////////////////////////////////////////////////////////////////
   // helper function
@@ -84,8 +79,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
   private def mkRes(name: LHS): Return =
     Return(
       TO_OBJ_INFO,
-      Some(New(TO_OBJ_INFO, FunApp(TO_OBJ_INFO, name, List(PARAM_EXPR))))
-    )
+      Some(New(TO_OBJ_INFO, FunApp(TO_OBJ_INFO, name, List(PARAM_EXPR)))))
   private def mkIf(tname: String, cname: LHS, falseB: Option[Stmt]): If =
     If(TO_OBJ_INFO, mkEq(tname), mkRes(cname), falseB)
 
@@ -116,8 +110,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
         Stmts(
           body.info,
           body.body.map(walk(_, new ConsEnv(withs, ids :: rest, isNested))),
-          body.strict
-        )
+          body.strict)
     }
     def mkFunctional(info: ASTNodeInfo, fds: List[FunDecl], vds: List[VarDecl], name: Id,
       params: List[Id], bodyS: String, body: Stmts, env: Env, node: ASTNode): Functional =
@@ -165,8 +158,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
                 val lhsInAlpha = InfixOpApp(
                   vinfo,
                   StringLiteral(vinfo, "\"", id.text, false),
-                  inOp(vinfo), VarRef(vinfo, alpha)
-                )
+                  inOp(vinfo), VarRef(vinfo, alpha))
                 val alphaDotLhs = Dot(vinfo, VarRef(vinfo, alpha), id)
                 val alphaDotLhsOp = ForIn(vinfo, alphaDotLhs, expr, body)
                 val alphaDotLhsOpWalk = ForIn(vinfo, alphaDotLhs, exprWalk, bodyWalk)
@@ -235,15 +227,13 @@ class WithRewriter(program: Program, forTest: Boolean) {
               List(VarDecl(info, fresh,
                 Some(FunApp(info, VarRef(info, TO_OBJ_FN_ID),
                   List(walk(expr, env)))),
-                false))
-            )
+                false)))
           else ExprStmt(
             info,
             AssignOpApp(info, VarRef(info, fresh), assignOp(info),
               FunApp(info, VarRef(info, toObjectId(info)),
                 List(walk(expr, env)))),
-            true
-          )
+            true)
         val body = env match {
           case EmptyEnv =>
             walk(stmt, new ConsEnv(List(fresh), List(List()), false))
@@ -285,8 +275,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
                   val lhsInAlpha = InfixOpApp(
                     vinfo,
                     StringLiteral(vinfo, "\"", id.text, false),
-                    inOp(vinfo), VarRef(vinfo, alpha)
-                  )
+                    inOp(vinfo), VarRef(vinfo, alpha))
                   val alphaDotLhs = Dot(vinfo, VarRef(vinfo, alpha), id)
                   val alphaDotLhsExpr = New(ninfo, FunApp(vinfo, alphaDotLhs, args))
                   val alphaDotLhsExprWalk = New(ninfo, FunApp(vinfo, alphaDotLhs, mapArgsWalk))
@@ -323,8 +312,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
                   val lhsInAlpha = InfixOpApp(
                     vinfo,
                     StringLiteral(vinfo, "\"", id.text, false),
-                    inOp(vinfo), VarRef(vinfo, alpha)
-                  )
+                    inOp(vinfo), VarRef(vinfo, alpha))
                   val alphaDotLhs = Dot(vinfo, VarRef(vinfo, alpha), id)
                   val alphaDotLhsExpr = FunApp(vinfo, alphaDotLhs, args)
                   val alphaDotLhsExprWalk = FunApp(vinfo, alphaDotLhs, mapArgsWalk)
@@ -429,8 +417,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
                     val idInAlpha = InfixOpApp(
                       vinfo,
                       StringLiteral(vinfo, "\"", id.text, false),
-                      inOp(vinfo), VarRef(vinfo, alpha)
-                    )
+                      inOp(vinfo), VarRef(vinfo, alpha))
                     val alphaDotLhs = Dot(vinfo, VarRef(vinfo, alpha), id)
                     val alphaOpExpr = AssignOpApp(vinfo, alphaDotLhs, op, right)
                     val alphaOpWalk = AssignOpApp(vinfo, alphaDotLhs, op, exprWalk)
@@ -471,8 +458,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
                 val idInAlpha = InfixOpApp(
                   vinfo,
                   StringLiteral(vinfo, "\"", id.text, false),
-                  inOp(vinfo), VarRef(vinfo, alpha)
-                )
+                  inOp(vinfo), VarRef(vinfo, alpha))
                 val opAlphaDotId = PrefixOpApp(vinfo, op, Dot(vinfo, VarRef(vinfo, alpha), id))
                 others match {
                   case Nil => paren(Cond(vinfo, idInAlpha, opAlphaDotId, poa))
@@ -498,8 +484,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
                 val lhsInAlpha = InfixOpApp(
                   vinfo,
                   StringLiteral(vinfo, "\"", id.text, false),
-                  inOp(vinfo), VarRef(vinfo, alpha)
-                )
+                  inOp(vinfo), VarRef(vinfo, alpha))
                 val alphaDotLhsOp = UnaryAssignOpApp(vinfo, Dot(vinfo, VarRef(vinfo, alpha), id), op)
                 others match {
                   case Nil => paren(Cond(vinfo, lhsInAlpha, alphaDotLhsOp, ua))

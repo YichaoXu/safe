@@ -25,14 +25,12 @@ object DefaultBinding extends BindingDomain {
   def apply(
     value: AbsValue,
     uninit: AbsAbsent,
-    mutable: AbsBool
-  ): Elem = Elem(value, uninit, mutable)
+    mutable: AbsBool): Elem = Elem(value, uninit, mutable)
 
   case class Elem(
-      value: AbsValue,
-      uninit: AbsAbsent,
-      mutable: AbsBool
-  ) extends ElemTrait {
+    value: AbsValue,
+    uninit: AbsAbsent,
+    mutable: AbsBool) extends ElemTrait {
     def gamma: ConSet[Binding] = value.gamma match {
       case ConInf => ConInf
       case ConFin(valSet) => {
@@ -71,8 +69,7 @@ object DefaultBinding extends BindingDomain {
       Elem(
         this.value ⊔ right.value,
         this.uninit ⊔ right.uninit,
-        this.mutable ⊔ right.mutable
-      )
+        this.mutable ⊔ right.mutable)
     }
 
     /* meet */
@@ -81,8 +78,7 @@ object DefaultBinding extends BindingDomain {
       Elem(
         this.value ⊓ right.value,
         this.uninit ⊓ right.uninit,
-        this.mutable ⊓ right.mutable
-      )
+        this.mutable ⊓ right.mutable)
     }
 
     override def toString: String = {
@@ -93,14 +89,12 @@ object DefaultBinding extends BindingDomain {
           case (false, true) => value.toString
           case (true, false) => "uninitialized"
           case (false, false) => value.toString + ", uninitialized"
-        }
-      )
+        })
     }
 
     def copy(
       value: AbsValue = this.value,
       uninit: AbsAbsent = this.uninit,
-      mutable: AbsBool = this.mutable
-    ): Elem = Elem(value, uninit, mutable)
+      mutable: AbsBool = this.mutable): Elem = Elem(value, uninit, mutable)
   }
 }

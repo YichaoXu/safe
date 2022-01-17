@@ -139,8 +139,7 @@ object DefaultHeap extends HeapDomain {
         HeapMap(
           newMap.map { case (k, v) => k -> v.subsLoc(from, to) },
           newMerged.subsLoc(from, to),
-          changed + from + to
-        )
+          changed + from + to)
       }
     }
 
@@ -150,8 +149,7 @@ object DefaultHeap extends HeapDomain {
       case HeapMap(map, merged, changed) => HeapMap(
         (map -- locs).map { case (k, v) => k -> v.remove(locs) },
         merged.remove(locs),
-        changed ⊔ LocSet(locs)
-      )
+        changed ⊔ LocSet(locs))
     }
 
     def alloc(loc: Loc): Elem = this match {

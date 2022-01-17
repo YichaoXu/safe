@@ -22,8 +22,7 @@ case object Help extends PhaseObj[Unit, HelpConfig, Unit] {
   def apply(
     unit: Unit,
     safeConfig: SafeConfig,
-    config: HelpConfig
-  ): Try[Unit] = Success(println(Safe.help))
+    config: HelpConfig): Try[Unit] = Success(println(Safe.help))
   def defaultConfig: HelpConfig = HelpConfig()
   val options: List[PhaseOption[HelpConfig]] = Nil
 }

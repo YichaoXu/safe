@@ -286,8 +286,7 @@ class Disambiguator(program: Program) {
         val newName = newId(name, getEnvNoCheck(name))
         val result = FunDecl(
           info,
-          functional(i, info.span, newName, params, fds, vds, body, bodyS), strict
-        )
+          functional(i, info.span, newName, params, fds, vds, body, bodyS), strict)
         setEnv(oldEnv)
         result
     }
@@ -301,8 +300,7 @@ class Disambiguator(program: Program) {
         addEnv(name, newName)
         val result = FunExpr(
           info,
-          functional(i, info.span, newName, params, fds, vds, body, bodyS)
-        )
+          functional(i, info.span, newName, params, fds, vds, body, bodyS))
         setEnv(oldEnv)
         toplevel = oldToplevel
         result
@@ -318,8 +316,7 @@ class Disambiguator(program: Program) {
         New(info, FunApp(info, VarRef(info, Id(info, regexp, Some(regexp), false)),
           List(
             StringLiteral(info, "\"", body, true),
-            StringLiteral(info, "\"", flags, false)
-          )))
+            StringLiteral(info, "\"", flags, false))))
       }
       case _ =>
         val oldLEnv = setLEnv(node)

@@ -33,40 +33,34 @@ trait DecEnvRecDomain extends AbsDomain[DecEnvRec] {
     // 10.2.1.1.2 CreateMutableBinding(N, D)
     def CreateMutableBinding(
       name: String,
-      del: Boolean = true
-    ): Elem
+      del: Boolean = true): Elem
 
     // 10.2.1.1.3 SetMutableBinding(N, V, S)
     def SetMutableBinding(
       name: String,
       v: AbsValue,
-      strict: Boolean = false
-    ): (Elem, Set[Exception])
+      strict: Boolean = false): (Elem, Set[Exception])
 
     // 10.2.1.1.4 GetBindingValue(N, S)
     def GetBindingValue(
       name: String,
-      strict: Boolean = false
-    ): (AbsValue, Set[Exception])
+      strict: Boolean = false): (AbsValue, Set[Exception])
 
     // 10.2.1.1.5 DeleteBinding(N)
     def DeleteBinding(
-      name: String
-    ): (Elem, AbsBool)
+      name: String): (Elem, AbsBool)
 
     // 10.2.1.1.6 ImplicitThisValue()
     def ImplicitThisValue: AbsValue
 
     // 10.2.1.1.7 CreateImmutableBinding(N)
     def CreateImmutableBinding(
-      name: String
-    ): Elem
+      name: String): Elem
 
     // 10.2.1.1.6 InitializeImmutableBinding(N, V)
     def InitializeImmutableBinding(
       name: String,
-      v: AbsValue
-    ): Elem
+      v: AbsValue): Elem
 
     // substitute from by to
     def subsLoc(from: Loc, to: Loc): Elem

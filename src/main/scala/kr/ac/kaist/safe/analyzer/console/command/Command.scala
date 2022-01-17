@@ -18,9 +18,8 @@ import kr.ac.kaist.safe.nodes.cfg.CFGFunction
 import kr.ac.kaist.safe.LINE_SEP
 
 abstract class Command(
-    val name: String,
-    val info: String = ""
-) {
+  val name: String,
+  val info: String = "") {
   private val sb: StringBuilder = new StringBuilder()
 
   def run(c: Interactive, args: List[String]): Option[Target]
@@ -74,9 +73,7 @@ object Command {
     CmdShowIter,
     CmdStopAlreadyVisited,
     CmdStopExitExc,
-    CmdDebugMode
-  )
+    CmdDebugMode)
   val cmdMap: Map[String, Command] = commands.foldLeft(
-    Map[String, Command]()
-  ) { case (map, cmd) => map + (cmd.name -> cmd) }
+    Map[String, Command]()) { case (map, cmd) => map + (cmd.name -> cmd) }
 }

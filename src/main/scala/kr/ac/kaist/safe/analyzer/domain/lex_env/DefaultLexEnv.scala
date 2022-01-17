@@ -28,14 +28,12 @@ object DefaultLexEnv extends LexEnvDomain {
   def apply(
     record: AbsEnvRec,
     outer: LocSet,
-    nullOuter: AbsAbsent
-  ): Elem = Elem(record, outer, nullOuter)
+    nullOuter: AbsAbsent): Elem = Elem(record, outer, nullOuter)
 
   case class Elem(
-      record: AbsEnvRec,
-      outer: LocSet,
-      nullOuter: AbsAbsent
-  ) extends ElemTrait {
+    record: AbsEnvRec,
+    outer: LocSet,
+    nullOuter: AbsAbsent) extends ElemTrait {
     def gamma: ConSet[LexEnv] = ConInf // TODO more precise
 
     def getSingle: ConSingle[LexEnv] = ConMany // TODO more precise
@@ -52,8 +50,7 @@ object DefaultLexEnv extends LexEnvDomain {
       Elem(
         this.record ⊔ right.record,
         this.outer ⊔ right.outer,
-        this.nullOuter ⊔ right.nullOuter
-      )
+        this.nullOuter ⊔ right.nullOuter)
     }
 
     def ⊓(that: Elem): Elem = {
@@ -61,8 +58,7 @@ object DefaultLexEnv extends LexEnvDomain {
       Elem(
         this.record ⊓ right.record,
         this.outer ⊓ right.outer,
-        this.nullOuter ⊓ right.nullOuter
-      )
+        this.nullOuter ⊓ right.nullOuter)
     }
 
     override def toString: String = {
@@ -78,8 +74,7 @@ object DefaultLexEnv extends LexEnvDomain {
     def copy(
       record: AbsEnvRec = this.record,
       outer: LocSet = this.outer,
-      nullOuter: AbsAbsent = this.nullOuter
-    ): Elem = Elem(record, outer, nullOuter)
+      nullOuter: AbsAbsent = this.nullOuter): Elem = Elem(record, outer, nullOuter)
 
     def subsLoc(from: Loc, to: Loc): Elem =
       Elem(record.subsLoc(from, to), outer.subsLoc(from, to), nullOuter)
@@ -94,8 +89,7 @@ object DefaultLexEnv extends LexEnvDomain {
   def getIdBase(
     locSet: LocSet,
     name: String,
-    strict: Boolean
-  )(st: AbsState): AbsValue = {
+    strict: Boolean)(st: AbsState): AbsValue = {
     var visited = LocSet.Bot
     val heap = st.heap
     val ctx = st.context
@@ -131,8 +125,7 @@ object DefaultLexEnv extends LexEnvDomain {
   def getId(
     locSet: LocSet,
     name: String,
-    strict: Boolean
-  )(st: AbsState): (AbsValue, Set[Exception]) = {
+    strict: Boolean)(st: AbsState): (AbsValue, Set[Exception]) = {
     var visited = LocSet.Bot
     val heap = st.heap
     val ctx = st.context
@@ -171,8 +164,7 @@ object DefaultLexEnv extends LexEnvDomain {
     locSet: LocSet,
     name: String,
     value: AbsValue,
-    strict: Boolean
-  )(st: AbsState): (AbsState, Set[Exception]) = {
+    strict: Boolean)(st: AbsState): (AbsState, Set[Exception]) = {
     var visited = LocSet.Bot
     var newH = st.heap
     var newCtx = st.context
@@ -228,8 +220,7 @@ object DefaultLexEnv extends LexEnvDomain {
     val envRec = AbsDecEnvRec(Map(
       "@exception" -> (AbsBinding(AbsUndef.Top), AbsAbsent.Top),
       "@exception_all" -> (AbsBinding(AbsUndef.Top), AbsAbsent.Top),
-      "@return" -> (AbsBinding(AbsUndef.Top), AbsAbsent.Bot)
-    ))
+      "@return" -> (AbsBinding(AbsUndef.Top), AbsAbsent.Bot)))
     Elem(envRec, outer, AbsAbsent.Bot)
   }
 }

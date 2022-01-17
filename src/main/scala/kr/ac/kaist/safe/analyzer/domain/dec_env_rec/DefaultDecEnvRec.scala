@@ -158,8 +158,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
     // 10.2.1.1.2 CreateMutableBinding(N, D)
     def CreateMutableBinding(
       name: String,
-      del: Boolean
-    ): Elem = get(name) match {
+      del: Boolean): Elem = get(name) match {
       // 1. Let envRec be the declarative environment record for
       //    which the method was invoked.
       case (bind, absent) => absent.isBottom match {
@@ -178,8 +177,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
     def SetMutableBinding(
       name: String,
       v: AbsValue,
-      strict: Boolean
-    ): (Elem, Set[Exception]) = get(name) match {
+      strict: Boolean): (Elem, Set[Exception]) = get(name) match {
       // 1. Let envRec be the declarative environment record for
       //    which the method was invoked.
       case (bind, _) => bind.isBottom match {
@@ -211,8 +209,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
     // 10.2.1.1.4 GetBindingValue(N, S)
     def GetBindingValue(
       name: String,
-      strict: Boolean
-    ): (AbsValue, Set[Exception]) = get(name) match {
+      strict: Boolean): (AbsValue, Set[Exception]) = get(name) match {
       // 1. Let envRec be the declarative environment record for
       //    which the method was invoked.
       case (bind, _) => bind.isBottom match {
@@ -243,8 +240,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
 
     // 10.2.1.1.5 DeleteBinding(N)
     def DeleteBinding(
-      name: String
-    ): (Elem, AbsBool) = {
+      name: String): (Elem, AbsBool) = {
       val b = HasBinding(name)
       val (f1, f2) =
         if (AF ⊑ b) {
@@ -273,8 +269,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
 
     // 10.2.1.1.7 CreateImmutableBinding(N)
     def CreateImmutableBinding(
-      name: String
-    ): Elem = get(name) match {
+      name: String): Elem = get(name) match {
       // 1. Let envRec be the declarative environment record for
       //    which the method was invoked.
       case (_, absent) => {
@@ -290,8 +285,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
     // 10.2.1.1.6 InitializeImmutableBinding(N, V)
     def InitializeImmutableBinding(
       name: String,
-      v: AbsValue
-    ): Elem = get(name) match {
+      v: AbsValue): Elem = get(name) match {
       // 1. Let envRec be the declarative environment record for
       //    which the method was invoked.
       case (bind, absent) => {

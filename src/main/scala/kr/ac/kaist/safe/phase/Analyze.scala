@@ -28,8 +28,7 @@ case object Analyze extends PhaseObj[(CFG, Semantics, TracePartition, HeapBuildC
   def apply(
     in: (CFG, Semantics, TracePartition, HeapBuildConfig, Int),
     safeConfig: SafeConfig,
-    config: AnalyzeConfig
-  ): Try[(CFG, Int, TracePartition, Semantics)] = {
+    config: AnalyzeConfig): Try[(CFG, Int, TracePartition, Semantics)] = {
     val (cfg, sem, initTP, heapConfig, iter) = in
 
     val interOpt: Option[Interactive] =
@@ -85,8 +84,7 @@ case object Analyze extends PhaseObj[(CFG, Semantics, TracePartition, HeapBuildC
     ("out", StrOption((c, s) => c.outFile = Some(s)),
       "the analysis results will be written to the outfile."),
     ("html", StrOption((c, s) => c.htmlName = Some(s)),
-      "the resulting CFG with states will be drawn to the {string}.html")
-  )
+      "the resulting CFG with states will be drawn to the {string}.html"))
 }
 
 // Analyze phase config
@@ -97,5 +95,4 @@ case class AnalyzeConfig(
   var timeLog: Boolean = false,
   var exitDump: Boolean = false,
   var outFile: Option[String] = None,
-  var htmlName: Option[String] = None
-) extends Config
+  var htmlName: Option[String] = None) extends Config

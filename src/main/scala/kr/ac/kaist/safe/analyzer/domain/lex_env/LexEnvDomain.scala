@@ -18,24 +18,21 @@ trait LexEnvDomain extends AbsDomain[LexEnv] {
   def apply(
     record: AbsEnvRec,
     outer: LocSet = LocSet.Bot,
-    nullOuter: AbsAbsent = AbsAbsent.Top
-  ): Elem
+    nullOuter: AbsAbsent = AbsAbsent.Top): Elem
 
   // 10.2.2.1 GetIdentifierReference(lex, name, strict)
   // + 8.7 GetBase(V)
   def getIdBase(
     locSet: LocSet,
     name: String,
-    strict: Boolean
-  )(st: AbsState): AbsValue
+    strict: Boolean)(st: AbsState): AbsValue
 
   // 10.2.2.1 GetIdentifierReference(lex, name, strict)
   // + 8.7.1 GetValue(V)
   def getId(
     locSet: LocSet,
     name: String,
-    strict: Boolean
-  )(st: AbsState): (AbsValue, Set[Exception])
+    strict: Boolean)(st: AbsState): (AbsValue, Set[Exception])
 
   // 10.2.2.1 GetIdentifierReference(lex, name, strict)
   // + 8.7.2 PutValue(V, W)
@@ -43,8 +40,7 @@ trait LexEnvDomain extends AbsDomain[LexEnv] {
     locSet: LocSet,
     name: String,
     value: AbsValue,
-    strict: Boolean
-  )(st: AbsState): (AbsState, Set[Exception])
+    strict: Boolean)(st: AbsState): (AbsState, Set[Exception])
 
   // 10.2.2.2 NewDeclarativeEnvironment(E)
   def NewDeclarativeEnvironment(locSet: LocSet): Elem
@@ -67,8 +63,7 @@ trait LexEnvDomain extends AbsDomain[LexEnv] {
     def copy(
       record: AbsEnvRec = this.record,
       outer: LocSet = this.outer,
-      nullOuter: AbsAbsent = this.nullOuter
-    ): Elem
+      nullOuter: AbsAbsent = this.nullOuter): Elem
 
     // substitute from by to
     def subsLoc(from: Loc, to: Loc): Elem

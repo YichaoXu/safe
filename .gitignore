@@ -1,4 +1,3 @@
-*.DS_Store
 *.bbl
 *.blg
 *.idx
@@ -16,16 +15,18 @@
 *.pyc
 *.js.html
 *.html.html
+*.DS_Store/
 src/main/java/kr/ac/kaist/safe/parser/
 tests/detail
 tests/analysis-detail
-project/project
-project/target
-target
+project/project/
+target/
 lib/xtc.jar
 lib_managed
 doc/safe.pdf
 doc/icse-demo/main.pdf
-.idea
+.idea/
+.jvmopts
 safe.iml
 debugger
+/.bsp/

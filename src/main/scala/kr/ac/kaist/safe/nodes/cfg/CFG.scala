@@ -19,9 +19,8 @@ import kr.ac.kaist.safe.nodes.ir.IRNode
 import kr.ac.kaist.safe.util._
 
 case class CFG(
-    ir: IRNode,
-    globalVars: List[CFGId]
-) extends CFGNode {
+  ir: IRNode,
+  globalVars: List[CFGId]) extends CFGNode {
   // cfg id
   val id: Int = CFG.getId
 
@@ -57,8 +56,7 @@ case class CFG(
     localVars: List[CFGId],
     name: String,
     ir: IRNode,
-    isUser: Boolean
-  ): CFGFunction = {
+    isUser: Boolean): CFGFunction = {
     val func: CFGFunction =
       new CFGFunction(ir, argumentsName, argVars, localVars, name, isUser)
     func.id = getFId
@@ -72,8 +70,7 @@ case class CFG(
   // add JS model
   ////////////////////////////////
   def addJSModel(
-    func: CFGFunction
-  ): Unit = {
+    func: CFGFunction): Unit = {
     funcs ::= func
     funMap(func.id) = func
   }
@@ -82,8 +79,7 @@ case class CFG(
   def addEdge(
     fromList: List[CFGBlock],
     toList: List[CFGBlock],
-    etype: CFGEdgeType = CFGEdgeNormal
-  ): Unit = {
+    etype: CFGEdgeType = CFGEdgeNormal): Unit = {
     fromList.foreach((from) => toList.foreach((to) => {
       from.addSucc(etype, to)
       to.addPred(etype, from)

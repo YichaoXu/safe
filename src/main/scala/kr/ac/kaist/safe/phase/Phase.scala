@@ -27,14 +27,12 @@ abstract class PhaseObj[Input, PhaseConfig <: Config, Output] extends Phase {
   def apply(
     in: Input,
     safeConfig: SafeConfig,
-    config: PhaseConfig = defaultConfig
-  ): Try[Output]
+    config: PhaseConfig = defaultConfig): Try[Output]
   def defaultConfig: PhaseConfig
   val options: List[PhaseOption[PhaseConfig]] // TODO option conflict check
 
   def getRunner(
-    parser: ArgParser
-  ): Try[(Input, SafeConfig) => Try[Output]] = {
+    parser: ArgParser): Try[(Input, SafeConfig) => Try[Output]] = {
     val config = defaultConfig
     parser.addRule(config, name, options).map(_ => {
       (in, safeConfig) => apply(in, safeConfig, config)

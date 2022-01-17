@@ -27,14 +27,12 @@ trait AbsDomain[V] extends Domain {
 
   // abstraction functions for operators
   def alpha[U, D <: AbsDomain[U]](
-    f: V => U
-  )(domain: D): Elem => domain.Elem = elem => elem.gamma match {
+    f: V => U)(domain: D): Elem => domain.Elem = elem => elem.gamma match {
     case ConInf => domain.Top
     case ConFin(vset) => domain.alpha(vset.map(f(_)))
   }
   def alpha[U, D <: AbsDomain[U]](
-    f: (V, V) => U
-  )(domain: D): (Elem, Elem) => domain.Elem = (l, r) => (l.gamma, r.gamma) match {
+    f: (V, V) => U)(domain: D): (Elem, Elem) => domain.Elem = (l, r) => (l.gamma, r.gamma) match {
     case (ConFin(lset), ConFin(rset)) => domain.alpha(lset.foldLeft(Set[U]()) {
       case (set, l) => set ++ rset.map(f(l, _))
     })

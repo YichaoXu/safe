@@ -50,8 +50,7 @@ object IName {
     IHasInstance,
     ITargetFunction,
     IBoundThis,
-    IBoundArgs
-  )
+    IBoundArgs)
   def makeMap[V](value: V): Map[IName, V] = all.foldLeft(Map[IName, V]()) {
     case (map, iname) => map + (iname -> value)
   }

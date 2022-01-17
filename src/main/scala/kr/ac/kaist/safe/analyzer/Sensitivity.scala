@@ -38,8 +38,7 @@ trait TracePartition {
     to: CFGBlock,
     edgeType: CFGEdgeType,
     sem: Semantics,
-    st: AbsState
-  ): List[TracePartition]
+    st: AbsState): List[TracePartition]
 
   def toStringList: List[String]
 }
@@ -80,8 +79,7 @@ case object EmptyTP extends TracePartition {
     to: CFGBlock,
     edgeType: CFGEdgeType,
     sem: Semantics,
-    st: AbsState
-  ): List[EmptyTP.type] = List(EmptyTP)
+    st: AbsState): List[EmptyTP.type] = List(EmptyTP)
 
   override def toString: String = s"Empty"
 
@@ -97,16 +95,14 @@ case object Insensitive extends Sensitivity {
 // product of analysis sensitivities
 ////////////////////////////////////////////////////////////////////////////////
 case class ProductTP(
-    ltp: TracePartition,
-    rtp: TracePartition
-) extends TracePartition {
+  ltp: TracePartition,
+  rtp: TracePartition) extends TracePartition {
   def next(
     from: CFGBlock,
     to: CFGBlock,
     edgeType: CFGEdgeType,
     sem: Semantics,
-    st: AbsState
-  ): List[ProductTP] =
+    st: AbsState): List[ProductTP] =
     ltp.next(from, to, edgeType, sem, st).foldLeft(List[ProductTP]()) {
       case (list, l) =>
         rtp.next(from, to, edgeType, sem, st).map(ProductTP(l, _)) ++ list
@@ -118,9 +114,8 @@ case class ProductTP(
 }
 
 case class ProductSensitivity(
-    lsens: Sensitivity,
-    rsens: Sensitivity
-) extends Sensitivity {
+  lsens: Sensitivity,
+  rsens: Sensitivity) extends Sensitivity {
   val initTP = ProductTP(lsens.initTP, rsens.initTP)
   def isInsensitive: Boolean = lsens.isInsensitive && rsens.isInsensitive
 }
@@ -134,8 +129,7 @@ case class CallSiteContext(callsiteList: List[Call], depth: Int) extends TracePa
     to: CFGBlock,
     edgeType: CFGEdgeType,
     sem: Semantics,
-    st: AbsState
-  ): List[CallSiteContext] = List((from, to, edgeType) match {
+    st: AbsState): List[CallSiteContext] = List((from, to, edgeType) match {
     case (call: Call, _: Entry, CFGEdgeCall) =>
       CallSiteContext((call :: callsiteList).take(depth), depth)
     case _ => this
@@ -165,21 +159,18 @@ case class CallSiteSensitivity(depth: Int) extends Sensitivity {
 ////////////////////////////////////////////////////////////////////////////////
 case class LoopIter(
   head: LoopHead,
-  iter: Int
-)
+  iter: Int)
 
 case class LoopContext(
-    iterList: List[LoopIter],
-    maxIter: Int,
-    maxDepth: Int
-) extends TracePartition {
+  iterList: List[LoopIter],
+  maxIter: Int,
+  maxDepth: Int) extends TracePartition {
   def next(
     from: CFGBlock,
     to: CFGBlock,
     edgeType: CFGEdgeType,
     sem: Semantics,
-    st: AbsState
-  ): List[LoopContext] = (from, to, edgeType) match {
+    st: AbsState): List[LoopContext] = (from, to, edgeType) match {
     // function start
     case (entry: Entry, _, CFGEdgeNormal) =>
       entry.func.outBlocks.foreach(sem.addOutCtxt(_, this))

@@ -15,7 +15,6 @@ import kr.ac.kaist.safe.nodes.ast.ModelFunc
 
 // Dummy for modeling
 case class IRModelFunc(
-    override val ast: ModelFunc
-) extends IRNode(ast) {
+  override val ast: ModelFunc) extends IRNode(ast) {
   override def toString(indent: Int): String = ""
 }

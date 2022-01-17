@@ -17,8 +17,7 @@ trait DataPropDomain extends AbsDomain[DataProp] {
     value: AbsValue = AbsUndef.Top,
     writable: AbsBool = AbsBool.False,
     enumerable: AbsBool = AbsBool.False,
-    configurable: AbsBool = AbsBool.False
-  ): Elem
+    configurable: AbsBool = AbsBool.False): Elem
 
   def apply(desc: AbsDesc): Elem
 
@@ -36,7 +35,6 @@ trait DataPropDomain extends AbsDomain[DataProp] {
       value: AbsValue = this.value,
       writable: AbsBool = this.writable,
       enumerable: AbsBool = this.enumerable,
-      configurable: AbsBool = this.configurable
-    ): Elem
+      configurable: AbsBool = this.configurable): Elem
   }
 }

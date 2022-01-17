@@ -28,8 +28,7 @@ case object HeapBuild extends PhaseObj[CFG, HeapBuildConfig, (CFG, Semantics, Tr
   def apply(
     cfg: CFG,
     safeConfig: SafeConfig,
-    config: HeapBuildConfig
-  ): Try[(CFG, Semantics, TracePartition, HeapBuildConfig, Int)] = {
+    config: HeapBuildConfig): Try[(CFG, Semantics, TracePartition, HeapBuildConfig, Int)] = {
     // initialization
     register(
       config.AbsUndef,
@@ -40,8 +39,7 @@ case object HeapBuild extends PhaseObj[CFG, HeapBuildConfig, (CFG, Semantics, Tr
       config.recencyMode,
       config.heapClone,
       config.callsiteSensitivity *
-        config.loopSensitivity
-    )
+        config.loopSensitivity)
 
     // trace sensitivity
     val initTP = Sensitivity.initTP
@@ -80,8 +78,7 @@ case object HeapBuild extends PhaseObj[CFG, HeapBuildConfig, (CFG, Semantics, Tr
     ("loopDepth", NumOption((c, n) => if (n >= 0) c.loopSensitivity = c.loopSensitivity.copy(maxDepth = n)),
       "{number}-depth loop-sensitive analysis will be executed."),
     ("snapshot", StrOption((c, s) => c.snapshot = Some(s)),
-      "analysis with an initial heap generated from a dynamic snapshot(*.json).")
-  )
+      "analysis with an initial heap generated from a dynamic snapshot(*.json)."))
 
   // cache for JS model
   var jscache: Option[JSModel] = None
@@ -99,5 +96,4 @@ case class HeapBuildConfig(
   var loopSensitivity: LoopSensitivity = LoopSensitivity(0, 0),
   var snapshot: Option[String] = None,
   var recencyMode: Boolean = false,
-  var heapClone: Boolean = false
-) extends Config
+  var heapClone: Boolean = false) extends Config

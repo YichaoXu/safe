@@ -26,8 +26,7 @@ case object Translate extends PhaseObj[Program, TranslateConfig, IRRoot] {
   def apply(
     program: Program,
     safeConfig: SafeConfig,
-    config: TranslateConfig
-  ): Try[IRRoot] = {
+    config: TranslateConfig): Try[IRRoot] = {
     // Translate AST -> IR.
     val translator = new Translator(program)
     val ir = translator.result
@@ -57,12 +56,10 @@ case object Translate extends PhaseObj[Program, TranslateConfig, IRRoot] {
     ("silent", BoolOption(c => c.silent = true),
       "messages during compilation are muted."),
     ("out", StrOption((c, s) => c.outFile = Some(s)),
-      "the resulting IR will be written to the outfile.")
-  )
+      "the resulting IR will be written to the outfile."))
 }
 
 // Translate phase config
 case class TranslateConfig(
   var silent: Boolean = false,
-  var outFile: Option[String] = None
-) extends Config
+  var outFile: Option[String] = None) extends Config

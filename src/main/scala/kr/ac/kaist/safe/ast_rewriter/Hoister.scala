@@ -402,7 +402,7 @@ class Hoister(program: Program) {
   }
   private class VarBlock(inOuter: LocalBlock) extends LocalBlock(inOuter)
   private class FunBlock(inName: String, inSpan: Span, inParams: List[Id], inOuter: LocalBlock)
-      extends LocalBlock(inOuter) {
+    extends LocalBlock(inOuter) {
     val name: String = inName
     val span: Span = inSpan
     val params: List[Id] = inParams
@@ -536,8 +536,7 @@ class Hoister(program: Program) {
       (
         fdsUniq.map(fd => fd match { case FunDecl(i, f, _) => FunDecl(i, f, strict) }),
         vdsUniq2.map(vd => vd match { case VarDecl(i, n, e, _) => VarDecl(i, n, e, strict) }),
-        body.map(RmFunDeclWalker.walk).map(walk)
-      )
+        body.map(RmFunDeclWalker.walk).map(walk))
     }
 
     override def walk(node: Program): Program = node match {
@@ -546,8 +545,7 @@ class Hoister(program: Program) {
           program.foldLeft((
             List[FunDecl](),
             List[VarDecl](),
-            List[Stmts]()
-          )) {
+            List[Stmts]())) {
             case ((f, v, s), ses) => {
               val (fs, vs, ss) = hoist(ses.body, Nil, ses.strict)
               (f ++ fs, v ++ vs, s ++ List(Stmts(ses.info, ss, ses.strict)))
@@ -597,10 +595,8 @@ class Hoister(program: Program) {
           newInfo,
           List(
             stmtUnit(newInfo, hoistVds(vars)),
-            walk(For(info, None, cond, action, body))
-          ),
-          false
-        )
+            walk(For(info, None, cond, action, body))),
+          false)
       case ForVarIn(info, VarDecl(i, n, None, _), expr, body) =>
         walk(ForIn(info, VarRef(i, n), expr, body))
       case ForVarIn(info, VarDecl(i, n, Some(e), _), expr, body) =>
@@ -608,10 +604,8 @@ class Hoister(program: Program) {
           info,
           List(
             stmtUnit(info, List(walk(assignS(i, n, e)))),
-            walk(ForIn(info, VarRef(i, n), expr, body))
-          ),
-          false
-        )
+            walk(ForIn(info, VarRef(i, n), expr, body))),
+          false)
       case LabelStmt(info, label, ForVar(i, vars, cond, action, body)) =>
         val newInfo = ASTNodeInfo(Span.merge(vars, Span()))
         ABlock(
@@ -619,16 +613,13 @@ class Hoister(program: Program) {
           List(
             stmtUnit(info, hoistVds(vars)),
             LabelStmt(info, label,
-              walk(For(i, None, cond, action, body)))
-          ),
-          false
-        )
+              walk(For(i, None, cond, action, body)))),
+          false)
       case LabelStmt(info, label, ForVarIn(finfo, VarDecl(i, n, Some(e), _), expr, body)) =>
         ABlock(info, List(
           stmtUnit(info, List(walk(assignS(i, n, e)))),
           LabelStmt(info, label,
-            walk(ForIn(info, VarRef(i, n), expr, body)))
-        ),
+            walk(ForIn(info, VarRef(i, n), expr, body)))),
           false)
       case LabelStmt(info, label, stmt) =>
         LabelStmt(info, label, walk(stmt))

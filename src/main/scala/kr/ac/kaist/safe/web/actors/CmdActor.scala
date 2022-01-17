@@ -151,8 +151,7 @@ class CmdActor() extends Actor {
         console.cfg,
         console.sem,
         Some(console.worklist),
-        simplified = true
-      )
+        simplified = true)
       Result(Actions.CMD, "", console.getPrompt, console.getIter, "", state, fixpoint.worklist.isEmpty)
     }
   }

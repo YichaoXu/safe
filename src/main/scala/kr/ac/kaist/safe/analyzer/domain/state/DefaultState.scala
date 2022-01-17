@@ -29,10 +29,9 @@ object DefaultState extends StateDomain {
     Elem(heap, context, allocs)
 
   case class Elem(
-      heap: AbsHeap,
-      context: AbsContext,
-      allocs: AllocLocSet
-  ) extends ElemTrait {
+    heap: AbsHeap,
+    context: AbsContext,
+    allocs: AllocLocSet) extends ElemTrait {
     def gamma: ConSet[State] = ConInf // TODO more precise
 
     def getSingle: ConSingle[State] = ConMany // TODO more precise
@@ -72,16 +71,14 @@ object DefaultState extends StateDomain {
       Elem(
         heap.remove(locs),
         context.remove(locs),
-        allocs.remove(locs)
-      )
+        allocs.remove(locs))
     }
 
     def subsLoc(from: Loc, to: Loc): Elem = {
       Elem(
         heap.subsLoc(from, to),
         context.subsLoc(from, to),
-        allocs.subsLoc(from, to)
-      )
+        allocs.subsLoc(from, to))
     }
 
     def oldify(loc: Loc): Elem = loc match {

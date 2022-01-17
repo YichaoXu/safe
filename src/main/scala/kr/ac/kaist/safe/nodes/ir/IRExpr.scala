@@ -17,22 +17,19 @@ import kr.ac.kaist.safe.util._
 
 // Expression
 abstract class IRExpr(
-  override val ast: ASTNode
-) extends IRNode(ast)
+  override val ast: ASTNode) extends IRNode(ast)
 
 // Side-effect free expressions
 abstract class IROpApp(
-  override val ast: ASTNode
-) extends IRExpr(ast)
+  override val ast: ASTNode) extends IRExpr(ast)
 
 // Binary expression
 // Expr ::= e binop e
 case class IRBin(
-    override val ast: ASTNode,
-    first: IRExpr,
-    op: IROp,
-    second: IRExpr
-) extends IROpApp(ast) {
+  override val ast: ASTNode,
+  first: IRExpr,
+  op: IROp,
+  second: IRExpr) extends IROpApp(ast) {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     s.append(first.toString(indent)).append(" ")
@@ -45,10 +42,9 @@ case class IRBin(
 // Unary expression
 // Expr ::= unop e
 case class IRUn(
-    override val ast: ASTNode,
-    op: IROp,
-    expr: IRExpr
-) extends IROpApp(ast) {
+  override val ast: ASTNode,
+  op: IROp,
+  expr: IRExpr) extends IROpApp(ast) {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     s.append(op.toString(indent)).append(" ").append(expr.toString(indent))
@@ -59,10 +55,9 @@ case class IRUn(
 // Load
 // Expr ::= x[e]
 case class IRLoad(
-    override val ast: ASTNode,
-    obj: IRId,
-    index: IRExpr
-) extends IROpApp(ast) {
+  override val ast: ASTNode,
+  obj: IRId,
+  index: IRExpr) extends IROpApp(ast) {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     s.append(obj.toString(indent)).append("[").append(index.toString(indent)).append("]")
@@ -72,11 +67,10 @@ case class IRLoad(
 
 // Variable
 abstract class IRId(
-    override val ast: ASTNode,
-    val originalName: String,
-    val uniqueName: String,
-    val global: Boolean
-) extends IRExpr(ast) {
+  override val ast: ASTNode,
+  val originalName: String,
+  val uniqueName: String,
+  val global: Boolean) extends IRExpr(ast) {
   override def toString(indent: Int): String = {
     val size = SIGNIFICANT_BITS
     val str = uniqueName match {
@@ -112,17 +106,15 @@ case class IRUserId(
   override val originalName: String,
   override val uniqueName: String,
   override val global: Boolean,
-  isWith: Boolean
-) extends IRId(ast, originalName, uniqueName, global)
+  isWith: Boolean) extends IRId(ast, originalName, uniqueName, global)
 
 // Internally generated identifiers by Translator
 // Do not appear in the JavaScript source text.
 case class IRTmpId(
-    override val ast: ASTNode,
-    override val originalName: String,
-    override val uniqueName: String,
-    override val global: Boolean = false
-) extends IRId(ast, originalName, uniqueName, global) {
+  override val ast: ASTNode,
+  override val originalName: String,
+  override val uniqueName: String,
+  override val global: Boolean = false) extends IRId(ast, originalName, uniqueName, global) {
   // constructor
   def this(name: String) =
     this(NodeUtil.TEMP_AST, name, name, false)
@@ -134,23 +126,20 @@ case class IRTmpId(
 
 // this
 case class IRThis(
-    override val ast: ASTNode
-) extends IRExpr(ast) {
+  override val ast: ASTNode) extends IRExpr(ast) {
   override def toString(indent: Int): String = "this"
 }
 
 // internal value
 case class IRInternalValue(
-    override val ast: ASTNode,
-    name: String
-) extends IRExpr(ast) {
+  override val ast: ASTNode,
+  name: String) extends IRExpr(ast) {
   override def toString(indent: Int): String = s"<>$name<>"
 }
 
 // Value
 case class IRVal(
-    value: EJSVal
-) extends IRExpr(NodeUtil.TEMP_AST) {
+  value: EJSVal) extends IRExpr(NodeUtil.TEMP_AST) {
   override def toString(indent: Int): String = value match {
     case EJSString(str) =>
       "\"" + NodeUtil.pp(str.replaceAll("\\\\", "\\\\\\\\")) + "\""

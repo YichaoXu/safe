@@ -23,8 +23,7 @@ import kr.ac.kaist.safe.nodes.ast.{ ASTNode, Comment }
  */
 
 abstract class IRNode(
-    val ast: ASTNode
-) extends Node {
+  val ast: ASTNode) extends Node {
   def span: Span = ast.span
   def comment: Option[Comment] = ast.comment
   def fileName: String = ast.fileName

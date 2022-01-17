@@ -63,8 +63,7 @@ package object safe {
     // predefined constant variables from IR
     NU.VAR_TRUE,
     NU.VAR_ONE,
-    NU.GLOBAL_NAME
-  )
+    NU.GLOBAL_NAME)
 
   // Predefined functions
   val PRED_FUNS = List(
@@ -78,8 +77,7 @@ package object safe {
     "decodeURI",
     "decodeURIComponent",
     "encodeURI",
-    "encodeURIComponent"
-  )
+    "encodeURIComponent")
 
   // All predefined variables and functions
   val PRED_ALL = PRED_VARS ++ PRED_FUNS
@@ -87,6 +85,5 @@ package object safe {
   // Global names for DOM
   val DOM_NAMES = List(
     "window",
-    "document"
-  )
+    "document")
 }

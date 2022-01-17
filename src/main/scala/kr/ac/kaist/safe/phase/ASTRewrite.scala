@@ -27,8 +27,7 @@ case object ASTRewrite extends PhaseObj[Program, ASTRewriteConfig, Program] {
   def apply(
     pgm: Program,
     safeConfig: SafeConfig,
-    config: ASTRewriteConfig
-  ): Try[Program] = {
+    config: ASTRewriteConfig): Try[Program] = {
     val (program, excLog) = rewrite(pgm)
 
     // Report errors.
@@ -75,12 +74,10 @@ case object ASTRewrite extends PhaseObj[Program, ASTRewriteConfig, Program] {
     ("silent", BoolOption(c => c.silent = true),
       "messages during rewriting AST are muted."),
     ("out", StrOption((c, s) => c.outFile = Some(s)),
-      "the rewritten AST will be written to the outfile.")
-  )
+      "the rewritten AST will be written to the outfile."))
 }
 
 // ASTRewrite phase config
 case class ASTRewriteConfig(
   var silent: Boolean = false,
-  var outFile: Option[String] = None
-) extends Config
+  var outFile: Option[String] = None) extends Config

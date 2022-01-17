@@ -639,8 +639,7 @@ object DefaultNumber extends NumDomain {
     private def binaryShiftOp(
       left: Elem,
       right: Elem,
-      signed: Boolean = true
-    )(op: (Int, Int) => Long): Elem = (left.ToUint32, right.ToUint32) match {
+      signed: Boolean = true)(op: (Int, Int) => Long): Elem = (left.ToUint32, right.ToUint32) match {
       case (UIntConst(l), UIntConst(r)) =>
         val bound = 0x100000000L
         val l32 = l.toInt

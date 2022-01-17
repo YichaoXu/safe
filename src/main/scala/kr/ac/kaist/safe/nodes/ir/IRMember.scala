@@ -15,15 +15,13 @@ import kr.ac.kaist.safe.nodes.ast.{ ASTNode, PropStr }
 
 // Member
 abstract class IRMember(
-  override val ast: ASTNode
-) extends IRNode(ast)
+  override val ast: ASTNode) extends IRNode(ast)
 
 // Member ::= x : e
 case class IRField(
-    override val ast: ASTNode,
-    prop: IRId,
-    expr: IRExpr
-) extends IRMember(ast) {
+  override val ast: ASTNode,
+  prop: IRId,
+  expr: IRExpr) extends IRMember(ast) {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     s.append(prop.ast match {
@@ -37,9 +35,8 @@ case class IRField(
 
 // Member ::= get x () { s }
 case class IRGetProp(
-    override val ast: ASTNode,
-    ftn: IRFunctional
-) extends IRMember(ast) {
+  override val ast: ASTNode,
+  ftn: IRFunctional) extends IRMember(ast) {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     s.append("get ").append(ftn)
@@ -49,9 +46,8 @@ case class IRGetProp(
 
 // Member ::= set x ( y ) { s }
 case class IRSetProp(
-    override val ast: ASTNode,
-    ftn: IRFunctional
-) extends IRMember(ast) {
+  override val ast: ASTNode,
+  ftn: IRFunctional) extends IRMember(ast) {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     s.append("set ").append(ftn)

@@ -26,8 +26,7 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
   def apply(
     ir: IRRoot,
     safeConfig: SafeConfig,
-    config: CFGBuildConfig
-  ): Try[CFG] = {
+    config: CFGBuildConfig): Try[CFG] = {
     // Build CFG from IR.
     val cbResult = new DefaultCFGBuilder(ir, safeConfig, config)
     val cfg = cbResult.cfg
@@ -53,12 +52,10 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
     ("silent", BoolOption(c => c.silent = true),
       "messages during CFG building are muted."),
     ("out", StrOption((c, s) => c.outFile = Some(s)),
-      "the resulting CFG will be written to the outfile.")
-  )
+      "the resulting CFG will be written to the outfile."))
 }
 
 // CFGBuild phase config
 case class CFGBuildConfig(
   var silent: Boolean = false,
-  var outFile: Option[String] = None
-) extends Config
+  var outFile: Option[String] = None) extends Config

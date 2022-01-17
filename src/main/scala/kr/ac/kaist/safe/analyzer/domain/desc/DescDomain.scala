@@ -17,8 +17,7 @@ trait DescDomain extends AbsDomain[Desc] {
     value: (AbsValue, AbsAbsent),
     writable: (AbsBool, AbsAbsent) = (AbsBool.Bot, AbsAbsent.Top),
     enumerable: (AbsBool, AbsAbsent) = (AbsBool.Bot, AbsAbsent.Top),
-    configurable: (AbsBool, AbsAbsent) = (AbsBool.Bot, AbsAbsent.Top)
-  ): Elem
+    configurable: (AbsBool, AbsAbsent) = (AbsBool.Bot, AbsAbsent.Top)): Elem
 
   // 8.10.5 ToPropertyDescriptor ( Obj )
   def ToPropertyDescriptor(obj: AbsObj, h: AbsHeap): Elem
@@ -37,8 +36,7 @@ trait DescDomain extends AbsDomain[Desc] {
       value: (AbsValue, AbsAbsent) = this.value,
       writable: (AbsBool, AbsAbsent) = this.writable,
       enumerable: (AbsBool, AbsAbsent) = this.enumerable,
-      configurable: (AbsBool, AbsAbsent) = this.configurable
-    ): Elem
+      configurable: (AbsBool, AbsAbsent) = this.configurable): Elem
 
     // 8.10.1 IsAccessorDescriptor ( Desc )
     // XXX: we do not support accessor descriptor yet

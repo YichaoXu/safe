@@ -51,16 +51,14 @@ object DefaultValue extends ValueDomain {
       val (left, right) = (this, that)
       Elem(
         left.pvalue ⊔ right.pvalue,
-        left.locset ⊔ right.locset
-      )
+        left.locset ⊔ right.locset)
     }
 
     def ⊓(that: Elem): Elem = {
       val (left, right) = (this, that)
       Elem(
         left.pvalue ⊓ right.pvalue,
-        left.locset ⊓ right.locset
-      )
+        left.locset ⊓ right.locset)
     }
 
     override def toString: String = {

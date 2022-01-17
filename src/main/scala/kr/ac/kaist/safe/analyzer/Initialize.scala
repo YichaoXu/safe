@@ -27,8 +27,7 @@ object Initialize {
     val initCtx = AbsContext(Map(
       GLOBAL_ENV -> AbsLexEnv(AbsGlobalEnvRec.Top),
       PURE_LOCAL -> globalPureLocalEnv,
-      COLLAPSED -> AbsLexEnv(AbsDecEnvRec.Empty)
-    ), LocSet.Bot, globalLocSet)
+      COLLAPSED -> AbsLexEnv(AbsDecEnvRec.Empty)), LocSet.Bot, globalLocSet)
 
     val modeledHeap: AbsHeap = {
       val model = HeapBuild.jscache getOrElse {

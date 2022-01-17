@@ -31,16 +31,14 @@ object DefaultPValue extends PValueDomain {
     nullval: AbsNull,
     boolval: AbsBool,
     numval: AbsNum,
-    strval: AbsStr
-  ): Elem = Elem(undefval, nullval, boolval, numval, strval)
+    strval: AbsStr): Elem = Elem(undefval, nullval, boolval, numval, strval)
 
   case class Elem(
-      undefval: AbsUndef,
-      nullval: AbsNull,
-      boolval: AbsBool,
-      numval: AbsNum,
-      strval: AbsStr
-  ) extends ElemTrait {
+    undefval: AbsUndef,
+    nullval: AbsNull,
+    boolval: AbsBool,
+    numval: AbsNum,
+    strval: AbsStr) extends ElemTrait {
     def gamma: ConSet[PValue] = ConInf // TODO more precisely
 
     def getSingle: ConSingle[PValue] = (
@@ -48,8 +46,7 @@ object DefaultPValue extends PValueDomain {
       nullval.getSingle,
       boolval.getSingle,
       numval.getSingle,
-      strval.getSingle
-    ) match {
+      strval.getSingle) match {
         case (ConZero, ConZero, ConZero, ConZero, ConZero) => ConZero
         case (ConOne(v), ConZero, ConZero, ConZero, ConZero) => ConOne(v)
         case (ConZero, ConOne(v), ConZero, ConZero, ConZero) => ConOne(v)
@@ -82,8 +79,7 @@ object DefaultPValue extends PValueDomain {
           left.nullval ⊔ right.nullval,
           left.boolval ⊔ right.boolval,
           left.numval ⊔ right.numval,
-          left.strval ⊔ right.strval
-        )
+          left.strval ⊔ right.strval)
       }
     }
 
@@ -95,8 +91,7 @@ object DefaultPValue extends PValueDomain {
         left.nullval ⊓ right.nullval,
         left.boolval ⊓ right.boolval,
         left.numval ⊓ right.numval,
-        left.strval ⊓ right.strval
-      )
+        left.strval ⊓ right.strval)
     }
 
     override def toString(): String = {
@@ -159,7 +154,6 @@ object DefaultPValue extends PValueDomain {
       nullval: AbsNull = this.nullval,
       boolval: AbsBool = this.boolval,
       numval: AbsNum = this.numval,
-      strval: AbsStr = this.strval
-    ): Elem = Elem(undefval, nullval, boolval, numval, strval)
+      strval: AbsStr = this.strval): Elem = Elem(undefval, nullval, boolval, numval, strval)
   }
 }

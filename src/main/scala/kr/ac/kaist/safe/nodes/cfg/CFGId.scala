@@ -15,22 +15,19 @@ import kr.ac.kaist.safe.util.NodeUtil
 
 sealed abstract class CFGId(
   val text: String,
-  val kind: VarKind
-)
+  val kind: VarKind)
 
 case class CFGUserId(
-    override val text: String,
-    override val kind: VarKind,
-    originalName: String,
-    fromWith: Boolean
-) extends CFGId(text, kind) {
+  override val text: String,
+  override val kind: VarKind,
+  originalName: String,
+  fromWith: Boolean) extends CFGId(text, kind) {
   override def toString: String = NodeUtil.pp(text)
 }
 
 case class CFGTempId(
-    override val text: String,
-    override val kind: VarKind
-) extends CFGId(text, kind) {
+  override val text: String,
+  override val kind: VarKind) extends CFGId(text, kind) {
   override def toString: String = NodeUtil.pp(text)
 }
 

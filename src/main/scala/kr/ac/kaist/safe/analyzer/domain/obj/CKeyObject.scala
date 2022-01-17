@@ -39,14 +39,12 @@ object CKeyObject extends ObjDomain {
   // abstraction function
   def alpha(obj: Obj): Elem = Elem(
     nmap = NMap(Map(obj.nmap.toSeq: _*)),
-    imap = IMap(Map(obj.imap.toSeq: _*))
-  )
+    imap = IMap(Map(obj.imap.toSeq: _*)))
 
   // abstract object element
   case class Elem(
-      nmap: NMap,
-      imap: IMap
-  ) extends ElemTrait {
+    nmap: NMap,
+    imap: IMap) extends ElemTrait {
     // concretization function
     def gamma: ConSet[Obj] = ConInf // TODO more precise
 
@@ -82,14 +80,12 @@ object CKeyObject extends ObjDomain {
     // substitute from by to
     def subsLoc(from: Loc, to: Loc): Elem = Elem(
       nmap = nmap.mapCValues { dp => dp.copy(dp.value.subsLoc(from, to)) },
-      imap = imap.mapCValues { iv => iv.copy(iv.value.subsLoc(from, to)) }
-    )
+      imap = imap.mapCValues { iv => iv.copy(iv.value.subsLoc(from, to)) })
 
     // weakly substitute from by to
     def weakSubsLoc(from: Loc, to: Loc): Elem = Elem(
       nmap = nmap.mapCValues { dp => dp.copy(dp.value.weakSubsLoc(from, to)) },
-      imap = imap.mapCValues { iv => iv.copy(iv.value.weakSubsLoc(from, to)) }
-    )
+      imap = imap.mapCValues { iv => iv.copy(iv.value.weakSubsLoc(from, to)) })
 
     // allocate location
     def alloc(loc: Loc): Elem = loc match {
@@ -102,8 +98,7 @@ object CKeyObject extends ObjDomain {
     // remove locations
     def remove(locs: Set[Loc]): Elem = Elem(
       nmap = nmap.mapCValues { dp => dp.copy(dp.value.remove(locs)) },
-      imap = imap.mapCValues { iv => iv.copy(iv.value.remove(locs)) }
-    )
+      imap = imap.mapCValues { iv => iv.copy(iv.value.remove(locs)) })
 
     // lookup
     private def lookup(astr: AbsStr): NVOpt = astr.gamma match {
@@ -245,8 +240,7 @@ object CKeyObject extends ObjDomain {
         (dp.value, AbsAbsent.Bot),
         (dp.writable, AbsAbsent.Bot),
         (dp.enumerable, AbsAbsent.Bot),
-        (dp.configurable, AbsAbsent.Bot)
-      )
+        (dp.configurable, AbsAbsent.Bot))
       (desc, undef)
     }
 
@@ -370,8 +364,7 @@ object CKeyObject extends ObjDomain {
                 (V, AbsAbsent.Bot),
                 (AbsBool.True, AbsAbsent.Bot),
                 (AbsBool.True, AbsAbsent.Bot),
-                (AbsBool.True, AbsAbsent.Bot)
-              )
+                (AbsBool.True, AbsAbsent.Bot))
               val (o, _, e) = DefineOwnProperty(P, newDesc, Throw, h)
               (o, e)
             }
@@ -587,8 +580,7 @@ object CKeyObject extends ObjDomain {
 
       (
         obj1 ⊔ obj2 ⊔ obj3 ⊔ obj5 ⊔ obj6 ⊔ obj7, b1 ⊔ b2 ⊔ b3 ⊔ b5 ⊔ b6 ⊔ b7,
-        excSet1 ++ excSet2 ++ excSet3 ++ excSet4 ++ excSet5 ++ excSet6
-      )
+        excSet1 ++ excSet2 ++ excSet3 ++ excSet4 ++ excSet5 ++ excSet6)
     }
   }
 
@@ -732,15 +724,13 @@ object CKeyObject extends ObjDomain {
     def put(
       obj: Elem,
       name: String,
-      pair: (AbsValue, AbsAbsent)
-    ): (Elem, AbsBool, Set[Exception]) = {
+      pair: (AbsValue, AbsAbsent)): (Elem, AbsBool, Set[Exception]) = {
       val T = (AbsBool.True, AbsAbsent.Bot)
       obj.DefineOwnProperty(
         AbsStr(name),
         AbsDesc(pair, T, T, T),
         false,
-        h
-      )
+        h)
     }
     def toValue(pair: (AbsBool, AbsAbsent)): (AbsValue, AbsAbsent) = {
       val (b, a) = pair

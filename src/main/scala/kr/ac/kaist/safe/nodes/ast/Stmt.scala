@@ -16,10 +16,9 @@ import kr.ac.kaist.safe.LINE_SEP
 
 // Program ::= Stmt*
 case class Stmts(
-    info: ASTNodeInfo,
-    body: List[Stmt],
-    strict: Boolean
-) extends ASTNode {
+  info: ASTNodeInfo,
+  body: List[Stmt],
+  strict: Boolean) extends ASTNode {
   override def toString(indent: Int): String = ""
 }
 
@@ -34,9 +33,8 @@ trait Stmt extends ASTNode {
  * Do not appear in the JavaScript source text
  */
 case class NoOp(
-    info: ASTNodeInfo,
-    desc: String
-) extends Stmt {
+  info: ASTNodeInfo,
+  desc: String) extends Stmt {
   override def toString(indent: Int): String = ""
 }
 
@@ -45,9 +43,8 @@ case class NoOp(
  * Do not appear in the JavaScript source text
  */
 case class StmtUnit(
-    info: ASTNodeInfo,
-    stmts: List[Stmt]
-) extends Stmt {
+  info: ASTNodeInfo,
+  stmts: List[Stmt]) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -57,8 +54,7 @@ case class StmtUnit(
       .append(NU.join(
         indent + 1, stmts,
         LINE_SEP + NU.getIndent(indent + 1),
-        new StringBuilder("")
-      ))
+        new StringBuilder("")))
       .append(LINE_SEP)
       .append(NU.getIndent(indent))
       .append("}")
@@ -68,10 +64,9 @@ case class StmtUnit(
 
 // Stmt ::= function Id ( (Id,)* ) { Stmt* }
 case class FunDecl(
-    info: ASTNodeInfo,
-    ftn: Functional,
-    strict: Boolean
-) extends Stmt {
+  info: ASTNodeInfo,
+  ftn: Functional,
+  strict: Boolean) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -83,10 +78,9 @@ case class FunDecl(
 
 // Stmt ::= { Stmt* }
 case class ABlock(
-    info: ASTNodeInfo,
-    stmts: List[Stmt],
-    internal: Boolean
-) extends Stmt {
+  info: ASTNodeInfo,
+  stmts: List[Stmt],
+  internal: Boolean) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -97,8 +91,7 @@ case class ABlock(
         indent + 1,
         stmts,
         LINE_SEP + NU.getIndent(indent + 1),
-        new StringBuilder("")
-      ))
+        new StringBuilder("")))
       .append(LINE_SEP)
       .append(NU.getIndent(indent))
       .append("}")
@@ -109,9 +102,8 @@ case class ABlock(
 
 // Stmt ::= var VarDecl(, VarDecl)* ;
 case class VarStmt(
-    info: ASTNodeInfo,
-    vds: List[VarDecl]
-) extends Stmt {
+  info: ASTNodeInfo,
+  vds: List[VarDecl]) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -128,11 +120,10 @@ case class VarStmt(
 
 // Stmt ::= Id (= Expr)?
 case class VarDecl(
-    info: ASTNodeInfo,
-    name: Id,
-    expr: Option[Expr],
-    strict: Boolean
-) extends ASTNode {
+  info: ASTNodeInfo,
+  name: Id,
+  expr: Option[Expr],
+  strict: Boolean) extends ASTNode {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -144,8 +135,7 @@ case class VarDecl(
 
 // Stmt ::= ;
 case class EmptyStmt(
-    info: ASTNodeInfo
-) extends Stmt {
+  info: ASTNodeInfo) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -156,10 +146,9 @@ case class EmptyStmt(
 
 // Stmt ::= Expr ;
 case class ExprStmt(
-    info: ASTNodeInfo,
-    expr: Expr,
-    internal: Boolean
-) extends Stmt {
+  info: ASTNodeInfo,
+  expr: Expr,
+  internal: Boolean) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -170,11 +159,10 @@ case class ExprStmt(
 
 // Stmt ::= if ( Expr ) Stmt (else Stmt)?
 case class If(
-    info: ASTNodeInfo,
-    cond: Expr,
-    trueBranch: Stmt,
-    falseBranch: Option[Stmt]
-) extends Stmt {
+  info: ASTNodeInfo,
+  cond: Expr,
+  trueBranch: Stmt,
+  falseBranch: Option[Stmt]) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -202,10 +190,9 @@ case class If(
 
 // Stmt ::= do Stmt while ( Expr ) ;
 case class DoWhile(
-    info: ASTNodeInfo,
-    body: Stmt,
-    cond: Expr
-) extends Stmt {
+  info: ASTNodeInfo,
+  body: Stmt,
+  cond: Expr) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -223,10 +210,9 @@ case class DoWhile(
 
 // Stmt ::= while ( Expr ) Stmt
 case class While(
-    info: ASTNodeInfo,
-    cond: Expr,
-    body: Stmt
-) extends Stmt {
+  info: ASTNodeInfo,
+  cond: Expr,
+  body: Stmt) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -243,12 +229,11 @@ case class While(
 
 // Stmt ::= for ( Expr? ; Expr? ; Expr? ) Stmt
 case class For(
-    info: ASTNodeInfo,
-    init: Option[Expr],
-    cond: Option[Expr],
-    action: Option[Expr],
-    body: Stmt
-) extends Stmt {
+  info: ASTNodeInfo,
+  init: Option[Expr],
+  cond: Option[Expr],
+  action: Option[Expr],
+  body: Stmt) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -269,11 +254,10 @@ case class For(
 
 // Stmt ::= for ( lhs in Expr ) Stmt
 case class ForIn(
-    info: ASTNodeInfo,
-    lhs: LHS,
-    expr: Expr,
-    body: Stmt
-) extends Stmt {
+  info: ASTNodeInfo,
+  lhs: LHS,
+  expr: Expr,
+  body: Stmt) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -292,12 +276,11 @@ case class ForIn(
 
 // Stmt ::= for ( var VarDecl(, VarDecl)* ; Expr? ; Expr? ) Stmt
 case class ForVar(
-    info: ASTNodeInfo,
-    vars: List[VarDecl],
-    cond: Option[Expr],
-    action: Option[Expr],
-    body: Stmt
-) extends Stmt {
+  info: ASTNodeInfo,
+  vars: List[VarDecl],
+  cond: Option[Expr],
+  action: Option[Expr],
+  body: Stmt) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -307,8 +290,7 @@ case class ForVar(
         indent,
         vars,
         ", ",
-        new StringBuilder("")
-      ))
+        new StringBuilder("")))
       .append(";")
     cond.map(c => s.append(c.toString(indent)))
     s.append(";")
@@ -323,11 +305,10 @@ case class ForVar(
 
 // Stmt ::= for ( var VarDecl in Expr ) Stmt
 case class ForVarIn(
-    info: ASTNodeInfo,
-    vd: VarDecl,
-    expr: Expr,
-    body: Stmt
-) extends Stmt {
+  info: ASTNodeInfo,
+  vd: VarDecl,
+  expr: Expr,
+  body: Stmt) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -346,9 +327,8 @@ case class ForVarIn(
 
 // Stmt ::= continue Label? ;
 case class Continue(
-    info: ASTNodeInfo,
-    target: Option[Label]
-) extends Stmt {
+  info: ASTNodeInfo,
+  target: Option[Label]) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -361,9 +341,8 @@ case class Continue(
 
 // Stmt ::= break Label? ;
 case class Break(
-    info: ASTNodeInfo,
-    target: Option[Label]
-) extends Stmt {
+  info: ASTNodeInfo,
+  target: Option[Label]) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -376,9 +355,8 @@ case class Break(
 
 // Stmt ::= return Expr? ;
 case class Return(
-    info: ASTNodeInfo,
-    expr: Option[Expr]
-) extends Stmt {
+  info: ASTNodeInfo,
+  expr: Option[Expr]) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -391,10 +369,9 @@ case class Return(
 
 // Stmt ::= with ( Expr ) Stmt
 case class With(
-    info: ASTNodeInfo,
-    expr: Expr,
-    stmt: Stmt
-) extends Stmt {
+  info: ASTNodeInfo,
+  expr: Expr,
+  stmt: Stmt) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -411,12 +388,11 @@ case class With(
 
 // Stmt ::= switch ( Expr ) { CaseClause* (default : Stmt*)? CaseClause* }
 case class Switch(
-    info: ASTNodeInfo,
-    cond: Expr,
-    frontCases: List[Case],
-    defopt: Option[List[Stmt]],
-    backCases: List[Case]
-) extends Stmt {
+  info: ASTNodeInfo,
+  cond: Expr,
+  frontCases: List[Case],
+  defopt: Option[List[Stmt]],
+  backCases: List[Case]) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -429,8 +405,7 @@ case class Switch(
         indent + 1,
         frontCases,
         LINE_SEP + NU.getIndent(indent + 1),
-        new StringBuilder("")
-      ))
+        new StringBuilder("")))
     defopt.map(d => {
       s.append(LINE_SEP)
         .append(NU.getIndent(indent + 1))
@@ -441,8 +416,7 @@ case class Switch(
           indent + 2,
           d,
           LINE_SEP + NU.getIndent(indent + 2),
-          new StringBuilder("")
-        ))
+          new StringBuilder("")))
     })
     s.append(LINE_SEP)
       .append(NU.getIndent(indent + 1))
@@ -450,8 +424,7 @@ case class Switch(
         indent + 1,
         backCases,
         LINE_SEP + NU.getIndent(indent + 1),
-        new StringBuilder("")
-      ))
+        new StringBuilder("")))
       .append(LINE_SEP)
       .append(NU.getIndent(indent))
       .append("}")
@@ -461,10 +434,9 @@ case class Switch(
 
 // CaseClause ::= case Expr : Stmt*
 case class Case(
-    info: ASTNodeInfo,
-    cond: Expr,
-    body: List[Stmt]
-) extends ASTNode {
+  info: ASTNodeInfo,
+  cond: Expr,
+  body: List[Stmt]) extends ASTNode {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -477,8 +449,7 @@ case class Case(
         indent + 1,
         body,
         LINE_SEP + NU.getIndent(indent + 1),
-        new StringBuilder("")
-      ))
+        new StringBuilder("")))
       .append(LINE_SEP)
     s.toString
   }
@@ -486,10 +457,9 @@ case class Case(
 
 // Stmt ::= Label : Stmt
 case class LabelStmt(
-    info: ASTNodeInfo,
-    label: Label,
-    stmt: Stmt
-) extends Stmt {
+  info: ASTNodeInfo,
+  label: Label,
+  stmt: Stmt) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -502,9 +472,8 @@ case class LabelStmt(
 
 // Stmt ::= throw Expr ;
 case class Throw(
-    info: ASTNodeInfo,
-    expr: Expr
-) extends Stmt {
+  info: ASTNodeInfo,
+  expr: Expr) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -517,11 +486,10 @@ case class Throw(
 
 // Stmt ::= try { Stmt* } (catch ( Id ) { Stmt* })? (finally { Stmt* })?
 case class Try(
-    info: ASTNodeInfo,
-    body: List[Stmt],
-    catchBlock: Option[Catch],
-    fin: Option[List[Stmt]]
-) extends Stmt {
+  info: ASTNodeInfo,
+  body: List[Stmt],
+  catchBlock: Option[Catch],
+  fin: Option[List[Stmt]]) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -533,8 +501,7 @@ case class Try(
         indent + 1,
         body,
         LINE_SEP + NU.getIndent(indent + 1),
-        new StringBuilder("")
-      ))
+        new StringBuilder("")))
       .append("}")
     catchBlock.map(c => {
       s.append(LINE_SEP)
@@ -552,8 +519,7 @@ case class Try(
           indent + 1,
           f,
           LINE_SEP + NU.getIndent(indent + 1),
-          new StringBuilder("")
-        ))
+          new StringBuilder("")))
         .append("}")
         .append(LINE_SEP)
     })
@@ -563,10 +529,9 @@ case class Try(
 
 // Catch ::= catch ( Id ) { Stmt* }
 case class Catch(
-    info: ASTNodeInfo,
-    id: Id,
-    body: List[Stmt]
-) extends ASTNode {
+  info: ASTNodeInfo,
+  id: Id,
+  body: List[Stmt]) extends ASTNode {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))
@@ -580,8 +545,7 @@ case class Catch(
         indent + 1,
         body,
         LINE_SEP + NU.getIndent(indent + 1),
-        new StringBuilder("")
-      ))
+        new StringBuilder("")))
       .append("}")
       .append(LINE_SEP)
     s.toString
@@ -590,8 +554,7 @@ case class Catch(
 
 // Stmt ::= debugger ;
 case class Debugger(
-    info: ASTNodeInfo
-) extends Stmt {
+  info: ASTNodeInfo) extends Stmt {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     comment.map(c => s.append(c.toString(indent)))

@@ -20,15 +20,13 @@ object DefaultDataProp extends DataPropDomain {
     AbsValue(prop.value),
     AbsBool(prop.writable),
     AbsBool(prop.enumerable),
-    AbsBool(prop.configurable)
-  )
+    AbsBool(prop.configurable))
 
   def apply(
     value: AbsValue,
     writable: AbsBool,
     enumerable: AbsBool,
-    configurable: AbsBool
-  ): Elem = Elem(value, writable, enumerable, configurable)
+    configurable: AbsBool): Elem = Elem(value, writable, enumerable, configurable)
 
   def apply(desc: AbsDesc): Elem = {
     val (v, va) = desc.value
@@ -52,11 +50,10 @@ object DefaultDataProp extends DataPropDomain {
   }
 
   case class Elem(
-      value: AbsValue,
-      writable: AbsBool,
-      enumerable: AbsBool,
-      configurable: AbsBool
-  ) extends ElemTrait {
+    value: AbsValue,
+    writable: AbsBool,
+    enumerable: AbsBool,
+    configurable: AbsBool) extends ElemTrait {
     def gamma: ConSet[DataProp] = ConInf // TODO more precise
 
     def getSingle: ConSingle[DataProp] = ConMany // TODO more precise
@@ -75,8 +72,7 @@ object DefaultDataProp extends DataPropDomain {
         left.value ⊔ right.value,
         left.writable ⊔ right.writable,
         left.enumerable ⊔ right.enumerable,
-        left.configurable ⊔ right.configurable
-      )
+        left.configurable ⊔ right.configurable)
     }
 
     def ⊓(that: Elem): Elem = {
@@ -85,8 +81,7 @@ object DefaultDataProp extends DataPropDomain {
         left.value ⊓ right.value,
         left.writable ⊓ right.writable,
         left.enumerable ⊓ right.enumerable,
-        left.configurable ⊓ right.configurable
-      )
+        left.configurable ⊓ right.configurable)
     }
 
     override def toString: String = {
@@ -103,7 +98,6 @@ object DefaultDataProp extends DataPropDomain {
       value: AbsValue,
       writable: AbsBool,
       enumerable: AbsBool,
-      configurable: AbsBool
-    ): Elem = Elem(value, writable, enumerable, configurable)
+      configurable: AbsBool): Elem = Elem(value, writable, enumerable, configurable)
   }
 }

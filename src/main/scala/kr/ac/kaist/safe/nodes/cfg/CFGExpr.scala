@@ -24,57 +24,50 @@ object CFGExpr {
 
 // variable reference
 case class CFGVarRef(
-    ir: IRNode,
-    id: CFGId
-) extends CFGExpr {
+  ir: IRNode,
+  id: CFGId) extends CFGExpr {
   override def toString: String = s"$id"
 }
 
 // load
 case class CFGLoad(
-    ir: IRNode,
-    obj: CFGExpr,
-    index: CFGExpr
-) extends CFGExpr {
+  ir: IRNode,
+  obj: CFGExpr,
+  index: CFGExpr) extends CFGExpr {
   override def toString: String = s"$obj[$index]"
 }
 
 // this
 case class CFGThis(
-    ir: IRNode
-) extends CFGExpr {
+  ir: IRNode) extends CFGExpr {
   override def toString: String = "this"
 }
 
 // binary operation
 case class CFGBin(
-    ir: IRNode,
-    first: CFGExpr,
-    op: EJSOp,
-    second: CFGExpr
-) extends CFGExpr {
+  ir: IRNode,
+  first: CFGExpr,
+  op: EJSOp,
+  second: CFGExpr) extends CFGExpr {
   override def toString: String = s"$first $op $second"
 }
 
 // unary operation
 case class CFGUn(
-    ir: IRNode,
-    op: EJSOp,
-    expr: CFGExpr
-) extends CFGExpr {
+  ir: IRNode,
+  op: EJSOp,
+  expr: CFGExpr) extends CFGExpr {
   override def toString: String = s"$op $expr"
 }
 
 case class CFGInternalValue(
-    ir: IRNode,
-    name: String
-) extends CFGExpr {
+  ir: IRNode,
+  name: String) extends CFGExpr {
   override def toString: String = s"<>$name<>"
 }
 
 case class CFGVal(
-    value: EJSVal
-) extends CFGExpr {
+  value: EJSVal) extends CFGExpr {
   val ir: IRNode = NodeUtil.TEMP_IR
   override def toString: String = value.toString
 }

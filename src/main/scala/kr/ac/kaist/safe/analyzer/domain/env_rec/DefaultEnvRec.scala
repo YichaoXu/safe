@@ -30,9 +30,8 @@ object DefaultEnvRec extends EnvRecDomain {
     Elem(envRec, global)
 
   case class Elem(
-      decEnvRec: AbsDecEnvRec,
-      globalEnvRec: AbsGlobalEnvRec
-  ) extends ElemTrait {
+    decEnvRec: AbsDecEnvRec,
+    globalEnvRec: AbsGlobalEnvRec) extends ElemTrait {
     def gamma: ConSet[EnvRec] = ConInf // TODO more precise
 
     def getSingle: ConSingle[EnvRec] = ConMany // TODO more precise
@@ -47,16 +46,14 @@ object DefaultEnvRec extends EnvRecDomain {
       val right = that
       Elem(
         this.decEnvRec ⊔ right.decEnvRec,
-        this.globalEnvRec ⊔ right.globalEnvRec
-      )
+        this.globalEnvRec ⊔ right.globalEnvRec)
     }
 
     def ⊓(that: Elem): Elem = {
       val right = that
       Elem(
         this.decEnvRec ⊓ right.decEnvRec,
-        this.globalEnvRec ⊓ right.globalEnvRec
-      )
+        this.globalEnvRec ⊓ right.globalEnvRec)
     }
 
     override def toString: String = {
@@ -74,8 +71,7 @@ object DefaultEnvRec extends EnvRecDomain {
     // 10.2.1.2.2 CreateMutableBinding(N, D)
     def CreateMutableBinding(
       name: String,
-      del: Boolean
-    )(heap: AbsHeap): (Elem, AbsHeap, Set[Exception]) = {
+      del: Boolean)(heap: AbsHeap): (Elem, AbsHeap, Set[Exception]) = {
       val newD = decEnvRec.CreateMutableBinding(name, del)
       val (newG, newH, excSet) = globalEnvRec.CreateMutableBinding(name, del)(heap)
       (Elem(newD, newG), newH, excSet)
@@ -85,8 +81,7 @@ object DefaultEnvRec extends EnvRecDomain {
     def SetMutableBinding(
       name: String,
       v: AbsValue,
-      strict: Boolean
-    )(heap: AbsHeap): (Elem, AbsHeap, Set[Exception]) = {
+      strict: Boolean)(heap: AbsHeap): (Elem, AbsHeap, Set[Exception]) = {
       val (newD, excSet1) = decEnvRec.SetMutableBinding(name, v, strict)
       val (newG, newH, excSet2) = globalEnvRec.SetMutableBinding(name, v, strict)(heap)
       (Elem(newD, newG), newH, excSet1 ++ excSet2)
@@ -95,8 +90,7 @@ object DefaultEnvRec extends EnvRecDomain {
     // 10.2.1.2.4 GetBindingValue(N, S)
     def GetBindingValue(
       name: String,
-      strict: Boolean
-    )(heap: AbsHeap): (AbsValue, Set[Exception]) = {
+      strict: Boolean)(heap: AbsHeap): (AbsValue, Set[Exception]) = {
       val (v1, excSet1) = decEnvRec.GetBindingValue(name, strict)
       val (v2, excSet2) = globalEnvRec.GetBindingValue(name, strict)(heap)
       (v1 ⊔ v2, excSet1 ++ excSet2)
@@ -104,8 +98,7 @@ object DefaultEnvRec extends EnvRecDomain {
 
     // 10.2.1.2.5 DeleteBinding(N)
     def DeleteBinding(
-      name: String
-    )(heap: AbsHeap): (Elem, AbsHeap, AbsBool) = {
+      name: String)(heap: AbsHeap): (Elem, AbsHeap, AbsBool) = {
       val (newD, b1) = decEnvRec.DeleteBinding(name)
       val (newG, newH, b2) = globalEnvRec.DeleteBinding(name)(heap)
       (Elem(newD, newG), newH, b1 ⊔ b2)

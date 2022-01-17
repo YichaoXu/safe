@@ -66,8 +66,7 @@ object DefaultGlobalEnvRec extends GlobalEnvRecDomain {
     // 10.2.1.2.2 CreateMutableBinding(N, D)
     def CreateMutableBinding(
       name: String,
-      del: Boolean
-    )(heap: AbsHeap): (Elem, AbsHeap, Set[Exception]) = this match {
+      del: Boolean)(heap: AbsHeap): (Elem, AbsHeap, Set[Exception]) = this match {
       case Bot => (Bot, AbsHeap.Bot, ExcSetEmpty)
       case Top =>
         // 1. Let envRec be the object environment record for
@@ -88,8 +87,7 @@ object DefaultGlobalEnvRec extends GlobalEnvRecDomain {
             AbsStr(name),
             AbsDesc(Desc(Some(Undef), Some(true), Some(true), Some(configValue))),
             true,
-            heap
-          )
+            heap)
           (this, heap.update(GLOBAL_LOC, newObj), excSet)
         } else { (Bot, AbsHeap.Bot, ExcSetEmpty) }
     }
@@ -98,8 +96,7 @@ object DefaultGlobalEnvRec extends GlobalEnvRecDomain {
     def SetMutableBinding(
       name: String,
       v: AbsValue,
-      strict: Boolean
-    )(heap: AbsHeap): (Elem, AbsHeap, Set[Exception]) = this match {
+      strict: Boolean)(heap: AbsHeap): (Elem, AbsHeap, Set[Exception]) = this match {
       case Bot => (Bot, AbsHeap.Bot, ExcSetEmpty)
       case Top =>
         // 1. Let envRec be the object environment record for
@@ -112,15 +109,13 @@ object DefaultGlobalEnvRec extends GlobalEnvRecDomain {
         (
           this,
           heap.update(GLOBAL_LOC, newObj),
-          excSet
-        )
+          excSet)
     }
 
     // 10.2.1.2.4 GetBindingValue(N, S)
     def GetBindingValue(
       name: String,
-      strict: Boolean
-    )(heap: AbsHeap): (AbsValue, Set[Exception]) = this match {
+      strict: Boolean)(heap: AbsHeap): (AbsValue, Set[Exception]) = this match {
       case Bot => (AbsValue.Bot, ExcSetEmpty)
       case Top =>
         // 1. Let envRec be the object environment record for
@@ -152,8 +147,7 @@ object DefaultGlobalEnvRec extends GlobalEnvRecDomain {
 
     // 10.2.1.2.5 DeleteBinding(N)
     def DeleteBinding(
-      name: String
-    )(heap: AbsHeap): (Elem, AbsHeap, AbsBool) = this match {
+      name: String)(heap: AbsHeap): (Elem, AbsHeap, AbsBool) = this match {
       case Bot => (Bot, AbsHeap.Bot, AbsBool.Bot)
       case Top =>
         // 1. Let envRec be the object environment record for

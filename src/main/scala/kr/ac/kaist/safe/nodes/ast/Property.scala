@@ -17,9 +17,8 @@ trait Property extends ASTNode {
 
 // Property ::= Id
 case class PropId(
-    info: ASTNodeInfo,
-    id: Id
-) extends Property {
+  info: ASTNodeInfo,
+  id: Id) extends Property {
   override def toString: String = id.text
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
@@ -32,9 +31,8 @@ case class PropId(
 
 // Property ::= String
 case class PropStr(
-    info: ASTNodeInfo,
-    str: String
-) extends Property {
+  info: ASTNodeInfo,
+  str: String) extends Property {
   override def toString: String = str
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
@@ -47,9 +45,8 @@ case class PropStr(
 
 // Property ::= Number
 case class PropNum(
-    info: ASTNodeInfo,
-    num: NumberLiteral
-) extends Property {
+  info: ASTNodeInfo,
+  num: NumberLiteral) extends Property {
   override def toString: String = num.toString
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder

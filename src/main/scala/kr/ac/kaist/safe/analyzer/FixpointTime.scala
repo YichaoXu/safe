@@ -18,11 +18,10 @@ import kr.ac.kaist.safe.util.Useful
 import kr.ac.kaist.safe.LINE_SEP
 
 class FixpointTime(
-    semantics: Semantics,
-    override val consoleOpt: Option[Interactive],
-    blockLogFile: String,
-    funcLogFile: String
-) extends Fixpoint(semantics, consoleOpt) {
+  semantics: Semantics,
+  override val consoleOpt: Option[Interactive],
+  blockLogFile: String,
+  funcLogFile: String) extends Fixpoint(semantics, consoleOpt) {
   case class TimeInfo(count: Int, time: Double)
   private var totalTime = 0.0
   private var blockTime: Map[CFGBlock, TimeInfo] = Map()

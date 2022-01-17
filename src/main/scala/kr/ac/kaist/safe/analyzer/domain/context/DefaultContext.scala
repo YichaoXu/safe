@@ -37,8 +37,7 @@ object DefaultContext extends ContextDomain {
   def apply(
     map: Map[Loc, AbsLexEnv],
     merged: LocSet,
-    thisBinding: AbsValue
-  ): Elem = CtxMap(Map(map.toSeq: _*), merged, LocSet.Bot, thisBinding)
+    thisBinding: AbsValue): Elem = CtxMap(Map(map.toSeq: _*), merged, LocSet.Bot, thisBinding)
 
   sealed abstract class Elem extends ElemTrait {
     def gamma: ConSet[Context] = ConInf // TODO more precise
@@ -154,8 +153,7 @@ object DefaultContext extends ContextDomain {
           newMap.map { case (k, v) => k -> v.subsLoc(from, to) },
           newMerged.subsLoc(from, to),
           changed + from + to,
-          thisBinding.subsLoc(from, to)
-        )
+          thisBinding.subsLoc(from, to))
       }
     }
 
@@ -166,8 +164,7 @@ object DefaultContext extends ContextDomain {
         (map -- locs).map { case (k, v) => k -> v.remove(locs) },
         merged.remove(locs),
         changed ⊔ LocSet(locs),
-        thisBinding.remove(locs)
-      )
+        thisBinding.remove(locs))
     }
 
     def alloc(loc: Loc): Elem = this match {

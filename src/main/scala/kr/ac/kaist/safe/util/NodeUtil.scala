@@ -231,8 +231,7 @@ object NodeUtil {
     INTERNAL_TARGET_FUN,
     INTERNAL_BOUND_THIS,
     INTERNAL_BOUND_ARGS,
-    INTERNAL_HAS_CONST
-  )
+    INTERNAL_HAS_CONST)
   def isInternalCall(id: String): Boolean = internalCallSet.contains(id)
 
   // internal API value
@@ -282,15 +281,13 @@ object NodeUtil {
     INTERNAL_URI_ERR_PROTO,
     INTERNAL_ERR_PROTO,
     INTERNAL_OBJ_CONST,
-    INTERNAL_ARRAY_CONST
-  )
+    INTERNAL_ARRAY_CONST)
   def isInternalValue(id: String): Boolean = internalValueSet.contains(id)
 
   // internal API variable
   val INTERNAL_EVENT_FUNC = internalAPIName("EventFunc")
   val internalVarSet: Set[String] = Set(
-    INTERNAL_EVENT_FUNC
-  )
+    INTERNAL_EVENT_FUNC)
   def isInternalVar(id: String): Boolean = internalVarSet.contains(id)
   def getInternalVarId(text: String): CFGId = CFGTempId(text, GlobalVar)
 
@@ -488,8 +485,7 @@ object NodeUtil {
         if (!com.txt.equals(message))
           comment = Some[Comment](new Comment(
             makeASTNodeInfo(com.info.span + span),
-            com.txt + LINE_SEP + message
-          ))
+            com.txt + LINE_SEP + message))
       }
     }
 

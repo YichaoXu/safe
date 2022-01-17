@@ -15,15 +15,13 @@ import kr.ac.kaist.safe.analyzer.domain._
 import kr.ac.kaist.safe.nodes.cfg._
 
 case class ControlPoint(
-    block: CFGBlock,
-    tracePartition: TracePartition
-) {
+  block: CFGBlock,
+  tracePartition: TracePartition) {
   def next(
     to: CFGBlock,
     edgeType: CFGEdgeType,
     sem: Semantics,
-    st: AbsState
-  ): List[ControlPoint] = {
+    st: AbsState): List[ControlPoint] = {
     tracePartition.next(block, to, edgeType, sem, st).map(ControlPoint(to, _))
   }
   override def toString: String = {

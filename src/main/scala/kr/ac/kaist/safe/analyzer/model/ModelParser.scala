@@ -100,8 +100,7 @@ trait ModelParser extends JavaTokenParsers with RegexParsers {
     jsValue ~
     ("," ~> jsShortBool) ~
     ("," ~> jsShortBool) ~
-    ("," ~> jsShortBool)
-  ) <~ ">" ^^ {
+    ("," ~> jsShortBool)) <~ ">" ^^ {
       case value ~ writable ~ enumerable ~ configurable =>
         DataProp(value, writable, enumerable, configurable)
     }
@@ -142,8 +141,7 @@ trait ModelParser extends JavaTokenParsers with RegexParsers {
 
   // JavaScript Heap
   val jsHeap: Parser[Heap] = "{" ~> (
-    repsep((jsLoc <~ ":") ~ jsObject, ",")
-  ) <~ (","?) <~ "}" ^^ {
+    repsep((jsLoc <~ ":") ~ jsObject, ",")) <~ (","?) <~ "}" ^^ {
       case lst => {
         val map = lst.foldLeft(Map[Loc, Obj]()) {
           case (map, loc ~ obj) => {
@@ -190,8 +188,7 @@ trait ModelParser extends JavaTokenParsers with RegexParsers {
     }
   } ^? { case Succ(pgm) => pgm }
   val jsFuncs: Parser[(List[(String, CFGFunction)], Map[Int, Int])] = "{" ~> (
-    repsep((int <~ ":") ~ jsFun, ",")
-  ) <~ (","?) <~ "}" ^^ {
+    repsep((int <~ ":") ~ jsFun, ",")) <~ (","?) <~ "}" ^^ {
       case lst => {
         var fidMap = Map[Int, Int]()
         var size = 0

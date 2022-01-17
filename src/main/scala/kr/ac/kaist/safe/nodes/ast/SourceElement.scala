@@ -15,9 +15,8 @@ trait SourceElement extends ASTNode
 
 // Program ::= SourceElement*
 case class SourceElements(
-    info: ASTNodeInfo,
-    body: List[SourceElement],
-    strict: Boolean
-) extends ASTNode {
+  info: ASTNodeInfo,
+  body: List[SourceElement],
+  strict: Boolean) extends ASTNode {
   override def toString(indent: Int): String = ""
 }

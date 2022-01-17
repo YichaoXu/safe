@@ -115,8 +115,7 @@ package object domain {
     absStr: StrDomain,
     recencyMode: Boolean,
     heapClone: Boolean,
-    sensitivity: Sensitivity
-  ): Unit = {
+    sensitivity: Sensitivity): Unit = {
     this.absUndef = Some(absUndef)
     this.absNull = Some(absNull)
     this.absBool = Some(absBool)

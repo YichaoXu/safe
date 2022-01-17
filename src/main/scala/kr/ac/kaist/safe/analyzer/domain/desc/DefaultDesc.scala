@@ -19,19 +19,16 @@ object DefaultDesc extends DescDomain {
     (AbsValue.Bot, AbsAbsent.Bot),
     (AbsBool.Bot, AbsAbsent.Bot),
     (AbsBool.Bot, AbsAbsent.Bot),
-    (AbsBool.Bot, AbsAbsent.Bot)
-  )
+    (AbsBool.Bot, AbsAbsent.Bot))
   lazy val Top: Elem = Elem(
     (AbsValue.Top, AbsAbsent.Top),
     (AbsBool.Top, AbsAbsent.Top),
     (AbsBool.Top, AbsAbsent.Top),
-    (AbsBool.Top, AbsAbsent.Top)
-  )
+    (AbsBool.Top, AbsAbsent.Top))
 
   private def conversion[V](
     opt: Option[V],
-    domain: AbsDomain[V]
-  ): (domain.Elem, AbsAbsent) = opt match {
+    domain: AbsDomain[V]): (domain.Elem, AbsAbsent) = opt match {
     case Some(v) => (domain(v), AbsAbsent.Bot)
     case None => (domain.Bot, AbsAbsent.Top)
   }
@@ -39,22 +36,19 @@ object DefaultDesc extends DescDomain {
     conversion(desc.value, AbsValue),
     conversion(desc.writable, AbsBool),
     conversion(desc.enumerable, AbsBool),
-    conversion(desc.configurable, AbsBool)
-  )
+    conversion(desc.configurable, AbsBool))
 
   def apply(
     value: (AbsValue, AbsAbsent),
     writable: (AbsBool, AbsAbsent),
     enumerable: (AbsBool, AbsAbsent),
-    configurable: (AbsBool, AbsAbsent)
-  ): Elem = Elem(value, writable, enumerable, configurable)
+    configurable: (AbsBool, AbsAbsent)): Elem = Elem(value, writable, enumerable, configurable)
 
   case class Elem(
-      value: (AbsValue, AbsAbsent),
-      writable: (AbsBool, AbsAbsent),
-      enumerable: (AbsBool, AbsAbsent),
-      configurable: (AbsBool, AbsAbsent)
-  ) extends ElemTrait {
+    value: (AbsValue, AbsAbsent),
+    writable: (AbsBool, AbsAbsent),
+    enumerable: (AbsBool, AbsAbsent),
+    configurable: (AbsBool, AbsAbsent)) extends ElemTrait {
     def gamma: ConSet[Desc] = ConInf // TODO more precise
 
     def getSingle: ConSingle[Desc] = ConMany // TODO more precise
@@ -89,8 +83,7 @@ object DefaultDesc extends DescDomain {
         (lv ⊔ rv, lva ⊔ rva),
         (lw ⊔ rw, lwa ⊔ rwa),
         (le ⊔ re, lea ⊔ rea),
-        (lc ⊔ rc, lca ⊔ rca)
-      )
+        (lc ⊔ rc, lca ⊔ rca))
     }
 
     def ⊓(that: Elem): Elem = {
@@ -107,8 +100,7 @@ object DefaultDesc extends DescDomain {
         (lv ⊓ rv, lva ⊓ rva),
         (lw ⊓ rw, lwa ⊓ rwa),
         (le ⊓ re, lea ⊓ rea),
-        (lc ⊓ rc, lca ⊓ rca)
-      )
+        (lc ⊓ rc, lca ⊓ rca))
     }
 
     override def toString: String = {
@@ -125,8 +117,7 @@ object DefaultDesc extends DescDomain {
       value: (AbsValue, AbsAbsent) = this.value,
       writable: (AbsBool, AbsAbsent) = this.writable,
       enumerable: (AbsBool, AbsAbsent) = this.enumerable,
-      configurable: (AbsBool, AbsAbsent) = this.configurable
-    ): Elem = Elem(value, writable, enumerable, configurable)
+      configurable: (AbsBool, AbsAbsent) = this.configurable): Elem = Elem(value, writable, enumerable, configurable)
 
     def IsDataDescriptor: AbsBool = {
       val (v, va) = value

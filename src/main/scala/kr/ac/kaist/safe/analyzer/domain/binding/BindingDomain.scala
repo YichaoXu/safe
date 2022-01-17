@@ -16,8 +16,7 @@ trait BindingDomain extends AbsDomain[Binding] {
   def apply(
     value: AbsValue,
     uninit: AbsAbsent = AbsAbsent.Bot,
-    mutable: AbsBool = AbsBool.True
-  ): Elem
+    mutable: AbsBool = AbsBool.True): Elem
 
   // abstract binding element
   type Elem <: ElemTrait
@@ -31,7 +30,6 @@ trait BindingDomain extends AbsDomain[Binding] {
     def copy(
       value: AbsValue = this.value,
       uninit: AbsAbsent = this.uninit,
-      mutable: AbsBool = this.mutable
-    ): Elem
+      mutable: AbsBool = this.mutable): Elem
   }
 }

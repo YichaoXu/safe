@@ -18,8 +18,7 @@ trait PValueDomain extends AbsDomain[PValue] {
     nullval: AbsNull = AbsNull.Bot,
     boolval: AbsBool = AbsBool.Bot,
     numval: AbsNum = AbsNum.Bot,
-    strval: AbsStr = AbsStr.Bot
-  ): Elem
+    strval: AbsStr = AbsStr.Bot): Elem
 
   // abstract primitive value element
   type Elem <: ElemTrait
@@ -40,7 +39,6 @@ trait PValueDomain extends AbsDomain[PValue] {
       nullval: AbsNull = this.nullval,
       boolval: AbsBool = this.boolval,
       numval: AbsNum = this.numval,
-      strval: AbsStr = this.strval
-    ): Elem
+      strval: AbsStr = this.strval): Elem
   }
 }

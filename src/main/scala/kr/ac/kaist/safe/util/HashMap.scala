@@ -41,10 +41,10 @@ import HashMap.{ HashTrieMap, HashMapCollision1, HashMap1 }
  */
 @SerialVersionUID(2L)
 sealed class HashMap[A, +B] extends AbstractMap[A, B]
-    with Map[A, B]
-    with MapLike[A, B, HashMap[A, B]]
-    with Serializable
-    with CustomParallelizable[(A, B), ParHashMap[A, B]] {
+  with Map[A, B]
+  with MapLike[A, B, HashMap[A, B]]
+  with Serializable
+  with CustomParallelizable[(A, B), ParHashMap[A, B]] {
   import HashMap.{ nullToEmpty, bufferSize }
 
   override def size: Int = 0
@@ -147,14 +147,12 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    *  @param mergef   the merge function
    */
   def mergeWithIdem[B1 >: B](
-    that: HashMap[A, B1]
-  )(mergef: (Option[B1], Option[B1]) => B1): HashMap[A, B1] = {
+    that: HashMap[A, B1])(mergef: (Option[B1], Option[B1]) => B1): HashMap[A, B1] = {
     if (this eq that) this
     else mergeWithIdem0(that, 0, mergef)
   }
   protected def mergeWithIdem0[B1 >: B](
-    that: HashMap[A, B1], level: Int, mergef: (Option[B1], Option[B1]) => B1
-  ): HashMap[A, B1] = {
+    that: HashMap[A, B1], level: Int, mergef: (Option[B1], Option[B1]) => B1): HashMap[A, B1] = {
     if (this eq that) this
     else (that /: that.keySet) {
       case (m, k) =>
@@ -175,16 +173,14 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    *  @param mergef   the merge function
    */
   def unionWithIdem[B1 >: B](
-    that: HashMap[A, B1]
-  )(mergef: (B1, B1) => B1): HashMap[A, B1] = {
+    that: HashMap[A, B1])(mergef: (B1, B1) => B1): HashMap[A, B1] = {
     if (this eq that) this
     else unionWithIdem0(that, 0, liftMerger[A, B1] {
       case ((k, l), (_, r)) => k -> mergef(l, r)
     })
   }
   protected def unionWithIdem0[B1 >: B](
-    that: HashMap[A, B1], level: Int, merger: Merger[A, B1]
-  ): HashMap[A, B1] = that
+    that: HashMap[A, B1], level: Int, merger: Merger[A, B1]): HashMap[A, B1] = that
 
   /**
    * Creates a new map which is the intersection of this and the argument hash map with
@@ -199,16 +195,14 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    *  @param mergef   the merge function
    */
   def intersectWithIdem[B1 >: B](
-    that: HashMap[A, B1]
-  )(mergef: (B1, B1) => B1): HashMap[A, B1] = {
+    that: HashMap[A, B1])(mergef: (B1, B1) => B1): HashMap[A, B1] = {
     if (this eq that) this
     else intersectWithIdem0(that, 0, liftMerger[A, B1] {
       case ((k, l), (_, r)) => k -> mergef(l, r)
     })
   }
   protected def intersectWithIdem0[B1 >: B](
-    that: HashMap[A, B1], level: Int, merger: Merger[A, B1]
-  ): HashMap[A, B1] = this
+    that: HashMap[A, B1], level: Int, merger: Merger[A, B1]): HashMap[A, B1] = this
 
   /**
    * Checks whether this is a subset of the argument hash map based on a given relation.
@@ -218,14 +212,12 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    *  @param order    the compare function
    */
   def compareOptionWithPartialOrder[B1 >: B](
-    that: HashMap[A, B1]
-  )(order: OptionPartialOrder[B1]): Boolean = {
+    that: HashMap[A, B1])(order: OptionPartialOrder[B1]): Boolean = {
     if (this eq that) true
     else compareOptionWithPartialOrder0(that, 0, order)
   }
   protected def compareOptionWithPartialOrder0[B1 >: B](
-    that: HashMap[A, B1], level: Int, order: OptionPartialOrder[B1]
-  ): Boolean = {
+    that: HashMap[A, B1], level: Int, order: OptionPartialOrder[B1]): Boolean = {
     if (this eq that) true
     else that.keySet.forall(k => order(None, that.get0(k, computeHash(k), level)))
   }
@@ -238,14 +230,12 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    *  @param order    the compare function
    */
   def compareWithPartialOrder[B1 >: B](
-    that: HashMap[A, B1]
-  )(order: PartialOrder[B1]): Boolean = {
+    that: HashMap[A, B1])(order: PartialOrder[B1]): Boolean = {
     if (this eq that) true
     else compareWithPartialOrder0(that, 0, order)
   }
   protected def compareWithPartialOrder0[B1 >: B](
-    that: HashMap[A, B1], level: Int, order: PartialOrder[B1]
-  ): Boolean = true
+    that: HashMap[A, B1], level: Int, order: PartialOrder[B1]): Boolean = true
 }
 
 /**
@@ -402,7 +392,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
   }
 
   class HashMapCollision1[A, +B](val hash: Int, val kvs: ListMap[A, B @uV])
-      extends HashMap[A, B @uV] {
+    extends HashMap[A, B @uV] {
     // assert(kvs.size > 1)
 
     override def size = kvs.size
@@ -520,10 +510,9 @@ object HashMap extends ImmutableMapFactory[HashMap] {
 
   @deprecatedInheritance("This class will be made final in a future release.", "2.12.2")
   class HashTrieMap[A, +B](
-      val bitmap: Int,
-      val elems: Array[HashMap[A, B @uV]],
-      val size0: Int
-  ) extends HashMap[A, B @uV] {
+    val bitmap: Int,
+    val elems: Array[HashMap[A, B @uV]],
+    val size0: Int) extends HashMap[A, B @uV] {
     // assert(Integer.bitCount(bitmap) == elems.length)
     // assert(elems.length > 1 || (elems.length == 1 && elems(0).isInstanceOf[HashTrieMap[_,_]]))
 
@@ -1160,7 +1149,7 @@ abstract class TrieIterator[+T](elems: Array[Iterable[T]]) extends collection.It
     case x: HashMapCollision1[_, _] => x.kvs.map((x: (Any, Any)) => HashMap(x)).toArray
   }).asInstanceOf[Array[Iterable[T]]]
 
-  private[this]type SplitIterators = ((Iterator[T], Int), Iterator[T])
+  private[this] type SplitIterators = ((Iterator[T], Int), Iterator[T])
 
   private def isTrie(x: AnyRef) = x match {
     case _: HashTrieMap[_, _] => true
@@ -1298,8 +1287,7 @@ abstract class TrieIterator[+T](elems: Array[Iterable[T]]) extends collection.It
           val m = arrayD(posD)
           arrayToIterators(
             if (isTrie(m)) getElems(m)
-            else collisionToArray(m)
-          )
+            else collisionToArray(m))
         } else {
           // 3b) arrayD has more free elements
           val (fst, snd) = arrayD.splitAt(arrayD.length - (arrayD.length - posD + 1) / 2)

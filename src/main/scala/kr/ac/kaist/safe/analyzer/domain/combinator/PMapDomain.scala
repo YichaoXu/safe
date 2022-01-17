@@ -15,8 +15,7 @@ import kr.ac.kaist.safe.LINE_SEP
 
 // partial map abstract domain
 case class PMapDomain[K, V, VD <: AbsDomain[V]](
-    AbsV: VD
-) extends AbsDomain[Map[K, V]] {
+  AbsV: VD) extends AbsDomain[Map[K, V]] {
   val AbsVOpt = OptionDomain[V, AbsV.type](AbsV)
   type AbsV = AbsV.Elem
   type AbsVOpt = AbsVOpt.Elem
@@ -102,8 +101,7 @@ case class PMapDomain[K, V, VD <: AbsDomain[V]](
     // map for values
     def mapValues(
       f: AbsVOpt => AbsVOpt,
-      filter: (K, AbsVOpt) => Boolean = (_, _) => true
-    ): Elem = {
+      filter: (K, AbsVOpt) => Boolean = (_, _) => true): Elem = {
       val default = f(this.default)
       val map = this.map.foldLeft[Map[K, AbsVOpt]](Map()) {
         case (map, (key, value)) =>
@@ -118,8 +116,7 @@ case class PMapDomain[K, V, VD <: AbsDomain[V]](
     }
     def mapCValues(
       f: AbsV => AbsV,
-      filter: (K, AbsVOpt) => Boolean = (_, _) => true
-    ): Elem = mapValues(vopt => AbsVOpt(f(vopt.value), vopt.absent), filter)
+      filter: (K, AbsVOpt) => Boolean = (_, _) => true): Elem = mapValues(vopt => AbsVOpt(f(vopt.value), vopt.absent), filter)
 
     // update
     def update(k: K, v: AbsVOpt): Elem = {

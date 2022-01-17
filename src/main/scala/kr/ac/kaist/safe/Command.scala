@@ -27,14 +27,12 @@ sealed trait Command {
 }
 
 class CommandObj[Result](
-    override val name: String,
-    pList: PhaseList[Result],
-    modeMap: Map[String, PhaseList[Result]] = Map[String, PhaseList[Result]]()
-) extends Command {
+  override val name: String,
+  pList: PhaseList[Result],
+  modeMap: Map[String, PhaseList[Result]] = Map[String, PhaseList[Result]]()) extends Command {
   def apply(
     args: List[String],
-    testMode: Boolean = false
-  ): Try[Result] = {
+    testMode: Boolean = false): Try[Result] = {
     val safeConfig = SafeConfig(this, testMode = testMode)
     val parser = new ArgParser(this, safeConfig)
     val modePattern = "--(.+)".r

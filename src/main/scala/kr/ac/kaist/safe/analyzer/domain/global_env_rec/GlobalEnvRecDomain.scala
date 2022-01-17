@@ -24,26 +24,22 @@ trait GlobalEnvRecDomain extends AbsDomain[GlobalEnvRec] {
     // 10.2.1.2.2 CreateMutableBinding(N, D)
     def CreateMutableBinding(
       name: String,
-      del: Boolean
-    )(heap: AbsHeap): (Elem, AbsHeap, Set[Exception])
+      del: Boolean)(heap: AbsHeap): (Elem, AbsHeap, Set[Exception])
 
     // 10.2.1.2.3 SetMutableBinding(N, V, S)
     def SetMutableBinding(
       name: String,
       v: AbsValue,
-      strict: Boolean
-    )(heap: AbsHeap): (Elem, AbsHeap, Set[Exception])
+      strict: Boolean)(heap: AbsHeap): (Elem, AbsHeap, Set[Exception])
 
     // 10.2.1.2.4 GetBindingValue(N, S)
     def GetBindingValue(
       name: String,
-      strict: Boolean
-    )(heap: AbsHeap): (AbsValue, Set[Exception])
+      strict: Boolean)(heap: AbsHeap): (AbsValue, Set[Exception])
 
     // 10.2.1.2.5 DeleteBinding(N)
     def DeleteBinding(
-      name: String
-    )(heap: AbsHeap): (Elem, AbsHeap, AbsBool)
+      name: String)(heap: AbsHeap): (Elem, AbsHeap, AbsBool)
 
     // 10.2.1.2.6 ImplicitThisValue()
     def ImplicitThisValue(heap: AbsHeap): AbsValue

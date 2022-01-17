@@ -19,10 +19,9 @@ import xtc.tree.Location
 import kr.ac.kaist.safe.nodes.Node
 
 case class Span(
-    fileName: String = "defaultSpan",
-    begin: SourceLoc = SourceLoc(),
-    end: SourceLoc = SourceLoc()
-) {
+  fileName: String = "defaultSpan",
+  begin: SourceLoc = SourceLoc(),
+  end: SourceLoc = SourceLoc()) {
   def addLines(line: Int, offset: Int): Span =
     Span(fileName, begin.addLines(line, offset), end.addLines(line, offset))
 
@@ -57,12 +56,10 @@ case class Span(
     startC: Int,
     endC: Int,
     startOffset: Int,
-    endOffset: Int
-  ) = this(
+    endOffset: Int) = this(
     fileName,
     SourceLoc(startLine, startC, startOffset),
-    SourceLoc(endLine, endC, endOffset)
-  )
+    SourceLoc(endLine, endC, endOffset))
 
   def +(o: Span): Span = fileName == o.fileName match {
     case true => Span(fileName, begin, o.end)

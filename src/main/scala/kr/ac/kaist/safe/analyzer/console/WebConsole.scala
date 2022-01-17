@@ -17,11 +17,10 @@ import kr.ac.kaist.safe.LINE_SEP
 import kr.ac.kaist.safe.phase.HeapBuildConfig
 
 class WebConsole(
-    override val cfg: CFG,
-    override val sem: Semantics,
-    override val config: HeapBuildConfig,
-    var iter0: Int
-) extends Interactive {
+  override val cfg: CFG,
+  override val sem: Semantics,
+  override val config: HeapBuildConfig,
+  var iter0: Int) extends Interactive {
   iter = iter0
   init()
 

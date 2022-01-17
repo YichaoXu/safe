@@ -22,11 +22,10 @@ trait ScopeBody extends ASTNode {
 
 // Program top level
 case class TopLevel(
-    info: ASTNodeInfo,
-    fds: List[FunDecl],
-    vds: List[VarDecl],
-    stmts: List[Stmts]
-) extends ScopeBody {
+  info: ASTNodeInfo,
+  fds: List[FunDecl],
+  vds: List[VarDecl],
+  stmts: List[Stmts]) extends ScopeBody {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     NU.prUseStrictDirective(s, indent, fds, vds, stmts)
@@ -40,14 +39,13 @@ case class TopLevel(
 
 // Common shape for functions
 case class Functional(
-    info: ASTNodeInfo,
-    fds: List[FunDecl],
-    vds: List[VarDecl],
-    stmts: Stmts,
-    name: Id,
-    params: List[Id],
-    body: String
-) extends ScopeBody {
+  info: ASTNodeInfo,
+  fds: List[FunDecl],
+  vds: List[VarDecl],
+  stmts: Stmts,
+  name: Id,
+  params: List[Id],
+  body: String) extends ScopeBody {
   override def toString(indent: Int): String = {
     val s: StringBuilder = new StringBuilder
     s.append(name.toString(indent))

@@ -111,8 +111,7 @@ case object BugDetect extends PhaseObj[(CFG, Int, TracePartition, Semantics), Bu
   def apply(
     in: (CFG, Int, TracePartition, Semantics),
     safeConfig: SafeConfig,
-    config: BugDetectConfig
-  ): Try[CFG] = {
+    config: BugDetectConfig): Try[CFG] = {
     val (cfg, _, _, semantics) = in
     // Bug detection
     val result = cfg.getUserBlocks.foldRight(List[String]())((b, r) => checkBlock(b, semantics) ++ r)
@@ -123,11 +122,9 @@ case object BugDetect extends PhaseObj[(CFG, Int, TracePartition, Semantics), Bu
   def defaultConfig: BugDetectConfig = BugDetectConfig()
   val options: List[PhaseOption[BugDetectConfig]] = List(
     ("silent", BoolOption(c => c.silent = true),
-      "messages during bug detection are muted.")
-  )
+      "messages during bug detection are muted."))
 }
 
 // BugDetect phase config
 case class BugDetectConfig(
-  var silent: Boolean = false
-) extends Config
+  var silent: Boolean = false) extends Config

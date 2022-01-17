@@ -17,8 +17,7 @@ import kr.ac.kaist.safe.util.ArgParser
 
 sealed abstract class PhaseList[Result] {
   def getRunner(
-    parser: ArgParser
-  ): Try[SafeConfig => Try[Result]]
+    parser: ArgParser): Try[SafeConfig => Try[Result]]
 
   def >>[C <: Config, R](phase: PhaseObj[Result, C, R]): PhaseList[R] = PhaseCons(this, phase)
 
@@ -28,19 +27,16 @@ sealed abstract class PhaseList[Result] {
 
 case object PhaseNil extends PhaseList[Unit] {
   def getRunner(
-    parser: ArgParser
-  ): Try[SafeConfig => Try[Unit]] = Success(_ => Success(()))
+    parser: ArgParser): Try[SafeConfig => Try[Unit]] = Success(_ => Success(()))
 
   val nameList: List[String] = Nil
 }
 
 case class PhaseCons[P, C <: Config, R](
-    prev: PhaseList[P],
-    phase: PhaseObj[P, C, R]
-) extends PhaseList[R] {
+  prev: PhaseList[P],
+  phase: PhaseObj[P, C, R]) extends PhaseList[R] {
   def getRunner(
-    parser: ArgParser
-  ): Try[SafeConfig => Try[R]] = {
+    parser: ArgParser): Try[SafeConfig => Try[R]] = {
     prev.getRunner(parser).flatMap {
       case prevRunner => phase.getRunner(parser).map {
         case phaseRunner => safeConfig => {

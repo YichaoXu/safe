@@ -17,13 +17,12 @@ import kr.ac.kaist.safe.nodes.ir.IRNode
 import kr.ac.kaist.safe.util._
 
 case class CFGFunction(
-    ir: IRNode,
-    argumentsName: String,
-    argVars: List[CFGId],
-    localVars: List[CFGId],
-    name: String,
-    isUser: Boolean
-) extends CFGNode {
+  ir: IRNode,
+  argumentsName: String,
+  argVars: List[CFGId],
+  localVars: List[CFGId],
+  name: String,
+  isUser: Boolean) extends CFGNode {
   var id: FunctionId = 0 // XXX should be a value but for JS model for a while.
 
   val entry = Entry(this)
@@ -42,8 +41,7 @@ case class CFGFunction(
   private var blockMap: MMap[BlockId, CFGBlock] = MMap(
     -1 -> entry,
     -2 -> exit,
-    -3 -> exitExc
-  )
+    -3 -> exitExc)
   def getBlock(bid: BlockId): Option[CFGBlock] = blockMap.get(bid)
   def getAllBlocks: List[CFGBlock] = blocks
 

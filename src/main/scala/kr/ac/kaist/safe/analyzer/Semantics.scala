@@ -23,9 +23,8 @@ import kr.ac.kaist.safe.LINE_SEP
 import scala.collection.mutable.{ Map => MMap }
 
 case class Semantics(
-    cfg: CFG,
-    worklist: Worklist
-) {
+  cfg: CFG,
+  worklist: Worklist) {
   lazy val engine = new ScriptEngineManager().getEngineByMimeType("text/javascript")
   def init: Unit = {
     val entry = cfg.globalFunc.entry
@@ -196,8 +195,7 @@ case class Semantics(
             })
             (iSt.createMutableBinding(
               x,
-              vi
-            ), i + 1)
+              vi), i + 1)
           })
           val newSt = xLocalVars.foldLeft(nSt)((jSt, x) => {
             val undefV = AbsValue(Undef)
@@ -492,8 +490,7 @@ case class Semantics(
   // CFGInternalCall(ir, _, lhs, name, arguments, loc)
   def IC(
     cp: ControlPoint, ir: IRNode, lhs: CFGId, name: String, args: List[CFGExpr],
-    loc: Option[AllocSite], st: AbsState, excSt: AbsState
-  ): (AbsState, AbsState) = {
+    loc: Option[AllocSite], st: AbsState, excSt: AbsState): (AbsState, AbsState) = {
     val tp = cp.tracePartition
     (name, args, loc) match {
       case (NodeUtil.INTERNAL_PRINT, List(expr), None) => {
@@ -853,8 +850,7 @@ case class Semantics(
         val kval = (
           thisval.pvalue.strval.gamma,
           strval.pvalue.strval.gamma,
-          posval.pvalue.numval.gamma
-        ) match {
+          posval.pvalue.numval.gamma) match {
             case (ConFin(thisset), ConFin(strset), ConFin(posset)) =>
               AbsNum(for (t <- thisset; s <- strset; p <- posset)
                 yield Num(t.str.indexOf(s.str, p.num.toInt)))
@@ -871,8 +867,7 @@ case class Semantics(
         val kval = (
           thisval.pvalue.strval.gamma,
           strval.pvalue.strval.gamma,
-          posval.pvalue.numval.gamma
-        ) match {
+          posval.pvalue.numval.gamma) match {
             case (ConFin(thisset), ConFin(strset), ConFin(posset)) =>
               AbsNum(for (t <- thisset; s <- strset; p <- posset)
                 yield Num(t.str.lastIndexOf(s.str, p.num.toInt)))
@@ -891,8 +886,7 @@ case class Semantics(
         val arr = (
           strval.pvalue.strval.gamma,
           sepval.pvalue.strval.gamma,
-          limval.pvalue.numval.gamma
-        ) match {
+          limval.pvalue.numval.gamma) match {
             case (ConFin(strset), ConFin(sepset), ConFin(limset)) => {
               val arrs = {
                 for (s <- strset; p <- sepset; l <- limset)
@@ -902,8 +896,7 @@ case class Semantics(
                 case (obj, arr) => obj ⊔ ((AbsObj.newArrayObject(AbsNum(arr.length)) /: arr.zipWithIndex) {
                   case (arr, (str, idx)) => arr.update(
                     AbsStr(idx.toString),
-                    AbsDataProp(DataProp(str, T, T, T))
-                  )
+                    AbsDataProp(DataProp(str, T, T, T)))
                 })
               }
             }
@@ -925,8 +918,7 @@ case class Semantics(
         val res = (
           strval.pvalue.strval.gamma,
           fromval.pvalue.numval.gamma,
-          toval.pvalue.numval.gamma
-        ) match {
+          toval.pvalue.numval.gamma) match {
             case (ConFin(strset), ConFin(fromset), ConFin(toset)) =>
               AbsStr(for (s <- strset; f <- fromset; t <- toset)
                 yield Str(s.str.substring(f.num.toInt, t.num.toInt)))
@@ -1185,8 +1177,7 @@ case class Semantics(
         val (v, excSet1) = V(expr, st)
         val vObj = AbsValue(v.pvalue.copy(
           undefval = AbsUndef.Bot,
-          nullval = AbsNull.Bot
-        ), v.locset)
+          nullval = AbsNull.Bot), v.locset)
         val (locset, st1, excSet2) = TypeConversionHelper.ToObject(tp, vObj, st, aNew)
         val (locset2, st2) =
           if (v.pvalue.undefval.isTop || v.pvalue.nullval.isTop) {
@@ -1480,19 +1471,16 @@ case class Semantics(
                 val data = EdgeData(
                   AllocLocSet.Empty,
                   newEnv.copy(record = newRec2),
-                  thisVal
-                )
+                  thisVal)
                 addIPEdge(cp, entryCP, data)
                 addIPEdge(exitCP, cpAfterCall, EdgeData(
                   st1.allocs,
                   oldLocalEnv,
-                  st1.context.thisBinding
-                ))
+                  st1.context.thisBinding))
                 addIPEdge(exitExcCP, cpAfterCatch, EdgeData(
                   st1.allocs,
                   oldLocalEnv,
-                  st1.context.thisBinding
-                ))
+                  st1.context.thisBinding))
               })
             }
             case None => excLog.signal(UndefinedFunctionCallError(i.ir))
@@ -1663,8 +1651,7 @@ case class EdgeData(allocs: AllocLocSet, env: AbsLexEnv, thisBinding: AbsValue) 
   def ⊔(other: EdgeData): EdgeData = EdgeData(
     this.allocs ⊔ other.allocs,
     this.env ⊔ other.env,
-    this.thisBinding ⊔ other.thisBinding
-  )
+    this.thisBinding ⊔ other.thisBinding)
   def ⊑(other: EdgeData): Boolean = {
     this.allocs ⊑ other.allocs &&
       this.env ⊑ other.env &&
@@ -1674,14 +1661,12 @@ case class EdgeData(allocs: AllocLocSet, env: AbsLexEnv, thisBinding: AbsValue) 
   def subsLoc(from: Loc, to: Loc): EdgeData = EdgeData(
     allocs.subsLoc(from, to),
     env.subsLoc(from, to),
-    thisBinding.subsLoc(from, to)
-  )
+    thisBinding.subsLoc(from, to))
 
   def weakSubsLoc(from: Loc, to: Loc): EdgeData = EdgeData(
     allocs.weakSubsLoc(from, to),
     env.weakSubsLoc(from, to),
-    thisBinding.weakSubsLoc(from, to)
-  )
+    thisBinding.weakSubsLoc(from, to))
 
   def fix(given: AllocLocSet): EdgeData = given.mayAlloc.foldLeft(this) {
     case (data, loc) => {

@@ -1,96 +1,93 @@
-import java.io.File
+import sys.process._
 import scala.language.postfixOps
 
+ThisBuild / version := "2.0"
+ThisBuild / organization := "kr.ac.kaist"
+ThisBuild / scalaVersion := "2.12.6"
+ThisBuild / scalacOptions ++= Seq(
+  "-deprecation", "-feature",
+  "-language:postfixOps",
+  "-language:implicitConversions"
+)
+
 lazy val checkCopyrights = taskKey[Unit]("Checks copyrights of source files")
-lazy val buildParsers = taskKey[Unit]("Builds parsers")
 lazy val deleteParserDir = taskKey[Unit]("Delete java parser directory")
+lazy val buildParsers = taskKey[Unit]("Builds parsers")
 
 // short-cuts
 lazy val basicAnalyzeTest = taskKey[Unit]("Launch basic analyze tests")
-lazy val benchTest = taskKey[Unit]("Launch benchmarks tests")
 lazy val cfgBuildTest = taskKey[Unit]("Launch cfg build tests")
-lazy val htmlTest = taskKey[Unit]("Launch html tests")
+lazy val benchTest = taskKey[Unit]("Launch benchmarks tests")
 lazy val test262Test = taskKey[Unit]("Launch test262 tests")
+lazy val htmlTest = taskKey[Unit]("Launch html tests")
 
-lazy val root = (project in file(".")).
-  settings(
-    name := "SAFE",
-    version := "2.0",
-    organization := "kr.ac.kaist.safe",
-    scalaVersion := "2.12.6",
-    checkCopyrights in Compile := {
-      val violated: String = (baseDirectory.value + "/bin/checkCopyrights.sh" !!)
-      if (violated != "") {
-        throw new Error("\nFix the copyright(s) of the following:\n" + violated)
+lazy val root = project.in(file(".")).settings(
+  name := "SAFE",
+
+  Compile/unmanagedJars ++= Seq(file("lib/xtc.jar")),
+  Compile/checkCopyrights := {
+    val violated: String = (baseDirectory.value + "/bin/checkCopyrights.sh" !!)
+    if (violated != "") {
+      throw new Error(s"Fix the copyright(s) of the following:\n$violated")
+    }
+  },
+  Compile/buildParsers := {
+    // xtc
+    val xtcFile = new File("./lib/xtc.jar")
+    if (!xtcFile.exists)
+      new URL("https://repo1.maven.org/maven2/xtc/rats/2.4.0/rats-2.4.0.jar") #> xtcFile !!
+
+    // webix
+    val webixJsFile = new File("./src/main/resources/assets/js/webix.js")
+    val webixCssFile = new File("./src/main/resources/assets/css/webix.css")
+    if (!webixJsFile.exists)
+      (new URL("http://cdn.webix.com/edge/webix.js") #> webixJsFile !!)
+    if (!webixCssFile.exists)
+      (new URL("http://cdn.webix.com/edge/webix.css") #> webixCssFile !!)
+
+    val options = ForkOptions().withBootJars(Vector(xtcFile))
+    val srcDir = baseDirectory.value + "/src/main"
+    val inDir = srcDir + "/scala/kr/ac/kaist/safe/parser/"
+    val outDir = srcDir + "/java/kr/ac/kaist/safe/parser/"
+    val outFile = file(outDir)
+    if (!outFile.exists) IO.createDirectory(outFile)
+    val arguments = Seq("-in", srcDir + "/scala", "-enc-out", "UTF-8",
+      "-out", outDir, inDir + "JS.rats")
+    val mainClass = "xtc.parser.Rats"
+    val cache = FileFunction.cached(outFile, FilesInfo.lastModified, FilesInfo.exists) {
+      in: Set[File] => {
+        Fork.java(options, mainClass +: arguments)
+        Set(file(inDir + "JS.rats"))
       }
-    },
-    buildParsers in Compile := {
-      // xtc
-      val xtcFile = new File("./lib/xtc.jar")
-      if (!xtcFile.exists) {
-        // TODO exception handling: not downloaded
-        IO.download(new URL("https://repo1.maven.org/maven2/xtc/rats/2.4.0/rats-2.4.0.jar"), xtcFile)
-      }
+    }
+    cache(file(inDir).asFile.listFiles.toSet)
+  },
+  Compile/compile := (Compile/compile).dependsOn(Compile/checkCopyrights, Compile/buildParsers).value,
 
-      // webix
-      val webixJsFile = new File("./src/main/resources/assets/js/webix.js")
-      val webixCssFile = new File("./src/main/resources/assets/css/webix.css")
-      if (!webixJsFile.exists)
-        IO.download(new URL("http://cdn.webix.com/edge/webix.js"), webixJsFile)
-      if (!webixCssFile.exists)
-        IO.download(new URL("http://cdn.webix.com/edge/webix.css"), webixCssFile)
+  Test/testOnly := (Test/testOnly).dependsOn(Compile/compile).inputTaskValue,
+  Test/basicAnalyzeTest := (Test/testOnly).toTask(" kr.ac.kaist.safe.BasicAnalyzeTest").value,
+  Test/benchTest := (Test/testOnly).toTask(" kr.ac.kaist.safe.BenchAnalyzeTest").value,
+  Test/cfgBuildTest := (Test/testOnly).toTask(" kr.ac.kaist.safe.CFGBuildTest").value,
+  Test/htmlTest := (Test/testOnly).toTask(" kr.ac.kaist.safe.HTMLAnalyzeTest").value,
+  Test/test262Test := (Test/testOnly).toTask(" kr.ac.kaist.safe.Test262AnalyzeTest").value,
+  Test/test := (Test/test).dependsOn(Test/cfgBuildTest, Test/basicAnalyzeTest, Test/htmlTest).value,
+  testOptions += Tests.Argument("-fDG", s"${baseDirectory.value}/tests/detail"),
 
-      val options = ForkOptions(bootJars = Seq(xtcFile))
-      val srcDir = baseDirectory.value + "/src/main"
-      val inDir = srcDir + "/scala/kr/ac/kaist/safe/parser/"
-      val outDir = srcDir + "/java/kr/ac/kaist/safe/parser/"
-      val outFile = file(outDir)
-      if (!outFile.exists) IO.createDirectory(outFile)
-      val arguments = Seq("-in", srcDir + "/scala", "-enc-out", "UTF-8",
-                          "-out", outDir, inDir + "JS.rats")
-      val mainClass = "xtc.parser.Rats"
-      val cache = FileFunction.cached(outFile,
-                                      FilesInfo.lastModified,
-                                      FilesInfo.exists) {
-        in: Set[File] => {
-          Fork.java(options, mainClass +: arguments)
-          Set(file(inDir + "JS.rats"))
-        }
-      }
-      cache(file(inDir).asFile.listFiles.toSet)
-    },
-    testOptions in Test += Tests.Argument("-fDG", baseDirectory.value + "/tests/detail"),
-    compile <<= (compile in Compile) dependsOn (buildParsers in Compile, checkCopyrights in Compile),
-    test <<= (testOnly in Test).toTask(
-      " kr.ac.kaist.safe.CFGBuildTest" +
-      " kr.ac.kaist.safe.BasicAnalyzeTest" +
-      " kr.ac.kaist.safe.HTMLAnalyzeTest") dependsOn compile,
-    basicAnalyzeTest <<= (testOnly in Test).toTask(s" kr.ac.kaist.safe.BasicAnalyzeTest") dependsOn compile,
-    benchTest <<= (testOnly in Test).toTask(s" kr.ac.kaist.safe.BenchAnalyzeTest") dependsOn compile,
-    cfgBuildTest <<= (testOnly in Test).toTask(s" kr.ac.kaist.safe.CFGBuildTest") dependsOn compile,
-    htmlTest <<= (testOnly in Test).toTask(s" kr.ac.kaist.safe.HTMLAnalyzeTest") dependsOn compile,
-    test262Test <<= (testOnly in Test).toTask(s" kr.ac.kaist.safe.Test262AnalyzeTest") dependsOn compile
-  )
+  cleanFiles ++= Seq(file("src/main/java/kr/ac/kaist/safe/parser/"))
+)
 
-scalacOptions in ThisBuild ++= Seq("-deprecation", "-feature",
-                                   "-language:postfixOps",
-                                   "-language:implicitConversions")
+resolvers += "maven_central" at "https://repo.maven.apache.org/maven2/"
+resolvers += "Local Maven Repository" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
 
-unmanagedJars in Compile ++= Seq(file("lib/xtc.jar"), file("lib/jericho-html-3.3.jar"))
-cleanFiles ++= Seq(file("src/main/java/kr/ac/kaist/safe/parser/"))
 
 libraryDependencies ++= Seq(
-  "org.scala-lang" % "scala-library" % scalaVersion.value,
+  "org.scala-lang" % "scala-library" % scalaVersion.value % "scala-tool",
   "org.scala-lang" % "scala-compiler" % scalaVersion.value % "scala-tool",
   "org.scalatest" %% "scalatest" % "3.0.0" % "test" withSources,
   "com.typesafe.akka" %% "akka-http" % "10.0.10",
   "io.spray" %% "spray-json" % "1.3.2",
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.13.1" % Test,
   "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.9.1",
-  "org.jline" % "jline" % "3.20.0"
+  "org.jline" % "jline" % "3.20.0",
+  "net.htmlparser.jericho"% "jericho-html" % "3.3"
 )
-
-javacOptions ++= Seq("-encoding", "UTF-8")
-
-retrieveManaged := true
-resolvers += Resolver.url("maven_central", url("https://repo.maven.apache.org/maven2/"))

@@ -25,8 +25,7 @@ case object Web extends PhaseObj[Unit, WebConfig, Unit] {
   def apply(
     unit: Unit,
     safeConfig: SafeConfig,
-    config: WebConfig
-  ): Try[Unit] = {
+    config: WebConfig): Try[Unit] = {
     // interactive analysis using web server
     WebServer.run(config.port)
     Success(())
@@ -34,8 +33,7 @@ case object Web extends PhaseObj[Unit, WebConfig, Unit] {
   def defaultConfig: WebConfig = WebConfig()
   val options: List[PhaseOption[WebConfig]] = List(
     ("port", NumOption((c, n) => c.port = n),
-      "the SAFE web server port (default: 8080)")
-  )
+      "the SAFE web server port (default: 8080)"))
 }
 
 case class WebConfig(var port: Int = 8080) extends Config

@@ -20,8 +20,7 @@ trait ContextDomain extends AbsDomain[Context] {
   def apply(
     map: Map[Loc, AbsLexEnv],
     merged: LocSet,
-    thisBinding: AbsValue
-  ): Elem
+    thisBinding: AbsValue): Elem
 
   // abstract context element
   type Elem <: ElemTrait

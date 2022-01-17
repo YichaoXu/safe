@@ -116,8 +116,7 @@ object Parser {
 
   private def resultToAST[T <: ASTNode](
     parser: JS,
-    doit: JS => Result
-  ): Try[(T, ExcLog)] = {
+    doit: JS => Result): Try[(T, ExcLog)] = {
     doit(parser) match {
       case (result: ParseError) =>
         val span = decodeSpan(parser.format(result))

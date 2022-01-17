@@ -47,8 +47,7 @@ case object CmdRunInsts extends Command("run_insts", "Run instruction by instruc
               line = reader.readLine(
                 s"inst: [${inst.id}] $inst" + LINE_SEP +
                   s"('s': state / 'q': stop / 'n','': next)" + LINE_SEP +
-                  s"> "
-              )
+                  s"> ")
               val keep = line match {
                 case "s" => {
                   printResult("*** state ***")

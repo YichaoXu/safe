@@ -17,8 +17,7 @@ case object PhsCfgStatistic extends PhaseObj[CFG, CfgStatisticConfig, StatisticO
   override def defaultConfig: CfgStatisticConfig = CfgStatisticConfig()
 
   def apply(
-    cfg: CFG, safeConfig: SafeConfig, config: CfgStatisticConfig
-  ): Try[StatisticOutput] = {
+    cfg: CFG, safeConfig: SafeConfig, config: CfgStatisticConfig): Try[StatisticOutput] = {
     val traversed = mutable.HashSet[BlockId]()
     val output = StatisticOutput(0, 0)
 
@@ -47,8 +46,7 @@ case object PhsCfgStatistic extends PhaseObj[CFG, CfgStatisticConfig, StatisticO
     ("loopDepth", NumOption((c, n) => if (n >= 0) c.loopSensitivity = c.loopSensitivity.copy(maxDepth = n)),
       "{number}-depth loop-sensitive analysis will be executed."),
     ("snapshot", StrOption((c, s) => c.snapshot = Some(s)),
-      "analysis with an initial heap generated from a dynamic snapshot(*.json).")
-  )
+      "analysis with an initial heap generated from a dynamic snapshot(*.json)."))
 
 }
 
@@ -65,5 +63,4 @@ case class CfgStatisticConfig(
   var loopSensitivity: LoopSensitivity = LoopSensitivity(0, 0),
   var snapshot: Option[String] = None,
   var recencyMode: Boolean = false,
-  var heapClone: Boolean = false
-) extends Config
+  var heapClone: Boolean = false) extends Config
