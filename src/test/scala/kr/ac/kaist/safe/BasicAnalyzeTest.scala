@@ -20,6 +20,5 @@ class BasicAnalyzeTest extends AnalyzeTest {
   val analyzerTestDir = testDir + "semantics"
   analyzeHelper("BasicAnalyze", List(
     analyzerTestDir + SEP + "language",
-    analyzerTestDir + SEP + "builtin"
-  ))
+    analyzerTestDir + SEP + "builtin"))
 }

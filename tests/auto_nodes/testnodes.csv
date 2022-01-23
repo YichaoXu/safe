@@ -1,0 +1,1586 @@
+id:ID	labels:label	type	flags:string[]	lineno:int	code	childnum:int	funcid:int	classname	namespace	endlineno:int	name	doccomment
+0	Filesystem	File									stdin	
+1	AST	AST_TOPLEVEL	TOPLEVEL_FILE	1					1::1:53	1	stdin	
+2	Artificial	CFG_FUNC_ENTRY					1				stdin	
+3	Artificial	CFG_FUNC_EXIT					1				stdin	
+4	AST	AST_STMT_LIST		1		0	1		1::1:53	1		
+5	AST	AST_ASSIGN		1	main_func=require('functions/decl_with_body.js')	0	1		1:4:1:52	1		
+6	AST	AST_VAR	JS_DECL_VAR	1		0	1		1:4:1:13	1		
+7	AST	string		1	main_func	0	1		1:4:1:13	1	main_func	
+8	AST	AST_CALL	JS_REQUIRE_EXTERNAL	1	require('functions/decl_with_body.js')	1	1		1:14:1:52	1	/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js	
+9	AST	AST_NAME	NAME_NOT_FQ	1		0	1		1:14:1:52	1		
+10	AST	string		1	require	0	1		1:14:1:21	1		
+11	AST	AST_ARG_LIST		1	('functions/decl_with_body.js')	1	1		1:14:1:52	1		
+12	AST	string		1	functions/decl_with_body.js	0	1		1:22:1:51	1		
+13	Filesystem	File									/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js	
+14	AST	AST_TOPLEVEL	TOPLEVEL_FILE	1					1::8:1	8	/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js	
+15	Artificial	CFG_FUNC_ENTRY					14				/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js	
+16	Artificial	CFG_FUNC_EXIT					14				/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js	
+17	AST	AST_STMT_LIST		1		0	14		1::8:1	8		
+18	AST	AST_FUNC_DECL		1	func1	0	14		1::5:1	5		
+19	Artificial	CFG_FUNC_ENTRY					18					
+20	Artificial	CFG_FUNC_EXIT					18					
+21	AST	string		1	func1	0	18		1:9:1:14	1		
+22	AST	NULL		1		1	18		1::1:			
+23	AST	AST_PARAM_LIST		1		2	18		1::5:1	5		
+24	AST	AST_STMT_LIST		1		3	18		1:16:5:1	5		
+25	AST	AST_ASSIGN		2	a = \"a\"	0	18		2:8:2:15	2		
+26	AST	AST_VAR	JS_DECL_VAR	2		0	18		2:8:2:9	2		
+27	AST	string		2	a	0	18		2:8:2:9	2	a	
+28	AST	string		2	a	1	18		2:12:2:15	2		
+29	AST	AST_METHOD_CALL		3	console.log(\"something\")	1	18		3:4:3:28	3		
+30	AST	AST_VAR		3		0	18		3:4:3:11	3		
+31	AST	string		3	console	0	18		3:4:3:11	3	console	
+32	AST	string		3	log	1	18		3:12:3:15	3		
+33	AST	AST_ARG_LIST		3	(\"something\")	2	18		3:4:3:28	3		
+34	AST	string		3	something	0	18		3:16:3:27	3		
+35	AST	AST_ASSIGN		4	b = \"b\"	2	18		4:8:4:15	4		
+36	AST	AST_VAR	JS_DECL_VAR	4		0	18		4:8:4:9	4		
+37	AST	string		4	b	0	18		4:8:4:9	4	b	
+38	AST	string		4	b	1	18		4:12:4:15	4		
+39	AST	NULL		1		4	18		1::1:			
+40	AST	NULL		1		5	18		1::1:			
+41	AST	AST_FUNC_DECL		6	func2	1	14		6::8:1	8		
+42	Artificial	CFG_FUNC_ENTRY					41					
+43	Artificial	CFG_FUNC_EXIT					41					
+44	AST	string		6	func2	0	41		6:9:6:14	6		
+45	AST	NULL		6		1	41		6::6:			
+46	AST	AST_PARAM_LIST		6		2	41		6::8:1	8		
+47	AST	AST_STMT_LIST		6		3	41		6:16:8:1	8		
+48	AST	AST_CALL		7	func1()	0	41		7:4:7:11	7		
+49	AST	AST_NAME	NAME_NOT_FQ	7		0	41		7:4:7:11	7		
+50	AST	string		7	func1	0	41		7:4:7:9	7		
+51	AST	AST_ARG_LIST		7	()	1	41		7:4:7:11	7		
+52	AST	NULL		6		4	41		6::6:			
+53	AST	NULL		6		5	41		6::6:			
+54	Scope	BASE_SCOPE									Base	
+55	Name										global	
+56	Object	object										
+57	Name										null	
+58	Object	object			null							
+59	Name										null	
+60	Object	boolean			true							
+61	Name										true	
+62	Name										true	
+63	Object	boolean			false							
+64	Name										false	
+65	Name										false	
+66	Artificial_AST	AST_CLOSURE										
+67	Artificial_AST	string				0					Object	
+68	Artificial	CFG_FUNC_ENTRY										
+69	Artificial	CFG_FUNC_EXIT										
+70	Artificial_AST	NULL				1						
+71	Artificial_AST	AST_PARAM_LIST				2						
+72	Artificial_AST	AST_STMT_LIST				3						
+73	Artificial_AST	DUMMY_STMT				0						
+74	Object	function									Object	
+75	Name										prototype	
+76	Object	object			Object.prototype							
+77	Name										Object	
+78	Name										Object	
+79	Name										__proto__	
+80	Artificial_AST	AST_CLOSURE										
+81	Artificial_AST	string				0					Function	
+82	Artificial	CFG_FUNC_ENTRY										
+83	Artificial	CFG_FUNC_EXIT										
+84	Artificial_AST	NULL				1						
+85	Artificial_AST	AST_PARAM_LIST				2						
+86	Artificial_AST	AST_STMT_LIST				3						
+87	Artificial_AST	DUMMY_STMT				0						
+88	Object	function									Function	
+89	Name										prototype	
+90	Object	object			Function.prototype							
+91	Name										Function	
+92	Name										Function	
+93	Name										__proto__	
+94	Name										__proto__	
+95	Name										__proto__	
+96	Artificial_AST	AST_CLOSURE										
+97	Artificial_AST	string				0					keys	
+98	Artificial	CFG_FUNC_ENTRY										
+99	Artificial	CFG_FUNC_EXIT										
+100	Artificial_AST	NULL				1						
+101	Artificial_AST	AST_PARAM_LIST				2						
+102	Artificial_AST	AST_STMT_LIST				3						
+103	Artificial_AST	DUMMY_STMT				0						
+104	Object	function									keys	
+105	Name										prototype	
+106	Object	object										
+107	Name										__proto__	
+108	Name										constructor	
+109	Name										__proto__	
+110	Name										constructor	
+111	Name										keys	
+112	Artificial_AST	AST_CLOSURE										
+113	Artificial_AST	string				0					values	
+114	Artificial	CFG_FUNC_ENTRY										
+115	Artificial	CFG_FUNC_EXIT										
+116	Artificial_AST	NULL				1						
+117	Artificial_AST	AST_PARAM_LIST				2						
+118	Artificial_AST	AST_STMT_LIST				3						
+119	Artificial_AST	DUMMY_STMT				0						
+120	Object	function									values	
+121	Name										prototype	
+122	Object	object										
+123	Name										__proto__	
+124	Name										constructor	
+125	Name										__proto__	
+126	Name										constructor	
+127	Name										values	
+128	Artificial_AST	AST_CLOSURE										
+129	Artificial_AST	string				0					entries	
+130	Artificial	CFG_FUNC_ENTRY										
+131	Artificial	CFG_FUNC_EXIT										
+132	Artificial_AST	NULL				1						
+133	Artificial_AST	AST_PARAM_LIST				2						
+134	Artificial_AST	AST_STMT_LIST				3						
+135	Artificial_AST	DUMMY_STMT				0						
+136	Object	function									entries	
+137	Name										prototype	
+138	Object	object										
+139	Name										__proto__	
+140	Name										constructor	
+141	Name										__proto__	
+142	Name										constructor	
+143	Name										entries	
+144	Artificial_AST	AST_CLOSURE										
+145	Artificial_AST	string				0					defineProperty	
+146	Artificial	CFG_FUNC_ENTRY										
+147	Artificial	CFG_FUNC_EXIT										
+148	Artificial_AST	NULL				1						
+149	Artificial_AST	AST_PARAM_LIST				2						
+150	Artificial_AST	AST_STMT_LIST				3						
+151	Artificial_AST	DUMMY_STMT				0						
+152	Object	function									defineProperty	
+153	Name										prototype	
+154	Object	object										
+155	Name										__proto__	
+156	Name										constructor	
+157	Name										__proto__	
+158	Name										constructor	
+159	Name										defineProperty	
+160	Artificial_AST	AST_CLOSURE										
+161	Artificial_AST	string				0					defineProperties	
+162	Artificial	CFG_FUNC_ENTRY										
+163	Artificial	CFG_FUNC_EXIT										
+164	Artificial_AST	NULL				1						
+165	Artificial_AST	AST_PARAM_LIST				2						
+166	Artificial_AST	AST_STMT_LIST				3						
+167	Artificial_AST	DUMMY_STMT				0						
+168	Object	function									defineProperties	
+169	Name										prototype	
+170	Object	object										
+171	Name										__proto__	
+172	Name										constructor	
+173	Name										__proto__	
+174	Name										constructor	
+175	Name										defineProperties	
+176	Artificial_AST	AST_CLOSURE										
+177	Artificial_AST	string				0					assign	
+178	Artificial	CFG_FUNC_ENTRY										
+179	Artificial	CFG_FUNC_EXIT										
+180	Artificial_AST	NULL				1						
+181	Artificial_AST	AST_PARAM_LIST				2						
+182	Artificial_AST	AST_STMT_LIST				3						
+183	Artificial_AST	DUMMY_STMT				0						
+184	Object	function									assign	
+185	Name										prototype	
+186	Object	object										
+187	Name										__proto__	
+188	Name										constructor	
+189	Name										__proto__	
+190	Name										constructor	
+191	Name										assign	
+192	Artificial_AST	AST_CLOSURE										
+193	Artificial_AST	string				0					create	
+194	Artificial	CFG_FUNC_ENTRY										
+195	Artificial	CFG_FUNC_EXIT										
+196	Artificial_AST	NULL				1						
+197	Artificial_AST	AST_PARAM_LIST				2						
+198	Artificial_AST	AST_STMT_LIST				3						
+199	Artificial_AST	DUMMY_STMT				0						
+200	Object	function									create	
+201	Name										prototype	
+202	Object	object										
+203	Name										__proto__	
+204	Name										constructor	
+205	Name										__proto__	
+206	Name										constructor	
+207	Name										create	
+208	Name										getOwnPropertySymbols	
+209	Artificial_AST	AST_CLOSURE										
+210	Artificial_AST	string				0					toString	
+211	Artificial	CFG_FUNC_ENTRY										
+212	Artificial	CFG_FUNC_EXIT										
+213	Artificial_AST	NULL				1						
+214	Artificial_AST	AST_PARAM_LIST				2						
+215	Artificial_AST	AST_STMT_LIST				3						
+216	Artificial_AST	DUMMY_STMT				0						
+217	Object	function									toString	
+218	Name										prototype	
+219	Object	object										
+220	Name										__proto__	
+221	Name										constructor	
+222	Name										__proto__	
+223	Name										constructor	
+224	Name										toString	
+225	Artificial_AST	AST_CLOSURE										
+226	Artificial_AST	string				0					toLocaleString	
+227	Artificial	CFG_FUNC_ENTRY										
+228	Artificial	CFG_FUNC_EXIT										
+229	Artificial_AST	NULL				1						
+230	Artificial_AST	AST_PARAM_LIST				2						
+231	Artificial_AST	AST_STMT_LIST				3						
+232	Artificial_AST	DUMMY_STMT				0						
+233	Object	function									toLocaleString	
+234	Name										prototype	
+235	Object	object										
+236	Name										__proto__	
+237	Name										constructor	
+238	Name										__proto__	
+239	Name										constructor	
+240	Name										toLocaleString	
+241	Artificial_AST	AST_CLOSURE										
+242	Artificial_AST	string				0					valueOf	
+243	Artificial	CFG_FUNC_ENTRY										
+244	Artificial	CFG_FUNC_EXIT										
+245	Artificial_AST	NULL				1						
+246	Artificial_AST	AST_PARAM_LIST				2						
+247	Artificial_AST	AST_STMT_LIST				3						
+248	Artificial_AST	DUMMY_STMT				0						
+249	Object	function									valueOf	
+250	Name										prototype	
+251	Object	object										
+252	Name										__proto__	
+253	Name										constructor	
+254	Name										__proto__	
+255	Name										constructor	
+256	Name										valueOf	
+257	Artificial_AST	AST_CLOSURE										
+258	Artificial_AST	string				0					hasOwnProperty	
+259	Artificial	CFG_FUNC_ENTRY										
+260	Artificial	CFG_FUNC_EXIT										
+261	Artificial_AST	NULL				1						
+262	Artificial_AST	AST_PARAM_LIST				2						
+263	Artificial_AST	AST_STMT_LIST				3						
+264	Artificial_AST	DUMMY_STMT				0						
+265	Object	function									hasOwnProperty	
+266	Name										prototype	
+267	Object	object										
+268	Name										__proto__	
+269	Name										constructor	
+270	Name										__proto__	
+271	Name										constructor	
+272	Name										hasOwnProperty	
+273	Artificial_AST	AST_CLOSURE										
+274	Artificial_AST	string				0					call	
+275	Artificial	CFG_FUNC_ENTRY										
+276	Artificial	CFG_FUNC_EXIT										
+277	Artificial_AST	NULL				1						
+278	Artificial_AST	AST_PARAM_LIST				2						
+279	Artificial_AST	AST_STMT_LIST				3						
+280	Artificial_AST	DUMMY_STMT				0						
+281	Object	function									call	
+282	Name										prototype	
+283	Object	object										
+284	Name										__proto__	
+285	Name										constructor	
+286	Name										__proto__	
+287	Name										constructor	
+288	Name										call	
+289	Artificial_AST	AST_CLOSURE										
+290	Artificial_AST	string				0					apply	
+291	Artificial	CFG_FUNC_ENTRY										
+292	Artificial	CFG_FUNC_EXIT										
+293	Artificial_AST	NULL				1						
+294	Artificial_AST	AST_PARAM_LIST				2						
+295	Artificial_AST	AST_STMT_LIST				3						
+296	Artificial_AST	DUMMY_STMT				0						
+297	Object	function									apply	
+298	Name										prototype	
+299	Object	object										
+300	Name										__proto__	
+301	Name										constructor	
+302	Name										__proto__	
+303	Name										constructor	
+304	Name										apply	
+305	Artificial_AST	AST_CLOSURE										
+306	Artificial_AST	string				0					bind	
+307	Artificial	CFG_FUNC_ENTRY										
+308	Artificial	CFG_FUNC_EXIT										
+309	Artificial_AST	NULL				1						
+310	Artificial_AST	AST_PARAM_LIST				2						
+311	Artificial_AST	AST_STMT_LIST				3						
+312	Artificial_AST	DUMMY_STMT				0						
+313	Object	function									bind	
+314	Name										prototype	
+315	Object	object										
+316	Name										__proto__	
+317	Name										constructor	
+318	Name										__proto__	
+319	Name										constructor	
+320	Name										bind	
+321	Artificial_AST	AST_CLOSURE										
+322	Artificial_AST	string				0					String	
+323	Artificial	CFG_FUNC_ENTRY										
+324	Artificial	CFG_FUNC_EXIT										
+325	Artificial_AST	NULL				1						
+326	Artificial_AST	AST_PARAM_LIST				2						
+327	Artificial_AST	AST_STMT_LIST				3						
+328	Artificial_AST	DUMMY_STMT				0						
+329	Object	function									String	
+330	Name										prototype	
+331	Object	object										
+332	Name										__proto__	
+333	Name										constructor	
+334	Name										__proto__	
+335	Name										constructor	
+336	Name										String	
+337	Name										String	
+338	Artificial_AST	AST_CLOSURE										
+339	Artificial_AST	string				0					match	
+340	Artificial	CFG_FUNC_ENTRY										
+341	Artificial	CFG_FUNC_EXIT										
+342	Artificial_AST	NULL				1						
+343	Artificial_AST	AST_PARAM_LIST				2						
+344	Artificial_AST	AST_STMT_LIST				3						
+345	Artificial_AST	DUMMY_STMT				0						
+346	Object	function									match	
+347	Name										prototype	
+348	Object	object										
+349	Name										__proto__	
+350	Name										constructor	
+351	Name										__proto__	
+352	Name										constructor	
+353	Name										match	
+354	Artificial_AST	AST_CLOSURE										
+355	Artificial_AST	string				0					matchAll	
+356	Artificial	CFG_FUNC_ENTRY										
+357	Artificial	CFG_FUNC_EXIT										
+358	Artificial_AST	NULL				1						
+359	Artificial_AST	AST_PARAM_LIST				2						
+360	Artificial_AST	AST_STMT_LIST				3						
+361	Artificial_AST	DUMMY_STMT				0						
+362	Object	function									matchAll	
+363	Name										prototype	
+364	Object	object										
+365	Name										__proto__	
+366	Name										constructor	
+367	Name										__proto__	
+368	Name										constructor	
+369	Name										matchAll	
+370	Artificial_AST	AST_CLOSURE										
+371	Artificial_AST	string				0					replace	
+372	Artificial	CFG_FUNC_ENTRY										
+373	Artificial	CFG_FUNC_EXIT										
+374	Artificial_AST	NULL				1						
+375	Artificial_AST	AST_PARAM_LIST				2						
+376	Artificial_AST	AST_STMT_LIST				3						
+377	Artificial_AST	DUMMY_STMT				0						
+378	Object	function									replace	
+379	Name										prototype	
+380	Object	object										
+381	Name										__proto__	
+382	Name										constructor	
+383	Name										__proto__	
+384	Name										constructor	
+385	Name										replace	
+386	Artificial_AST	AST_CLOSURE										
+387	Artificial_AST	string				0					search	
+388	Artificial	CFG_FUNC_ENTRY										
+389	Artificial	CFG_FUNC_EXIT										
+390	Artificial_AST	NULL				1						
+391	Artificial_AST	AST_PARAM_LIST				2						
+392	Artificial_AST	AST_STMT_LIST				3						
+393	Artificial_AST	DUMMY_STMT				0						
+394	Object	function									search	
+395	Name										prototype	
+396	Object	object										
+397	Name										__proto__	
+398	Name										constructor	
+399	Name										__proto__	
+400	Name										constructor	
+401	Name										search	
+402	Artificial_AST	AST_CLOSURE										
+403	Artificial_AST	string				0					split	
+404	Artificial	CFG_FUNC_ENTRY										
+405	Artificial	CFG_FUNC_EXIT										
+406	Artificial_AST	NULL				1						
+407	Artificial_AST	AST_PARAM_LIST				2						
+408	Artificial_AST	AST_STMT_LIST				3						
+409	Artificial_AST	DUMMY_STMT				0						
+410	Object	function									split	
+411	Name										prototype	
+412	Object	object										
+413	Name										__proto__	
+414	Name										constructor	
+415	Name										__proto__	
+416	Name										constructor	
+417	Name										split	
+418	Artificial_AST	AST_CLOSURE										
+419	Artificial_AST	string				0					substr	
+420	Artificial	CFG_FUNC_ENTRY										
+421	Artificial	CFG_FUNC_EXIT										
+422	Artificial_AST	NULL				1						
+423	Artificial_AST	AST_PARAM_LIST				2						
+424	Artificial_AST	AST_STMT_LIST				3						
+425	Artificial_AST	DUMMY_STMT				0						
+426	Object	function									substr	
+427	Name										prototype	
+428	Object	object										
+429	Name										__proto__	
+430	Name										constructor	
+431	Name										__proto__	
+432	Name										constructor	
+433	Name										substr	
+434	Artificial_AST	AST_CLOSURE										
+435	Artificial_AST	string				0					substring	
+436	Artificial	CFG_FUNC_ENTRY										
+437	Artificial	CFG_FUNC_EXIT										
+438	Artificial_AST	NULL				1						
+439	Artificial_AST	AST_PARAM_LIST				2						
+440	Artificial_AST	AST_STMT_LIST				3						
+441	Artificial_AST	DUMMY_STMT				0						
+442	Object	function									substring	
+443	Name										prototype	
+444	Object	object										
+445	Name										__proto__	
+446	Name										constructor	
+447	Name										__proto__	
+448	Name										constructor	
+449	Name										substring	
+450	Artificial_AST	AST_CLOSURE										
+451	Artificial_AST	string				0					reverse	
+452	Artificial	CFG_FUNC_ENTRY										
+453	Artificial	CFG_FUNC_EXIT										
+454	Artificial_AST	NULL				1						
+455	Artificial_AST	AST_PARAM_LIST				2						
+456	Artificial_AST	AST_STMT_LIST				3						
+457	Artificial_AST	DUMMY_STMT				0						
+458	Object	function									reverse	
+459	Name										prototype	
+460	Object	object										
+461	Name										__proto__	
+462	Name										constructor	
+463	Name										__proto__	
+464	Name										constructor	
+465	Name										reverse	
+466	Artificial_AST	AST_CLOSURE										
+467	Artificial_AST	string				0					toLowerCase	
+468	Artificial	CFG_FUNC_ENTRY										
+469	Artificial	CFG_FUNC_EXIT										
+470	Artificial_AST	NULL				1						
+471	Artificial_AST	AST_PARAM_LIST				2						
+472	Artificial_AST	AST_STMT_LIST				3						
+473	Artificial_AST	DUMMY_STMT				0						
+474	Object	function									toLowerCase	
+475	Name										prototype	
+476	Object	object										
+477	Name										__proto__	
+478	Name										constructor	
+479	Name										__proto__	
+480	Name										constructor	
+481	Name										toLowerCase	
+482	Artificial_AST	AST_CLOSURE										
+483	Artificial_AST	string				0					toUpperCase	
+484	Artificial	CFG_FUNC_ENTRY										
+485	Artificial	CFG_FUNC_EXIT										
+486	Artificial_AST	NULL				1						
+487	Artificial_AST	AST_PARAM_LIST				2						
+488	Artificial_AST	AST_STMT_LIST				3						
+489	Artificial_AST	DUMMY_STMT				0						
+490	Object	function									toUpperCase	
+491	Name										prototype	
+492	Object	object										
+493	Name										__proto__	
+494	Name										constructor	
+495	Name										__proto__	
+496	Name										constructor	
+497	Name										toUpperCase	
+498	Artificial_AST	AST_CLOSURE										
+499	Artificial_AST	string				0					trim	
+500	Artificial	CFG_FUNC_ENTRY										
+501	Artificial	CFG_FUNC_EXIT										
+502	Artificial_AST	NULL				1						
+503	Artificial_AST	AST_PARAM_LIST				2						
+504	Artificial_AST	AST_STMT_LIST				3						
+505	Artificial_AST	DUMMY_STMT				0						
+506	Object	function									trim	
+507	Name										prototype	
+508	Object	object										
+509	Name										__proto__	
+510	Name										constructor	
+511	Name										__proto__	
+512	Name										constructor	
+513	Name										trim	
+514	Artificial_AST	AST_CLOSURE										
+515	Artificial_AST	string				0					trimEnd	
+516	Artificial	CFG_FUNC_ENTRY										
+517	Artificial	CFG_FUNC_EXIT										
+518	Artificial_AST	NULL				1						
+519	Artificial_AST	AST_PARAM_LIST				2						
+520	Artificial_AST	AST_STMT_LIST				3						
+521	Artificial_AST	DUMMY_STMT				0						
+522	Object	function									trimEnd	
+523	Name										prototype	
+524	Object	object										
+525	Name										__proto__	
+526	Name										constructor	
+527	Name										__proto__	
+528	Name										constructor	
+529	Name										trimEnd	
+530	Artificial_AST	AST_CLOSURE										
+531	Artificial_AST	string				0					trimStart	
+532	Artificial	CFG_FUNC_ENTRY										
+533	Artificial	CFG_FUNC_EXIT										
+534	Artificial_AST	NULL				1						
+535	Artificial_AST	AST_PARAM_LIST				2						
+536	Artificial_AST	AST_STMT_LIST				3						
+537	Artificial_AST	DUMMY_STMT				0						
+538	Object	function									trimStart	
+539	Name										prototype	
+540	Object	object										
+541	Name										__proto__	
+542	Name										constructor	
+543	Name										__proto__	
+544	Name										constructor	
+545	Name										trimStart	
+546	Artificial_AST	AST_CLOSURE										
+547	Artificial_AST	string				0					charAt	
+548	Artificial	CFG_FUNC_ENTRY										
+549	Artificial	CFG_FUNC_EXIT										
+550	Artificial_AST	NULL				1						
+551	Artificial_AST	AST_PARAM_LIST				2						
+552	Artificial_AST	AST_STMT_LIST				3						
+553	Artificial_AST	DUMMY_STMT				0						
+554	Object	function									charAt	
+555	Name										prototype	
+556	Object	object										
+557	Name										__proto__	
+558	Name										constructor	
+559	Name										__proto__	
+560	Name										constructor	
+561	Name										charAt	
+562	Artificial_AST	AST_CLOSURE										
+563	Artificial_AST	string				0					slice	
+564	Artificial	CFG_FUNC_ENTRY										
+565	Artificial	CFG_FUNC_EXIT										
+566	Artificial_AST	NULL				1						
+567	Artificial_AST	AST_PARAM_LIST				2						
+568	Artificial_AST	AST_STMT_LIST				3						
+569	Artificial_AST	DUMMY_STMT				0						
+570	Object	function									slice	
+571	Name										prototype	
+572	Object	object										
+573	Name										__proto__	
+574	Name										constructor	
+575	Name										__proto__	
+576	Name										constructor	
+577	Name										slice	
+578	Artificial_AST	AST_CLOSURE										
+579	Artificial_AST	string				0					Number	
+580	Artificial	CFG_FUNC_ENTRY										
+581	Artificial	CFG_FUNC_EXIT										
+582	Artificial_AST	NULL				1						
+583	Artificial_AST	AST_PARAM_LIST				2						
+584	Artificial_AST	AST_STMT_LIST				3						
+585	Artificial_AST	DUMMY_STMT				0						
+586	Object	function									Number	
+587	Name										prototype	
+588	Object	object										
+589	Name										__proto__	
+590	Name										constructor	
+591	Name										__proto__	
+592	Name										constructor	
+593	Name										Number	
+594	Name										Number	
+595	Artificial_AST	AST_CLOSURE										
+596	Artificial_AST	string				0					Array	
+597	Artificial	CFG_FUNC_ENTRY										
+598	Artificial	CFG_FUNC_EXIT										
+599	Artificial_AST	NULL				1						
+600	Artificial_AST	AST_PARAM_LIST				2						
+601	Artificial_AST	AST_STMT_LIST				3						
+602	Artificial_AST	DUMMY_STMT				0						
+603	Object	function									Array	
+604	Name										prototype	
+605	Object	object										
+606	Name										__proto__	
+607	Name										constructor	
+608	Name										__proto__	
+609	Name										constructor	
+610	Name										Array	
+611	Name										Array	
+612	Artificial_AST	AST_CLOSURE										
+613	Artificial_AST	string				0					isArray	
+614	Artificial	CFG_FUNC_ENTRY										
+615	Artificial	CFG_FUNC_EXIT										
+616	Artificial_AST	NULL				1						
+617	Artificial_AST	AST_PARAM_LIST				2						
+618	Artificial_AST	AST_STMT_LIST				3						
+619	Artificial_AST	DUMMY_STMT				0						
+620	Object	function									isArray	
+621	Name										prototype	
+622	Object	object										
+623	Name										__proto__	
+624	Name										constructor	
+625	Name										__proto__	
+626	Name										constructor	
+627	Name										isArray	
+628	Artificial_AST	AST_CLOSURE										
+629	Artificial_AST	string				0					push	
+630	Artificial	CFG_FUNC_ENTRY										
+631	Artificial	CFG_FUNC_EXIT										
+632	Artificial_AST	NULL				1						
+633	Artificial_AST	AST_PARAM_LIST				2						
+634	Artificial_AST	AST_STMT_LIST				3						
+635	Artificial_AST	DUMMY_STMT				0						
+636	Object	function									push	
+637	Name										prototype	
+638	Object	object										
+639	Name										__proto__	
+640	Name										constructor	
+641	Name										__proto__	
+642	Name										constructor	
+643	Name										push	
+644	Artificial_AST	AST_CLOSURE										
+645	Artificial_AST	string				0					pop	
+646	Artificial	CFG_FUNC_ENTRY										
+647	Artificial	CFG_FUNC_EXIT										
+648	Artificial_AST	NULL				1						
+649	Artificial_AST	AST_PARAM_LIST				2						
+650	Artificial_AST	AST_STMT_LIST				3						
+651	Artificial_AST	DUMMY_STMT				0						
+652	Object	function									pop	
+653	Name										prototype	
+654	Object	object										
+655	Name										__proto__	
+656	Name										constructor	
+657	Name										__proto__	
+658	Name										constructor	
+659	Name										pop	
+660	Artificial_AST	AST_CLOSURE										
+661	Artificial_AST	string				0					unshift	
+662	Artificial	CFG_FUNC_ENTRY										
+663	Artificial	CFG_FUNC_EXIT										
+664	Artificial_AST	NULL				1						
+665	Artificial_AST	AST_PARAM_LIST				2						
+666	Artificial_AST	AST_STMT_LIST				3						
+667	Artificial_AST	DUMMY_STMT				0						
+668	Object	function									unshift	
+669	Name										prototype	
+670	Object	object										
+671	Name										__proto__	
+672	Name										constructor	
+673	Name										__proto__	
+674	Name										constructor	
+675	Name										unshift	
+676	Artificial_AST	AST_CLOSURE										
+677	Artificial_AST	string				0					shift	
+678	Artificial	CFG_FUNC_ENTRY										
+679	Artificial	CFG_FUNC_EXIT										
+680	Artificial_AST	NULL				1						
+681	Artificial_AST	AST_PARAM_LIST				2						
+682	Artificial_AST	AST_STMT_LIST				3						
+683	Artificial_AST	DUMMY_STMT				0						
+684	Object	function									shift	
+685	Name										prototype	
+686	Object	object										
+687	Name										__proto__	
+688	Name										constructor	
+689	Name										__proto__	
+690	Name										constructor	
+691	Name										shift	
+692	Artificial_AST	AST_CLOSURE										
+693	Artificial_AST	string				0					join	
+694	Artificial	CFG_FUNC_ENTRY										
+695	Artificial	CFG_FUNC_EXIT										
+696	Artificial_AST	NULL				1						
+697	Artificial_AST	AST_PARAM_LIST				2						
+698	Artificial_AST	AST_STMT_LIST				3						
+699	Artificial_AST	DUMMY_STMT				0						
+700	Object	function									join	
+701	Name										prototype	
+702	Object	object										
+703	Name										__proto__	
+704	Name										constructor	
+705	Name										__proto__	
+706	Name										constructor	
+707	Name										join	
+708	Artificial_AST	AST_CLOSURE										
+709	Artificial_AST	string				0					forEach	
+710	Artificial	CFG_FUNC_ENTRY										
+711	Artificial	CFG_FUNC_EXIT										
+712	Artificial_AST	NULL				1						
+713	Artificial_AST	AST_PARAM_LIST				2						
+714	Artificial_AST	AST_STMT_LIST				3						
+715	Artificial_AST	DUMMY_STMT				0						
+716	Object	function									forEach	
+717	Name										prototype	
+718	Object	object										
+719	Name										__proto__	
+720	Name										constructor	
+721	Name										__proto__	
+722	Name										constructor	
+723	Name										forEach	
+724	Artificial_AST	AST_CLOSURE										
+725	Artificial_AST	string				0					keys	
+726	Artificial	CFG_FUNC_ENTRY										
+727	Artificial	CFG_FUNC_EXIT										
+728	Artificial_AST	NULL				1						
+729	Artificial_AST	AST_PARAM_LIST				2						
+730	Artificial_AST	AST_STMT_LIST				3						
+731	Artificial_AST	DUMMY_STMT				0						
+732	Object	function									keys	
+733	Name										prototype	
+734	Object	object										
+735	Name										__proto__	
+736	Name										constructor	
+737	Name										__proto__	
+738	Name										constructor	
+739	Name										keys	
+740	Artificial_AST	AST_CLOSURE										
+741	Artificial_AST	string				0					values	
+742	Artificial	CFG_FUNC_ENTRY										
+743	Artificial	CFG_FUNC_EXIT										
+744	Artificial_AST	NULL				1						
+745	Artificial_AST	AST_PARAM_LIST				2						
+746	Artificial_AST	AST_STMT_LIST				3						
+747	Artificial_AST	DUMMY_STMT				0						
+748	Object	function									values	
+749	Name										prototype	
+750	Object	object										
+751	Name										__proto__	
+752	Name										constructor	
+753	Name										__proto__	
+754	Name										constructor	
+755	Name										values	
+756	Artificial_AST	AST_CLOSURE										
+757	Artificial_AST	string				0					entries	
+758	Artificial	CFG_FUNC_ENTRY										
+759	Artificial	CFG_FUNC_EXIT										
+760	Artificial_AST	NULL				1						
+761	Artificial_AST	AST_PARAM_LIST				2						
+762	Artificial_AST	AST_STMT_LIST				3						
+763	Artificial_AST	DUMMY_STMT				0						
+764	Object	function									entries	
+765	Name										prototype	
+766	Object	object										
+767	Name										__proto__	
+768	Name										constructor	
+769	Name										__proto__	
+770	Name										constructor	
+771	Name										entries	
+772	Artificial_AST	AST_CLOSURE										
+773	Artificial_AST	string				0					splice	
+774	Artificial	CFG_FUNC_ENTRY										
+775	Artificial	CFG_FUNC_EXIT										
+776	Artificial_AST	NULL				1						
+777	Artificial_AST	AST_PARAM_LIST				2						
+778	Artificial_AST	AST_STMT_LIST				3						
+779	Artificial_AST	DUMMY_STMT				0						
+780	Object	function									splice	
+781	Name										prototype	
+782	Object	object										
+783	Name										__proto__	
+784	Name										constructor	
+785	Name										__proto__	
+786	Name										constructor	
+787	Name										splice	
+788	Artificial_AST	AST_CLOSURE										
+789	Artificial_AST	string				0					slice	
+790	Artificial	CFG_FUNC_ENTRY										
+791	Artificial	CFG_FUNC_EXIT										
+792	Artificial_AST	NULL				1						
+793	Artificial_AST	AST_PARAM_LIST				2						
+794	Artificial_AST	AST_STMT_LIST				3						
+795	Artificial_AST	DUMMY_STMT				0						
+796	Object	function									slice	
+797	Name										prototype	
+798	Object	object										
+799	Name										__proto__	
+800	Name										constructor	
+801	Name										__proto__	
+802	Name										constructor	
+803	Name										slice	
+804	Artificial_AST	AST_CLOSURE										
+805	Artificial_AST	string				0					filter	
+806	Artificial	CFG_FUNC_ENTRY										
+807	Artificial	CFG_FUNC_EXIT										
+808	Artificial_AST	NULL				1						
+809	Artificial_AST	AST_PARAM_LIST				2						
+810	Artificial_AST	AST_STMT_LIST				3						
+811	Artificial_AST	DUMMY_STMT				0						
+812	Object	function									filter	
+813	Name										prototype	
+814	Object	object										
+815	Name										__proto__	
+816	Name										constructor	
+817	Name										__proto__	
+818	Name										constructor	
+819	Name										filter	
+820	Artificial_AST	AST_CLOSURE										
+821	Artificial_AST	string				0					map	
+822	Artificial	CFG_FUNC_ENTRY										
+823	Artificial	CFG_FUNC_EXIT										
+824	Artificial_AST	NULL				1						
+825	Artificial_AST	AST_PARAM_LIST				2						
+826	Artificial_AST	AST_STMT_LIST				3						
+827	Artificial_AST	DUMMY_STMT				0						
+828	Object	function									map	
+829	Name										prototype	
+830	Object	object										
+831	Name										__proto__	
+832	Name										constructor	
+833	Name										__proto__	
+834	Name										constructor	
+835	Name										map	
+836	Artificial_AST	AST_CLOSURE										
+837	Artificial_AST	string				0					reduce	
+838	Artificial	CFG_FUNC_ENTRY										
+839	Artificial	CFG_FUNC_EXIT										
+840	Artificial_AST	NULL				1						
+841	Artificial_AST	AST_PARAM_LIST				2						
+842	Artificial_AST	AST_STMT_LIST				3						
+843	Artificial_AST	DUMMY_STMT				0						
+844	Object	function									reduce	
+845	Name										prototype	
+846	Object	object										
+847	Name										__proto__	
+848	Name										constructor	
+849	Name										__proto__	
+850	Name										constructor	
+851	Name										reduce	
+852	Artificial_AST	AST_CLOSURE										
+853	Artificial_AST	string				0					concat	
+854	Artificial	CFG_FUNC_ENTRY										
+855	Artificial	CFG_FUNC_EXIT										
+856	Artificial_AST	NULL				1						
+857	Artificial_AST	AST_PARAM_LIST				2						
+858	Artificial_AST	AST_STMT_LIST				3						
+859	Artificial_AST	DUMMY_STMT				0						
+860	Object	function									concat	
+861	Name										prototype	
+862	Object	object										
+863	Name										__proto__	
+864	Name										constructor	
+865	Name										__proto__	
+866	Name										constructor	
+867	Name										concat	
+868	Artificial_AST	AST_CLOSURE										
+869	Artificial_AST	string				0					Boolean	
+870	Artificial	CFG_FUNC_ENTRY										
+871	Artificial	CFG_FUNC_EXIT										
+872	Artificial_AST	NULL				1						
+873	Artificial_AST	AST_PARAM_LIST				2						
+874	Artificial_AST	AST_STMT_LIST				3						
+875	Artificial_AST	DUMMY_STMT				0						
+876	Object	function									Boolean	
+877	Name										prototype	
+878	Object	object										
+879	Name										__proto__	
+880	Name										constructor	
+881	Name										__proto__	
+882	Name										constructor	
+883	Name										Boolean	
+884	Name										Boolean	
+885	Artificial_AST	AST_CLOSURE										
+886	Artificial_AST	string				0					Symbol	
+887	Artificial	CFG_FUNC_ENTRY										
+888	Artificial	CFG_FUNC_EXIT										
+889	Artificial_AST	NULL				1						
+890	Artificial_AST	AST_PARAM_LIST				2						
+891	Artificial_AST	AST_STMT_LIST				3						
+892	Artificial_AST	DUMMY_STMT				0						
+893	Object	function									Symbol	
+894	Name										prototype	
+895	Object	object										
+896	Name										__proto__	
+897	Name										constructor	
+898	Name										__proto__	
+899	Name										constructor	
+900	Name										Symbol	
+901	Name										Symbol	
+902	Artificial_AST	AST_CLOSURE										
+903	Artificial_AST	string				0					Error	
+904	Artificial	CFG_FUNC_ENTRY										
+905	Artificial	CFG_FUNC_EXIT										
+906	Artificial_AST	NULL				1						
+907	Artificial_AST	AST_PARAM_LIST				2						
+908	Artificial_AST	AST_STMT_LIST				3						
+909	Artificial_AST	DUMMY_STMT				0						
+910	Object	function									Error	
+911	Name										prototype	
+912	Object	object										
+913	Name										__proto__	
+914	Name										constructor	
+915	Name										__proto__	
+916	Name										constructor	
+917	Name										Error	
+918	Name										Error	
+919	Artificial_AST	AST_CLOSURE										
+920	Artificial_AST	string				0					parseInt	
+921	Artificial	CFG_FUNC_ENTRY										
+922	Artificial	CFG_FUNC_EXIT										
+923	Artificial_AST	NULL				1						
+924	Artificial_AST	AST_PARAM_LIST				2						
+925	Artificial_AST	AST_STMT_LIST				3						
+926	Artificial_AST	DUMMY_STMT				0						
+927	Object	function									parseInt	
+928	Name										prototype	
+929	Object	object										
+930	Name										__proto__	
+931	Name										constructor	
+932	Name										__proto__	
+933	Name										constructor	
+934	Name										parseInt	
+935	Name										parseInt	
+936	Artificial_AST	AST_CLOSURE										
+937	Artificial_AST	string				0					parseFloat	
+938	Artificial	CFG_FUNC_ENTRY										
+939	Artificial	CFG_FUNC_EXIT										
+940	Artificial_AST	NULL				1						
+941	Artificial_AST	AST_PARAM_LIST				2						
+942	Artificial_AST	AST_STMT_LIST				3						
+943	Artificial_AST	DUMMY_STMT				0						
+944	Object	function									parseFloat	
+945	Name										prototype	
+946	Object	object										
+947	Name										__proto__	
+948	Name										constructor	
+949	Name										__proto__	
+950	Name										constructor	
+951	Name										parseFloat	
+952	Name										parseFloat	
+953	Artificial_AST	AST_CLOSURE										
+954	Artificial_AST	string				0					decodeURI	
+955	Artificial	CFG_FUNC_ENTRY										
+956	Artificial	CFG_FUNC_EXIT										
+957	Artificial_AST	NULL				1						
+958	Artificial_AST	AST_PARAM_LIST				2						
+959	Artificial_AST	AST_STMT_LIST				3						
+960	Artificial_AST	DUMMY_STMT				0						
+961	Object	function									decodeURI	
+962	Name										prototype	
+963	Object	object										
+964	Name										__proto__	
+965	Name										constructor	
+966	Name										__proto__	
+967	Name										constructor	
+968	Name										decodeURI	
+969	Name										decodeURI	
+970	Artificial_AST	AST_CLOSURE										
+971	Artificial_AST	string				0					decodeURIComponent	
+972	Artificial	CFG_FUNC_ENTRY										
+973	Artificial	CFG_FUNC_EXIT										
+974	Artificial_AST	NULL				1						
+975	Artificial_AST	AST_PARAM_LIST				2						
+976	Artificial_AST	AST_STMT_LIST				3						
+977	Artificial_AST	DUMMY_STMT				0						
+978	Object	function									decodeURIComponent	
+979	Name										prototype	
+980	Object	object										
+981	Name										__proto__	
+982	Name										constructor	
+983	Name										__proto__	
+984	Name										constructor	
+985	Name										decodeURIComponent	
+986	Name										decodeURIComponent	
+987	Artificial_AST	AST_CLOSURE										
+988	Artificial_AST	string				0					encodeURI	
+989	Artificial	CFG_FUNC_ENTRY										
+990	Artificial	CFG_FUNC_EXIT										
+991	Artificial_AST	NULL				1						
+992	Artificial_AST	AST_PARAM_LIST				2						
+993	Artificial_AST	AST_STMT_LIST				3						
+994	Artificial_AST	DUMMY_STMT				0						
+995	Object	function									encodeURI	
+996	Name										prototype	
+997	Object	object										
+998	Name										__proto__	
+999	Name										constructor	
+1000	Name										__proto__	
+1001	Name										constructor	
+1002	Name										encodeURI	
+1003	Name										encodeURI	
+1004	Artificial_AST	AST_CLOSURE										
+1005	Artificial_AST	string				0					encodeURIComponent	
+1006	Artificial	CFG_FUNC_ENTRY										
+1007	Artificial	CFG_FUNC_EXIT										
+1008	Artificial_AST	NULL				1						
+1009	Artificial_AST	AST_PARAM_LIST				2						
+1010	Artificial_AST	AST_STMT_LIST				3						
+1011	Artificial_AST	DUMMY_STMT				0						
+1012	Object	function									encodeURIComponent	
+1013	Name										prototype	
+1014	Object	object										
+1015	Name										__proto__	
+1016	Name										constructor	
+1017	Name										__proto__	
+1018	Name										constructor	
+1019	Name										encodeURIComponent	
+1020	Name										encodeURIComponent	
+1021	Artificial_AST	AST_CLOSURE										
+1022	Artificial_AST	string				0					escape	
+1023	Artificial	CFG_FUNC_ENTRY										
+1024	Artificial	CFG_FUNC_EXIT										
+1025	Artificial_AST	NULL				1						
+1026	Artificial_AST	AST_PARAM_LIST				2						
+1027	Artificial_AST	AST_STMT_LIST				3						
+1028	Artificial_AST	DUMMY_STMT				0						
+1029	Object	function									escape	
+1030	Name										prototype	
+1031	Object	object										
+1032	Name										__proto__	
+1033	Name										constructor	
+1034	Name										__proto__	
+1035	Name										constructor	
+1036	Name										escape	
+1037	Name										escape	
+1038	Artificial_AST	AST_CLOSURE										
+1039	Artificial_AST	string				0					unescape	
+1040	Artificial	CFG_FUNC_ENTRY										
+1041	Artificial	CFG_FUNC_EXIT										
+1042	Artificial_AST	NULL				1						
+1043	Artificial_AST	AST_PARAM_LIST				2						
+1044	Artificial_AST	AST_STMT_LIST				3						
+1045	Artificial_AST	DUMMY_STMT				0						
+1046	Object	function									unescape	
+1047	Name										prototype	
+1048	Object	object										
+1049	Name										__proto__	
+1050	Name										constructor	
+1051	Name										__proto__	
+1052	Name										constructor	
+1053	Name										unescape	
+1054	Name										unescape	
+1055	Artificial_AST	AST_CLOSURE										
+1056	Artificial_AST	string				0					setTimeout	
+1057	Artificial	CFG_FUNC_ENTRY										
+1058	Artificial	CFG_FUNC_EXIT										
+1059	Artificial_AST	NULL				1						
+1060	Artificial_AST	AST_PARAM_LIST				2						
+1061	Artificial_AST	AST_STMT_LIST				3						
+1062	Artificial_AST	DUMMY_STMT				0						
+1063	Object	function									setTimeout	
+1064	Name										prototype	
+1065	Object	object										
+1066	Name										__proto__	
+1067	Name										constructor	
+1068	Name										__proto__	
+1069	Name										constructor	
+1070	Name										setTimeout	
+1071	Name										setTimeout	
+1072	Artificial_AST	AST_CLOSURE										
+1073	Artificial_AST	string				0					clearTimeout	
+1074	Artificial	CFG_FUNC_ENTRY										
+1075	Artificial	CFG_FUNC_EXIT										
+1076	Artificial_AST	NULL				1						
+1077	Artificial_AST	AST_PARAM_LIST				2						
+1078	Artificial_AST	AST_STMT_LIST				3						
+1079	Artificial_AST	DUMMY_STMT				0						
+1080	Object	function									clearTimeout	
+1081	Name										prototype	
+1082	Object	object										
+1083	Name										__proto__	
+1084	Name										constructor	
+1085	Name										__proto__	
+1086	Name										constructor	
+1087	Name										clearTimeout	
+1088	Name										clearTimeout	
+1089	Artificial_AST	AST_CLOSURE										
+1090	Artificial_AST	string				0					setInterval	
+1091	Artificial	CFG_FUNC_ENTRY										
+1092	Artificial	CFG_FUNC_EXIT										
+1093	Artificial_AST	NULL				1						
+1094	Artificial_AST	AST_PARAM_LIST				2						
+1095	Artificial_AST	AST_STMT_LIST				3						
+1096	Artificial_AST	DUMMY_STMT				0						
+1097	Object	function									setInterval	
+1098	Name										prototype	
+1099	Object	object										
+1100	Name										__proto__	
+1101	Name										constructor	
+1102	Name										__proto__	
+1103	Name										constructor	
+1104	Name										setInterval	
+1105	Name										setInterval	
+1106	Artificial_AST	AST_CLOSURE										
+1107	Artificial_AST	string				0					clearInterval	
+1108	Artificial	CFG_FUNC_ENTRY										
+1109	Artificial	CFG_FUNC_EXIT										
+1110	Artificial_AST	NULL				1						
+1111	Artificial_AST	AST_PARAM_LIST				2						
+1112	Artificial_AST	AST_STMT_LIST				3						
+1113	Artificial_AST	DUMMY_STMT				0						
+1114	Object	function									clearInterval	
+1115	Name										prototype	
+1116	Object	object										
+1117	Name										__proto__	
+1118	Name										constructor	
+1119	Name										__proto__	
+1120	Name										constructor	
+1121	Name										clearInterval	
+1122	Name										clearInterval	
+1123	Artificial_AST	AST_CLOSURE										
+1124	Artificial_AST	string				0					require	
+1125	Artificial	CFG_FUNC_ENTRY										
+1126	Artificial	CFG_FUNC_EXIT										
+1127	Artificial_AST	NULL				1						
+1128	Artificial_AST	AST_PARAM_LIST				2						
+1129	Artificial_AST	AST_STMT_LIST				3						
+1130	Artificial_AST	DUMMY_STMT				0						
+1131	Object	function									require	
+1132	Name										prototype	
+1133	Object	object										
+1134	Name										__proto__	
+1135	Name										constructor	
+1136	Name										__proto__	
+1137	Name										constructor	
+1138	Name										require	
+1139	Name										require	
+1140	Artificial_AST	AST_CLOSURE										
+1141	Artificial_AST	string				0					eval	
+1142	Artificial	CFG_FUNC_ENTRY										
+1143	Artificial	CFG_FUNC_EXIT										
+1144	Artificial_AST	NULL				1						
+1145	Artificial_AST	AST_PARAM_LIST				2						
+1146	Artificial_AST	AST_STMT_LIST				3						
+1147	Artificial_AST	DUMMY_STMT				0						
+1148	Object	function									eval	
+1149	Name										prototype	
+1150	Object	object										
+1151	Name										__proto__	
+1152	Name										constructor	
+1153	Name										__proto__	
+1154	Name										constructor	
+1155	Name										eval	
+1156	Name										eval	
+1157	Name										console	
+1158	Object	object										
+1159	Name										__proto__	
+1160	Name										constructor	
+1161	Name										console	
+1162	Artificial_AST	AST_CLOSURE										
+1163	Artificial_AST	string				0					log	
+1164	Artificial	CFG_FUNC_ENTRY										
+1165	Artificial	CFG_FUNC_EXIT										
+1166	Artificial_AST	NULL				1						
+1167	Artificial_AST	AST_PARAM_LIST				2						
+1168	Artificial_AST	AST_STMT_LIST				3						
+1169	Artificial_AST	DUMMY_STMT				0						
+1170	Object	function									log	
+1171	Name										prototype	
+1172	Object	object										
+1173	Name										__proto__	
+1174	Name										constructor	
+1175	Name										__proto__	
+1176	Name										constructor	
+1177	Name										log	
+1178	Artificial_AST	AST_CLOSURE										
+1179	Artificial_AST	string				0					error	
+1180	Artificial	CFG_FUNC_ENTRY										
+1181	Artificial	CFG_FUNC_EXIT										
+1182	Artificial_AST	NULL				1						
+1183	Artificial_AST	AST_PARAM_LIST				2						
+1184	Artificial_AST	AST_STMT_LIST				3						
+1185	Artificial_AST	DUMMY_STMT				0						
+1186	Object	function									error	
+1187	Name										prototype	
+1188	Object	object										
+1189	Name										__proto__	
+1190	Name										constructor	
+1191	Name										__proto__	
+1192	Name										constructor	
+1193	Name										error	
+1194	Name										process	
+1195	Object	object			*							
+1196	Name										__proto__	
+1197	Name										constructor	
+1198	Name										process	
+1199	Name										argv	
+1200	Object	array			*							
+1201	Name										__proto__	
+1202	Name										constructor	
+1203	Name										versions	
+1204	Object	object			*							
+1205	Name										__proto__	
+1206	Name										constructor	
+1207	Name										modules	
+1208	Object	string			*							
+1209	Name										__proto__	
+1210	Name										constructor	
+1211	Name										length	
+1212	Object	number			*							
+1213	Name										platform	
+1214	Object	string			*							
+1215	Name										__proto__	
+1216	Name										constructor	
+1217	Name										length	
+1218	Object	number			*							
+1219	Name										arch	
+1220	Object	string			*							
+1221	Name										__proto__	
+1222	Name										constructor	
+1223	Name										length	
+1224	Object	number			*							
+1225	Name										JSON	
+1226	Object	object										
+1227	Name										__proto__	
+1228	Name										constructor	
+1229	Name										JSON	
+1230	Artificial_AST	AST_CLOSURE										
+1231	Artificial_AST	string				0					parse	
+1232	Artificial	CFG_FUNC_ENTRY										
+1233	Artificial	CFG_FUNC_EXIT										
+1234	Artificial_AST	NULL				1						
+1235	Artificial_AST	AST_PARAM_LIST				2						
+1236	Artificial_AST	AST_STMT_LIST				3						
+1237	Artificial_AST	DUMMY_STMT				0						
+1238	Object	function									parse	
+1239	Name										prototype	
+1240	Object	object										
+1241	Name										__proto__	
+1242	Name										constructor	
+1243	Name										__proto__	
+1244	Name										constructor	
+1245	Name										parse	
+1246	Artificial_AST	AST_CLOSURE										
+1247	Artificial_AST	string				0					stringify	
+1248	Artificial	CFG_FUNC_ENTRY										
+1249	Artificial	CFG_FUNC_EXIT										
+1250	Artificial_AST	NULL				1						
+1251	Artificial_AST	AST_PARAM_LIST				2						
+1252	Artificial_AST	AST_STMT_LIST				3						
+1253	Artificial_AST	DUMMY_STMT				0						
+1254	Object	function									stringify	
+1255	Name										prototype	
+1256	Object	object										
+1257	Name										__proto__	
+1258	Name										constructor	
+1259	Name										__proto__	
+1260	Name										constructor	
+1261	Name										stringify	
+1262	Artificial_AST	AST_CLOSURE										
+1263	Artificial_AST	string				0					RegExp	
+1264	Artificial	CFG_FUNC_ENTRY										
+1265	Artificial	CFG_FUNC_EXIT										
+1266	Artificial_AST	NULL				1						
+1267	Artificial_AST	AST_PARAM_LIST				2						
+1268	Artificial_AST	AST_STMT_LIST				3						
+1269	Artificial_AST	DUMMY_STMT				0						
+1270	Object	function									RegExp	
+1271	Name										prototype	
+1272	Object	object										
+1273	Name										__proto__	
+1274	Name										constructor	
+1275	Name										__proto__	
+1276	Name										constructor	
+1277	Name										RegExp	
+1278	Name										RegExp	
+1279	Artificial_AST	AST_CLOSURE										
+1280	Artificial_AST	string				0					exec	
+1281	Artificial	CFG_FUNC_ENTRY										
+1282	Artificial	CFG_FUNC_EXIT										
+1283	Artificial_AST	NULL				1						
+1284	Artificial_AST	AST_PARAM_LIST				2						
+1285	Artificial_AST	AST_STMT_LIST				3						
+1286	Artificial_AST	DUMMY_STMT				0						
+1287	Object	function									exec	
+1288	Name										prototype	
+1289	Object	object										
+1290	Name										__proto__	
+1291	Name										constructor	
+1292	Name										__proto__	
+1293	Name										constructor	
+1294	Name										exec	
+1295	Artificial_AST	AST_CLOSURE										
+1296	Artificial_AST	string				0					test	
+1297	Artificial	CFG_FUNC_ENTRY										
+1298	Artificial	CFG_FUNC_EXIT										
+1299	Artificial_AST	NULL				1						
+1300	Artificial_AST	AST_PARAM_LIST				2						
+1301	Artificial_AST	AST_STMT_LIST				3						
+1302	Artificial_AST	DUMMY_STMT				0						
+1303	Object	function									test	
+1304	Name										prototype	
+1305	Object	object										
+1306	Name										__proto__	
+1307	Name										constructor	
+1308	Name										__proto__	
+1309	Name										constructor	
+1310	Name										test	
+1311	Name										Math	
+1312	Object	object										
+1313	Name										__proto__	
+1314	Name										constructor	
+1315	Name										Math	
+1316	Artificial_AST	AST_CLOSURE										
+1317	Artificial_AST	string				0					max	
+1318	Artificial	CFG_FUNC_ENTRY										
+1319	Artificial	CFG_FUNC_EXIT										
+1320	Artificial_AST	NULL				1						
+1321	Artificial_AST	AST_PARAM_LIST				2						
+1322	Artificial_AST	AST_STMT_LIST				3						
+1323	Artificial_AST	DUMMY_STMT				0						
+1324	Object	function									max	
+1325	Name										prototype	
+1326	Object	object										
+1327	Name										__proto__	
+1328	Name										constructor	
+1329	Name										__proto__	
+1330	Name										constructor	
+1331	Name										max	
+1332	Artificial_AST	AST_CLOSURE										
+1333	Artificial_AST	string				0					min	
+1334	Artificial	CFG_FUNC_ENTRY										
+1335	Artificial	CFG_FUNC_EXIT										
+1336	Artificial_AST	NULL				1						
+1337	Artificial_AST	AST_PARAM_LIST				2						
+1338	Artificial_AST	AST_STMT_LIST				3						
+1339	Artificial_AST	DUMMY_STMT				0						
+1340	Object	function									min	
+1341	Name										prototype	
+1342	Object	object										
+1343	Name										__proto__	
+1344	Name										constructor	
+1345	Name										__proto__	
+1346	Name										constructor	
+1347	Name										min	
+1348	Artificial_AST	AST_CLOSURE										
+1349	Artificial_AST	string				0					sqrt	
+1350	Artificial	CFG_FUNC_ENTRY										
+1351	Artificial	CFG_FUNC_EXIT										
+1352	Artificial_AST	NULL				1						
+1353	Artificial_AST	AST_PARAM_LIST				2						
+1354	Artificial_AST	AST_STMT_LIST				3						
+1355	Artificial_AST	DUMMY_STMT				0						
+1356	Object	function									sqrt	
+1357	Name										prototype	
+1358	Object	object										
+1359	Name										__proto__	
+1360	Name										constructor	
+1361	Name										__proto__	
+1362	Name										constructor	
+1363	Name										sqrt	
+1364	Artificial_AST	AST_CLOSURE										
+1365	Artificial_AST	string				0					Promise	
+1366	Artificial	CFG_FUNC_ENTRY										
+1367	Artificial	CFG_FUNC_EXIT										
+1368	Artificial_AST	NULL				1						
+1369	Artificial_AST	AST_PARAM_LIST				2						
+1370	Artificial_AST	AST_STMT_LIST				3						
+1371	Artificial_AST	DUMMY_STMT				0						
+1372	Object	function									Promise	
+1373	Name										prototype	
+1374	Object	object										
+1375	Name										__proto__	
+1376	Name										constructor	
+1377	Name										__proto__	
+1378	Name										constructor	
+1379	Name										Promise	
+1380	Name										Promise	
+1381	Artificial_AST	AST_CLOSURE										
+1382	Artificial_AST	string				0					then	
+1383	Artificial	CFG_FUNC_ENTRY										
+1384	Artificial	CFG_FUNC_EXIT										
+1385	Artificial_AST	NULL				1						
+1386	Artificial_AST	AST_PARAM_LIST				2						
+1387	Artificial_AST	AST_STMT_LIST				3						
+1388	Artificial_AST	DUMMY_STMT				0						
+1389	Object	function									then	
+1390	Name										prototype	
+1391	Object	object										
+1392	Name										__proto__	
+1393	Name										constructor	
+1394	Name										__proto__	
+1395	Name										constructor	
+1396	Name										then	
+1397	Artificial_AST	AST_CLOSURE										
+1398	Artificial_AST	string				0					catch	
+1399	Artificial	CFG_FUNC_ENTRY										
+1400	Artificial	CFG_FUNC_EXIT										
+1401	Artificial_AST	NULL				1						
+1402	Artificial_AST	AST_PARAM_LIST				2						
+1403	Artificial_AST	AST_STMT_LIST				3						
+1404	Artificial_AST	DUMMY_STMT				0						
+1405	Object	function									catch	
+1406	Name										prototype	
+1407	Object	object										
+1408	Name										__proto__	
+1409	Name										constructor	
+1410	Name										__proto__	
+1411	Name										constructor	
+1412	Name										catch	
+1413	Artificial_AST	AST_CLOSURE										
+1414	Artificial_AST	string				0					finally	
+1415	Artificial	CFG_FUNC_ENTRY										
+1416	Artificial	CFG_FUNC_EXIT										
+1417	Artificial_AST	NULL				1						
+1418	Artificial_AST	AST_PARAM_LIST				2						
+1419	Artificial_AST	AST_STMT_LIST				3						
+1420	Artificial_AST	DUMMY_STMT				0						
+1421	Object	function									finally	
+1422	Name										prototype	
+1423	Object	object										
+1424	Name										__proto__	
+1425	Name										constructor	
+1426	Name										__proto__	
+1427	Name										constructor	
+1428	Name										finally	
+1429	Artificial_AST	AST_CLOSURE										
+1430	Artificial_AST	string				0					resolve	
+1431	Artificial	CFG_FUNC_ENTRY										
+1432	Artificial	CFG_FUNC_EXIT										
+1433	Artificial_AST	NULL				1						
+1434	Artificial_AST	AST_PARAM_LIST				2						
+1435	Artificial_AST	AST_STMT_LIST				3						
+1436	Artificial_AST	DUMMY_STMT				0						
+1437	Object	function									resolve	
+1438	Name										prototype	
+1439	Object	object										
+1440	Name										__proto__	
+1441	Name										constructor	
+1442	Name										__proto__	
+1443	Name										constructor	
+1444	Name										resolve	
+1445	Artificial_AST	AST_CLOSURE										
+1446	Artificial_AST	string				0					Date	
+1447	Artificial	CFG_FUNC_ENTRY										
+1448	Artificial	CFG_FUNC_EXIT										
+1449	Artificial_AST	NULL				1						
+1450	Artificial_AST	AST_PARAM_LIST				2						
+1451	Artificial_AST	AST_STMT_LIST				3						
+1452	Artificial_AST	DUMMY_STMT				0						
+1453	Object	function									Date	
+1454	Name										prototype	
+1455	Object	object										
+1456	Name										__proto__	
+1457	Name										constructor	
+1458	Name										__proto__	
+1459	Name										constructor	
+1460	Name										Date	
+1461	Name										Date	
+1462	Name										__opgWildcard	
+1463	Object	object			*							
+1464	Name										__proto__	
+1465	Name										constructor	
+1466	Name										__opgWildcard	
+1467	Name										__opgTainted	
+1468	Object	object										
+1469	Name										__proto__	
+1470	Name										constructor	
+1471	Name										__opgTainted	
+1472	Name										__opgTaintedWildcard	
+1473	Object	object										
+1474	Name										__proto__	
+1475	Name										constructor	
+1476	Name										__opgTaintedWildcard	
+1477	Object	undefined			undefined							
+1478	Name										undefined	
+1479	Name										undefined	
+1480	Object	number			Infinity							
+1481	Name										Infinity	
+1482	Name										Infinity	
+1483	Object	number			-Infinity							
+1484	Object	number			nan							
+1485	Name										NaN	
+1486	Name										NaN	
+1487	Name										__proto__	
+1488	Object	object										
+1489	Name										__proto__	
+1490	Name										constructor	
+1491	Name										__proto__	
+1492	Object	function									stdin	
+1493	Name										prototype	
+1494	Object	object										
+1495	Name										__proto__	
+1496	Name										constructor	
+1497	Name										__proto__	
+1498	Name										constructor	
+1499	Name										stdin	
+1500	Name										stdin	
+1501	Name										name	
+1502	Object	string			stdin							
+1503	Name										__proto__	
+1504	Name										constructor	
+1505	Name										length	
+1506	Object	number			5							
+1507	Name										length	
+1508	Object	number			0							
+1509	Scope	FILE_SCOPE									File1:0	
+1510	Name										module	
+1511	Object	object										
+1512	Name										__proto__	
+1513	Name										constructor	
+1514	Name										exports	
+1515	Object	object										
+1516	Name										__proto__	
+1517	Name										constructor	
+1518	Name										exports	
+1519	Name										this	
+1520	Scope	BLOCK_SCOPE									Block4:0	
+1521	Name										main_func	
+1522	Object	function									/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js	
+1523	Name										prototype	
+1524	Object	object										
+1525	Name										__proto__	
+1526	Name										constructor	
+1527	Name										__proto__	
+1528	Name										constructor	
+1529	Name										/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js	
+1530	Name										/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js	
+1531	Name										name	
+1532	Object	string			/Users/aoo/Project/IntellijProjects/safe_tainted/tests/auto_nodes/functions/decl_with_body.js							
+1533	Name										__proto__	
+1534	Name										constructor	
+1535	Name										length	
+1536	Object	number			93							
+1537	Name										length	
+1538	Object	number			0							
+1539	Scope	FILE_SCOPE									File14:0	
+1540	Name										module	
+1541	Object	object										
+1542	Name										__proto__	
+1543	Name										constructor	
+1544	Name										exports	
+1545	Object	object										
+1546	Name										__proto__	
+1547	Name										constructor	
+1548	Name										exports	
+1549	Name										this	
+1550	Scope	BLOCK_SCOPE									Block17:0	
+1551	Object	function									func1	
+1552	Name										prototype	
+1553	Object	object										
+1554	Name										__proto__	
+1555	Name										constructor	
+1556	Name										__proto__	
+1557	Name										constructor	
+1558	Name										func1	
+1559	Name										name	
+1560	Object	string			func1							
+1561	Name										__proto__	
+1562	Name										constructor	
+1563	Name										length	
+1564	Object	number			5							
+1565	Name										length	
+1566	Object	number			0							
+1567	Object	function									func2	
+1568	Name										prototype	
+1569	Object	object										
+1570	Name										__proto__	
+1571	Name										constructor	
+1572	Name										__proto__	
+1573	Name										constructor	
+1574	Name										func2	
+1575	Name										name	
+1576	Object	string			func2							
+1577	Name										__proto__	
+1578	Name										constructor	
+1579	Name										length	
+1580	Object	number			5							
+1581	Name										length	
+1582	Object	number			0							
+1583	Artificial	CFG_BLOCK_EXIT										
+1584	Artificial	CFG_BLOCK_EXIT										

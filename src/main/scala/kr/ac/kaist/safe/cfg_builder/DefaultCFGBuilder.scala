@@ -25,7 +25,8 @@ import kr.ac.kaist.safe.util.NodeUtil._
 class DefaultCFGBuilder(
   ir: IRRoot,
   safeConfig: SafeConfig,
-  config: CFGBuildConfig) extends CFGBuilder(ir, safeConfig, config) {
+  config: CFGBuildConfig
+) extends CFGBuilder(ir, safeConfig, config) {
   ////////////////////////////////////////////////////////////////
   // results
   ////////////////////////////////////////////////////////////////
@@ -60,16 +61,6 @@ class DefaultCFGBuilder(
   private case class NamedLabel(label: String) extends JSLabel
   private type LabelMap = Map[JSLabel, Set[CFGBlock]]
 
-  ////////////////////////////////////////////////////////////////
-  // main
-  ////////////////////////////////////////////////////////////////
-
-  build
-
-  ////////////////////////////////////////////////////////////////
-  // helper function
-  ////////////////////////////////////////////////////////////////
-
   // initialize global variables
   private def init: (CFG, ExcLog) = {
     val cvResult = new CapturedVariableCollector(ir, safeConfig, config)
@@ -88,19 +79,18 @@ class DefaultCFGBuilder(
   }
 
   /* root rule : IRRoot -> CFG  */
-  def build: Unit = ir match {
+  def build(): (CFG, ExcLog) = ir match {
     case IRRoot(_, fds, _, stmts) =>
       val globalFunc = cfg.globalFunc
       val startBlock: NormalBlock = globalFunc.createBlock(None)
       cfg.addEdge(globalFunc.entry, startBlock)
-
       translateFunDecls(fds, globalFunc, startBlock)
       val (blocks: List[CFGBlock], lmap: LabelMap) = translateStmts(stmts, globalFunc, List(startBlock), Map())
-
       cfg.addEdge(blocks, globalFunc.exit)
       cfg.addEdge(ThrowLabel of lmap toList, globalFunc.exitExc, CFGEdgeExc)
       cfg.addEdge(ThrowEndLabel of lmap toList, globalFunc.exitExc)
       cfg.addEdge(AfterCatchLabel of lmap toList, globalFunc.exitExc)
+      (cfg, excLog)
   }
 
   /* fdvars rule : IRFunDecl list -> LocalVars
@@ -192,7 +182,12 @@ class DefaultCFGBuilder(
   }
 
   /* stmt rule : IRStmt x CFGFunction x CFGBlock list x LabelMap -> CFGBlock list x LabelMap */
-  private def translateStmt(stmt: IRStmt, func: CFGFunction, blocks: List[CFGBlock], lmap: LabelMap): (List[CFGBlock], LabelMap) = {
+  private def translateStmt(
+    stmt: IRStmt,
+    func: CFGFunction,
+    blocks: List[CFGBlock],
+    lmap: LabelMap
+  ): (List[CFGBlock], LabelMap) = {
     stmt match {
       case IRNoOp(_, desc) =>
         val tailBlock: NormalBlock = getTail(blocks, func)

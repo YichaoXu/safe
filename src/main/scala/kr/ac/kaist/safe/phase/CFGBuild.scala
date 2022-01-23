@@ -11,12 +11,13 @@
 
 package kr.ac.kaist.safe.phase
 
-import scala.util.{ Try, Success }
-import kr.ac.kaist.safe.{ LINE_SEP, SafeConfig }
+import kr.ac.kaist.safe.SafeConfig
 import kr.ac.kaist.safe.cfg_builder.DefaultCFGBuilder
-import kr.ac.kaist.safe.nodes.ir.IRRoot
 import kr.ac.kaist.safe.nodes.cfg._
+import kr.ac.kaist.safe.nodes.ir.IRRoot
 import kr.ac.kaist.safe.util._
+
+import scala.util.{Success, Try}
 
 // CFGBuild phase
 case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
@@ -28,9 +29,8 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
     safeConfig: SafeConfig,
     config: CFGBuildConfig): Try[CFG] = {
     // Build CFG from IR.
-    val cbResult = new DefaultCFGBuilder(ir, safeConfig, config)
-    val cfg = cbResult.cfg
-    val excLog = cbResult.excLog
+    val cfgBuilder = new DefaultCFGBuilder(ir, safeConfig, config)
+    val (cfg, excLog) = cfgBuilder.build()
     // Report errors.
     if (excLog.hasError) {
       println(cfg.relFileName + ":")

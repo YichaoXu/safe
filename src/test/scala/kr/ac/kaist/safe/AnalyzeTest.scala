@@ -40,8 +40,7 @@ abstract class AnalyzeTest extends SafeTest {
   // get abstract key set based on prefix predicate
   def getAbsKeySet(
     obj: AbsObj,
-    ppred: (AbsStr, AbsDataProp) => Boolean
-  ): Set[String] = {
+    ppred: (AbsStr, AbsDataProp) => Boolean): Set[String] = {
     obj.abstractKeySet(ppred) match {
       case ConInf => fail()
       case ConFin(set) => set.map(_.getSingle match {
@@ -67,8 +66,7 @@ abstract class AnalyzeTest extends SafeTest {
       heapBuildConfig.recencyMode,
       heapBuildConfig.heapClone,
       heapBuildConfig.callsiteSensitivity *
-        heapBuildConfig.loopSensitivity
-    )
+        heapBuildConfig.loopSensitivity)
     Some(Model.parseDir(NodeUtil.jsModelsBase))
   }
 

@@ -11,12 +11,12 @@
 
 package kr.ac.kaist.safe
 
-import edu.jhu.mssi.seclab.extsafe.command.CmdCfgStatistic
+import edu.jhu.mssi.seclab.extsafe.commands.CmdCfgStatistic
 import edu.jhu.mssi.seclab.extsafe.phase.PhsCfgStatistic
 
-import scala.util.{ Failure, Try }
+import scala.util.{Failure, Try}
 import kr.ac.kaist.safe.errors.SafeException
-import kr.ac.kaist.safe.errors.error.{ NoCmdError, NoInputError }
+import kr.ac.kaist.safe.errors.error.{NoCmdError, NoInputError}
 import kr.ac.kaist.safe.phase._
 import kr.ac.kaist.safe.util._
 

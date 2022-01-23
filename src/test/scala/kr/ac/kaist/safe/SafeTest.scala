@@ -25,8 +25,7 @@ abstract class SafeTest extends FunSuite {
   lazy val safeConfig: SafeConfig = SafeConfig(
     command = CmdBase,
     fileNames = Nil,
-    testMode = true
-  )
+    testMode = true)
 
   ////////////////////////////////////////////////////////////////////////////////
   // Helper Functions
