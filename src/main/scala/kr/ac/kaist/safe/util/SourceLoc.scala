@@ -11,9 +11,6 @@
 
 package kr.ac.kaist.safe.util
 
-import java.io.File
-import java.io.Serializable
-
 case class SourceLoc(
   line: Int = 0,
   column: Int = 0,

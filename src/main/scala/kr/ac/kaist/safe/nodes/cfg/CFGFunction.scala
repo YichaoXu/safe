@@ -23,11 +23,12 @@ case class CFGFunction(
   localVars: List[CFGId],
   name: String,
   isUser: Boolean) extends CFGNode {
+
   var id: FunctionId = 0 // XXX should be a value but for JS model for a while.
 
-  val entry = Entry(this)
-  val exit = Exit(this)
-  val exitExc = ExitExc(this)
+  val entry: Entry = Entry(this)
+  val exit: Exit = Exit(this)
+  val exitExc: ExitExc = ExitExc(this)
 
   private var bidCount: BlockId = 0
   def getBId: BlockId = bidCount

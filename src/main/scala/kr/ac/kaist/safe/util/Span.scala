@@ -11,11 +11,6 @@
 
 package kr.ac.kaist.safe.util
 
-import java.io.File
-import java.io.IOException
-import java.io.Serializable
-import java.lang.StringBuilder
-import xtc.tree.Location
 import kr.ac.kaist.safe.nodes.Node
 
 case class Span(

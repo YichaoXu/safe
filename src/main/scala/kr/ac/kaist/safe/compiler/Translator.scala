@@ -11,6 +11,7 @@
 
 package kr.ac.kaist.safe.translator
 
+import java.lang.Double
 import kr.ac.kaist.safe.errors.ExcLog
 import kr.ac.kaist.safe.errors.error._
 import kr.ac.kaist.safe.nodes.ast._

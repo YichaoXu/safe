@@ -1,4 +1,5 @@
 import java.io.File
+import scala.language.postfixOps
 
 lazy val checkCopyrights = taskKey[Unit]("Checks copyrights of source files")
 lazy val buildParsers = taskKey[Unit]("Builds parsers")
@@ -45,12 +46,9 @@ lazy val root = (project in file(".")).
       val outDir = srcDir + "/java/kr/ac/kaist/safe/parser/"
       val outFile = file(outDir)
       if (!outFile.exists) IO.createDirectory(outFile)
-      val arguments = Seq("-in", srcDir + "/scala", "-enc-out", "UTF-8",
-        "-out", outDir, inDir + "JS.rats")
+      val arguments = Seq("-in", srcDir + "/scala", "-enc-out", "UTF-8", "-out", outDir, inDir + "JS.rats")
       val mainClass = "xtc.parser.Rats"
-      val cache = FileFunction.cached(outFile,
-        FilesInfo.lastModified,
-        FilesInfo.exists) {
+      val cache = FileFunction.cached(outFile, FilesInfo.lastModified, FilesInfo.exists) {
         in: Set[File] => {
           Fork.java(options, mainClass +: arguments)
           Set(file(inDir + "JS.rats"))
@@ -86,7 +84,8 @@ libraryDependencies ++= Seq(
   "io.spray" %% "spray-json" % "1.3.2",
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.2",
   "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.9.1",
-  "org.jline" % "jline" % "3.10.0"
+  "org.jline" % "jline" % "3.10.0",
+  "com.github.tototoshi" %% "scala-csv" % "1.3.10"
 )
 
 javacOptions ++= Seq("-encoding", "UTF-8")

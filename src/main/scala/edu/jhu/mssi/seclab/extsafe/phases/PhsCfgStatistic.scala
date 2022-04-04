@@ -1,4 +1,4 @@
-package edu.jhu.mssi.seclab.extsafe.phase
+package edu.jhu.mssi.seclab.extsafe.phases
 
 import kr.ac.kaist.safe.SafeConfig
 import kr.ac.kaist.safe.analyzer.domain.{ BoolDomain, DefaultBool, DefaultNull, DefaultNumber, DefaultUndef, NullDomain, NumDomain, StrDomain, StringSet, UndefDomain }

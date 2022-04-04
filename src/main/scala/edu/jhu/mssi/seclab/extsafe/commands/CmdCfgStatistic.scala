@@ -1,7 +1,7 @@
 package edu.jhu.mssi.seclab.extsafe.commands
 
-import edu.jhu.mssi.seclab.extsafe.phase.StatisticOutput
-import kr.ac.kaist.safe.{CmdCFGBuild, CommandObj}
+import edu.jhu.mssi.seclab.extsafe.phases.{ PhsCfgStatistic, StatisticOutput }
+import kr.ac.kaist.safe.{ CmdCFGBuild, CommandObj }
 
 case object CmdCfgStatistic extends CommandObj("cfgStatistic", CmdCFGBuild >> PhsCfgStatistic) {
 
@@ -9,3 +9,4 @@ case object CmdCfgStatistic extends CommandObj("cfgStatistic", CmdCFGBuild >> Ph
     println(s"The number of the edges is ${result.edge_count}\nThe number of nodes is ${result.node_count}")
   }
 }
+

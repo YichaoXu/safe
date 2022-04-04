@@ -66,8 +66,8 @@ lazy val root = project.in(file(".")).settings(
 
   Test/test := (Test/testOnly).toTask(
     " kr.ac.kaist.safe.CFGBuildTest" +
-      " kr.ac.kaist.safe.BasicAnalyzeTest" +
-      " kr.ac.kaist.safe.HTMLAnalyzeTest"
+    " kr.ac.kaist.safe.BasicAnalyzeTest" +
+    " kr.ac.kaist.safe.HTMLAnalyzeTest"
   ).value,
   Test/basicAnalyzeTest := (Test/testOnly).toTask(" kr.ac.kaist.safe.BasicAnalyzeTest").value,
   Test/benchTest := (Test/testOnly).toTask(" kr.ac.kaist.safe.BenchAnalyzeTest").value,

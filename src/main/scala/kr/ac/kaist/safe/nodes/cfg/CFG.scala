@@ -20,8 +20,7 @@ import kr.ac.kaist.safe.util._
 
 case class CFG(
   ir: IRNode,
-  globalVars: List[CFGId]
-) extends CFGNode {
+  globalVars: List[CFGId]) extends CFGNode {
   // cfg id
   val id: Int = CFG.getId
 
@@ -57,11 +56,15 @@ case class CFG(
     localVars: List[CFGId],
     name: String,
     ir: IRNode,
-    isUser: Boolean
-  ): CFGFunction = {
-    val func = new CFGFunction(
-      ir, argumentsName, argVars, localVars, name, isUser
-    )
+    isUser: Boolean): CFGFunction = {
+    print(s"""
+      ARGS NAME IS $argumentsName
+      argVars IS ${argVars.toString()}
+      localVars IS ${localVars.toString()}
+      name IS $name
+      """)
+    val func = CFGFunction(
+      ir, argumentsName, argVars, localVars, name, isUser)
     func.id = getFId
     fidCount += 1
     funcs ::= func
@@ -81,8 +84,7 @@ case class CFG(
   def addEdge(
     fromList: List[CFGBlock],
     toList: List[CFGBlock],
-    etype: CFGEdgeType = CFGEdgeNormal
-  ): Unit = {
+    etype: CFGEdgeType = CFGEdgeNormal): Unit = {
     fromList.foreach(from => toList.foreach(to => {
       from.addSucc(etype, to)
       to.addPred(etype, from)

@@ -11,12 +11,11 @@
 
 package kr.ac.kaist.safe
 
-import edu.jhu.mssi.seclab.extsafe.commands.CmdCfgStatistic
-import edu.jhu.mssi.seclab.extsafe.phase.PhsCfgStatistic
+import edu.jhu.mssi.seclab.SafeSupplement
 
-import scala.util.{Failure, Try}
+import scala.util.{ Failure, Try }
 import kr.ac.kaist.safe.errors.SafeException
-import kr.ac.kaist.safe.errors.error.{NoCmdError, NoInputError}
+import kr.ac.kaist.safe.errors.error.{ NoCmdError, NoInputError }
 import kr.ac.kaist.safe.phase._
 import kr.ac.kaist.safe.util._
 
@@ -80,8 +79,8 @@ object Safe {
     CmdAnalyze,
     CmdBugDetect,
     CmdHelp,
-    CmdWeb,
-    CmdCfgStatistic)
+    CmdWeb) ++ SafeSupplement.commands
+
   val cmdMap = commands.foldLeft[Map[String, Command]](Map()) {
     case (map, cmd) => map + (cmd.name -> cmd)
   }
@@ -96,8 +95,7 @@ object Safe {
     Analyze,
     BugDetect,
     Help,
-    Web,
-    PhsCfgStatistic)
+    Web) ++ SafeSupplement.phases
 
   // global options
   val options: List[PhaseOption[SafeConfig]] = List(
