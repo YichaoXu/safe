@@ -22,7 +22,8 @@ case class CFGFunction(
   argVars: List[CFGId],
   localVars: List[CFGId],
   name: String,
-  isUser: Boolean) extends CFGNode {
+  isUser: Boolean
+) extends CFGNode {
 
   var id: FunctionId = 0 // XXX should be a value but for JS model for a while.
 
@@ -104,9 +105,10 @@ case class CFGFunction(
     val pre = "  " * indent
     val s: StringBuilder = new StringBuilder
     s.append(pre).append(s"function[$id] ")
-      .append(NodeUtil.isInternal(name) match {
-        case true => name.dropRight(SIGNIFICANT_BITS)
-        case false => name
+      .append(if (NodeUtil.isInternal(name)) {
+        name.dropRight(SIGNIFICANT_BITS)
+      } else {
+        name
       })
       .append(" {").append(LINE_SEP)
     blocks.reverseIterator.foreach {

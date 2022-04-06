@@ -1,6 +1,5 @@
 package edu.jhu.mssi.seclab.extsafe.phases
 
-import edu.jhu.mssi.seclab.extsafe.cfg.AutoNodeCfgFilterBuilder
 import kr.ac.kaist.safe.SafeConfig
 import kr.ac.kaist.safe.cfg_builder.DefaultCFGBuilder
 import kr.ac.kaist.safe.nodes.cfg.CFG

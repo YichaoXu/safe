@@ -1,9 +1,9 @@
-package edu.jhu.mssi.seclab.extsafe.csv.entity
+package edu.jhu.mssi.seclab.extsafe.cfg.entity
 
 import EdgeType.EdgeType
 
 case class Edge(
-  private val data: Map[String, String]) {
+                 private val data: Map[String, String]) {
   val start: Int = data("start:START_ID").toInt
   val end: Int = data("end:END_ID").toInt
   val edge_var: String = data("var")

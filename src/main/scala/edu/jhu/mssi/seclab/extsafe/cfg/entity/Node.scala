@@ -1,11 +1,11 @@
-package edu.jhu.mssi.seclab.extsafe.csv.entity
+package edu.jhu.mssi.seclab.extsafe.cfg.entity
 
-import NodeType.{ NULL, NodeType }
-import kr.ac.kaist.safe.util.{ SourceLoc, Span }
+import NodeType.NodeType
+import kr.ac.kaist.safe.util.{SourceLoc, Span}
 
 case class Node(
-  private val fileName: String,
-  private val data: Map[String, String]) {
+                 private val fileName: String,
+                 private val data: Map[String, String]) {
 
   val id: Int = data("ID").toInt
   val label: String = data("labels:label")
@@ -33,4 +33,17 @@ case class Node(
   val nodeType: NodeType = NodeType(nodeTypeStr) getOrElse NodeType.NULL
 
   def is(nType: NodeType): Boolean = nType.toString.toUpperCase() equals nodeTypeStr
+
+  def isBlockEnd: Boolean = (this is NodeType.CFG_BLOCK_EXIT) || (this is NodeType.CFG_FUNC_EXIT)
+
+  def nonBlockEnd: Boolean = !this.isBlockEnd
+
+  def isConditional: Boolean = (this is NodeType.AST_IF) || (this is NodeType.AST_SWITCH)
+
+  def nonConditional: Boolean = !this.isConditional
+
+  def isNormalNode: Boolean = (this nonBlockEnd) && (this nonConditional)
+
+  def nonNormalNode: Boolean = !this.isNormalNode
+
 }

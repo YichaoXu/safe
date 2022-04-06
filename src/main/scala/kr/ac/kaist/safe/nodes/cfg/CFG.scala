@@ -46,25 +46,14 @@ case class CFG(
   def getFId: FunctionId = fidCount
 
   // global function
-  lazy val globalFunc: CFGFunction =
-    createFunction("", Nil, globalVars, "top-level", ir, true)
+  lazy val globalFunc: CFGFunction = createFunction("", Nil, globalVars, "top-level", ir)
 
   // create function
   def createFunction(
-    argumentsName: String,
-    argVars: List[CFGId],
-    localVars: List[CFGId],
-    name: String,
-    ir: IRNode,
-    isUser: Boolean): CFGFunction = {
-    print(s"""
-      ARGS NAME IS $argumentsName
-      argVars IS ${argVars.toString()}
-      localVars IS ${localVars.toString()}
-      name IS $name
-      """)
-    val func = CFGFunction(
-      ir, argumentsName, argVars, localVars, name, isUser)
+    argName: String, argVars: List[CFGId], localVars: List[CFGId],
+    name: String, ir: IRNode, isUser: Boolean = true
+  ): CFGFunction = {
+    val func = CFGFunction(ir, argName, argVars, localVars, name, isUser)
     func.id = getFId
     fidCount += 1
     funcs ::= func
@@ -82,32 +71,28 @@ case class CFG(
 
   // add edge
   def addEdge(
-    fromList: List[CFGBlock],
-    toList: List[CFGBlock],
-    etype: CFGEdgeType = CFGEdgeNormal): Unit = {
-    fromList.foreach(from => toList.foreach(to => {
-      from.addSucc(etype, to)
-      to.addPred(etype, from)
-    }))
+    fromList: List[CFGBlock], toList: List[CFGBlock],
+    edgeType: CFGEdgeType = CFGEdgeNormal
+  ): Unit = for(from <- fromList; to <-toList) {
+    from.addSucc(edgeType, to)
+    to.addPred(edgeType, from)
   }
 
+
   // toString
-  override def toString(indent: Int): String = {
-    val s: StringBuilder = new StringBuilder
-    funcs.reverseIterator.foreach {
-      case func => s.append(func.toString(indent)).append(LINE_SEP)
-    }
-    s.toString
-  }
+  override def toString(indent: Int): String = funcs.reverseIterator.foldLeft(new StringBuilder){
+    (strBuilder, func) => strBuilder.append(func.toString(indent)).append(LINE_SEP)
+  }.toString()
 
   // user defined allocation site size
   private var userASiteSize: Int = 0
   def getUserASiteSize: Int = userASiteSize
-  def setUserASiteSize(size: Int): Unit = { userASiteSize = size }
+  def setUserASiteSize(size: Int): Unit = {
+    userASiteSize = size
+  }
   def newUserASite: UserAllocSite = {
     userASiteSize += 1
-    val asite = UserAllocSite(userASiteSize)
-    asite
+    UserAllocSite(userASiteSize)
   }
 
   // find block from a given string
