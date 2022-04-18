@@ -1,7 +1,6 @@
 package edu.jhu.mssi.seclab.extsafe.phases
 
 import kr.ac.kaist.safe.SafeConfig
-import kr.ac.kaist.safe.cfg_builder.DefaultCFGBuilder
 import kr.ac.kaist.safe.nodes.cfg.CFG
 import kr.ac.kaist.safe.nodes.ir.IRRoot
 import kr.ac.kaist.safe.phase.{ CFGBuildConfig, Config, PhaseObj, PhaseOption }
@@ -14,23 +13,7 @@ case object PhsAutoCfgFilter extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
   val help: String =
     "Builds a control flow graph for JavaScript source files."
   def apply(ir: IRRoot, safeConfig: SafeConfig, config: CFGBuildConfig): Try[CFG] = {
-    // Build CFG from IR.
-    val cfgBuilder = new AutoNodeCfgFilterBuilder(ir, safeConfig, config)
-    val cfg = cfgBuilder.build()
-    // Report errors.
-    if (cfgBuilder.excLog.hasError) {
-      println(cfg.relFileName + ":")
-      println(cfgBuilder.excLog)
-    }
-    // Pretty print to file.
-    config.outFile.foreach(out => {
-      val (fw, writer) = Useful.fileNameToWriters(out)
-      writer.write(cfg.toString(0))
-      writer.close()
-      fw.close()
-      println("Dumped CFG to " + out)
-    })
-    Success(cfg)
+    ???
   }
 
   def defaultConfig: CFGBuildConfig = CFGBuildConfig()

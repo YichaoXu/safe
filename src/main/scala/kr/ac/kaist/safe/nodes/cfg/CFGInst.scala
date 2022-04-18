@@ -42,6 +42,7 @@ case class CFGAlloc(
   protoOpt: Option[CFGExpr],
   var asite: AllocSite // XXX should be a value but for JS model for a while.
 ) extends CFGNormalInst {
+
   override def toString: String = {
     val proto = protoOpt.getOrElse("")
     s"$lhs := alloc($proto) @ $asite"

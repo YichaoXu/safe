@@ -51,8 +51,7 @@ case class CFG(
   // create function
   def createFunction(
     argName: String, argVars: List[CFGId], localVars: List[CFGId],
-    name: String, ir: IRNode, isUser: Boolean = true
-  ): CFGFunction = {
+    name: String, ir: IRNode, isUser: Boolean = true): CFGFunction = {
     val func = CFGFunction(ir, argName, argVars, localVars, name, isUser)
     func.id = getFId
     fidCount += 1
@@ -72,15 +71,13 @@ case class CFG(
   // add edge
   def addEdge(
     fromList: List[CFGBlock], toList: List[CFGBlock],
-    edgeType: CFGEdgeType = CFGEdgeNormal
-  ): Unit = for(from <- fromList; to <-toList) {
+    edgeType: CFGEdgeType = CFGEdgeNormal): Unit = for (from <- fromList; to <- toList) {
     from.addSucc(edgeType, to)
     to.addPred(edgeType, from)
   }
 
-
   // toString
-  override def toString(indent: Int): String = funcs.reverseIterator.foldLeft(new StringBuilder){
+  override def toString(indent: Int): String = funcs.reverseIterator.foldLeft(new StringBuilder) {
     (strBuilder, func) => strBuilder.append(func.toString(indent)).append(LINE_SEP)
   }.toString()
 

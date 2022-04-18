@@ -74,7 +74,6 @@ sealed trait CFGBlock {
   }
 
   // toString
-  override def toString: String
   def toString(indent: Int): String = {
     val pre = "  " * indent
     val s: StringBuilder = new StringBuilder
@@ -92,9 +91,7 @@ sealed trait CFGBlock {
 }
 object CFGBlock {
   implicit def node2nodelist(node: CFGBlock): List[CFGBlock] = List(node)
-  implicit def ordering[B <: CFGBlock]: Ordering[B] = Ordering.by {
-    case block => (block.func.id, block.id)
-  }
+  implicit def ordering[B <: CFGBlock]: Ordering[B] = Ordering.by(block => (block.func.id, block.id))
 }
 
 // CFGBlock parser

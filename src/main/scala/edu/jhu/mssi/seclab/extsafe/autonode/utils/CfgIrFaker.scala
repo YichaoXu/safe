@@ -1,32 +1,33 @@
-package edu.jhu.mssi.seclab.extsafe.cfg.builder
+package edu.jhu.mssi.seclab.extsafe.autonode.utils
 
+import edu.jhu.mssi.seclab.extsafe.autonode.builder.AbsBuilder
 import kr.ac.kaist.safe.nodes.ast.{ASTNode, ASTNodeInfo, Comment}
 import kr.ac.kaist.safe.nodes.ir.IRNode
 import kr.ac.kaist.safe.util.{SourceLoc, Span}
 
-class FakeIRNodeBuilder extends AbsBuilder {
+class CfgIrFaker() extends AbsBuilder {
 
   private var _fileName: String = _
-  def fileName(newVal: String): FakeIRNodeBuilder = _selfReturn{
+  def fileName(newVal: String): CfgIrFaker = _selfReturn{
     _fileName = newVal
   }
 
   private var _beginLoc: SourceLoc = _
-  def begin(newLine: Int = 0, newCol: Int = 0, newOff: Int = 0): FakeIRNodeBuilder = _selfReturn{
+  def begin(newLine: Int = 0, newCol: Int = 0, newOff: Int = 0): CfgIrFaker = _selfReturn{
     _beginLoc = SourceLoc(newLine, newCol, newOff)
   }
   private var _endLoc: SourceLoc = _
-  def end(newLine: Int = 0, newCol: Int = 0, newOff: Int = 0): FakeIRNodeBuilder = _selfReturn{
+  def end(newLine: Int = 0, newCol: Int = 0, newOff: Int = 0): CfgIrFaker = _selfReturn{
     _endLoc = SourceLoc(newLine, newCol, newOff)
   }
 
   private var _comment: Option[Comment] = None
-  def comment(newVal: Comment): FakeIRNodeBuilder = _selfReturn{
+  def comment(newVal: Comment): CfgIrFaker = _selfReturn{
     _comment = Some(newVal)
   }
 
   private var _span: Option[Span] = None
-  def span(newVal: Span): FakeIRNodeBuilder = _selfReturn{
+  def span(newVal: Span): CfgIrFaker = _selfReturn{
     _span = Some(newVal)
   }
 
