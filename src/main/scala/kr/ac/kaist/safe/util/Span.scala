@@ -24,7 +24,7 @@ case class Span(
     appendToStr(new StringBuilder).toString
 
   def toStringWithoutFiles: String =
-    appendToStr(new StringBuilder, false).toString
+    appendToStr(new StringBuilder, doFiles = false).toString
 
   private def appendToStr(w: StringBuilder, doFiles: Boolean = true): String = {
     if (doFiles) {
@@ -33,12 +33,13 @@ case class Span(
       w.append(":")
     }
     w.append(begin.toString)
-    begin.line == end.line match {
-      case true => begin.column == end.column match {
+    if (begin.line == end.line) {
+      begin.column == end.column match {
         case true =>
         case false => w.append("-").append(end.column)
       }
-      case false => w.append("-").append(end.toString)
+    } else {
+      w.append("-").append(end.toString)
     }
     w.toString
   }
@@ -56,9 +57,10 @@ case class Span(
     SourceLoc(startLine, startC, startOffset),
     SourceLoc(endLine, endC, endOffset))
 
-  def +(o: Span): Span = fileName == o.fileName match {
-    case true => Span(fileName, begin, o.end)
-    case false => Span(NodeUtil.MERGED_FILE_NAME)
+  def +(o: Span): Span = if (fileName == o.fileName) {
+    Span(fileName, begin, o.end)
+  } else {
+    Span(NodeUtil.MERGED_FILE_NAME)
   }
 
   // TODO is it really need?

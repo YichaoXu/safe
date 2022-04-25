@@ -77,7 +77,8 @@ sealed trait CFGBlock {
   def toString(indent: Int): String = {
     val pre = "  " * indent
     val s: StringBuilder = new StringBuilder
-    s.append(pre).append(toString())
+    s.append(pre)
+      .append(toString())
       .append(getSuccsStr)
       .append(LINE_SEP)
     s.toString
@@ -195,15 +196,16 @@ case class NormalBlock(func: CFGFunction, label: LabelKind = NoLabel) extends CF
     s.append(pre).append(toString)
     s.append(getSuccsStr).append(LINE_SEP)
     val instLen = insts.length
-    instLen > MAX_INST_PRINT_SIZE match {
-      case true =>
-        s.append(pre)
-          .append(s"  A LOT!!! $instLen instructions are not printed here.")
-          .append(LINE_SEP)
-      case false => insts.reverseIterator.foreach {
-        case inst =>
+    if (instLen > MAX_INST_PRINT_SIZE) {
+      s.append(pre)
+        .append(s"  A LOT!!! $instLen instructions are not printed here.")
+        .append(LINE_SEP)
+    } else {
+      insts.reverseIterator.foreach {
+        inst =>
           s.append(pre)
             .append(s"  [${inst.id}] $inst")
+            .append(indent + s"START: ${inst.span.begin}\tEND: ${inst.span.end}")
             .append(LINE_SEP)
       }
     }
