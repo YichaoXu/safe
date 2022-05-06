@@ -3,7 +3,7 @@
     var __expect1 = false;
   }
   var result = true;
-  for(var p in parseFloat)
+  for(var p into parseFloat)
   {
     if (p === "length")
     {

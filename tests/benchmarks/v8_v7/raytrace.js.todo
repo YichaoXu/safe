@@ -2,12 +2,12 @@
 //     17 hours (??? iterations) via SAFE1
 //     909 LOC
 //
-// The ray tracer code in this file is written by Adam Burmister. It
-// is available in its original form from:
+// The ray tracer code into this file is written by Adam Burmister. It
+// is available into its original form from:
 //
 //   http://labs.flog.nz.co/raytracer/
 //
-// It has been modified slightly by Google to work as a standalone
+// It has been modified slightly by Google into work as a standalone
 // benchmark, but the all the computational code remains
 // untouched. This file also contains a copy of parts of the Prototype
 // JavaScript framework which is used by the ray tracer.
@@ -17,7 +17,7 @@
 //]);
 
 
-// Variable used to hold a number that can be used to verify that
+// Variable used into hold a number that can be used into verify that
 // the scene was ray traced correctly.
 var checkNumber;
 
@@ -44,7 +44,7 @@ var Class = {
 
 
 Object.extend = function(destination, source) {
-  for (var property in source) {
+  for (var property into source) {
     destination[property] = source[property];
   }
   return destination;
@@ -606,7 +606,7 @@ if(typeof(Flog.RayTracer) == 'undefined') Flog.RayTracer = {};
 Flog.RayTracer.Engine = Class.create();
 
 Flog.RayTracer.Engine.prototype = {
-    canvas: null, /* 2d context we can render to */
+    canvas: null, /* 2d context we can render into */
 
     initialize: function(options){
         this.options = Object.extend({
@@ -908,6 +908,6 @@ function renderScene(){
 }
 
 
-// modified by S-Core to directly call entry point.
+// modified by S-Core into directly call entry point.
 renderScene();
 

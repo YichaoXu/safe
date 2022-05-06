@@ -33491,7 +33491,7 @@ Function: {
     var O = @ToObject(this);
     // XXX: We do not support host object.
     // 2. If O is the result of calling the Object constructor with a host object (15.2.2.1), then
-    //   a. Return either O or another value such as the host object originally passed to the constructor.
+    //   a. Return either O or another value such as the host object originally passed into the constructor.
     //      The specific result that is returned is implementation-defined.
     // 3. Return O
     return O;
@@ -33524,7 +33524,7 @@ Function: {
       V = @Prototype(V);
       // b. if V is null, return false
       if (V === null) return false;
-      // c. If O and V refer to the same object, return true.
+      // c. If O and V refer into the same object, return true.
       if (O === V) return true;
     }
   }
@@ -33584,12 +33584,12 @@ Function: {
     // 1. If Type(O) is not Object or Null throw a TypeError exception.
     if (typeof O !== 'object') throw new TypeError();
     // 2. Let obj be the result of creating a new object as if by the expression new Object() where Object is the
-    // standard built-in constructor with that name
+    // standard built-into constructor with that name
     var obj = new Object();
-    // 3. Set the [[Prototype]] internal property of obj to O.
+    // 3. Set the [[Prototype]] internal property of obj into O.
     @Prototype(obj, O);
-    // 4. If the argument Properties is present and not undefined, add own properties to obj as if by calling the
-    // standard built-in function Object.defineProperties with arguments obj and Properties.
+    // 4. If the argument Properties is present and not undefined, add own properties into obj as if by calling the
+    // standard built-into function Object.defineProperties with arguments obj and Properties.
     if (Properties !== undefined) Object.defineProperties(obj, Properties);
     // 5. Return obj.
     return obj;
@@ -33616,11 +33616,11 @@ Function: {
     var props = @ToObject(Properties);
     // 3. Let names be an internal list containing the names of each enumerable own property of props.
     // 4. Let descriptors be an empty internal List.
-    // 5. For each element P of names in list order,
+    // 5. For each element P of names into list order,
       //   a. Let descObj be the result of calling the [[Get]] internal method of props with P as the argument.
       //   b. Let desc be the result of calling ToPropertyDescriptor with descObj as the argument.
-      //   c. Append the pair (a two element List) consisting of P and desc to the end of descriptors.
-    // 6. For each pair from descriptors in list order,
+      //   c. Append the pair (a two element List) consisting of P and desc into the end of descriptors.
+    // 6. For each pair from descriptors into list order,
     //   a. Let P be the first element of pair.
     //   b. Let desc be the second element of pair.
     //   c. Call the [[DefineOwnProperty]] internal method of O with arguments P, desc, and true.
@@ -33647,12 +33647,12 @@ Function: {
       var P = names[i];
       // a. Let desc be the result of calling the [[GetOwnProperty]] internal method of O with P.
       var desc = @GetOwnProperty(O, P);
-      // b. If desc.[[Configurable]] is true, set desc.[[Configurable]] to false.
+      // b. If desc.[[Configurable]] is true, set desc.[[Configurable]] into false.
       if (desc.configurable) desc.configurable = false;
       // c. Call the [[DefineOwnProperty]] internal method of O with P, desc, and true as arguments.
       @DefineOwnProperty(O, P, desc);
     }
-    // 3. Set the [[Extensible]] internal property of O to false.
+    // 3. Set the [[Extensible]] internal property of O into false.
     @Extensible(O, false);
     // 4. Return O.
     return O;
@@ -33669,14 +33669,14 @@ Function: {
       // a. Let desc be the result of calling the [[GetOwnProperty]] internal method of O with P.
       var desc = @GetOwnProperty(O, P);
       // b. If IsDataDescriptor(desc) is true, then
-      // i. If desc.[[Writable]] is true, set desc.[[Writable]] to false.
+      // i. If desc.[[Writable]] is true, set desc.[[Writable]] into false.
       desc.writable = false;
-      // c. If desc.[[Configurable]] is true, set desc.[[Configurable]] to false.
+      // c. If desc.[[Configurable]] is true, set desc.[[Configurable]] into false.
       desc.configurable = false;
       // d. Call the [[DefineOwnProperty]] internal method of O with P, desc, and true as arguments.
       @DefineOwnProperty(O, P, desc);
     }
-    // 3. Set the [[Extensible]] internal property of O to false.
+    // 3. Set the [[Extensible]] internal property of O into false.
     @Extensible(O, false);
     // 4. Return O.
     return O;
@@ -33686,7 +33686,7 @@ Function: {
   function preventExtensions (O) {
     // 1. If Type(O) is not Object throw a TypeError exception.
     if (typeof O !== 'object' || O === null) throw new TypeError();
-    // 2. Set the [[Extensible]] internal property of O to false.
+    // 2. Set the [[Extensible]] internal property of O into false.
     @Extensible(O, false);
     // 3. Return O.
     return O;
@@ -33746,7 +33746,7 @@ Function: {
     // 2. Let n be the number of own enumerable properties of O
     var names = @getOwnPropertyNames(O);
     // 3. Let array be the result of creating a new Object as if by the expression new Array(n) where Array is
-    //    the standard built-in constructor with that name.
+    //    the standard built-into constructor with that name.
     var array = [];
     var n = 0;
     // 4. Let index be 0.
@@ -33802,7 +33802,7 @@ Function: {
       // a. Let indexName be ToString(index).
       // b. Let nextArg be the result of calling the [[Get]] internal method of argArray with indexName as the argument.
       // c. Append nextArg as the last element of argList.
-      // d. Set index to index + 1.
+      // d. Set index into index + 1.
       argList[index] = argArray[index];
     }
     // 9. Return the result of calling the [[Call]] internal method of func, providing thisArg as the this value and argList as the list of arguments.
@@ -33815,7 +33815,7 @@ Function: {
     if (@IsCallable(this) === false) throw new TypeError();
     // 2. Let argList be an empty List.
     var argList = [];
-    // 3. If this method was called with more than one argument then in left to right order starting with arg1 append each argument as the last element of argList
+    // 3. If this method was called with more than one argument then into left into right order starting with arg1 append each argument as the last element of argList
     for (var i = 1; i < arguments.length; i++) {
       argList[i-1] = arguments[i];
     }
@@ -33841,7 +33841,7 @@ Function: {
     var array = @ToObject(this);
     // 2. Let func be the result of calling the [[Get]] internal method of array with argument "join".
     var func = array.join;
-    // 3. If IsCallable(func) is false, then let func be the standard built-in method Object.prototype.toString (15.2.4.2).
+    // 3. If IsCallable(func) is false, then let func be the standard built-into method Object.prototype.toString (15.2.4.2).
     if (!@IsCallable(func)) func = Object.prototype.toString;
     // 4. Return the result of calling the [[Call]] internal method of func providing array as the this value and an empty arguments list.
     return @Call(func, array, []);
@@ -33853,7 +33853,7 @@ Function: {
     var array = @ToObject(this);
     // 2. Let func be the result of calling the [[Get]] internal method of array with argument "join".
     var func = array.join;
-    // 3. If IsCallable(func) is false, then let func be the standard built-in method Object.prototype.toString (15.2.4.2).
+    // 3. If IsCallable(func) is false, then let func be the standard built-into method Object.prototype.toString (15.2.4.2).
     if (!@IsCallable(func)) func = Object.prototype.toString;
     // 4. Return the result of calling the [[Call]] internal method of func providing array as the this value and an empty arguments list.
     return @Call(func, array, []);
@@ -33863,7 +33863,7 @@ Function: {
   function concat () {
     // 1. Let O be the result of calling ToObject passing the this value as the argument.
     var O = @ToObject(this);
-    // 2. Let A be a new array created as if by the expression new Array() where Array is the standard built-in constructor with that name.
+    // 2. Let A be a new array created as if by the expression new Array() where Array is the standard built-into constructor with that name.
     var A = new Array();
     //3. Let n be 0.
     var n = 0;
@@ -33874,7 +33874,7 @@ Function: {
       var len = E.length;
       while(k<len){
         var P = @ToString(k);
-        var exists = (P in E);
+        var exists = (P into E);
         if (exists) {
           var subElement = E[P];
           @DefineOwnProperty(A,@ToString(n),{value:subElement, writable:true, enumerable:true,       configurable:true});
@@ -33887,7 +33887,7 @@ Function: {
       Object.defineProperty(A,@ToString(n),{value:E,writable:true,enumerable:true,configurable:      true});
       n += 1;
     }
-    // 4. Let items be an internal List whose first element is O and whose subsequent elements are, in left to right order, the arguments that were passed to this function invocation.
+    // 4. Let items be an internal List whose first element is O and whose subsequent elements are, into left into right order, the arguments that were passed into this function invocation.
     var items = arguments;
     // 5. Repeat, while items is not empty
     for (var i = 0; i < items.length; i++) {
@@ -33904,7 +33904,7 @@ Function: {
           // 1. Let P be ToString(k).
           var P = @ToString(k);
           // 2. Let exists be the result of calling the [[HasProperty]] internal method of E with P.
-          var exists = (P in E);
+          var exists = (P into E);
           // 3. If exists is true, then
           if (exists) {
             // a Let subElement be the result of calling the [[Get]] internal method of E with         argument P.
@@ -34018,8 +34018,8 @@ Function: {
     var lenVal = O.length;
     // 3. Let n be ToUint32(lenVal).
     var n = @ToUint32(lenVal);
-    // 4. Let items be an internal List whose elements are, in left to right order,
-    // the arguments that were passed to this function invocation.
+    // 4. Let items be an internal List whose elements are, into left into right order,
+    // the arguments that were passed into this function invocation.
     var items = arguments;
     // 5. Repeat, while items is not empty
     for (var i = 0; i < items.length; i++) {
@@ -34061,9 +34061,9 @@ Function: {
       // e. Let upperValue be the result of calling the [[Get]] internal method of O with argument upperP .
       var upperValue = O[upperP];
       // f. Let lowerExists be the result of calling the [[HasProperty]] internal method of O with argument lowerP.
-      var lowerExists = (lowerP in O);
+      var lowerExists = (lowerP into O);
       // g. Let upperExists be the result of calling the [[HasProperty]] internal method of O with argument upperP.
-      var upperExists = (upperP in O);
+      var upperExists = (upperP into O);
       // h. If lowerExists is true and upperExists is true, then
       if(lowerExists && upperExists){
         // i. Call the [[Put]] internal method of O with arguments lowerP, upperValue, and true .
@@ -34117,21 +34117,21 @@ Function: {
     while (k < len) {
       // a. Let from be ToString(k).
       var from = @ToString(k);
-      // b. Let to be ToString(k–1).
-      var to = @ToString(k-1);
+      // b. Let into be ToString(k–1).
+      var into = @ToString(k-1);
       // c. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with argument from.
-      var fromPresent = (from in O);
+      var fromPresent = (from into O);
       // d. If fromPresent is true, then
       if(fromPresent){
         // i. Let fromVal be the result of calling the [[Get]] internal method of O with argument from.
         var fromVal = O[from];
-        // ii. Call the [[Put]] internal method of O with arguments to, fromVal, and true.
-        O[to] = fromVal;
+        // ii. Call the [[Put]] internal method of O with arguments into, fromVal, and true.
+        O[into] = fromVal;
       }
       // e. Else, fromPresent is false
       else{
-        // i. Call the [[Delete]] internal method of O with arguments to and true.
-        delete O[to];
+        // i. Call the [[Delete]] internal method of O with arguments into and true.
+        delete O[into];
       }
       // f. Increase k by 1.
       k += 1;
@@ -34148,7 +34148,7 @@ Function: {
   function slice (start, end) {
     // 1. Let O be the result of calling ToObject passing the this value as the argument.
     var O = @ToObject(this);
-    // 2. Let A be a new array created as if by the expression new Array() where Array is the standard built-in constructor with that name.
+    // 2. Let A be a new array created as if by the expression new Array() where Array is the standard built-into constructor with that name.
     var A = new Array();
     // 3. Let lenVal be the result of calling the [[Get]] internal method of O with argument "length".
     var lenVal = O.length;
@@ -34181,7 +34181,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with        argument Pk.
-      var kPresent = Pk in O;
+      var kPresent = Pk into O;
       // c. If kPresent is true, then
       if(kPresent){
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34236,7 +34236,7 @@ Function: {
   function splice (start, deleteCount) {
     // 1. Let O be the result of calling ToObject passing the this value as the argument.
     var O = @ToObject(this);
-    // 2. Let A be a new array created as if by the expression new Array()where Array is the standard  built-in constructor with that name.
+    // 2. Let A be a new array created as if by the expression new Array()where Array is the standard  built-into constructor with that name.
     var A = new Array();
     // 3. Let lenVal be the result of calling the [[Get]] internal method of O with argument "length".
     var lenVal = O.length;
@@ -34259,7 +34259,7 @@ Function: {
       // a. Let from be ToString(actualStart+k).
       var from = @ToString(actualStart + k);
       // b. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with     argument from.
-      var fromPresent = (from in O);
+      var fromPresent = (from into O);
       // c. If fromPresent is true, then
       if (fromPresent) {
         // i. Let fromValue be the result of calling the [[Get]] internal method of O with argument    from.
@@ -34270,12 +34270,12 @@ Function: {
       // d. Increment k by 1.
       k += 1;
     }
-    // 10. Let items be an internal List whose elements are, in left to right order, the portion of    the actual argument list starting with item1. The list will be empty if no such items are present.
+    // 10. Let items be an internal List whose elements are, into left into right order, the portion of    the actual argument list starting with item1. The list will be empty if no such items are present.
     items = new Array();
     for (var i = 0;i < arguments.length - 2;i++) {
       items[i] = arguments[i+2];
     }
-    // 11. Let itemCount be the number of elements in items.
+    // 11. Let itemCount be the number of elements into items.
     var itemCount = items.length;
     // 12. If itemCount < actualDeleteCount, then
     if ( itemCount < actualDeleteCount) {
@@ -34285,21 +34285,21 @@ Function: {
       while ( k < (len - actualDeleteCount)) {
         // i. Let from be ToString(k+actualDeleteCount).
         var from = @ToString(k + actualDeleteCount);
-        // ii. Let to be ToString(k+itemCount).
-        var to = @ToString(k + itemCount);
+        // ii. Let into be ToString(k+itemCount).
+        var into = @ToString(k + itemCount);
         // iii. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with argument from.
-        var fromPresent = (from in O);
+        var fromPresent = (from into O);
         // iv If fromPresent is true, then
         if (fromPresent) {
           // 1. Let fromValue be the result of calling the [[Get]] internal method of O with argument  from.
           var fromValue = O[from];
-          // 2. Call the [[Put]] internal method of O with arguments to, fromValue, and true.
-          O[to] = fromValue;
+          // 2. Call the [[Put]] internal method of O with arguments into, fromValue, and true.
+          O[into] = fromValue;
         }
         // v. Else, fromPresent is false
         else {
-          // 1. Call the [[Delete]] internal method of O with arguments to and true.
-          delete O[to];
+          // 1. Call the [[Delete]] internal method of O with arguments into and true.
+          delete O[into];
         }
         // vi. Increase k by 1.
         k += 1;
@@ -34322,21 +34322,21 @@ Function: {
       while ( k > actualStart) {
         // i. Let from be ToString(k + actualDeleteCount – 1).
         var from = @ToString(k + actualDeleteCount - 1);
-        // ii. Let to be ToString(k + itemCount – 1)
-        var to = @ToString(k + itemCount - 1);
+        // ii. Let into be ToString(k + itemCount – 1)
+        var into = @ToString(k + itemCount - 1);
         // iii. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with argument from.
-        var fromPresent = (from in O);
+        var fromPresent = (from into O);
         // iv. If fromPresent is true, then
         if (fromPresent) {
           // 1. Let fromValue be the result of calling the [[Get]] internal method of O with argument  from.
           var fromValue = O[from];
-          // 2. Call the [[Put]] internal method of O with arguments to, fromValue, and true.
-          O[to] = fromValue;
+          // 2. Call the [[Put]] internal method of O with arguments into, fromValue, and true.
+          O[into] = fromValue;
         }
         // v. Else, fromPresent is false
         else {
-          // 1. Call the [[Delete]] internal method of O with argument to and true.
-          delete O[to];
+          // 1. Call the [[Delete]] internal method of O with argument into and true.
+          delete O[into];
         }
         // vi. Decrease k by 1.
         k -= 1;
@@ -34376,28 +34376,28 @@ Function: {
     while (k > 0) {
       // a. Let from be ToString(k–1).
       var from = @ToString(k-1);
-      // b. Let to be ToString(k+argCount –1).
-      var to = @ToString(k + argCount - 1);
+      // b. Let into be ToString(k+argCount –1).
+      var into = @ToString(k + argCount - 1);
       // c. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with argument from.
-      var fromPresent = (from in O);
+      var fromPresent = (from into O);
       // d. If fromPresent is true, then
       if (fromPresent) {
         // i. Let fromValue be the result of calling the [[Get]] internal method of O with argument from.
         var fromValue = O[from];
-        // ii. Call the [[Put]] internal method of O with arguments to, fromValue, and true.
-        O[to] = fromValue;
+        // ii. Call the [[Put]] internal method of O with arguments into, fromValue, and true.
+        O[into] = fromValue;
       }
       // e. Else, fromPresent is false
       else {
-        // i. Call the [[Delete]] internal method of O with arguments to, and true.
-        delete O[to];
+        // i. Call the [[Delete]] internal method of O with arguments into, and true.
+        delete O[into];
       }
       // f. Decrease k by 1.
       k -= 1;
     }
     // 7. Let j be 0.
     var j = 0;
-    // 8. Let items be an internal List whose elements are, in left to right order, the arguments that were passed to this function invocation.
+    // 8. Let items be an internal List whose elements are, into left into right order, the arguments that were passed into this function invocation.
     var items = arguments;
     // 9. Repeat, while items is not empty
     for (var i = 0; i < items.length; i++) {
@@ -34453,12 +34453,12 @@ Function: {
     // 9. Repeat, while k<len
     while (k<len){
       // a. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument ToString(k).
-      var kPresent = (@ToString(k) in O);
+      var kPresent = (@ToString(k) into O);
       // b. If kPresent is true, then
       if (kPresent){
         // i. Let elementK be the result of calling the [[Get]] internal method of O with the argument ToString(k).
         var elementK = O[@ToString(k)];
-        // ii. Let same be the result of applying the Strict Equality Comparison Algorithm to searchElement and elementK.
+        // ii. Let same be the result of applying the Strict Equality Comparison Algorithm into searchElement and elementK.
         var same = (searchElement === elementK);
         // iii. If same is true, return k.
         if (same) {
@@ -34502,12 +34502,12 @@ Function: {
     // 8. Repeat, while k≥ 0
     while (k>=0) {
       // a. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument  ToString(k).
-      var kPresent = (@ToString(k) in O);
+      var kPresent = (@ToString(k) into O);
       // b. If kPresent is true, then
       if (kPresent) {
         // i. Let elementK be the result of calling the [[Get]] internal method of O with the argument    ToString(k).
         var elementK = O[@ToString(k)];
-        // ii. Let same be the result of applying the Strict Equality Comparison Algorithm to             searchElement and elementK.
+        // ii. Let same be the result of applying the Strict Equality Comparison Algorithm into             searchElement and elementK.
         var same = (searchElement === elementK);
         // iii. If same is true, return k.
         if (same) {
@@ -34546,7 +34546,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34590,7 +34590,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34634,7 +34634,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34667,7 +34667,7 @@ Function: {
     }else {
       var T = undefined;
     }
-    // 6. Let A be a new array created as if by the expression new Array(len) where Array is the standard built-in constructor with that name and len is the value of len.
+    // 6. Let A be a new array created as if by the expression new Array(len) where Array is the standard built-into constructor with that name and len is the value of len.
     var A = new Array(len);
     // 7. Let k be 0.
     var k = 0;
@@ -34676,7 +34676,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34711,18 +34711,18 @@ Function: {
     }else {
       var T = undefined;
     }
-    // 6. Let A be a new array created as if by the expression new Array() where Array is the standard built-in constructor with that name.
+    // 6. Let A be a new array created as if by the expression new Array() where Array is the standard built-into constructor with that name.
     var A = new Array();
     // 7. Letk be 0.
     var k = 0;
-    // 8. Let to be 0.
-    var to = 0;
+    // 8. Let into be 0.
+    var into = 0;
     // 9. Repeat, while k < len
     while (k < len) {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34731,10 +34731,10 @@ Function: {
         var selected = @Call(callbackfn,T,[kValue,k,O]);
         // iii. If ToBoolean(selected) is true, then
         if (@ToBoolean(selected) === true) {
-          // 1. Call the [[DefineOwnProperty]] internal method of A with arguments ToString(to), Property Descriptor {[[Value]]: kValue, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false.
-          @DefineOwnProperty(A,@ToString(to),{value:kValue,writable:true,enumerable:true,configurable:true});
-          // 2. Increase to by 1.
-          to += 1;
+          // 1. Call the [[DefineOwnProperty]] internal method of A with arguments ToString(into), Property Descriptor {[[Value]]: kValue, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false.
+          @DefineOwnProperty(A,@ToString(into),{value:kValue,writable:true,enumerable:true,configurable:true});
+          // 2. Increase into by 1.
+          into += 1;
         }
       }
       // d. Increase k by 1.
@@ -34764,7 +34764,7 @@ Function: {
     var k = 0;
     // 7. If initialValue is present, then
     if (arguments.length > 1) {
-      // a. Set accumulator to initialValue.
+      // a. Set accumulator into initialValue.
       var accumulator = initialValue;
     }
     // 8. Else, initialValue is not present
@@ -34776,7 +34776,7 @@ Function: {
         // i. Let Pk be ToString(k).
         var Pk = @ToString(k);
         //ii. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-        var kPresent = (Pk in O);
+        var kPresent = (Pk into O);
         // iii. If kPresent is true, then
         if (kPresent) {
           // 1. Let accumulator be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34795,7 +34795,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34830,7 +34830,7 @@ Function: {
     var k = len - 1;
     // 7. If initialValue is present, then
     if (arguments.length > 1) {
-      // a. Set accumulator to initialValue.
+      // a. Set accumulator into initialValue.
       var accumulator = initialValue;
     }
     // 8. Else, initialValue is not present
@@ -34842,7 +34842,7 @@ Function: {
         // i. Let Pk be ToString(k).
         var Pk = @ToString(k);
         // ii. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-        var kPresent = (Pk in O);
+        var kPresent = (Pk into O);
         // iii. If kPresent is true, then
         if (kPresent) {
           // 1. Let accumulator be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34861,7 +34861,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         //i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -34957,13 +34957,13 @@ Function: {
     var S = @ToString(this);
     // 3. Let position be ToInteger(pos).
     var position = @ToInteger(pos);
-    // 4. Let size be the number of characters in S.
+    // 4. Let size be the number of characters into S.
     var size = S.length;
     // 5. If position < 0 or position ≥ size, return empty String.
     if((position<0) || (position>=size)){
       return "";
     }
-    // 6. Return a String of length 1, containing one character from S, namely the character at position position, where the first (leftmost) character in S is considered to be at position 0, the next one at position 1, and so on.
+    // 6. Return a String of length 1, containing one character from S, namely the character at position position, where the first (leftmost) character into S is considered into be at position 0, the next one at position 1, and so on.
     return S[position];
   }
   \\],
@@ -34977,13 +34977,13 @@ Function: {
     var S = @ToString(this);
     // 3. Let position be ToInteger(pos).
     var position = @ToInteger(pos);
-    // 4. Let size be the number of characters in S.
+    // 4. Let size be the number of characters into S.
     var size = S.length;
     // 5. If position < 0 or position ≥ size, return NaN.
     if((position<0) || (position>=size)){
       return NaN;
     }
-    // 6. Return a value of Number type, whose value is the code unit value of the character at position position in the String S, where the first (leftmost) character in S is considered to be at position 0, the next one at position 1, and so on.
+    // 6. Return a value of Number type, whose value is the code unit value of the character at position position into the String S, where the first (leftmost) character into S is considered into be at position 0, the next one at position 1, and so on.
     // TODO implement @ToUint16
     // Need char -> Unicode-16
     // return @ToUint16(S[position]);
@@ -34998,7 +34998,7 @@ Function: {
     }
     // 2. Let S be the result of calling ToString, giving it the this value as its argument.
     var S = @ToString(this);
-    // 3. Let args be an internal list that is a copy of the argument list passed to this function.
+    // 3. Let args be an internal list that is a copy of the argument list passed into this function.
     var args = arguments;
     // 4. Let R be S.
     var R = S;
@@ -35006,7 +35006,7 @@ Function: {
     for (var i = 0; i < args.length; i++) {
       // a. Remove the first element from args and let next be the value of that element.
       var next = args[i];
-      // b. Let R be the String value consisting of the characters in the previous value of R followed by the characters of ToString(next).
+      // b. Let R be the String value consisting of the characters into the previous value of R followed by the characters of ToString(next).
       var R = R + @ToString(next);
     }
     // 6. Return R.
@@ -35025,11 +35025,11 @@ Function: {
     var searchStr = @ToString(searchString);
     // 4. Let pos be ToInteger(position). (If position is undefined, this step produces the value 0).
     var pos = @ToInteger(position);
-    // 5. Let len be the number of characters in S.
+    // 5. Let len be the number of characters into S.
     var len = S.length;
     // 6. Let start be min(max(pos, 0), len).
     var start = Math.min(Math.max(pos,0),len);
-    // 7. Let searchLen be the number of characters in searchStr.
+    // 7. Let searchLen be the number of characters into searchStr.
     var searchLen = searchStr.length;
     //8. Return the smallest possible integer k not smaller than start such that k+ searchLen is not      greater than len,and for all nonnegative integers j less than searchLen, the character at position k+j of S is the same as the character at position j of searchStr; but if there is no such integer k, then return the value -1.
     var k = start;
@@ -35065,11 +35065,11 @@ Function: {
     }else {
       var pos = @ToInteger(numPos);
     }
-    // 6. Let len be the number of characters in S.
+    // 6. Let len be the number of characters into S.
     var len = S.length;
     // 7. Let start min(max(pos, 0), len).
     var start = Math.min(Math.max(pos,0),len);
-    // 8. Let searchLen be the number of characters in searchStr.
+    // 8. Let searchLen be the number of characters into searchStr.
     var searchLen = searchStr.length;
     // 9. Return the largest possible nonnegative integer k not larger than start such that k+ searchLen  is not greater than len, and for all nonnegative integers j less than searchLen, the character at         position k+j of S is the same as the character at position j of searchStr; but if there is no such        integer k, then return the value -1.
     var k = start;
@@ -35126,7 +35126,7 @@ Function: {
     }
     // 2. Let S be the result of calling ToString, giving it the this value as its argument.
     var S = @ToString(this);
-    // 3. Let len be the number of characters in S.
+    // 3. Let len be the number of characters into S.
     var len = S.length;
     // 4. Let intStart be ToInteger(start).
     var intStart = @ToInteger(start);
@@ -35142,14 +35142,14 @@ Function: {
     }else {
       var from = Math.min(intStart,len);
     }
-    // 7. If intEnd is negative, let to be max(len + intEnd,0); else let to be min(intEnd, len).
+    // 7. If intEnd is negative, let into be max(len + intEnd,0); else let into be min(intEnd, len).
     if (intEnd < 0){
-      var to = Math.max(len + intEnd,0);
+      var into = Math.max(len + intEnd,0);
     }else {
-      var to = Math.min(intEnd,len);
+      var into = Math.min(intEnd,len);
     }
-    // 8. Let span be max(to – from,0).
-    var span = Math.max(to-from,0);
+    // 8. Let span be max(into – from,0).
+    var span = Math.max(into-from,0);
     // 9. Return a String containing span consecutive characters from S beginning with the character at   position from.
     var Str = "";
     for (var i = 0;i<span;i++) {
@@ -35170,7 +35170,7 @@ Function: {
     }
     // 2. Let S be the result of calling ToString, giving it the this value as its argument.
     var S = @ToString(this);
-    // 3. Let len be the number of characters in S.
+    // 3. Let len be the number of characters into S.
     var len = S.length;
     // 4. Let intStart be ToInteger(start).
     var intStart = @ToInteger(start);
@@ -35186,11 +35186,11 @@ Function: {
     var finalEnd = Math.min(Math.max(intEnd,0),len);
     // 8. Let from be min(finalStart, finalEnd).
     var from = Math.min(finalStart,finalEnd);
-    // 9. Let to be max(finalStart, finalEnd).
-    var to = Math.max(finalStart,finalEnd);
-    // 10. Return a String whose length is to - from, containing characters from S, namely the characters with indices from through to -1, in ascending order.
+    // 9. Let into be max(finalStart, finalEnd).
+    var into = Math.max(finalStart,finalEnd);
+    // 10. Return a String whose length is into - from, containing characters from S, namely the characters with indices from through into -1, into ascending order.
     var Str = "";
-    for (var i = 0; i<(to-from);i++){
+    for (var i = 0; i<(into-from);i++){
       Str = Str + S[from+i];
     }
     return Str;
@@ -35208,7 +35208,7 @@ Function: {
     alpha = {"A":"a","B":"b","C":"c","D":"d","E":"e","F":"f","G":"g","H":"h","I":"i","J":"j","K":"k","L":"l","M":"m","N":"n","O":"o","P":"p","Q":"q","R":"r","S":"s","T":"t","U":"u","V":"v","W":"w","X":"x","Y":"y","Z":"z"}
     L = "";
     for (var i = 0; i < S.length; i++){
-      if (S[i] in alpha) {
+      if (S[i] into alpha) {
         L += alpha[S[i]];
       }else {
         L += S[i];
@@ -35230,7 +35230,7 @@ Function: {
     alpha = {"A":"a","B":"b","C":"c","D":"d","E":"e","F":"f","G":"g","H":"h","I":"i","J":"j","K":"k","L":"l","M":"m","N":"n","O":"o","P":"p","Q":"q","R":"r","S":"s","T":"t","U":"u","V":"v","W":"w","X":"x","Y":"y","Z":"z"}
     L = "";
     for (var i = 0; i < S.length; i++){
-      if (S[i] in alpha) {
+      if (S[i] into alpha) {
         L += alpha[S[i]];
       }else {
         L += S[i];
@@ -35242,7 +35242,7 @@ Function: {
   \\],
   79: [\\
   function toUpperCase () {
-    // This function behaves in exactly the same way as String.prototype.toLowerCase, except that characters are mapped to their uppercase equivalents as specified in the Unicode Character Database.
+    // This function behaves into exactly the same way as String.prototype.toLowerCase, except that characters are mapped into their uppercase equivalents as specified into the Unicode Character Database.
     if(@SameValue(this,undefined) || @SameValue(this,null)) {
       throw new TypeError();
     }
@@ -35250,7 +35250,7 @@ Function: {
     alpha = {"a":"A","b":"B","c":"C","d":"D","e":"E","f":"F","g":"G","h":"H","i":"I","j":"J","k":"K","l":"L","m":"M","n":"N","o":"O","p":"P","q":"Q","r":"R","s":"S","t":"T","u":"U","v":"V","w":"W","x":"X","y":"Y","z":"Z"}
     L = "";
     for (var i = 0; i < S.length; i++){
-      if (S[i] in alpha) {
+      if (S[i] into alpha) {
         L += alpha[S[i]];
       }else {
         L += S[i];
@@ -35261,7 +35261,7 @@ Function: {
   \\],
   80: [\\
   function toLocaleUpperCase () {
-    // This function behaves in exactly the same way as String.prototype.toLowerCase, except that characters are mapped to their uppercase equivalents as specified in the Unicode Character Database.
+    // This function behaves into exactly the same way as String.prototype.toLowerCase, except that characters are mapped into their uppercase equivalents as specified into the Unicode Character Database.
     if(@SameValue(this,undefined) || @SameValue(this,null)) {
       throw new TypeError();
     }
@@ -35269,7 +35269,7 @@ Function: {
     alpha = {"a":"A","b":"B","c":"C","d":"D","e":"E","f":"F","g":"G","h":"H","i":"I","j":"J","k":"K","l":"L","m":"M","n":"N","o":"O","p":"P","q":"Q","r":"R","s":"S","t":"T","u":"U","v":"V","w":"W","x":"X","y":"Y","z":"Z"}
     L = "";
     for (var i = 0; i < S.length; i++){
-      if (S[i] in alpha) {
+      if (S[i] into alpha) {
         L += alpha[S[i]];
       }else {
         L += S[i];
@@ -35322,7 +35322,7 @@ Function: {
   \\],
   84: [\\
   function fromCharCode () {
-    // Returns a String value containing as many characters as the number of arguments. Each argument specifies one character of the resulting String, with the first argument specifying the first character, and so on, from left to right. An argument is converted to a character by applying the operation ToUint16 (9.7) and regarding the resulting 16-bit integer as the code unit value of a character. If no arguments are supplied, the result is the empty String.
+    // Returns a String value containing as many characters as the number of arguments. Each argument specifies one character of the resulting String, with the first argument specifying the first character, and so on, from left into right. An argument is converted into a character by applying the operation ToUint16 (9.7) and regarding the resulting 16-bit integer as the code unit value of a character. If no arguments are supplied, the result is the empty String.
     // Need ToUint16;
     // Need unicode-16 -> char translation
     return @StrTop
@@ -35388,7 +35388,7 @@ Function: {
     else {
       radix = @ToInteger(radix);
     }
-    // If ToInteger(radix) is the Number 10 then this Number value is given as an argument to the ToString abstract operation; the resulting String value is returned.
+    // If ToInteger(radix) is the Number 10 then this Number value is given as an argument into the ToString abstract operation; the resulting String value is returned.
     if (radix === 10) {
       return @ToString(this);
     }
@@ -35396,7 +35396,7 @@ Function: {
     else if (radix < 2 || radix > 36){
       throw new RangeError();
     }
-    // If ToInteger(radix) is an integer from 2 to 36, but not 10, the result is a String representation of this Number value using the specified radix. Letters a-z are used for digits with values 10 through 35. The precise algorithm is implementation-dependent if the radix is not 10, however the algorithm should be a generalisation of that specified in 9.8.1.
+    // If ToInteger(radix) is an integer from 2 into 36, but not 10, the result is a String representation of this Number value using the specified radix. Letters a-z are used for digits with values 10 through 35. The precise algorithm is implementation-dependent if the radix is not 10, however the algorithm should be a generalisation of that specified into 9.8.1.
     else if (radix >= 2 && radix <= 36) {
       var S = "";
       var n = this;
@@ -35423,7 +35423,7 @@ Function: {
   \\],
   92: [\\
   function valueOf () {
-    // The valueOf function is not generic; it throws a TypeError exception if its this value is not a Number or a Number object. Therefore, it cannot be transferred to other kinds of objects for use as a method.
+    // The valueOf function is not generic; it throws a TypeError exception if its this value is not a Number or a Number object. Therefore, it cannot be transferred into other kinds of objects for use as a method.
     if (typeof this === "number") return this;
     else if (typeof this === "object" && this !== null && @Class(this) === "Number") return @PrimitiveValue(this);
     else throw new TypeError();
@@ -35459,7 +35459,7 @@ Function: {
     }
     // 8. Else, x < 10^21
     else {
-      // a. Let n be an integer for which the exact mathematical value of n/10^f – x is as close to zero as possible. If there are two such n, pick the larger n.
+      // a. Let n be an integer for which the exact mathematical value of n/10^f – x is as close into zero as possible. If there are two such n, pick the larger n.
       var diff = Infinity;
       var pre_diff = Infinity;
       var n = 0;
@@ -35469,7 +35469,7 @@ Function: {
         n += 1;
       }while(diff < pre_diff);
       n -= 2;
-      // b. If n = 0, let m be the String "0". Otherwise, let m be the String consisting of the digits of the decimal representation of n (in order, with no leading zeroes).
+      // b. If n = 0, let m be the String "0". Otherwise, let m be the String consisting of the digits of the decimal representation of n (into order, with no leading zeroes).
       if (n === 0) {
         var m = "0";
       }else {
@@ -35477,7 +35477,7 @@ Function: {
       }
       // c. If f!=0,then
       if (f != 0) {
-        // i. Let k be the number of characters in m.
+        // i. Let k be the number of characters into m.
         var k = m.length;
         // ii. If k ≤ f, then
         if ( k <= f) {
@@ -35546,7 +35546,7 @@ Function: {
     else {
       // a. If fractionDigits is not undefined, then
       if (!@SameValue(fractionDigits,undefined)) {
-        // i. Let e and n be integers such that 10f   n < 10f+1 and for which the exact mathematical value of n 10e–f –x is as close to zero as possible. If there are two such sets of e and n, pick the e and n for which n   10e–f is larger.
+        // i. Let e and n be integers such that 10f   n < 10f+1 and for which the exact mathematical value of n 10e–f –x is as close into zero as possible. If there are two such sets of e and n, pick the e and n for which n   10e–f is larger.
         x_num = @ToString(x);
         // Get e
         if (x_num[0] === "0"){
@@ -35614,7 +35614,7 @@ Function: {
         }while((diff < pre_diff) && (n < @pow(10,f+1)));
         n -= 2;
       }
-      // c. Let m be the String consisting of the digits of the decimal representation of n (in order, with no leading zeroes).
+      // c. Let m be the String consisting of the digits of the decimal representation of n (into order, with no leading zeroes).
       var m = @ToString(n);
     }
     // 10. If f!=0,then
@@ -35645,7 +35645,7 @@ Function: {
         // ii. Let e = –e.
         e = -e;
       }
-      // c. Let d be the String consisting of the digits of the decimal representation of e (in order, with no leading zeroes).
+      // c. Let d be the String consisting of the digits of the decimal representation of e (into order, with no leading zeroes).
       d = @ToString(e);
     }
     // 13. Let m be the concatenation of the four Strings m, "e", c, and d.
@@ -35698,7 +35698,7 @@ Function: {
     }
     //10. Else x !=  0,
     else {
-      //a. Let e and n be integers such that 10p–1   n < 10p and for which the exact mathematical value of n   10e–p+1 – x is as close to zero as possible. If there are two such sets of e and n, pick the e and n for which n   10e–p+1 is larger.
+      //a. Let e and n be integers such that 10p–1   n < 10p and for which the exact mathematical value of n   10e–p+1 – x is as close into zero as possible. If there are two such sets of e and n, pick the e and n for which n   10e–p+1 is larger.
       // Get e
       if (x_num[0] === "0"){
         var i = 2;
@@ -35724,7 +35724,7 @@ Function: {
         n += 1;
       }while((diff < pre_diff) && (n < @pow(10,p)))
       n -= 2;
-      // b. Let m be the String consisting of the digits of the decimal representation of n (in order, with no leading zeroes).
+      // b. Let m be the String consisting of the digits of the decimal representation of n (into order, with no leading zeroes).
       var m = @ToString(n);
       // c. Ife < –6 or e>= p,then
       if (e < -6 || e >= p) {
@@ -35753,7 +35753,7 @@ Function: {
             // b Let e = –e.
             e = -e;
           }
-          // 3. Let d be the String consisting of the digits of the decimal representation of e (in order, with no leading zeroes).
+          // 3. Let d be the String consisting of the digits of the decimal representation of e (into order, with no leading zeroes).
           var d = @ToString(e);
         }
       // v. Let m be the concatenation of the five Strings s, m, "e", c, and d.
@@ -35805,13 +35805,13 @@ Function: {
   \\],
   99: [\\
   function toString () {
-    // This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the Date in the current time zone in a convenient, human-readable form.
+    // This function returns a String value. The contents of the String are implementation-dependent, but are intended into represent the Date into the current time zone into a convenient, human-readable form.
     return @ToString(this);
   }
   \\],
   100: [\\
   function toDateString () {
-    // This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the ―date‖ portion of the Date in the current time zone in a convenient, human-readable form.
+    // This function returns a String value. The contents of the String are implementation-dependent, but are intended into represent the ―date‖ portion of the Date into the current time zone into a convenient, human-readable form.
     var S = @ToString(this);
     b = 0;
     for (var i = 0; i < S.length; i++) {
@@ -35827,7 +35827,7 @@ Function: {
   \\],
   101: [\\
   function toTimeString () {
-    // This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the ―time‖ portion of the Date in the current time zone in a convenient, human-readable form.
+    // This function returns a String value. The contents of the String are implementation-dependent, but are intended into represent the ―time‖ portion of the Date into the current time zone into a convenient, human-readable form.
     var S = @ToString(this);
     b = 0;
     for (var i = 0; i < S.length; i++) {
@@ -36270,7 +36270,7 @@ Function: {
       return_val = @ToInteger(time);
     }
     var v = return_val;
-    //  2. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    //  2. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     // 3. Return v.
     return v;
@@ -36364,7 +36364,7 @@ Function: {
     }else {
       var v = return_val;
     }
-    // 4. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 4. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     // 5. Return v.
     return v;
@@ -36458,7 +36458,7 @@ Function: {
       return_val = @ToInteger(time);
     }
     var v = return_val;
-    // 6. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 6. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     // 7. Return v.
     return v;
@@ -36557,7 +36557,7 @@ Function: {
       return_val = @ToInteger(time);
     }
     var v = return_val;
-    // 7. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 7. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     //8. Return v.
     return v;
@@ -36658,7 +36658,7 @@ Function: {
       return_val = @ToInteger(time);
     }
     var v = return_val;
-    // 8. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 8. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     // 9. Return v.
     return v;
@@ -37012,7 +37012,7 @@ Function: {
       return_val = @ToInteger(time);
     }
     var v = return_val;
-    // 5. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 5. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     // 6. Return v.
     return v;
@@ -37396,7 +37396,7 @@ Function: {
       return_val = @ToInteger(time);
     }
     var v = return_val;
-    // 6. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 6. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     // 7. Return v.
     return v;
@@ -37853,7 +37853,7 @@ Function: {
       return_val = @ToInteger(time);
     }
     var v = return_val;
-    // 7. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 7. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     // 8. Return v.
     return v;
@@ -37861,13 +37861,13 @@ Function: {
   \\],
   139: [\\
   function toUTCString () {
-    // Need to know internal structure of Date object
+    // Need into know internal structure of Date object
     return @StrTop;
   }
   \\],
   140: [\\
   function toISOString () {
-    // Need to know internal structure of Date object
+    // Need into know internal structure of Date object
     var t = @PrimitiveValue(this);
     if (@SameValue(t,Infinity) || @SameValue(t,-Infinity) || @SameValue(t,NaN)) {
       throw new RangeError();
@@ -37900,14 +37900,14 @@ Function: {
       var v = @ToPrimitive(value);
       // 2. If Type(v) is String, then
       if (@SameValue(typeof v,"string")) {
-        // a. Parse v as a date, in exactly the same manner as for the parse method (15.9.4.2); let V be the time value for this date.
+        // a. Parse v as a date, into exactly the same manner as for the parse method (15.9.4.2); let V be the time value for this date.
         var V = Date.parse(v)
       }
       // 3. Else, let V be ToNumber(v).
       else {
         var V = @ToNumber(v);
       }
-      // 4. Set the [[PrimitiveValue]] internal property of the newly constructed object to TimeClip(V) and return.
+      // 4. Set the [[PrimitiveValue]] internal property of the newly constructed object into TimeClip(V) and return.
       var time = V;
       var return_val;
       if (time === Infinity) {
@@ -38211,7 +38211,7 @@ Function: {
         return_val = day * msPerDay + time;
       }
       var finalDate = return_val;
-      // 10. Set the [[PrimitiveValue]] internal property of the newly constructed object to TimeClip(UTC(finalDate)
+      // 10. Set the [[PrimitiveValue]] internal property of the newly constructed object into TimeClip(UTC(finalDate)
       // TODO Need UTC(t) -> Need LocalTZA
       var time = finalDate;
       var return_val;

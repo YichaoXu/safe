@@ -16,7 +16,7 @@ function $A(this, <>arguments<>1)
     <>arguments<>9 = [<>temp<>8, ]
     <>fun<>10 = @GetBase(Object)
     <>z<>11 = <>obj<>7(<>fun<>10, <>arguments<>9)
-    if(<>y<>6 in <>z<>11)
+    if(<>y<>6 into <>z<>11)
     {
       <>obj<>12 = @ToObject(<>iterable<>2)
       <>arguments<>13 = []
@@ -1121,7 +1121,7 @@ var Position
     function <>Str<>470(this, <>arguments<>477) 
     {
       var <>key<>478
-      var <>holder<>479
+      var <>is<>479
       var <>stack<>480
       var <>value<>481
       var <>type<>482
@@ -1132,11 +1132,11 @@ var Position
       var <>str<>487
       var <>keys<>488
       <>key<>478 = <>arguments<>477["0"]
-      <>holder<>479 = <>arguments<>477["1"]
+      <>is<>479 = <>arguments<>477["1"]
       <>stack<>480 = <>arguments<>477["2"]
       {
         {
-          <>obj<>489 = @ToObject(<>holder<>479)
+          <>obj<>489 = @ToObject(<>is<>479)
           <>value<>481 = <>obj<>489[<>key<>478]
         }
         {
@@ -3559,7 +3559,7 @@ var Position
                 <>Global<>ignore182 = <>obj<>1688(<>fun<>1691, <>arguments<>1690)
                 <>value<>1668 = <>Global<>ignore182
               }
-              if(<>key<>1667 in <>hash<>1665)
+              if(<>key<>1667 into <>hash<>1665)
               {
                 {
                   <>obj<>1692 = @ToObject(Object)
@@ -3877,7 +3877,7 @@ var Position
           {
             <>y<>1893 = <>character<>1892
             <>obj<>1894 = @ToObject(String)
-            if(<>y<>1893 in <>obj<>1894["specialChar"])
+            if(<>y<>1893 into <>obj<>1894["specialChar"])
               {
                 <>obj<>1895 = @ToObject(String)
                 <>obj<>1896 = @ToObject(<>obj<>1895["specialChar"])
@@ -5804,7 +5804,7 @@ var Position
         <>break<>2840 : {
           while(<>i<>2837 < <>length<>2838)
           {
-            <>continue<>2841 : if(<>i<>2837 in this)
+            <>continue<>2841 : if(<>i<>2837 into this)
             {
               <>obj<>2842 = @ToObject(<>iterator<>2835)
               <>temp<>2843 = <>context<>2836
@@ -6239,7 +6239,7 @@ var Position
                 <>new0<>3072 = <>fun<>3071(<>obj<>3068, <>arguments<>3070)
                 <>label<>3073 : {
                   if(<>new0<>3072)
-                    if(! "callee" in <>item<>3054)
+                    if(! "callee" into <>item<>3054)
                     {
                       {
                         {
@@ -9363,7 +9363,7 @@ if(! Node)
       <>attributes<>4606 = <>arguments<>4604["1"]
       if(<>tagName<>4605 === "select")
         return false
-      if("type" in <>attributes<>4606)
+      if("type" into <>attributes<>4606)
         return false
       return true
     }
@@ -9866,7 +9866,7 @@ if(! Node)
           <>y<>4840 = <>tagName<>4788
           <>obj<>4841 = @ToObject(Element)
           <>obj<>4842 = @ToObject(<>obj<>4841["_insertionTranslations"])
-          if(<>y<>4840 in <>obj<>4842["tags"])
+          if(<>y<>4840 into <>obj<>4842["tags"])
           {
             <>break<>4843 : {
               {
@@ -14304,7 +14304,7 @@ if(! Node)
 {
   <>y<>6952 = "outerHTML"
   <>obj<>6953 = @ToObject(document)
-  if(<>y<>6952 in <>obj<>6953["documentElement"])
+  if(<>y<>6952 into <>obj<>6953["documentElement"])
     {
       <>obj<>6954 = @ToObject(Element)
       <>obj<>6955 = @ToObject(<>obj<>6954["Methods"])
@@ -14975,7 +14975,7 @@ if(! Node)
               <>fun<>7282 = @ToObject(<>obj<>7279["isFunction"])
               <>new0<>7283 = <>fun<>7282(<>obj<>7279, <>arguments<>7281)
               <>label<>7284 : if(<>new0<>7283)
-                if(! <>property<>7270 in <>element<>7268)
+                if(! <>property<>7270 into <>element<>7268)
                 {
                   {
                     <>obj<>7285 = @ToObject(<>element<>7268)
@@ -15374,7 +15374,7 @@ if(! Node)
                 <>label1<>7471 : {
                   if(! <>onlyIfAbsent<>7455)
                     break <>label1<>7471
-                  if(! <>property<>7456 in <>destination<>7454)
+                  if(! <>property<>7456 into <>destination<>7454)
                     break <>label1<>7471
                   break <>label2<>7470
                 }
@@ -17970,7 +17970,7 @@ if(! Node)
     {
       <>y<>8566 = "currentStyle"
       <>obj<>8567 = @ToObject(document)
-      if(<>y<>8566 in <>obj<>8567["documentElement"])
+      if(<>y<>8566 into <>obj<>8567["documentElement"])
         {
           <>Global<>ignore987 = function hasLayout<>funexpr@3267:17-3272:6<>8568(this, <>arguments<>8569) 
           {
@@ -18456,7 +18456,7 @@ if(! Node)
           <>obj<>8815 = @ToObject(<>obj<>8814["Layout"])
           <>COMPUTATIONS<>8813 = <>obj<>8815["COMPUTATIONS"]
         }
-        if(! <>property<>8812 in <>COMPUTATIONS<>8813)
+        if(! <>property<>8812 into <>COMPUTATIONS<>8813)
           throw "Property not found."
         {
           <>obj<>8816 = @ToObject(this)
@@ -19435,7 +19435,7 @@ if(! Node)
     {
       <>y<>9340 = "getBoundingClientRect"
       <>obj<>9341 = @ToObject(document)
-      if(<>y<>9340 in <>obj<>9341["documentElement"])
+      if(<>y<>9340 into <>obj<>9341["documentElement"])
         {
           <>obj<>9342 = @ToObject(Object)
           <>obj<>9343 = @ToObject(Element)
@@ -20062,7 +20062,7 @@ if(! Node)
     {
       <>y<>9639 = "getBoundingClientRect"
       <>obj<>9640 = @ToObject(document)
-      if(<>y<>9639 in <>obj<>9640["documentElement"])
+      if(<>y<>9639 into <>obj<>9640["documentElement"])
         {
           <>obj<>9641 = @ToObject(Element)
           <>temp<>9642 = function <>funexpr@3909:23-3917:8<>9643(this, <>arguments<>9644) 
@@ -24686,7 +24686,7 @@ if(! Node)
       {
         <>y<>11518 = "sourceIndex"
         <>obj<>11519 = @ToObject(document)
-        if(<>y<>11518 in <>obj<>11519["documentElement"])
+        if(<>y<>11518 into <>obj<>11519["documentElement"])
           {
             <>Global<>ignore1381 = function sortOrder<>funexpr@4684:20-4697:9<>11520(this, <>arguments<>11521) 
             {
@@ -25883,7 +25883,7 @@ if(! Node)
             <>result<>12018 = <>arguments<>12017["0"]
             <>key<>12019 = <>arguments<>12017["1"]
             <>value<>12020 = <>arguments<>12017["2"]
-            if(<>key<>12019 in <>result<>12018)
+            if(<>key<>12019 into <>result<>12018)
             {
               {
                 <>obj<>12021 = @ToObject(Object)
@@ -29243,15 +29243,15 @@ if(! Node)
     }
     {
       {
-        if("onmouseenter" in <>docEl<>13559)
+        if("onmouseenter" into <>docEl<>13559)
         {
-          <>Global<>ignore1662 = "onmouseleave" in <>docEl<>13559
+          <>Global<>ignore1662 = "onmouseleave" into <>docEl<>13559
         }
         else
-          if(typeof "onmouseenter" in <>docEl<>13559 == "boolean")
+          if(typeof "onmouseenter" into <>docEl<>13559 == "boolean")
             <>Global<>ignore1662 = false
           else
-            <>Global<>ignore1662 = "onmouseenter" in <>docEl<>13559
+            <>Global<>ignore1662 = "onmouseenter" into <>docEl<>13559
       }
       <>MOUSEENTER_MOUSELEAVE_EVENTS_SUPPORTED<>13248 = <>Global<>ignore1662
     }

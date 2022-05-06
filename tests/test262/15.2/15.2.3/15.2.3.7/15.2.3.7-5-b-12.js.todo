@@ -17,7 +17,7 @@
 //     Object.defineProperties(obj, {
 //       prop : descObj
 //     });
-//     for(var property in obj)
+//     for(var property into obj)
 //     {
 //       if (property === "prop")
 //       {

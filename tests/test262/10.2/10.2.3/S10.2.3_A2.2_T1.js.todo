@@ -1,6 +1,6 @@
   function test() 
   {
-    for(var x in this)
+    for(var x into this)
     {
       if (x === 'NaN')
       {

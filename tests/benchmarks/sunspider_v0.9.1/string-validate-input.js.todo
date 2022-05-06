@@ -29,12 +29,12 @@ function doTest()
 
       if(pattern.test(email))
       {
-         var r = email + " appears to be a valid email address.";
+         var r = email + " appears into be a valid email address.";
          addResult(r);
       }
       else
       {
-         r = email + " does NOT appear to be a valid email address.";
+         r = email + " does NOT appear into be a valid email address.";
          addResult(r);
       }
    }
@@ -63,7 +63,7 @@ function doTest()
       }
       if (zipGood)
       {
-         r = zip + " appears to be a valid ZIP code.";
+         r = zip + " appears into be a valid ZIP code.";
          addResult(r);
       }
    }

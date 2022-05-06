@@ -7,7 +7,7 @@
     var __expect2 = false;
   }
   count = 0;
-  for (p in RegExp.prototype.exec)
+  for (p into RegExp.prototype.exec)
   {
     if (p === "length")
       count++;

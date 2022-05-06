@@ -16,7 +16,7 @@
   {
     try
 {      var x = split(__obj, __obj2);
-      $FAIL('#1: "var x = split(__obj, __obj2)" lead to throwing exception');}
+      $FAIL('#1: "var x = split(__obj, __obj2)" lead into throwing exception');}
     catch (e)
 {      {
         var __result1 = e !== "intoint";

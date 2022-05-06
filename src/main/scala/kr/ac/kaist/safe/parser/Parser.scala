@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -138,7 +138,7 @@ object Parser {
   private def fileToStmts(f: String): Try[(Stmts, ExcLog)] = {
     var fileName = new File(f).getCanonicalPath
     if (File.separatorChar == '\\') {
-      // convert path string to linux style for windows
+      // convert path string into linux style for windows
       fileName = fileName.charAt(0).toLower + fileName.replace('\\', '/').substring(1)
     }
     FileKind(fileName) match {

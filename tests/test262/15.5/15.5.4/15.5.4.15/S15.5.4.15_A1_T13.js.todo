@@ -19,7 +19,7 @@
 //   };
 //   try
 // {    var x = "ABB\u0041BABAB\u0031BBAA".substring(__obj, __obj2);
-//     $FAIL('#1: var x = "ABB\\u0041BABAB\\u0031BBAA".substring(__obj,__obj2) lead to throw exception');}
+//     $FAIL('#1: var x = "ABB\\u0041BABAB\\u0031BBAA".substring(__obj,__obj2) lead into throw exception');}
 //   catch (e)
 // {    {
 //       var __result1 = e !== "inend";

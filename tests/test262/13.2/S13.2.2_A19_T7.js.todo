@@ -18,7 +18,7 @@
     var __expect2 = false;
   }
   {
-    var __result3 = __func in __obj;
+    var __result3 = __func into __obj;
     var __expect3 = false;
   }
   {

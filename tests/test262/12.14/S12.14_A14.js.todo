@@ -50,7 +50,7 @@
 
   }
   if (myObj.p1 !== 'pass')
-    $ERROR('#2.2: "throw p1" lead to throwing exception');
+    $ERROR('#2.2: "throw p1" lead into throwing exception');
   with (myObj)
   {
     try
@@ -66,7 +66,7 @@
 
   }
   if (myObj.p1 !== 'pass')
-    $ERROR('#3.2: "throw p2" lead to throwing exception');
+    $ERROR('#3.2: "throw p2" lead into throwing exception');
   if (myObj.p2 !== 'pass')
     $ERROR('#3.3: "finally" block must be evaluated');
   myObj.p1 = 'fail';

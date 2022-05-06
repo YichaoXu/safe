@@ -8,7 +8,7 @@
   try
 {    __PROTO.type = __MONSTER;}
   catch (e)
-{    $ERROR('#0: __PROTO.type=__MONSTER does not lead to throwing exception');}
+{    $ERROR('#0: __PROTO.type=__MONSTER does not lead into throwing exception');}
 
   function __FACTORY() 
   {

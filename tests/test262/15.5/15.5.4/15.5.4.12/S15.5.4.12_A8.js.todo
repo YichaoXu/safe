@@ -7,7 +7,7 @@
     var __expect2 = false;
   }
   var count = 0;
-  for (p in String.prototype.search)
+  for (p into String.prototype.search)
   {
     if (p === "length")
       count++;

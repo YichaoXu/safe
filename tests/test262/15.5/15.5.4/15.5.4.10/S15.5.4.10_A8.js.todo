@@ -7,7 +7,7 @@
     var __expect2 = false;
   }
   var count = 0;
-  for (p in String.prototype.match)
+  for (p into String.prototype.match)
   {
     if (p === "length")
       count++;

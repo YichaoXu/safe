@@ -21,7 +21,7 @@
 //     });
 //     var propertyDefineCorrect = obj.hasOwnProperty("prop");
 //     var desc = Object.getOwnPropertyDescriptor(obj, "prop");
-//     for(var p in obj)
+//     for(var p into obj)
 //     {
 //       if (p === "prop")
 //       {

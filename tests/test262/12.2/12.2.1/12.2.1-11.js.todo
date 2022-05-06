@@ -5,7 +5,7 @@
 /// copyright and this notice and otherwise comply with the Use Terms.
 /**
  * @path ch12/12.2/12.2.1/12.2.1-11.js
- * @description arguments as var identifier in eval code is allowed
+ * @description arguments as var identifier into eval code is allowed
  */
 
 

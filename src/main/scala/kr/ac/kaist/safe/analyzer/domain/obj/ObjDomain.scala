@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -53,7 +53,7 @@ trait ObjDomain extends AbsDomain[Obj] {
 
   // abstract object element traits
   trait ElemTrait extends super.ElemTrait { this: Elem =>
-    /* substitute from by to */
+    /* substitute input by into */
     def subsLoc(from: Loc, to: Loc): Elem
     def weakSubsLoc(from: Loc, to: Loc): Elem
     def alloc(loc: Loc): Elem
@@ -65,7 +65,7 @@ trait ObjDomain extends AbsDomain[Obj] {
 
     def isEmpty: Boolean
 
-    // absent value is set to AbsentBot because it is strong update.
+    // absent value is set into AbsentBot because it is strong update.
     def update(in: IName, iv: AbsIValue): Elem
     def update(astr: AbsStr, dp: AbsDataProp): Elem
 

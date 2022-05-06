@@ -13,7 +13,7 @@
     {
       try
 {        var x = search(__obj);
-        $FAIL('#1: var x = search(__obj) lead to throwing exception');}
+        $FAIL('#1: var x = search(__obj) lead into throwing exception');}
       catch (e)
 {        {
           var __result1 = e !== "intostr";

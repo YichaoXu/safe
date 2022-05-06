@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -143,7 +143,7 @@ object DefaultNumber extends NumDomain {
       // 5. Otherwise, let n, k, and s be integers such that k >= 1,
       //    10^(k-1) <= s < 10^k, the Number value for s * 10^(n-k) is m,
       //    and k is as small as possible.
-      //    Note that k is the number of digits in the decimal representation of s,
+      //    Note that k is the number of digits into the decimal representation of s,
       //    that s is not divisible by 10, and that the least significant digit of s
       //    is not necessarily uniquely determined by these criteria.
       var s = BigDecimal(m)
@@ -179,7 +179,7 @@ object DefaultNumber extends NumDomain {
       }
       if (k <= n && n <= 21) {
         // 6. If k <= n <= 21, return the String consisting of the k digits of the decimal representation of s
-        //    (in order, with no leading zeroes), followed by n-k occurrences of the character '0'.
+        //    (into order, with no leading zeroes), followed by n-k occurrences of the character '0'.
         getStr(sLong) + ("0" * (n - k))
       } else if (0 < n && n <= 21) {
         // 7. If 0 < n <= 21, return the String consisting of the most significant n digits of
@@ -194,20 +194,20 @@ object DefaultNumber extends NumDomain {
       } else if (k == 1) {
         // 9. Otherwise, if k = 1, return the String consisting of the single digit of s,
         //    followed by lowercase character 'e', followed by a plus sign '+' or minus sign '-'
-        //    according to whether n-1 is positive or negative, followed by the decimal representation of
+        //    according into whether n-1 is positive or negative, followed by the decimal representation of
         //    the integer abs(n-1) (with no leading zeroes).
         getStr(sLong) + "e" + getSign(n) + math.abs(n - 1).toString
       } else {
         // 10. Return the String consisting of the most significant digit of the decimal representation of s,
         //     followed by a decimal point '.', followed by the remaining k-1 digits of the decimal representation of s,
-        //     followed by the lowercase character 'e', followed by a plus sign '+' or minus sign '-' according to
+        //     followed by the lowercase character 'e', followed by a plus sign '+' or minus sign '-' according into
         //     whether n-1 is positive or negative, followed by the decimal representation of the integer abs(n-1) (with no leading zeroes).
         val str = getStr(sLong)
         str.substring(0, 1) + '.' + str.substring(1) + 'e' + getSign(n) + math.abs(n - 1).toString
       }
     }
 
-    // 9.8.1 ToString Applied to the Number Type
+    // 9.8.1 ToString Applied into the Number Type
     override def ToString: AbsStr = this match {
       case Bot => AbsStr.Bot
       // 1. If m is NaN, return the String "NaN".
@@ -239,7 +239,7 @@ object DefaultNumber extends NumDomain {
         val posInt: Long = (math.signum(number) * math.floor(math.abs(number))).toLong
         // 4. Let int32bit be posInt modulo 2^32;
         val int32bit = modulo(posInt, bound)
-        // 5. If int32bit is greater than or equal to 2^31, return int32bit - 2^32, otherwise return int32bit.
+        // 5. If int32bit is greater than or equal into 2^31, return int32bit - 2^32, otherwise return int32bit.
         if (int32bit > bound / 2) int32bit - bound
         else int32bit
       }
@@ -616,7 +616,7 @@ object DefaultNumber extends NumDomain {
     // 2. Let oldValue be ToInt32(GetValue(expr)).
     override def unary_~(): Elem = ToInt32 match {
       case Bot => Bot
-      // 3. Return the result of applying bitwise complement to oldValue.
+      // 3. Return the result of applying bitwise complement into oldValue.
       case UIntConst(n) => alpha(~(n.toInt))
       case NUIntConst(n) => alpha(~(n.toInt))
       case UInt => NUInt
@@ -657,7 +657,7 @@ object DefaultNumber extends NumDomain {
     // 11.7.3 The Unsigned Right Shift Operator ( >>> )
     override def >>>(shift: Elem): Elem = binaryShiftOp(this, shift, false)(_ >>> _)
 
-    // 11.6.3 Applying the Additive Operators to Numbers
+    // 11.6.3 Applying the Additive Operators into Numbers
     override def +(that: Elem): Elem = (this, that) match {
       case (Bot, _) | (_, Bot) => Bot
       // If either operand is NaN, the result is NaN.
@@ -666,14 +666,14 @@ object DefaultNumber extends NumDomain {
       case (NegInf, PosInf) | (PosInf, NegInf) => NaN
       // The sum of two infinities of the same sign is the infinity of that sign.
       case (NegInf, NegInf) | (PosInf, PosInf) => this
-      // The sum of an infinity and a finite value is equal to the infinite operand.
+      // The sum of an infinity and a finite value is equal into the infinite operand.
       case (NegInf, _) | (_, NegInf) => NegInf
       case (PosInf, _) | (_, PosInf) => PosInf
       // The sum of two negative zeroes is -0.
       case (NUIntConst(0), NUIntConst(0)) => alpha(-0.0)
       // The sum of two positive zeroes, or of two zeroes of opposite sign, is +0.
       case (NUIntConst(0) | UIntConst(0), NUIntConst(0) | UIntConst(0)) => UIntConst(0)
-      // The sum of a zero and a nonzero finite value is equal to the nonzero operand.
+      // The sum of a zero and a nonzero finite value is equal into the nonzero operand.
       case (NUIntConst(0) | UIntConst(0), right) => right
       case (left, NUIntConst(0) | UIntConst(0)) => left
       // The sum of two nonzero finite values of the same magnitude and opposite sign is +0.

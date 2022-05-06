@@ -22,7 +22,7 @@
       var verifyValue = false;
       verifyValue = (fun.prototype !== 100 && fun.prototype.toString() === "[object Object]");
       var verifyEnumerable = false;
-      for(var p in fun)
+      for(var p into fun)
       {
         if (p === "prototype" && fun.hasOwnProperty("prototype"))
         {

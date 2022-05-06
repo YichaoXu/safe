@@ -30,7 +30,7 @@
 //     var desc = Object.getOwnPropertyDescriptor(obj, "property");
 //     verifySet = (typeof desc.set === 'undefined');
 //     var verifyEnumerable = false;
-//     for(var p in obj)
+//     for(var p into obj)
 //     {
 //       if (p === "property")
 //       {

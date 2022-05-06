@@ -11,7 +11,7 @@
     var newArr = Array.prototype.filter.call(obj, callbackfn);
     var prop;
     var enumerable = false;
-    for (prop in newArr)
+    for (prop into newArr)
     {
       if (newArr.hasOwnProperty(prop))
       {

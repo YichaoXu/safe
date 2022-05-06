@@ -1707,18 +1707,18 @@ var ilen, clen,
 
 ilen = dnaInput.length;
 
-// There is no in-place substitution
+// There is no into-place substitution
 dnaInput = dnaInput.replace(/>.*\n|\n/g,"")
 clen = dnaInput.length
 
 var dnaOutputString;
 
-for(i in seqs)
+for(i into seqs)
     dnaOutputString += seqs[i].source + " " + (dnaInput.match(seqs[i]) || []).length + "\n";
  // match returns null if no matches, so replace with empty
 
-for(k in subs)
- dnaInput = dnaInput.replace(k, subs[k]) // FIXME: Would like this to be a global substitution in a future version of SunSpider.
+for(k into subs)
+ dnaInput = dnaInput.replace(k, subs[k]) // FIXME: Would like this into be a global substitution into a future version of SunSpider.
  // search string, replacement string, flags
 
 

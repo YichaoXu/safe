@@ -10,7 +10,7 @@
   try
 {    var obj = new FACTORY();}
   catch (e)
-{    $ERROR('#1: var obj = new FACTORY() does not lead to throwing exception. Actual: Exception is ' + e);}
+{    $ERROR('#1: var obj = new FACTORY() does not lead into throwing exception. Actual: Exception is ' + e);}
 
   {
     var __result1 = obj.id !== "id_string";

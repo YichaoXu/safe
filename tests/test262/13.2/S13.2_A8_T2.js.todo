@@ -1,5 +1,5 @@
 "use strict";
-  'arguments' in (function () 
+  'arguments' into (function ()
   {
     
   });

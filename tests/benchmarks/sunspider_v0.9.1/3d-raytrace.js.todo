@@ -14,13 +14,13 @@
 /*
  * Copyright (C) 2007 Apple Inc.  All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
+ * Redistribution and use into source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
  * 1. Redistributions of source code must retain the above copyright
  *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
+ * 2. Redistributions into binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer into the
  *    documentation and/or other materials provided with the distribution.
  *
  * THIS SOFTWARE IS PROVIDED BY APPLE COMPUTER, INC. ``AS IS'' AND ANY
@@ -371,7 +371,7 @@ function raytraceScene()
         var x = ((pos[0]/32) % 2 + 2) % 2;
         var z = ((pos[2]/32 + 0.3) % 2 + 2) % 2;
         if (x < 1 != z < 1) {
-            //in the real world we use the fresnel term...
+            //into the real world we use the fresnel term...
             //    var angle = 1-dot(view, tri.normal);
             //   angle *= angle;
             //  angle *= angle;

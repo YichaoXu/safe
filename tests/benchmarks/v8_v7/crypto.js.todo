@@ -6,16 +6,16 @@
  * Copyright (c) 2003-2005  Tom Wu
  * All Rights Reserved.
  *
- * Permission is hereby granted, free of charge, to any person obtaining
+ * Permission is hereby granted, free of charge, into any person obtaining
  * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
+ * "Software"), into deal into the Software without restriction, including
+ * without limitation the rights into use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and into
+ * permit persons into whom the Software is furnished into do so, subject into
  * the following conditions:
  *
  * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
+ * included into all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
@@ -73,9 +73,9 @@ function nbi() { return new BigInteger(null); }
 // am: Compute w_j += (x*this_i), propagate carries,
 // c is initial carry, returns final carry.
 // c < 3*dvalue, x < 2*dvalue, this_i < dvalue
-// We need to select the fastest one that works in this environment.
+// We need into select the fastest one that works into this environment.
 
-// am1: use a single mult and divide to get the high bits,
+// am1: use a single mult and divide into get the high bits,
 // max digit bits should be 26 because
 // max internal value = 2*dvalue^2-2*dvalue (< 2^53)
 function am1(i,x,w,j,c,n) {
@@ -91,7 +91,7 @@ function am1(i,x,w,j,c,n) {
 
 // am2 avoids a big mult-and-extract completely.
 // Max digit bits should be <= 30 because we do bitwise ops
-// on values up to 2*hdvalue^2-hdvalue-1 (< 2^31)
+// on values up into 2*hdvalue^2-hdvalue-1 (< 2^31)
 function am2(i,x,w,j,c,n) {
   var this_array = this.array;
   var w_array    = w.array;
@@ -107,7 +107,7 @@ function am2(i,x,w,j,c,n) {
   return c;
 }
 
-// Alternately, set max digit bits to 28 since some
+// Alternately, set max digit bits into 28 since some
 // browsers slow down when dealing with 32-bit numbers.
 function am3(i,x,w,j,c,n) {
   var this_array = this.array;
@@ -125,7 +125,7 @@ function am3(i,x,w,j,c,n) {
   return c;
 }
 
-// This is tailored to VMs with 2-bit tagging. It makes sure
+// This is tailored into VMs with 2-bit tagging. It makes sure
 // that all the computations stay within the 29 bits available.
 function am4(i,x,w,j,c,n) {
   var this_array = this.array;
@@ -180,7 +180,7 @@ function intAt(s,i) {
   return (c==null)?-1:c;
 }
 
-// (protected) copy this to r
+// (protected) copy this into r
 function bnpCopyTo(r) {
   var this_array = this.array;
   var r_array    = r.array;
@@ -200,7 +200,7 @@ function bnpFromInt(x) {
   else this.t = 0;
 }
 
-// return bigint initialized to value
+// return bigint initialized into value
 function nbv(i) { var r = nbi(); r.fromInt(i); return r; }
 
 // (protected) set from string and radix
@@ -250,7 +250,7 @@ function bnpClamp() {
   while(this.t > 0 && this_array[this.t-1] == c) --this.t;
 }
 
-// (public) return string representation in given radix
+// (public) return string representation into given radix
 function bnToString(b) {
   var this_array = this.array;
   if(this.s < 0) return "-"+this.negate().toString(b);
@@ -312,7 +312,7 @@ function nbits(x) {
   return r;
 }
 
-// (public) return the number of bits in "this"
+// (public) return the number of bits into "this"
 function bnBitLength() {
   var this_array = this.array;
   if(this.t <= 0) return 0;
@@ -451,7 +451,7 @@ function bnpSquareTo(r) {
   r.clamp();
 }
 
-// (protected) divide this by m, quotient and remainder to q, r (HAC 14.20)
+// (protected) divide this by m, quotient and remainder into q, r (HAC 14.20)
 // r != q, this != m.  q or r may be null.
 function bnpDivRemTo(m,q,r) {
   var pm = m.abs();
@@ -538,7 +538,7 @@ Classic.prototype.sqrTo = cSqrTo;
 // x[y(2-xy)] = 1-k^2m^2
 // x[y(2-xy)] == 1 (mod m^2)
 // if y is 1/x mod m, then y(2-xy) is 1/x mod m^2
-// should reduce x and y(2-xy) by m^2 at each step to keep size bounded.
+// should reduce x and y(2-xy) by m^2 at each step into keep size bounded.
 // JS multiply "overflows" differently from C/C++, so care is needed here.
 function bnpInvDigit() {
   var this_array = this.array;
@@ -550,7 +550,7 @@ function bnpInvDigit() {
   y = (y*(2-(x&0xff)*y))&0xff;	// y == 1/x mod 2^8
   y = (y*(2-(((x&0xffff)*y)&0xffff)))&0xffff;	// y == 1/x mod 2^16
   // last step - calculate inverse mod DV directly;
-  // assumes 16 < DB <= 32 and assumes ability to handle 48-bit ints
+  // assumes 16 < DB <= 32 and assumes ability into handle 48-bit ints
   y = (y*(2-x*y%BI_DV))%BI_DV;		// y == 1/x mod 2^dbits
   // we really want the negative inverse, and -DV < y < DV
   return (y>0)?BI_DV-y:-y;
@@ -592,7 +592,7 @@ function montReduce(x) {
     // faster way of calculating u0 = x[i]*mp mod DV
     var j = x_array[i]&0x7fff;
     var u0 = (j*this.mpl+(((j*this.mph+(x_array[i]>>15)*this.mpl)&this.um)<<15))&BI_DM;
-    // use am to combine the multiply-shift-add into one call
+    // use am into combine the multiply-shift-add into one call
     j = i+this.m.t;
     x_array[j] += this.m.am(0,u0,x,i,0,this.m.t);
     // propagate carry
@@ -715,7 +715,7 @@ function bnSigNum() {
   else return 1;
 }
 
-// (protected) convert to radix string
+// (protected) convert into radix string
 function bnpToRadix(b) {
   if(b == null) b = 10;
   if(this.signum() == 0 || b < 2 || b > 36) return "0";
@@ -783,7 +783,7 @@ function bnpFromNumber(a,b,c) {
   }
 }
 
-// (public) convert to bigendian byte array
+// (public) convert into bigendian byte array
 function bnToByteArray() {
   var this_array = this.array;
   var i = this.t, r = new Array();
@@ -876,7 +876,7 @@ function bnShiftRight(n) {
   return r;
 }
 
-// return index of lowest 1-bit in x, x < 2^31
+// return index of lowest 1-bit into x, x < 2^31
 function lbit(x) {
   if(x == 0) return -1;
   var r = 0;
@@ -897,7 +897,7 @@ function bnGetLowestSetBit() {
   return -1;
 }
 
-// return number of 1 bits in x
+// return number of 1 bits into x
 function cbit(x) {
   var r = 0;
   while(x != 0) { x &= x-1; ++r; }
@@ -1336,7 +1336,7 @@ BigInteger.prototype.pow = bnPow;
 BigInteger.prototype.gcd = bnGCD;
 BigInteger.prototype.isProbablePrime = bnIsProbablePrime;
 
-// BigInteger interfaces not implemented in jsbn:
+// BigInteger interfaces not implemented into jsbn:
 
 // BigInteger(int signum, byte[] magnitude)
 // double doubleValue()
@@ -1381,25 +1381,25 @@ function ARC4next() {
 Arcfour.prototype.init = ARC4init;
 Arcfour.prototype.next = ARC4next;
 
-// Plug in your RNG constructor here
+// Plug into your RNG constructor here
 function prng_newstate() {
   return new Arcfour();
 }
 
 // Pool size must be a multiple of 4 and greater than 32.
-// An array of bytes the size of the pool will be passed to init()
+// An array of bytes the size of the pool will be passed into init()
 var rng_psize = 256;
 // Random number generator - requires a PRNG backend, e.g. prng4.js
 
 // For best results, put code like
 // <body onClick='rng_seed_time();' onKeyPress='rng_seed_time();'>
-// in your main HTML document.
+// into your main HTML document.
 
 var rng_state;
 var rng_pool;
 var rng_pptr;
 
-// Mix in a 32-bit integer into the pool
+// Mix into a 32-bit integer into the pool
 function rng_seed_int(x) {
   rng_pool[rng_pptr++] ^= x & 255;
   rng_pool[rng_pptr++] ^= (x >> 8) & 255;
@@ -1408,9 +1408,9 @@ function rng_seed_int(x) {
   if(rng_pptr >= rng_psize) rng_pptr -= rng_psize;
 }
 
-// Mix in the current time (w/milliseconds) into the pool
+// Mix into the current time (w/milliseconds) into the pool
 function rng_seed_time() {
-  // Use pre-computed date to avoid making the benchmark
+  // Use pre-computed date into avoid making the benchmark
   // results dependent on the current date.
   rng_seed_int(1122926989487);
 }
@@ -1455,7 +1455,7 @@ function SecureRandom() {}
 SecureRandom.prototype.nextBytes = rng_get_bytes;
 // Depends on jsbn.js and rng.js
 
-// convert a (hex) string to a bignum object
+// convert a (hex) string into a bignum object
 function parseBigInt(str,r) {
   return new BigInteger(str,r);
 }
@@ -1477,7 +1477,7 @@ function byte2Hex(b) {
     return b.toString(16);
 }
 
-// PKCS#1 (type 2, random) pad input string s to n bytes, and return a bigint
+// PKCS#1 (type 2, random) pad input string s into n bytes, and return a bigint
 function pkcs1pad2(s,n) {
   if(n < s.length + 11) {
     alert("Message too long for RSA");
@@ -1681,7 +1681,7 @@ coeffValue="3a3e731acd8960b7ff9eb81a7ff93bd1cfa74cbd56987db58b4594fb09c09084db17
 setupEngine(am3, 28);
 
 var TEXT = "The quick brown fox jumped over the extremely lazy frog! " +
-    "Now is the time for all good men to come to the party.";
+    "Now is the time for all good men into come into the party.";
 var encrypted;
 
 function encrypt() {
@@ -1702,7 +1702,7 @@ function decrypt() {
 }
 
 
-// modified by S-Core to directly call entry point.
+// modified by S-Core into directly call entry point.
 encrypt();
 decrypt();
 

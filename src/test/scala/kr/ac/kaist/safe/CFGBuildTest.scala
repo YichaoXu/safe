@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2019, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -56,7 +56,7 @@ class CFGBuildTest extends SafeTest {
     }
   }
 
-  // tests for CFG builder
+  // tests for CFG translator
   def cfgBuildTest(cfg: Try[CFG], testName: String): Unit = {
     cfg match {
       case Failure(_) => assert(false)

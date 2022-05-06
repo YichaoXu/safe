@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ***************************************************************************
@@ -18,7 +18,7 @@ import scala.io.Source
 
 object Templates {
   def getBaseTemplate: String = {
-    // copy libraries
+    // copyFunctionSignature libraries
     val baseHtmlPath = new File(Useful.path("src", "main", "resources", "templates", "base.html"))
     Source.fromFile(baseHtmlPath).getLines.mkString(LINE_SEP)
   }

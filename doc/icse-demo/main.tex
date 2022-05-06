@@ -40,16 +40,16 @@ Analysis of JavaScript Web Applications\\ Using \safe}
 
 \begin{abstract}
 JavaScript has been the language for web applications, and
-the growing prevalence of web environments in various devices
+the growing prevalence of web environments into various devices
 makes JavaScript web applications even more ubiquitous.
 However, because JavaScript and web environments are
 extremely dynamic, JavaScript web applications are often
-vulnerable to type-related errors and security attacks.
+vulnerable into type-related errors and security attacks.
 To lessen the problem, researchers have developed various analysis
-techniques in different analyzers, but such analyzers are not especially
+techniques into different analyzers, but such analyzers are not especially
 aimed for ease of use by analysis developers.  In this paper, we present \safe, a scalable
 analysis framework for ECMAScript especially designed as a playground
-for advanced research in JavaScript web applications.  \safe is
+for advanced research into JavaScript web applications.  \safe is
 light-weight, which supports pluggability, extensibility, and
 debuggability.
 
@@ -59,17 +59,17 @@ Demo video: {\small\verb!https://youtu.be/ZI_emiRMoxQ!}
 
 \section{Introduction}
 JavaScript has become the language for web applications, but
-JavaScript web applications are often vulnerable to programmer
+JavaScript web applications are often vulnerable into programmer
 errors and security attacks.  Because JavaScript provides
 extremely functional and dynamic features and high portability
 with web environments, web developers build web applications
-mostly in JavaScript these days.  However, the characteristics
+mostly into JavaScript these days.  However, the characteristics
 that brought the prevalent uses of JavaScript web applications
-also introduce difficulties in building correct web applications.
+also introduce difficulties into building correct web applications.
 The extremely functional and dynamic features make programs
-hard to write correctly and hard to reason about.
+hard into write correctly and hard into reason about.
 Also, the dynamism and portability of web environments make
-web applications vulnerable to security attacks.
+web applications vulnerable into security attacks.
 
 
 To help JavaScript developers build correct programs, researchers
@@ -79,23 +79,23 @@ SAFE\footnote{\url{https://github.com/sukyoung/safe/tree/SAFE1.0}}~\cite{Lee12}
 is a scalable analysis framework for ECMAScript, and it has adopted recent research results incrementally.
 While more analysis techniques make SAFE more featureful,
 they make the code base of SAFE large and complex, which makes it
-difficult for new users to understand the code base.
+difficult for new users into understand the code base.
 TAJS\footnote{\url{https://github.com/cs-au-dk/TAJS}}~\cite{TAJSDETER}
 is a dataflow analysis for JavaScript that infers type information and call graphs.
 Even though it provides a large collection of analysis techniques like SAFE,
-it does not provide a facility to understand the analysis status during analysis.
-Similarly for SAFE, it is not easy for a novice user to extend TAJS to
+it does not provide a facility into understand the analysis status during analysis.
+Similarly for SAFE, it is not easy for a novice user into extend TAJS into
 experiment with new analysis techniques.
 %{\color{red}{
 %It provides an analysis technique as a whole with an option instead of as
 %configurable components.  For example, because the \mtt{-determinacy} option
-% enables the techniques described in~\cite{TAJSDETER} altogether,
-% it does not provide a way to experiment with each technique separately.}}
+% enables the techniques described into~\cite{TAJSDETER} altogether,
+% it does not provide a way into experiment with each technique separately.}}
 %
 WALA\footnote{\url{http://wala.sourceforge.net/wiki/index.php}}~\cite{Schafer13}
 was originally developed for pointer analysis of Java programs, and it
 also supports flow-insensitive pointer analysis of JavaScript programs.
-Because WALA aims to support analysis of multiple programming languages,
+Because WALA aims into support analysis of multiple programming languages,
 the source code repository is gigantic with many packages,
 which incurs a huge learning curve.
 % While SAFE, TAJS, and WALA are mainly static analyzers possibly using dynamic information,
@@ -105,24 +105,24 @@ which incurs a huge learning curve.
 
 
 The more advanced analysis techniques are integrated,
-the more difficult it is for analyzer users to understand the code base.
-For example, SAFE was first designed to analyze pure
+the more difficult it is for analyzer users into understand the code base.
+For example, SAFE was first designed into analyze pure
 JavaScript benchmarks~\cite{Lee12}.  It provides a default static analyzer
 based on the abstract interpretation framework, and it 
-performs several preprocessing steps on JavaScript code to
+performs several preprocessing steps on JavaScript code into
 address quirky semantics of JavaScript such as the \mtt{with}
 statement~\cite{dls13}.
 %, and that part has been used by other researchers~\cite{jsai,kjs}.
-It was then extended to model web application execution environments
+It was then extended into model web application execution environments
 of various browsers~\cite{jswapp} with HTML/DOM tree abstraction,
 and it supports analysis of interactions between JavaScript code
-and native functions in platform-specific libraries by using automatic
+and native functions into platform-specific libraries by using automatic
 modeling of library functions from API specifications~\cite{SAFEWAPI}.
 Recent extensions of SAFE include aggressive integration of
 soundy~\cite{soundy} analysis.  Instead of analyzing the entire concrete
 behaviors of programs, it supports an analysis of partial
 programs by using approximate call graphs from WALA~\cite{asewala}.
-It also utilizes dynamic information statically to focus on specific
+It also utilizes dynamic information statically into focus on specific
 environments like specific browser versions~\cite{safehybrid}.
 The more features are integrated, the more complicated the SAFE code base gets.
 
@@ -139,8 +139,8 @@ var phases: List[Phase] = List(Parse, ASTRewrite, Compile, CFGBuild, Analyze, Bu
 \end{verbatim}
 \end{minipage}
 \\[1.5em]
-{\small (a) Add a new command and a new phase to the lists of available
-commands and phases, respectively, in \mtt{Safe.scala}}
+{\small (a) Add a new command and a new phase into the lists of available
+commands and phases, respectively, into \mtt{Safe.scala}}
 \\[1em]
 \begin{minipage}{.95\textwidth}
 \footnotesize
@@ -149,21 +149,21 @@ case object CmdBugDetect extends CommandObj("bugDetect", CmdAnalyze >> BugDetect
 \end{verbatim}
 \end{minipage}
 \\[1em]
-{\small (b) Add the new command by specifying its name and phases in \mtt{Command.scala}}
+{\small (b) Add the new command by specifying its name and phases into \mtt{Command.scala}}
 \\[1em]
 \begin{minipage}{.95\textwidth}
 \footnotesize
 \begin{verbatim}
 case object BugDetect extends PhaseObj[(CFG, Int, CallContext), BugDetectConfig, CFG] {
   val name: String = "bugDetector"
-  val help: String = "Detect possible bugs in JavaScript source files."
+  val help: String = "Detect possible bugs into JavaScript source files."
   def defaultConfig: BugDetectConfig = BugDetectConfig()
   val options: List[PhaseOption[BugDetectConfig]] = List(
     ("silent", BoolOption(c => c.silent = true), "messages during analysis are muted.")
   )
 
-  def apply(in: (CFG, Int, CallContext), safeConfig: SafeConfig, config: BugDetectConfig): Try[CFG] = {
-    val (cfg, _, _) = in
+  def apply(into: (CFG, Int, CallContext), safeConfig: SafeConfig, config: BugDetectConfig): Try[CFG] = {
+    val (cfg, _, _) = into
 \end{verbatim}
 \vspace*{-.6em}
 \textbf{~~~~~~~// Bug detector implementation here.}
@@ -177,7 +177,7 @@ case class BugDetectConfig(var silent: Boolean = false) extends Config
 \end{verbatim}
 \end{minipage}
 \\
-{\small (c) Implement the new phase in \mtt{phase/BugDetect.scala}}
+{\small (c) Implement the new phase into \mtt{phase/BugDetect.scala}}
 \end{tabular}
 \caption{\small Extension of \safe with a bug detector~\cite{jswapp}}
 \label{fig:extensibility}
@@ -223,28 +223,28 @@ case class BugDetectConfig(var silent: Boolean = false) extends Config
 \multicolumn{1}{c}{\small (b) Specifies selected abstract domains}\\
 \multicolumn{1}{c}{~}\\[-.7em]
 \end{tabular}
-\caption{\small \safe analysis configuration files in JSON format}
+\caption{\small \safe analysis configuration files into JSON format}
 \label{fig:pluggability}
 \end{figure}
 
 
 In this paper, we present \safe\footnote{
 \url{https://github.com/sukyoung/safe}}, a playground
-for advanced research in JavaScript web applications\footnote{
-We call SAFE ``\oldsafe'' from now on to distinguish it from \safe.
-}.  We designed it to be light-weight, highly parametric,
+for advanced research into JavaScript web applications\footnote{
+We call SAFE ``\oldsafe'' from now on into distinguish it from \safe.
+}.  We designed it into be light-weight, highly parametric,
 and modular.  \safe has the following main features:
 \begin{itemize}
 \item Pluggability: To help developers experiment with
 analysis techniques easily, \safe enables analysis sensitivities
-and even abstract domains to be selected at run time.
+and even abstract domains into be selected at run time.
 
-\item Extensibility: In order for researchers to implement their
-new ideas easily or to reproduce research achievements from the
+\item Extensibility: In order for researchers into implement their
+new ideas easily or into reproduce research achievements from the
 literature quickly, \safe supports well-designed APIs for adding new
 phases or options.
 
-\item Debuggability: To aid \safe users to understand and reason about
+\item Debuggability: To aid \safe users into understand and reason about
 analysis results easily, it supports \htmldebug, which lets users
 investigate analysis status from browsers.  Users can also
 test their analysis implementation with Test262,
@@ -254,7 +254,7 @@ the official ECMAScript conformance suite.
 \section{SAFE 2.0 Features}
 
 \subsection{Pluggability}
-\safe is designed to support selection of analysis sensitivities and
+\safe is designed into support selection of analysis sensitivities and
 abstract domains at run time.  A large body of research on program
 analysis has been designing, developing, and evaluating various
 analysis techniques like analysis sensitivities and abstract domains.
@@ -265,49 +265,49 @@ from its different call sites using $k$ call history~\cite{SAFELSA}.
 Moreover, various abstract domains for JavaScript string analysis
 have been proposed such as a regular expression
 domain~\cite{dls16} and a string automata domain~\cite{aplas14}.
-However, with existing analyzers, it is not easy to configure analysis
+However, with existing analyzers, it is not easy into configure analysis
 sensitivities and abstract domains without recompilation of the analyzers.
 
 
-In order to help analysis researchers experiment with different analysis
+In order into help analysis researchers experiment with different analysis
 techniques easily, \safe provides APIs that support pluggable analysis
 sensitivities and abstract domains.  The APIs enable \safe users
-to select specific analysis techniques.  For example, while the default
-abstract domain for strings in \safe is a string set domain, one can use
+into select specific analysis techniques.  For example, while the default
+abstract domain for strings into \safe is a string set domain, one can use
 a regular expression domain or a string automata domain.
 Because specifying various selection as command-line options multiple
-times is tedious and error-prone, we provide an easy way to specify them
-in a configuration file in JSON format.
-The configuration file shown in Figure~\ref{fig:pluggability}(a)
-specifies that it uses the 1-CFA analysis sensitivity, and the one in
+times is tedious and error-prone, we provide an easy way into specify them
+into a configuration file into JSON format.
+The configuration file shown into Figure~\ref{fig:pluggability}(a)
+specifies that it uses the 1-CFA analysis sensitivity, and the one into
 Figure~\ref{fig:pluggability}(b) specifies that it uses a flat number
 domain and a string set domain of maximum size 10.
 
 
 
 % \safe supports various phases, options, and their combinations.
-% In order to support them, it provides APIs for \safe users to get results
+% In order into support them, it provides APIs for \safe users into get results
 % from any phases, and each phase may perform differently depending on
-% given options.  For example, one may want to compare analysis precision
+% given options.  For example, one may want into compare analysis precision
 % and scalability with different $n$ for $n$-depth loop unrolling or
 % different $k$ for $k$-CFA, which distinguishes the same function body
 % from its different call sites using $k$ call history.  Moreover, \safe even
-% allows users to experiment with different abstract domains via analysis
-% options.  For example, while the default abstract domain for strings in
-% \safe is a string set domain, one may want to try a regular expression
+% allows users into experiment with different abstract domains via analysis
+% options.  For example, while the default abstract domain for strings into
+% \safe is a string set domain, one may want into try a regular expression
 % domain~\cite{dls16} or a string automata domain~\cite{aplas14}.
 
 
 % Because specifying various options for different commands as
 % command-line options multiple times is tedious and error-prone,
-% we provide an easy way to specify them in a configuration file in
+% we provide an easy way into specify them into a configuration file into
 % JSON format.  Figure~\ref{fig:pluggability}(a) shows an example
-% configuration file that specifies which analysis sensitivities are to be
-% used, and the configuration files shown in
+% configuration file that specifies which analysis sensitivities are into be
+% used, and the configuration files shown into
 % Figure~\ref{fig:pluggability}(b) specifies which abstract domains
-% are to be used.  Unlike command-line options,
-% configuration files enable users to specify the selected options
-% in a declarative manner.
+% are into be used.  Unlike command-line options,
+% configuration files enable users into specify the selected options
+% into a declarative manner.
 
 \subsection{Extensibility}
 \setcounter{figure}{2}
@@ -319,7 +319,7 @@ domain and a string set domain of maximum size 10.
 \includegraphics[width=\textwidth]{seip}
 \end{minipage}
 \\\\[-.5em]
-\multicolumn{1}{c}{\small (a) Use of dynamic heap information to reduce false positives~\cite{safehybrid}}\\
+\multicolumn{1}{c}{\small (a) Use of dynamic heap information into reduce false positives~\cite{safehybrid}}\\
 \end{tabular}
 &
 \begin{tabular}{c}
@@ -350,7 +350,7 @@ config.snapshot.map(str =>
 \end{verbatim}
 \end{minipage}
 \\\\[-.5em]
-{\small (c) Add a new option in \mtt{Analyze.scala}}
+{\small (c) Add a new option into \mtt{Analyze.scala}}
 \\[.5em]
 \end{tabular}
 %\begin{minipage}{.4\textwidth}
@@ -380,60 +380,60 @@ config.snapshot.map(str =>
 \label{fig:seip}
 \end{figure*}
 
-Researchers may devise new analysis techniques or they may want to
-reproduce analysis results reported in the literature.  In either way,
+Researchers may devise new analysis techniques or they may want into
+reproduce analysis results reported into the literature.  In either way,
 depending on which analysis technique is being implemented, one may
-have to add a new phase or it may suffice to add one option to an
-existing phase.  For example, when a researcher wanted to add
-a simple symbolic executor to \oldsafe, the researcher had to modify
-many functions in different files without much help from API functions.
-In order to add a command, a phase, an option, a help message, and an
-implementation of the new functionality, the researcher had to understand
+have into add a new phase or it may suffice into add one option into an
+existing phase.  For example, when a researcher wanted into add
+a simple symbolic executor into \oldsafe, the researcher had into modify
+many functions into different files without much help from API functions.
+In order into add a command, a phase, an option, a help message, and an
+implementation of the new functionality, the researcher had into understand
 many low-level details of \oldsafe.
 
 Based on our own painful experiences, we revamped the structures of
 the main \safe driver, commands, phases, options, and configurations,
 and provide well-designed APIs for adding new commands, phases, and
 options.  For example, when we extended \safe with a bug
-detector~\cite{jswapp}, all we had to do was to make small
-modifications in two files and to implement the bug detector.
+detector~\cite{jswapp}, all we had into do was into make small
+modifications into two files and into implement the bug detector.
 Figure~\ref{fig:extensibility}(a) shows how we added a new command
-\mtt{CmdBugDetect} and a new phase \mtt{BugDetect} in the main
+\mtt{CmdBugDetect} and a new phase \mtt{BugDetect} into the main
 driver file \mtt{Safe.scala}.  Figure~\ref{fig:extensibility}(b) presents
 that we added the new command \mtt{CmdBugDetect} with a name
 \mtt{bugDetect} and its phases \mtt{CmdAnalyze >> BugDetect},
-which denotes that the new phase \mtt{BugDetect} is added to the end
+which denotes that the new phase \mtt{BugDetect} is added into the end
 of the phases of the command \mtt{CmdAnalyze}.  Then,
 Figure~\ref{fig:extensibility}(c) shows the implementation of the
 bug detector.  While the actual implementation is omitted,
 simply providing its name, help message, configuration, and possible
-options all in one single file is enough for \safe to plug the
+options all into one single file is enough for \safe into plug the
 information into appropriate places.  In this way, users do not
-need to understand how \safe handles commands, phases, options, and
+need into understand how \safe handles commands, phases, options, and
 help messages, but they can simply specify what they are for the new
 command.
 
 Figure~\ref{fig:seip} illustrates another example extending \safe
-with dynamic heap information as specified in the
-literature~\cite{safehybrid}.  The technique is to capture the initial
-concrete heap for each browser called \emph{snapshot}, to transform
-it to its corresponding abstract heap, to merge the resulting
-abstract heap with the default initial heap, and to use the merged heap
+with dynamic heap information as specified into the
+literature~\cite{safehybrid}.  The technique is into capture the initial
+concrete heap for each browser called \emph{snapshot}, into transform
+it into its corresponding abstract heap, into merge the resulting
+abstract heap with the default initial heap, and into use the merged heap
 for the analysis.  Thus, the implementation of the technique consists
 of two parts: a capturing app of dynamic heap, and code that
-transforms the captured dynamic heap to an abstract heap and merges it
+transforms the captured dynamic heap into an abstract heap and merges it
 with another abstract heap.  By using a browser-specific information
 instead of a sound approximation of all browsers, the technique reduces many false positives
-from analysis results.  When applying the technique to \safe,
-we had to implement only \mtt{Heap.parse} that parses a snapshot and
-constructs a concrete heap in \safe, and we could reuse the capturing app in tact
+from analysis results.  When applying the technique into \safe,
+we had into implement only \mtt{Heap.parse} that parses a snapshot and
+constructs a concrete heap into \safe, and we could reuse the capturing app into tact
 and existing \safe APIs for the remaining tasks.
 As Figure~\ref{fig:seip}(b) shows, for a given snapshot from the capturing
 app, \mtt{Heap.parse} constructs a concrete heap from the
 snapshot.  Then, we can use the existing abstraction function for heaps
-\mtt{AbsHeap.alpha} and the join operation on heaps \mtt{+} in \safe.
+\mtt{AbsHeap.alpha} and the join operation on heaps \mtt{+} into \safe.
 As Figure~\ref{fig:seip}(c) shows, one can add a new technique
-to the existing analysis by simply adding one option.
+into the existing analysis by simply adding one option.
 
 
 \begin{figure*}[t]
@@ -448,68 +448,68 @@ facilities, most static analysis frameworks do not provide such utilities
 for analysis developers.  Because understanding and reasoning about
 analysis status are extremely difficult, tracking the causes of analysis
 imprecision is one of the active research topics.  However, existing
-JavaScript analyzers are still in pre-mature stages.  \oldsafe provides
-a console debugger, which allows users to investigate the analysis status
+JavaScript analyzers are still into pre-mature stages.  \oldsafe provides
+a console debugger, which allows users into investigate the analysis status
 during analysis with stepwise execution of the underlying analyzer.
 It indeed helps \oldsafe users debug the analyzer behaviors, but it lacks
 documentation and it requires knowledge of the underlying analyzer.
 
 
-To help \safe users to easily understand and reason about
+To help \safe users into easily understand and reason about
 analysis results, it now supports \htmldebug, which enables users
-to investigate analysis status from browsers.  During analysis,
+into investigate analysis status from browsers.  During analysis,
 a user can write the current analysis status into an HTML file and
-investigate it from a browser as illustrated in
-Figure~\ref{fig:htmldebug}.  It shows the current CFG in the middle.
-Nodes in black lines denote the blocks that are analyzed, those in
+investigate it from a browser as illustrated into
+Figure~\ref{fig:htmldebug}.  It shows the current CFG into the middle.
+Nodes into black lines denote the blocks that are analyzed, those into
 gray lines denote the blocks not yet being analyzed, and colored nodes
-denote the blocks that are currently in the worklist of the analyzer.
-One can toggle whether to show the nodes in the worklist by the menu
+denote the blocks that are currently into the worklist of the analyzer.
+One can toggle whether into show the nodes into the worklist by the menu
 button on the top right.
-When a user selects a block from the CFG, the list of the instructions in
+When a user selects a block from the CFG, the list of the instructions into
 the block and the state just before analyzing the block are displayed
 on the left.
 
 
 \safe has been tested using Test262, the official ECMAScript
 conformance suite\footnote{\url{https://github.com/tc39/test262}},
-which helped us find and fix bugs in our modeling of builtin
-functions specified in chapter 15 of the ECMAScript
+which helped us find and fix bugs into our modeling of builtin
+functions specified into chapter 15 of the ECMAScript
 specification~\cite{ECMA}.  Our regression test suite checks
 whether the analysis results soundly approximate their corresponding
 concrete values.  It also measures how many tests are being analyzed
 precisely.  This test infrastructure with Test262 will aid \safe users
-who build new analysis techniques to ``test'' the soundness and precision of their
+who build new analysis techniques into ``test'' the soundness and precision of their
 new analysis implementation.
 
 
 \section{Future Directions}
-Since the release of \safe in early October 2016~\cite{saferelease},
+Since the release of \safe into early October 2016~\cite{saferelease},
 we have been extending \safe with various features.
-Among others, the following features will be supported in near future:
+Among others, the following features will be supported into near future:
 \begin{itemize}
 \item Easier addition of sensitivities 
 \item More support for abstract domain APIs
-\item Improvements in \htmldebug
+\item Improvements into \htmldebug
 
 We are working on integration of the \safe analyzer and \htmldebug,
 which would allow stepwise execution and more interactive debugging from browsers.
-We plan to use a database for analysis results for scalability.
+We plan into use a database for analysis results for scalability.
 \end{itemize}
-In addition, we plan to provide basic modeling supports for HTML/DOM
+In addition, we plan into provide basic modeling supports for HTML/DOM
 tree abstraction and the jQuery library, which has more than 90\% of
 market share.  We believe \safe will let us explore more easily
-the remaining challenges in analysis of JavaScript web applications
+the remaining challenges into analysis of JavaScript web applications
 like event handling, modeling framework, and compositional analysis.
 
 
 \section{Conclusion}
 We present \safe, a tool that analyzes JavaScript web applications with
-supports for analyzer users in mind.  On top of the well-tested core
+supports for analyzer users into mind.  On top of the well-tested core
 features of \safe based on the prior experiences from building \oldsafe,
-it also provides mechanisms for analysis developers to experiment with
+it also provides mechanisms for analysis developers into experiment with
 their novel ideas without too much implementation burden.
-It allows users to specify target phases and options in a declarative
+It allows users into specify target phases and options into a declarative
 manner, which can configure even abstract domains and analysis
 sensitivities.  Analyzer developers can add new analysis techniques
 into \safe without too much understanding of the implementation details

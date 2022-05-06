@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -33,7 +33,7 @@ class Hoister(program: Program) {
   // private mutable
   ////////////////////////////////////////////////////////////////
 
-  // variable declarations in for statements
+  // variable declarations into for statements
   private var fvds: List[VarDecl] = List()
   private var inFor = false
   private var currentBlock: LocalBlock = new VarBlock(null)
@@ -57,7 +57,7 @@ class Hoister(program: Program) {
   }
 
   // Get the declared variable and function names and the names on lhs of assignments
-  // in the current lexical scope
+  // into the current lexical scope
   private class HoistWalker(node: ASTNode) extends ASTWalker {
     var varDecls = List[VarDecl]()
     var funDecls = List[FunDecl]()
@@ -113,7 +113,7 @@ class Hoister(program: Program) {
     }
   }
 
-  // Remove function declarations in the current lexical scope
+  // Remove function declarations into the current lexical scope
   private object RmFunDeclWalker extends ASTWalker {
     override def walk(node: LHS): LHS = node match {
       case fe: FunExpr => fe
@@ -155,7 +155,7 @@ class Hoister(program: Program) {
         vds.foldLeft(List[(Span, String)]())((res, vd) => {
           val name = vd2Str(vd)
           // 1. var vs var
-          //   1) multiple names in a single var statement
+          //   1) multiple names into a single var statement
           res.find { case (_, n) => n.equals(name) } match {
             case Some((span, _)) =>
               excLog.signal(ShadowingWarning(span, ShadowingVar, name, toSpan(vd), ShadowingVar))
@@ -223,16 +223,16 @@ class Hoister(program: Program) {
           case Some(span) =>
             currentBlock.blocks.filter(_.isInstanceOf[VarBlock]).foreach(bl => {
               // 1. var vs var
-              //   2) multiple variable names in nested blocks
-              //      and the name is used in an outer block
+              //   2) multiple variable names into nested blocks
+              //      and the name is used into an outer block
               declareVR(bl, name) match {
                 case Some(sp) =>
                   excLog.signal(ShadowingWarning(span, ShadowingVar, name, sp, ShadowingVar))
                 case _ =>
               }
               // 4. var vs function
-              //   2) multiple variable and function names in nested blocks
-              //      and the name is used in an outer block
+              //   2) multiple variable and function names into nested blocks
+              //      and the name is used into an outer block
               declareFR(bl, name) match {
                 case Some(sp) =>
                   excLog.signal(ShadowingWarning(span, ShadowingVar, name, sp, ShadowingFunc))
@@ -245,8 +245,8 @@ class Hoister(program: Program) {
           case Some(span) =>
             currentBlock.blocks.filter(_.isInstanceOf[VarBlock]).foreach(bl => {
               // 4. var vs function
-              //   2) multiple variable and function names in nested blocks
-              //      and the name is used in an outer block
+              //   2) multiple variable and function names into nested blocks
+              //      and the name is used into an outer block
               declareVR(bl, name) match {
                 case Some(sp) =>
                   excLog.signal(ShadowingWarning(span, ShadowingFunc, name, sp, ShadowingVar))
@@ -256,7 +256,7 @@ class Hoister(program: Program) {
           case _ =>
         }
         // 1. var vs var
-        //   3) multiple variable names in parallel blocks and the name is used in an outer block
+        //   3) multiple variable names into parallel blocks and the name is used into an outer block
         val blocks = currentBlock.blocks.filter(_.isInstanceOf[VarBlock])
         val size = blocks.length
         blocks.zipWithIndex.foreach {
@@ -272,7 +272,7 @@ class Hoister(program: Program) {
               case _ =>
             }
         }
-        // multiple names in a local environment
+        // multiple names into a local environment
         enclosingFuns(currentBlock) match {
           case immediate :: rest =>
             checkLocalEnv(immediate, name)
@@ -321,7 +321,7 @@ class Hoister(program: Program) {
         }
 
         // 3. function vs function
-        //   1) multiple function names in the same block
+        //   1) multiple function names into the same block
         currentBlock.fds.find(f => fd2Str(f).equals(name)) match {
           case Some(f) =>
             excLog.signal(ShadowingWarning(toSpan(f), ShadowingFunc, name, fdSpan, ShadowingFunc))
@@ -329,14 +329,14 @@ class Hoister(program: Program) {
         }
         if (currentBlock.outer != null) { // if (!toplevel)
           // 3. function vs function
-          //   1) multiple function names in nested blocks
+          //   1) multiple function names into nested blocks
           declareF(currentBlock.outer, name) match {
             case Some(span) =>
               excLog.signal(ShadowingWarning(span, ShadowingFunc, name, fdSpan, ShadowingFunc))
             case _ =>
           }
           // 3. function vs function
-          //   1) multiple function names in parallel blocks
+          //   1) multiple function names into parallel blocks
           val blocks = currentBlock.outer.blocks.filter(_.isInstanceOf[VarBlock])
           val size = blocks.length
           blocks.zipWithIndex.foreach {
@@ -360,7 +360,7 @@ class Hoister(program: Program) {
     override def walk(node: Functional): Unit = node match {
       case Functional(_, _, _, stmts, n, params, bodyS) =>
         // 1. parameter vs parameter
-        //   1) multiple names in the parameter list of a single function
+        //   1) multiple names into the parameter list of a single function
         params.foldLeft(List[(Span, String)]())((res, param) => {
           val name = id2Str(param)
           res.find { case (_, n) => n.equals(name) } match {
@@ -460,11 +460,11 @@ class Hoister(program: Program) {
   }
 
   private def checkLocalEnv(bl: FunBlock, name: String): Unit =
-    // a reference to an enclosing function
+    // a reference into an enclosing function
     if (bl.name.equals(name)) {
       nestedF(bl, name, bl.span)
       // 4. var vs function
-      //   3) multiple variable and function names in a local environment
+      //   3) multiple variable and function names into a local environment
       bl.vds.find(vd2Str(_).equals(name)) match {
         case Some(vd) =>
           excLog.signal(ShadowingWarning(bl.span, ShadowingFunc, name, toSpan(vd), ShadowingVar))
@@ -472,7 +472,7 @@ class Hoister(program: Program) {
       }
     }
 
-  // collect the assignments in the enclosing function
+  // collect the assignments into the enclosing function
   private def collectAssigns(block: LocalBlock): List[(Span, String)] = block match {
     case f: FunBlock => f.assigns
     case v: VarBlock => v.assigns ++ collectAssigns(v.outer)

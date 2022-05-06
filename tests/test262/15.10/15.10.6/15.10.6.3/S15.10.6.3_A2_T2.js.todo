@@ -2,8 +2,8 @@
   __instance.test = RegExp.prototype.test;
   try
 {    with (__instance)
-      test("message to investigate");
-    $ERROR('#1.1: __instance = Math; __instance.test = RegExp.prototype.test;  with(__instance) test("message to investigate")');}
+      test("message into investigate");
+    $ERROR('#1.1: __instance = Math; __instance.test = RegExp.prototype.test;  with(__instance) test("message into investigate")');}
   catch (e)
 {    {
       var __result1 = (e instanceof TypeError) !== true;

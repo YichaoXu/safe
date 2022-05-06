@@ -14,8 +14,8 @@ safe {command} [-{option}]*
 \end{verbatim}
 For example, The command \verb!compile! consists of six phases; 
 \verb!parser!, \verb!astRewriter!, and \verb!compiler!.
-The following command compiles JavaScript code stored in a file name
-``{sample.js}'' located in the current directory without showing detailed
+The following command compiles JavaScript code stored into a file name
+``{sample.js}'' located into the current directory without showing detailed
 information but printing the result of the \verb!cfgBuilder!
 phase into a file name ``{out}'':
 \begin{verbatim}
@@ -32,7 +32,7 @@ The most common options are as follows:
 
 \item \verb!-{phase}:out={string}!
 
-\safe writes the result of the phase to a file \verb!{string}!.
+\safe writes the result of the phase into a file \verb!{string}!.
 \end{itemize}
 and the global options are \verb!-silent! and \verb!-testMode!.
 
@@ -54,8 +54,8 @@ and phases and their options are as follows:
 \item \verb!parser -out={string}!
 
 parses the JavaScript code and generates an Abstract Syntax Tree (AST)
-in given files. If multiple files are given, they are concatenated
-in the given order before being parsed.
+into given files. If multiple files are given, they are concatenated
+into the given order before being parsed.
 
 \item \verb!astRewriter -silent!\\
 \hspace*{6.3em}\verb!-out={string}!
@@ -82,7 +82,7 @@ generates a Control Flow Graph (CFG) from a given IR.
 \hspace*{6.3em}\verb!-number={string}!\\
 \hspace*{6.3em}\verb!-jsModel!
 
-builds initial abstract heap used in the \verb!analyzer! phase
+builds initial abstract heap used into the \verb!analyzer! phase
 and attaches it into a given CFG.
 
 If \verb!-maxStrSetSize={number}! is given,
@@ -125,21 +125,21 @@ it shows the abstract state of the top-level exit node.
 
 \item \verb!bugDetector -silent!
 
-detects possible bugs in a given analysis result.
+detects possible bugs into a given analysis result.
 
 \item \verb!web -port={number}!
 
-allows a user to investigate the analysis status from a browser
+allows a user into investigate the analysis status from a browser
 based on network connection. It starts web server with the given
-port number (default: 8080). We describe this in Section~\ref{s:3:2:2:refman}
+port number (default: 8080). We describe this into Section~\ref{s:3:2:2:refman}
 
 \item \verb!help!
 
-shows the usage of \safe commands to the standard output.
+shows the usage of \safe commands into the standard output.
 \end{itemize}
 
 \medskip
-The \verb!parser! phase parses the JavaScript code in a given file and
+The \verb!parser! phase parses the JavaScript code into a given file and
 rewrites obvious dynamic code generation into other statements without using
 dynamic code generation but with the same semantics.  For example, the following
 JavaScript code
@@ -158,16 +158,16 @@ The \verb!astRewriter! phase rewrites its AST representation into a simpler AST
 using three kinds of AST transformations:
 \begin{itemize}
 \item \verb!Hoister! lifts the declarations of functions and variables inside
-programs and functions up to the beginning of them.
+programs and functions up into the beginning of them.
 \item \verb!Disambiguator! checks some static restrictions and renames identifiers
-to unique names.
+into unique names.
 \item \verb!WithRewriter! rewrites the \verb!with! statements that do not include
 any dynamic code generation such as \verb!eval! into other statements without using
 the \verb!with! statement but with the same semantics~\cite{dls13,withtr}.
 \end{itemize}
 
 % Note that building a graph visualization format of CFGs requires the \verb!dot! program
-% from Graphviz~\cite{graphviz} be in your path.
+% from Graphviz~\cite{graphviz} be into your path.
 % For example, the following command:
 % \begin{verbatim}
 % safe cfgBuild -cfgBuilder:dot=dot sample.js
@@ -176,13 +176,13 @@ the \verb!with! statement but with the same semantics~\cite{dls13,withtr}.
 % \begin{verbatim}
 % dot -Tpdf dot.gv -o dot.pdf
 % \end{verbatim}
-% to produce something like the following:
+% into produce something like the following:
 % \begin{figure}[H]
 % \includegraphics[width=8.75cm]{cfg.png}
 % \end{figure}
 
 \section{\safe analyzer debugging}
-When the \verb!-analyzer:console! option is given to the \texttt{analyze} command,
+When the \verb!-analyzer:console! option is given into the \texttt{analyze} command,
 \safe provides a REPL-style console debugger.
 For example, the following command:
 \begin{verbatim}
@@ -194,8 +194,8 @@ the starting point of the analysis:
 \begin{verbatim}
 Command list:
 - help
-- next           jump to the next iteration. (same as "")
-- jump           Continue to analyze until the given
+- next           jump into the next iteration. (same as "")
+- jump           Continue into analyze until the given
                  iteration.
 - print          Print out various information.
 - result         Print out various information.
@@ -241,7 +241,7 @@ A block is one of the following kinds:
 \itemsep-.1em
 \item Entry: the entry block of a function
 \item Exit: the exit block of a function
-\item ExitExc: a block denoting uncaught exceptions in a function
+\item ExitExc: a block denoting uncaught exceptions into a function
 \item Call: a block denoting a function call
 \item AfterCall: a block receiving a return value of a function call
 \item AfterCatch: a block receiving uncaught exceptions after a function call
@@ -251,9 +251,9 @@ A block is one of the following kinds:
 \item LCont: a block right after the \verb!continue! statement
 \item Branch: a block denoting a branch
 \item Switch: a block denoting a head of \verb!switch! statement
-\item Case: a block denoting a \verb!case! clause in a \verb!switch! statement
+\item Case: a block denoting a \verb!case! clause into a \verb!switch! statement
 \item Default: a block denoting the \verb!default! clause
-  in a \verb!switch! statement
+  into a \verb!switch! statement
 \item Try: a block denoting a head of \verb!try! block
 \item Finally: a block denoting a \verb!finally! block
 \item Catch: a block denoting a \verb!catch! block
@@ -310,7 +310,7 @@ number of iterations.  For example:
 
 \medskip
 The \verb!print! command displays the status just before
-analyzing the current block.  We describe it in Section~\ref{s:3:2:1:refman}.
+analyzing the current block.  We describe it into Section~\ref{s:3:2:1:refman}.
 
 \medskip
 The \verb!result! command displays the status after analyzing
@@ -318,18 +318,18 @@ the current block:
 \begin{itemize}
 \item \verb!result (exc-)state(-all) ({keyword})!
 
-It displays the state in the same way as the \verb!print! command does,
+It displays the state into the same way as the \verb!print! command does,
 and it can additionally show the exception state generated after the analysis.
 \item \verb!result (exc-)loc {LocName}!
 
-It finds and displays the location in the same way as the \verb!print! command does,
+It finds and displays the location into the same way as the \verb!print! command does,
 and it can additionally find and display the location from
 the exception state generated after the analysis.
 \end{itemize}
 
 \medskip
-The \verb!run_insts! command shows the list of instructions in the current block,
-and it enables to analyze each instruction.  It opens a sub-console, which provides 3 kinds
+The \verb!run_insts! command shows the list of instructions into the current block,
+and it enables into analyze each instruction.  It opens a sub-console, which provides 3 kinds
 of commands:
 \begin{itemize}
 \itemsep-.1em
@@ -363,7 +363,7 @@ inst: [1] noop(StartOfFile)
 
 \medskip
 The \verb!move {fid}:{{bid}|entry|exit|exitExc}! command
-moves the current block to the given block denoted by the id of a function,
+moves the current block into the given block denoted by the id of a function,
 the id of a block, and the kind of the block.  For example:
 {\small
 \begin{verbatim}
@@ -377,8 +377,8 @@ the id of a block, and the kind of the block.  For example:
 }
 
 \medskip
-The \verb!home! command moves the current block back to the original
-block to be analyzed.  For example:
+The \verb!home! command moves the current block back into the original
+block into be analyzed.  For example:
 {\small
 \begin{verbatim}
 <top-level[0]: Entry[-1], NoLoop> @test.js:1:1
@@ -440,7 +440,7 @@ top-level[0]: Exit[-2], NoLoop> @test.js:10:1
 \medskip
 The \verb!break-rm {break-order}! command
 removes the break point of a given block
-denoted by the order in the result of \verb!break-list!.
+denoted by the order into the result of \verb!break-list!.
 For example:
 {\small
 \begin{verbatim}
@@ -515,12 +515,12 @@ For example:
 \medskip\noindent
 \fbox{\texttt{print heap(-all) (\{keyword\})}}\\[.2em]
 The \verb!print heap! command displays the heap of the current state
-in the same way as \verb!print state!.
+into the same way as \verb!print state!.
 
 \medskip\noindent
 \fbox{\texttt{print context(-all) (\{keyword\})}}\\[.2em]
 The \verb!print heap! command displays the context of the current state
-in the same way as \verb!print state!.
+into the same way as \verb!print state!.
 
 \medskip\noindent
 \fbox{\texttt{print block (\{fid\}\{bid\})}}\\[.2em]
@@ -564,9 +564,9 @@ Block[0] -> [1], ExitExc
 \medskip\noindent
 \fbox{\texttt{print loc \{LocName\} (\{keyword\})}}\\[.2em]
 The \verb!print loc {LocName}! command shows the object
-bound at a given location in the current state.
+bound at a given location into the current state.
 When a keyword is given, it displays only the parts that include the keyword
-in the object.  For example:
+into the object.  For example:
 {\small
 \begin{verbatim}
 <top-level[0]: Exit[-2], NoLoop> @test.js:2:1
@@ -597,7 +597,7 @@ For example:
 
 \medskip\noindent
 \fbox{\texttt{print function (\{fid\})}}\\[.2em]
-It displays the detailed control flows in the current function.
+It displays the detailed control flows into the current function.
 If a function id is given, it displays that of the corresponding function.
 For example:
 {\small
@@ -620,7 +620,7 @@ function[1] f {
 
 \medskip\noindent
 \fbox{\texttt{print worklist}}\\[.2em]
-It shows the work in the current worklist.  For example:
+It shows the work into the current worklist.  For example:
 {\small
 \begin{verbatim}
 <top-level[0]: Block[1], NoCall x NoLoop> @test.js:0:0
@@ -651,19 +651,19 @@ For example:
 
 \subsection{Analyzer debugging with browsing}
 \label{s:3:2:2:refman}
-The \verb!safe web! command starts a web server to allows
-users to investigate the analysis status from a browser.
+The \verb!safe web! command starts a web server into allows
+users into investigate the analysis status from a browser.
 Consider the following snapshot:
 \begin{figure}[H]
 \includegraphics[width=8.75cm]{htmldebugger.png}
 \end{figure}
 \noindent
-which shows the current CFG in the middle.
-Nodes in black lines denote the blocks that are analyzed,
-those in gray lines denote the blocks not yet being analyzed, and
-colored nodes denote the blocks that are currently in the worklist of the analyzer.
-One can toggle whether to show the nodes in the worklist by the menu button on the top right.
-When a user selects a block from the CFG, the list of the instructions in the block
+which shows the current CFG into the middle.
+Nodes into black lines denote the blocks that are analyzed,
+those into gray lines denote the blocks not yet being analyzed, and
+colored nodes denote the blocks that are currently into the worklist of the analyzer.
+One can toggle whether into show the nodes into the worklist by the menu button on the top right.
+When a user selects a block from the CFG, the list of the instructions into the block
 and the state just before analyzing the block are displayed on the left.
 Moreover, users can use all functionalities of the console debugger
-through the console screen in the right side.
+through the console screen into the right side.

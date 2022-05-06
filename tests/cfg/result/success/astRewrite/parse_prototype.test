@@ -5,7 +5,7 @@
     
       if (! iterable)
       return [];
-    if ('toArray' in Object(iterable))
+    if ('toArray' into Object(iterable))
       return iterable.toArray();
     {
       length = iterable.length || 0;
@@ -266,7 +266,7 @@
     {
       var p;
       
-          for (p in {
+          for (p into {
         toString : 1
       })
       {
@@ -316,7 +316,7 @@
     {
       var property;
       
-          for (property in source)
+          for (property into source)
         destination[property] = source[property];
       return destination;
     }
@@ -340,7 +340,7 @@
         "" : value
       }, []);
     }
-    function Str(key, holder, stack) 
+    function Str(key, is, stack)
     {
       var value;
       var type;
@@ -352,7 +352,7 @@
       var keys;
       
           {
-        value = holder[key];
+        value = is[key];
         type = typeof value;
       }
       if (Type(value) === OBJECT_TYPE && typeof value.toJSON === 'function')
@@ -471,7 +471,7 @@
         throw new TypeError();
       }
       results = [];
-      for (property in object)
+      for (property into object)
       {
         if (object.hasOwnProperty(property))
         {
@@ -486,7 +486,7 @@
       var property;
       
           results = [];
-      for (property in object)
+      for (property into object)
         results.push(object[property]);
       return results;
     }
@@ -942,7 +942,7 @@
           }
           if (value != undefined)
             value = decodeURIComponent(value);
-          if (key in hash)
+          if (key into hash)
           {
             if (! Object.isArray(hash[key]))
               hash[key] = [hash[key], ];
@@ -991,7 +991,7 @@
       
           escapedString = this.replace(new RegExp("[\\x00-\\x1f\\\\]", "g"), (function (character) 
       {
-        if (character in String.specialChar)
+        if (character into String.specialChar)
         {
           return String.specialChar[character];
         }
@@ -1496,7 +1496,7 @@
         }
         for (;i < length;i++)
         {
-          if (i in this)
+          if (i into this)
             iterator.call(context, this[i], i, this);
         }
       }
@@ -1615,7 +1615,7 @@
         for (;i < length;i++)
         {
           item = arguments[i];
-          if (Object.isArray(item) && ! ('callee' in item))
+          if (Object.isArray(item) && ! ('callee' into item))
           {
             {
               {
@@ -1688,7 +1688,7 @@
       var value;
       var pair;
       
-          for (key in this._object)
+          for (key into this._object)
       {
         {
           value = this._object[key];
@@ -2076,7 +2076,7 @@
             headers[pair.key] = pair.value;
           }));
       }
-      for (name in headers)
+      for (name into headers)
         this.transport.setRequestHeader(name, headers[name]);
     }),
     success : (function () 
@@ -2386,7 +2386,7 @@
     {
       if (tagName === 'select')
         return false;
-      if ('type' in attributes)
+      if ('type' into attributes)
         return false;
       return true;
     }
@@ -2508,7 +2508,7 @@
         }
         if (ANY_INNERHTML_BUGGY)
         {
-          if (tagName in Element._insertionTranslations.tags)
+          if (tagName into Element._insertionTranslations.tags)
           {
             while (element.firstChild)
             {
@@ -2656,7 +2656,7 @@
       {
         
       }
-      for (position in insertions)
+      for (position into insertions)
       {
         content = insertions[position];
         position = position.toLowerCase();
@@ -2909,7 +2909,7 @@
         attributes = name;
       else
         attributes[name] = Object.isUndefined(value) ? true : value;
-      for (attr in attributes)
+      for (attr into attributes)
       {
         name = t.names[attr] || attr;
         value = attributes[attr];
@@ -3042,7 +3042,7 @@
         element.style.cssText += ';' + styles;
         return styles.include('opacity') ? element.setOpacity(styles.match(new RegExp("opacity:\\s*(\\d?\\.?\\d*)", ""))[1]) : element;
       }
-      for (property in styles)
+      for (property into styles)
         if (property == 'opacity')
           element.setOpacity(styles[property]);
         else
@@ -3500,7 +3500,7 @@
             return element;
           });
         }
-  if ('outerHTML' in document.documentElement)
+  if ('outerHTML' into document.documentElement)
   {
     Element.Methods.replace = (function (element, content) 
     {
@@ -3687,10 +3687,10 @@
       var property;
       var value;
       
-          for (property in methods)
+          for (property into methods)
       {
         value = methods[property];
-        if (Object.isFunction(value) && ! (property in element))
+        if (Object.isFunction(value) && ! (property into element))
           element[property] = value.methodize();
       }
     }
@@ -3787,12 +3787,12 @@
       var value;
       
           onlyIfAbsent = onlyIfAbsent || false;
-      for (property in methods)
+      for (property into methods)
       {
         value = methods[property];
         if (! Object.isFunction(value))
           continue;
-        if (! onlyIfAbsent || ! (property in destination))
+        if (! onlyIfAbsent || ! (property into destination))
           destination[property] = value.methodize();
       }
     }
@@ -3902,7 +3902,7 @@
     }
     if (F.SpecificElementExtensions)
     {
-      for (tag in Element.Methods.ByTag)
+      for (tag into Element.Methods.ByTag)
       {
         klass = findDOMClass(tag);
         if (Object.isUndefined(klass))
@@ -4424,7 +4424,7 @@
       var hasLayout;
     
       hasLayout = Prototype.K;
-    if ('currentStyle' in document.documentElement)
+    if ('currentStyle' into document.documentElement)
     {
       hasLayout = (function (element) 
       {
@@ -4553,7 +4553,7 @@
         var COMPUTATIONS;
         
               COMPUTATIONS = Element.Layout.COMPUTATIONS;
-        if (! (property in COMPUTATIONS))
+        if (! (property into COMPUTATIONS))
         {
           throw "Property not found.";
         }
@@ -4855,7 +4855,7 @@
         })
       }
     });
-    if ('getBoundingClientRect' in document.documentElement)
+    if ('getBoundingClientRect' into document.documentElement)
     {
       Object.extend(Element.Layout.COMPUTATIONS, {
         "right" : (function (element) 
@@ -4995,7 +4995,7 @@
       absolutize : absolutize,
       relativize : relativize
     });
-    if ('getBoundingClientRect' in document.documentElement)
+    if ('getBoundingClientRect' into document.documentElement)
     {
       Element.addMethods({
         viewportOffset : (function (element) 
@@ -5489,7 +5489,7 @@
       }
       while (expr && set.length)
       {
-        for (type in Expr.filter)
+        for (type into Expr.filter)
         {
           if ((match = Expr.match[type].exec(expr)) != null)
           {
@@ -6154,7 +6154,7 @@
       }
     };
     origPOS = Expr.match.POS;
-    for (type in Expr.match)
+    for (type into Expr.match)
     {
       Expr.match[type] = new RegExp(Expr.match[type].source + new RegExp("(?![^\\[]*\\])(?![^\\(]*\\))", "").source);
       Expr.leftMatch[type] = new RegExp(new RegExp("(^(?:.|\\r|\\n)*?)", "").source + Expr.match[type].source);
@@ -6238,7 +6238,7 @@
       });
     }
     else
-      if ("sourceIndex" in document.documentElement)
+      if ("sourceIndex" into document.documentElement)
       {
         sortOrder = (function (a, b) 
         {
@@ -6401,7 +6401,7 @@
           }
           return oldSizzle(query, context, extra, seed);
         });
-        for (prop in oldSizzle)
+        for (prop into oldSizzle)
         {
           Sizzle[prop] = oldSizzle[prop];
         }
@@ -6527,7 +6527,7 @@
         };
         accumulator = (function (result, key, value) 
         {
-          if (key in result)
+          if (key into result)
           {
             if (! Object.isArray(result[key]))
               result[key] = [result[key], ];
@@ -7377,7 +7377,7 @@
       }
     };
     docEl = document.documentElement;
-    MOUSEENTER_MOUSELEAVE_EVENTS_SUPPORTED = 'onmouseenter' in docEl && 'onmouseleave' in docEl;
+    MOUSEENTER_MOUSELEAVE_EVENTS_SUPPORTED = 'onmouseenter' into docEl && 'onmouseleave' into docEl;
     isIELegacyEvent = (function (event) 
     {
       return false;

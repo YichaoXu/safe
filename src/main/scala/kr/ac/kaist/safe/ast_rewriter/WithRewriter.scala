@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -17,7 +17,7 @@ import kr.ac.kaist.safe.nodes.ast._
 import kr.ac.kaist.safe.util.{ NodeUtil => NU, Span }
 
 /* Rewrites a JavaScript source code using the with statement
- * to another one without using the with statement.
+ * into another one without using the with statement.
  */
 class WithRewriter(program: Program, forTest: Boolean) {
   ////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
     }
     def toObjectId(info: ASTNodeInfo): Id = Id(info, NU.INTERNAL_TO_OBJ, Some(NU.INTERNAL_TO_OBJ), false)
     def assignOp(info: ASTNodeInfo): Op = Op(info, "=")
-    def inOp(info: ASTNodeInfo): Op = Op(info, "in")
+    def inOp(info: ASTNodeInfo): Op = Op(info, "into")
     def paren(expr: Expr): Parenthesized = Parenthesized(expr.info, expr)
     def splitNames(names: List[List[String]]): (List[String], List[List[String]]) = names match {
       case hd :: tl => (hd, tl)
@@ -214,7 +214,7 @@ class WithRewriter(program: Program, forTest: Boolean) {
        *   If Gamma = EmptyEnv
        *   Then alpha = toObject(rewriteE[|e | Gamma|]);
        *        rewriteS[|s | <alpha, [], false>|]
-       *   Else Let Gamma = ConsEnv(phi, varphi, beta> where alpha \not\in phi
+       *   Else Let Gamma = ConsEnv(phi, varphi, beta> where alpha \not\into phi
        *        alpha = toObject(rewriteE[|e | Gamma|]);
        *        rewriteS[|s | <phi alpha, varphi, beta>|]
        */

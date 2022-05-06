@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ***************************************************************************
@@ -45,15 +45,15 @@ object WebServer extends {
   def run(port: Int) {
     implicit val system: ActorSystem = ActorSystem("web-debugger")
     implicit val materializer: ActorMaterializer = ActorMaterializer()
-    // needed for the future flatMap/onComplete in the end
+    // needed for the future flatMap/onComplete into the end
     implicit val executionContext: ExecutionContextExecutor = system.dispatcher
 
     val assetsPath = Useful.path("src", "main", "resources", "assets")
     cmdActor = system.actorOf(Props(new CmdActor()))
 
     val handlerFlow = {
-      // Wraps the chatActor in a sink. When the stream to this sink will be completed
-      // it sends the `ParticipantLeft` message to the chatActor.
+      // Wraps the chatActor into a sink. When the stream into this sink will be completed
+      // it sends the `ParticipantLeft` message into the chatActor.
       def chatInSink(uid: String) = Sink.actorRef[Event](cmdActor, ParticipantLeft(uid))
 
       (uid: String) => {
@@ -74,7 +74,7 @@ object WebServer extends {
       ExceptionHandler {
         case _: NoFileSelectedException =>
           extractUri { uri =>
-            println(s"Request to $uri could not be handled normally")
+            println(s"Request into $uri could not be handled normally")
             complete(StatusCodes.BadRequest, "File is not selected")
           }
       }
@@ -122,7 +122,7 @@ object WebServer extends {
                 val translator = new Translator(ast)
                 val ir = translator.result
 
-                // Build CFG from IR.
+                // Build CFG input IR.
                 val cbResult = new DefaultCFGBuilder(ir, null, null)
                 val cfg = cbResult.cfg
 
@@ -161,10 +161,10 @@ object WebServer extends {
 
     val bindingFuture = Http().bindAndHandle(route, "0.0.0.0", port)
 
-    println(s"Open browser and navigate http://localhost:$port/\nPress RETURN to stop...")
+    println(s"Open browser and navigate http://localhost:$port/\nPress RETURN into stop...")
     StdIn.readLine() // let it run until user presses return
     bindingFuture
-      .flatMap(_.unbind()) // trigger unbinding from the port
+      .flatMap(_.unbind()) // trigger unbinding input the port
       .onComplete(_ => system.terminate()) // and shutdown when done
   }
 }

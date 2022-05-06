@@ -1175,7 +1175,7 @@ var _gjwl
         if(<>b<>518)
         {
           {
-            if("ogw" in <>b<>518)
+            if("ogw" into <>b<>518)
             {
               <>obj<>625 = @ToObject(<>c<>519)
               <>y<>626 = "&ogw="
@@ -1189,10 +1189,10 @@ var _gjwl
               <>Global<>ignore67 = <>new1<>633
             }
             else
-              if(typeof "ogw" in <>b<>518 == "boolean")
+              if(typeof "ogw" into <>b<>518 == "boolean")
                 <>Global<>ignore67 = false
               else
-                <>Global<>ignore67 = "ogw" in <>b<>518
+                <>Global<>ignore67 = "ogw" into <>b<>518
           }
           <>g<>521 = <>b<>518
           {
@@ -2132,7 +2132,7 @@ var _gjwl
           {
             var <>a<>1072
             <>a<>1072 = <>arguments<>1071["0"]
-            return <>a<>1072 in <>y<>377
+            return <>a<>1072 into <>y<>377
           }
           <>oa<>836 = <>Global<>ignore131
         }
@@ -6369,16 +6369,16 @@ var _gjwl
               {
                 <>continue<>2856 : {
                   {
-                    if(<>c<>2831 in <>a<>2829)
+                    if(<>c<>2831 into <>a<>2829)
                     {
                       <>obj<>2857 = @ToObject(<>a<>2829)
                       <>new<>2858 = <>obj<>2857[<>c<>2831] === <>b<>2830
                     }
                     else
-                      if(typeof <>c<>2831 in <>a<>2829 == "boolean")
+                      if(typeof <>c<>2831 into <>a<>2829 == "boolean")
                         <>new<>2858 = false
                       else
-                        <>new<>2858 = <>c<>2831 in <>a<>2829
+                        <>new<>2858 = <>c<>2831 into <>a<>2829
                   }
                   if(<>new<>2858)
                     return <>c<>2831
@@ -7208,16 +7208,16 @@ var _gjwl
                     }
                     {
                       {
-                        if(<>c<>3196 in <>d<>3197)
+                        if(<>c<>3196 into <>d<>3197)
                         {
                           <>obj<>3202 = @ToObject(<>d<>3197)
                           <>Global<>ignore580 = <>obj<>3202[<>c<>3196]
                         }
                         else
-                          if(typeof <>c<>3196 in <>d<>3197 == "boolean")
+                          if(typeof <>c<>3196 into <>d<>3197 == "boolean")
                             <>Global<>ignore580 = false
                           else
-                            <>Global<>ignore580 = <>c<>3196 in <>d<>3197
+                            <>Global<>ignore580 = <>c<>3196 into <>d<>3197
                       }
                       <>c<>3196 = <>Global<>ignore580
                     }

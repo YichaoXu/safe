@@ -5,7 +5,7 @@
 /// copyright and this notice and otherwise comply with the Use Terms.
 /**
  * @path ch12/12.2/12.2.1/12.2.1-18-s.js
- * @description A direct eval declaring a var named 'arguments' throws SyntaxError in strict mode
+ * @description A direct eval declaring a var named 'arguments' throws SyntaxError into strict mode
  * @onlyStrict
  */
 

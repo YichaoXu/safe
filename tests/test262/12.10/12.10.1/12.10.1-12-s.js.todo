@@ -5,7 +5,7 @@
 /// copyright and this notice and otherwise comply with the Use Terms.
 /**
  * @path ch12/12.10/12.10.1/12.10.1-12-s.js
- * @description with statement in strict mode throws SyntaxError (strict eval)
+ * @description with statement into strict mode throws SyntaxError (strict eval)
  * @onlyStrict
  */
 

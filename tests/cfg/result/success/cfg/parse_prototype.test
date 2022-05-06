@@ -1177,14 +1177,14 @@ function[0] top-level {
   Branch[213] -> [193]
 
   Block[214] -> [216], ExitExc
-    [0] assert(<>y<>6788 in <>obj<>6789["documentElement"])
+    [0] assert(<>y<>6788 into <>obj<>6789["documentElement"])
     [1] <>obj<>6790 := @ToObject(Element) @ #4972
     [2] <>obj<>6791 := @ToObject(<>obj<>6790["Methods"]) @ #4973
     [3] <>Global<>ignore762 := function (335) @ #5054, #5055
     [4] <>obj<>6791["replace"] := <>Global<>ignore762
 
   Block[215] -> [216], ExitExc
-    [0] assert(! <>y<>6788 in <>obj<>6789["documentElement"])
+    [0] assert(! <>y<>6788 into <>obj<>6789["documentElement"])
 
   Block[216] -> [217], ExitExc
     [0] <>obj<>6882 := @ToObject(Element) @ #5056
@@ -1931,14 +1931,14 @@ function[1] $A {
   AfterCatch[6] -> ExitExc
 
   Block[7] -> [9], ExitExc
-    [0] assert(<>y<>6 in <>z<>11)
+    [0] assert(<>y<>6 into <>z<>11)
     [1] <>obj<>12 := @ToObject(<>iterable<>1) @ #5
     [2] <>arguments<>13 := allocArg(0) @ #6
     [3] <>fun<>14 := @ToObject(<>obj<>12["toArray"]) @ #7
     [4] <>this<> := enterCode(<>obj<>12)
 
   Block[8] -> [13], ExitExc
-    [0] assert(! <>y<>6 in <>z<>11)
+    [0] assert(! <>y<>6 into <>z<>11)
 
   Call[9] -> ExitExc
     [0] call(<>fun<>14, <>this<>, <>arguments<>13) @ #8
@@ -3785,7 +3785,7 @@ function[25] Str {
   Entry[-1] -> [0]
 
   Block[0] -> [1], ExitExc
-    [0] <>obj<>486 := @ToObject(<>holder<>475) @ #322
+    [0] <>obj<>486 := @ToObject(<>is<>475) @ #322
     [1] <>value<>477 := <>obj<>486[<>key<>474]
     [2] <>type<>478 := typeof <>value<>477
     [3] <>obj<>487 := @ToObject(<>Type<>398) @ #323
@@ -7909,7 +7909,7 @@ function[85] <>funexpr@628:57-642:6<> {
   Block[27] -> [29], [28]
 
   Block[28] -> [30], ExitExc
-    [0] assert(<>key<>1630 in <>hash<>1628)
+    [0] assert(<>key<>1630 into <>hash<>1628)
     [1] <>obj<>1656 := @ToObject(Object) @ #1139
     [2] <>obj<>1657 := @ToObject(<>hash<>1628) @ #1140
     [3] <>temp<>1658 := <>obj<>1657[<>key<>1630]
@@ -7919,7 +7919,7 @@ function[85] <>funexpr@628:57-642:6<> {
     [7] <>this<> := enterCode(<>obj<>1656)
 
   Block[29] -> [39], ExitExc
-    [0] assert(! <>key<>1630 in <>hash<>1628)
+    [0] assert(! <>key<>1630 into <>hash<>1628)
     [1] <>obj<>1670 := @ToObject(<>hash<>1628) @ #1152
     [2] <>obj<>1670[<>key<>1630] := <>value<>1631
 
@@ -8694,13 +8694,13 @@ function[95] <>funexpr@681:56-686:6<> {
     [1] <>obj<>1850 := @ToObject(String) @ #1279
 
   Block[1] -> Exit, ExitExc
-    [0] assert(<>y<>1849 in <>obj<>1850["specialChar"])
+    [0] assert(<>y<>1849 into <>obj<>1850["specialChar"])
     [1] <>obj<>1851 := @ToObject(String) @ #1280
     [2] <>obj<>1852 := @ToObject(<>obj<>1851["specialChar"]) @ #1281
     [3] return(<>obj<>1852[<>character<>1847])
 
   Block[2] -> [3], ExitExc
-    [0] assert(! <>y<>1849 in <>obj<>1850["specialChar"])
+    [0] assert(! <>y<>1849 into <>obj<>1850["specialChar"])
 
   Block[3] -> [4], ExitExc
     [0] <>y<>1853 := "\u00"
@@ -11990,7 +11990,7 @@ function[153] each {
     [0] assert(! <>i<>2787 < <>length<>2788)
 
   Block[4] -> [6], ExitExc
-    [0] assert(<>i<>2787 in this)
+    [0] assert(<>i<>2787 into this)
     [1] <>obj<>2791 := @ToObject(<>iterator<>2785) @ #1937
     [2] <>temp<>2792 := <>context<>2786
     [3] <>obj<>2793 := @ToObject(this) @ #1938
@@ -12006,7 +12006,7 @@ function[153] each {
     [13] <>this<> := enterCode(<>obj<>2791)
 
   Block[5] -> [9], ExitExc
-    [0] assert(! <>i<>2787 in this)
+    [0] assert(! <>i<>2787 into this)
 
   Call[6] -> ExitExc
     [0] call(<>fun<>2798, <>this<>, <>arguments<>2797) @ #1941
@@ -12830,13 +12830,13 @@ function[174] concat {
     [0] assert(! <>new0<>2999)
 
   Block[13] -> [15], ExitExc
-    [0] assert(! "callee" in <>item<>2982)
+    [0] assert(! "callee" into <>item<>2982)
     [1] <>j<>2985 := 0
     [2] <>obj<>3000 := @ToObject(<>item<>2982) @ #2105
     [3] <>arrayLength<>2986 := <>obj<>3000["length"]
 
   Block[14] -> [23], ExitExc
-    [0] assert(! ! "callee" in <>item<>2982)
+    [0] assert(! ! "callee" into <>item<>2982)
 
   LoopHead[15] -> [17], [16]
 
@@ -17734,11 +17734,11 @@ function[250] shouldUseCache {
   Block[3] -> [5], [4]
 
   Block[4] -> Exit, ExitExc
-    [0] assert("type" in <>attributes<>4507)
+    [0] assert("type" into <>attributes<>4507)
     [1] return(false)
 
   Block[5] -> [6], ExitExc
-    [0] assert(! "type" in <>attributes<>4507)
+    [0] assert(! "type" into <>attributes<>4507)
 
   Block[6] -> Exit, ExitExc
     [0] return(true)
@@ -18585,11 +18585,11 @@ function[260] update {
     [5] <>this<> := enterCode(<>obj<>4808)
 
   Block[61] -> [63], ExitExc
-    [0] assert(<>y<>4738 in <>obj<>4740["tags"])
+    [0] assert(<>y<>4738 into <>obj<>4740["tags"])
     [1] <>obj<>4741 := @ToObject(<>element<>4685) @ #3450
 
   Block[62] -> [84], [83], ExitExc
-    [0] assert(! <>y<>4738 in <>obj<>4740["tags"])
+    [0] assert(! <>y<>4738 into <>obj<>4740["tags"])
 
   LoopHead[63] -> [65], [64]
 
@@ -26705,7 +26705,7 @@ function[349] extendElementWith {
     [0] assert(! <>new0<>7115)
 
   Block[9] -> [11], ExitExc
-    [0] assert(! <>property<>7103 in <>element<>7101)
+    [0] assert(! <>property<>7103 into <>element<>7101)
     [1] <>obj<>7116 := @ToObject(<>element<>7101) @ #5209
     [2] <>obj<>7117 := @ToObject(<>value<>7104) @ #5210
     [3] <>arguments<>7118 := allocArg(0) @ #5211
@@ -26713,7 +26713,7 @@ function[349] extendElementWith {
     [5] <>this<> := enterCode(<>obj<>7117)
 
   Block[10] -> [15], ExitExc
-    [0] assert(! ! <>property<>7103 in <>element<>7101)
+    [0] assert(! ! <>property<>7103 into <>element<>7101)
 
   Call[11] -> ExitExc
     [0] call(<>fun<>7119, <>this<>, <>arguments<>7118) @ #5213
@@ -27688,10 +27688,10 @@ function[356] copy {
   Block[15] -> [17], [16]
 
   Block[16] -> [19], ExitExc
-    [0] assert(! <>property<>7286 in <>destination<>7284)
+    [0] assert(! <>property<>7286 into <>destination<>7284)
 
   Block[17] -> [18], ExitExc
-    [0] assert(! ! <>property<>7286 in <>destination<>7284)
+    [0] assert(! ! <>property<>7286 into <>destination<>7284)
 
   Block[18] -> [24]
 
@@ -28734,12 +28734,12 @@ function[369] <>funexpr@3178:2-3920:2<> {
     [22] <>obj<>8357 := @ToObject(document) @ #6151
 
   Block[1] -> [3], ExitExc
-    [0] assert(<>y<>8356 in <>obj<>8357["documentElement"])
+    [0] assert(<>y<>8356 into <>obj<>8357["documentElement"])
     [1] <>Global<>ignore987 := function (389) @ #6156, #6157
     [2] <>hasLayout<>7729 := <>Global<>ignore987
 
   Block[2] -> [3], ExitExc
-    [0] assert(! <>y<>8356 in <>obj<>8357["documentElement"])
+    [0] assert(! <>y<>8356 into <>obj<>8357["documentElement"])
 
   Block[3] -> [4], ExitExc
     [0] <>obj<>8365 := @ToObject(Element) @ #6158
@@ -28887,7 +28887,7 @@ function[369] <>funexpr@3178:2-3920:2<> {
     [1] <>obj<>9126 := @ToObject(document) @ #6716
 
   Block[20] -> [22], ExitExc
-    [0] assert(<>y<>9125 in <>obj<>9126["documentElement"])
+    [0] assert(<>y<>9125 into <>obj<>9126["documentElement"])
     [1] <>obj<>9127 := @ToObject(Object) @ #6717
     [2] <>obj<>9128 := @ToObject(Element) @ #6718
     [3] <>obj<>9129 := @ToObject(<>obj<>9128["Layout"]) @ #6719
@@ -28904,7 +28904,7 @@ function[369] <>funexpr@3178:2-3920:2<> {
     [14] <>this<> := enterCode(<>obj<>9127)
 
   Block[21] -> [25], ExitExc
-    [0] assert(! <>y<>9125 in <>obj<>9126["documentElement"])
+    [0] assert(! <>y<>9125 into <>obj<>9126["documentElement"])
 
   Call[22] -> ExitExc
     [0] call(<>fun<>9187, <>this<>, <>arguments<>9186) @ #6769
@@ -29024,7 +29024,7 @@ function[369] <>funexpr@3178:2-3920:2<> {
     [1] <>obj<>9420 := @ToObject(document) @ #6948
 
   Block[48] -> [50], ExitExc
-    [0] assert(<>y<>9419 in <>obj<>9420["documentElement"])
+    [0] assert(<>y<>9419 into <>obj<>9420["documentElement"])
     [1] <>obj<>9421 := @ToObject(Element) @ #6949
     [2] <>temp<>9466 := function (438) @ #6975, #6976
     [3] <>temp<>9467 := alloc() @ #6977
@@ -29035,7 +29035,7 @@ function[369] <>funexpr@3178:2-3920:2<> {
     [8] <>this<> := enterCode(<>obj<>9421)
 
   Block[49] -> [53], ExitExc
-    [0] assert(! <>y<>9419 in <>obj<>9420["documentElement"])
+    [0] assert(! <>y<>9419 into <>obj<>9420["documentElement"])
 
   Call[50] -> ExitExc
     [0] call(<>fun<>9469, <>this<>, <>arguments<>9468) @ #6980
@@ -32645,11 +32645,11 @@ function[397] <>funexpr@3378:15-3385:6<> {
     [2] <>COMPUTATIONS<>8595 := <>obj<>8598["COMPUTATIONS"]
 
   Block[1] -> ExitExc
-    [0] assert(! <>property<>8594 in <>COMPUTATIONS<>8595)
+    [0] assert(! <>property<>8594 into <>COMPUTATIONS<>8595)
     [1] throw("Property not found.")
 
   Block[2] -> [3], ExitExc
-    [0] assert(! ! <>property<>8594 in <>COMPUTATIONS<>8595)
+    [0] assert(! ! <>property<>8594 into <>COMPUTATIONS<>8595)
 
   Block[3] -> [4], ExitExc
     [0] <>obj<>8599 := @ToObject(this) @ #6329
@@ -36395,12 +36395,12 @@ function[445] <>funexpr@3972:2-4942:2<> {
     [3] <>this<> := enterCode(<>Global<>global)
 
   Block[110] -> [112], ExitExc
-    [0] assert(<>y<>11210 in <>obj<>11211["documentElement"])
+    [0] assert(<>y<>11210 into <>obj<>11211["documentElement"])
     [1] <>Global<>ignore1381 := function (505) @ #8059, #8060
     [2] <>sortOrder<>9583 := <>Global<>ignore1381
 
   Block[111] -> [114], [113], ExitExc
-    [0] assert(! <>y<>11210 in <>obj<>11211["documentElement"])
+    [0] assert(! <>y<>11210 into <>obj<>11211["documentElement"])
     [1] <>obj<>11222 := @ToObject(document) @ #8061
 
   Block[112] -> [109]
@@ -44110,7 +44110,7 @@ function[526] accumulator<>funexpr@4977:21-4983:8<> {
   Block[0] -> [2], [1]
 
   Block[1] -> [3], ExitExc
-    [0] assert(<>key<>11693 in <>result<>11692)
+    [0] assert(<>key<>11693 into <>result<>11692)
     [1] <>obj<>11696 := @ToObject(Object) @ #8411
     [2] <>obj<>11697 := @ToObject(<>result<>11692) @ #8412
     [3] <>temp<>11698 := <>obj<>11697[<>key<>11693]
@@ -44120,7 +44120,7 @@ function[526] accumulator<>funexpr@4977:21-4983:8<> {
     [7] <>this<> := enterCode(<>obj<>11696)
 
   Block[2] -> [12], ExitExc
-    [0] assert(! <>key<>11693 in <>result<>11692)
+    [0] assert(! <>key<>11693 into <>result<>11692)
     [1] <>obj<>11710 := @ToObject(<>result<>11692) @ #8424
     [2] <>obj<>11710[<>key<>11693] := <>value<>11694
 
@@ -47237,11 +47237,11 @@ function[570] <>funexpr@5331:2-5808:2<> {
     [38] <>docEl<>12626 := <>obj<>13190["documentElement"]
 
   Block[1] -> [3], ExitExc
-    [0] assert("onmouseenter" in <>docEl<>12626)
-    [1] <>Global<>ignore1662 := "onmouseleave" in <>docEl<>12626
+    [0] assert("onmouseenter" into <>docEl<>12626)
+    [1] <>Global<>ignore1662 := "onmouseleave" into <>docEl<>12626
 
   Block[2] -> [5], [4], ExitExc
-    [0] assert(! "onmouseenter" in <>docEl<>12626)
+    [0] assert(! "onmouseenter" into <>docEl<>12626)
 
   Block[3] -> [8], [7], ExitExc
     [0] <>MOUSEENTER_MOUSELEAVE_EVENTS_SUPPORTED<>12627 := <>Global<>ignore1662
@@ -47250,12 +47250,12 @@ function[570] <>funexpr@5331:2-5808:2<> {
     [3] <>obj<>13194 := @ToObject(window) @ #9508
 
   Block[4] -> [6], ExitExc
-    [0] assert(typeof "onmouseenter" in <>docEl<>12626 == "boolean")
+    [0] assert(typeof "onmouseenter" into <>docEl<>12626 == "boolean")
     [1] <>Global<>ignore1662 := false
 
   Block[5] -> [6], ExitExc
-    [0] assert(typeof "onmouseenter" in <>docEl<>12626 != "boolean")
-    [1] <>Global<>ignore1662 := "onmouseenter" in <>docEl<>12626
+    [0] assert(typeof "onmouseenter" into <>docEl<>12626 != "boolean")
+    [1] <>Global<>ignore1662 := "onmouseenter" into <>docEl<>12626
 
   Block[6] -> [3]
 

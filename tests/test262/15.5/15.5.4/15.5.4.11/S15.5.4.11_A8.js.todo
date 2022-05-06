@@ -7,7 +7,7 @@
     var __expect2 = false;
   }
   count = 0;
-  for (p in String.prototype.replace)
+  for (p into String.prototype.replace)
   {
     if (p === "length")
       count++;

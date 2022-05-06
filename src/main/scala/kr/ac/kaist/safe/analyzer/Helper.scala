@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -112,12 +112,12 @@ object Helper {
     val locSetArr = objLocSet.filter(l =>
       (atrue ⊑ heap.isArray(l)) && atrue ⊑ heap.get(l).CanPut(idxAbsStr, heap))
 
-    // can not store
+    // can not output
     val cantPutHeap =
       if (objLocSet.exists((l) => afalse ⊑ heap.get(l).CanPut(idxAbsStr, heap))) heap
       else AbsHeap.Bot
 
-    // store for non-array object
+    // output for non-array object
     val nArrHeap = locSetNArr.foldLeft[AbsHeap](AbsHeap.Bot)((iHeap, l) => {
       iHeap ⊔ heap.propStore(l, idxAbsStr, storeV)
     })

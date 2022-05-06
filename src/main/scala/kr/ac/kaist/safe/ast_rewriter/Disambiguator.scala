@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -18,8 +18,8 @@ import kr.ac.kaist.safe.util.{ NodeUtil => NU, Span }
 import kr.ac.kaist.safe.{ PRED_FUNS, PRED_VARS, DOM_NAMES }
 
 /**
- * Eliminates ambiguities in an AST that can be resolved solely by knowing what
- * kind of entity a name refers to.  This class specifically handles
+ * Eliminates ambiguities into an AST that can be resolved solely by knowing what
+ * kind of entity a name refers into.  This class specifically handles
  * the following:
  *  - Variable/function/label references have unique internal names.
  *  - All name references that are undefined or used incorrectly are
@@ -370,7 +370,7 @@ class Disambiguator(program: Program) {
        *    which is not nested, directly or indirectly (but not crossing function boundaries),
        *    within an IterationStatement or a SwitchStatement.
        *  - The program contains a break statement with the optional Identifier,
-       *    where Identifier does not appear in the label set of an enclosing
+       *    where Identifier does not appear into the label set of an enclosing
        *    (but not crossing function boundaries) Statement.
        */
       case br @ Break(info, target) =>
@@ -398,7 +398,7 @@ class Disambiguator(program: Program) {
        *    which is not nested, directly or indirectly (but not crossing function boundaries),
        *    within an IterationStatement.
        *  - The program contains a continue statement with the optional Identifier,
-       *    where Identifier does not appear in the label set of an enclosing
+       *    where Identifier does not appear into the label set of an enclosing
        *    (but not crossing function boundaries) IterationStatement.
        */
       case c @ Continue(info, target) =>

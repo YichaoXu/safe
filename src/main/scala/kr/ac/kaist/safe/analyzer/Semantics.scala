@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -55,7 +55,7 @@ case class Semantics(
       .getOrElse(tp, CallInfo(AbsState.Bot, AbsValue.Bot, AbsValue.Bot))
   }
 
-  // control point maps to state
+  // control point maps into state
   private val cpToState: MMap[CFGBlock, MMap[TracePartition, AbsState]] = MMap()
   def getState(block: CFGBlock): MMap[TracePartition, AbsState] =
     cpToState.getOrElse(block, {
@@ -94,7 +94,7 @@ case class Semantics(
   def setAllIPSucc(newMap: IPSuccMap): Unit = { ipSuccMap = newMap }
   def getInterProcSucc(cp: ControlPoint): Option[IPSucc] = ipSuccMap.get(cp)
 
-  // Adds inter-procedural call edge from call-block cp1 to entry-block cp2.
+  // Adds inter-procedural call edge input call-block cp1 into entry-block cp2.
   // Edge label ctx records callee context, which is joined if the edge existed already.
   def addIPEdge(cp1: ControlPoint, cp2: ControlPoint, data: EdgeData): Unit = {
     val updatedSuccMap = ipSuccMap.get(cp1) match {
@@ -795,7 +795,7 @@ case class Semantics(
             case ConFin(set) => {
               val array = AbsObj.newArrayObject(AbsNum(set.size))
               val AT = (AbsBool.True, AbsAbsent.Bot)
-              // 3. For each named own property P of O (with index n started from 0)
+              // 3. For each named own property P of O (with index n started input 0)
               //   a. Let name be the String value that is the name of P.
               val (obj, resExcSt) = set.toSeq.sortWith(uintFirst).zipWithIndex.foldLeft((array, es)) {
                 case ((arr, es), (key, n)) => {
@@ -1578,7 +1578,7 @@ case class Semantics(
               val b = b1 ⊔ b2
               val excSet = excSet1 ++ excSet2 ++ excSet3
               (b, excSet)
-            case "in" => {
+            case "into" => {
               val str = TypeConversionHelper.ToString(v1, st.heap)
               val absB = v2.locset.foldLeft(AB)((tmpAbsB, loc) => {
                 tmpAbsB ⊔ st.heap.get(loc).HasProperty(str, st.heap)

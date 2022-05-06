@@ -14,12 +14,12 @@ Assumptions and limitations are as follows:
 \section{Settings}
 \[
 \begin{array}{rlcl}
-\acp, (n, \hat{cc}) \in & \aControlPoint & = & \SF{CFGNode} \times \abs{CallContext} \\
-\hat{cc} \in & \abs{CallContext} &  & \comment{\inblue  Parameterized context-sensitivity.} \vspace{1mm}\\
+\acp, (n, \hat{cc}) \into & \aControlPoint & = & \SF{CFGNode} \times \abs{CallContext} \\
+\hat{cc} \into & \abs{CallContext} &  & \comment{\inblue  Parameterized context-sensitivity.} \vspace{1mm}\\
 
-\hat{S}, (\hat{H}, \hat{C}), \hat{E} \in & \aState & = &  \aHeap \times \aContext\\
-\hat{H} \in & \aHeap & = & \aLoc \finto \aObj \vspace{1mm}\\
-\hat{C} \in & \aContext & = &
+\hat{S}, (\hat{H}, \hat{C}), \hat{E} \into & \aState & = &  \aHeap \times \aContext\\
+\hat{H} \into & \aHeap & = & \aLoc \finto \aObj \vspace{1mm}\\
+\hat{C} \into & \aContext & = &
 %    \powerset{\aAddress} \times \powerset{\aAddress}
 %    \comment{\inblue may old set, \ must old set} \\
 \left\{ \begin{array}{rcl}
@@ -27,8 +27,8 @@ Assumptions and limitations are as follows:
 \emph{mustOld} & : & \powerset{\aAddress} \\
 \end{array} \right\} \vspace{1mm}\\
 
-\hat{l}_R,\hat{l}_O,\hat{l} \in & \aLoc &  = & \aAddress \times \abs{RecencyTag} \vspace{1mm}\\
-\hat{a} \in & \aAddress & ::= & \avarloc{Global} ~\mid~ 
+\hat{l}_R,\hat{l}_O,\hat{l} \into & \aLoc &  = & \aAddress \times \abs{RecencyTag} \vspace{1mm}\\
+\hat{a} \into & \aAddress & ::= & \avarloc{Global} ~\mid~
                                 \avarloc{StringProto} ~\mid~ 
                                 \avarloc{BooleanProto} ~\mid~ 
                                 \avarloc{FunctionProto} \\
@@ -50,15 +50,15 @@ Assumptions and limitations are as follows:
                                  \hat{a}_1 ~\mid~ \cdots \\
     & \abs{RecencyTag} & ::= & \hat{Recent} \mid \hat{Old} \vspace{1mm}\\
 
-\hat{o} \in & \aObj & = & \SF{Prop} \finto \abs{PropValue} \times \abs{Absent} \\
-\hat{propv} \in & \abs{PropValue} & = & 
+\hat{o} \into & \aObj & = & \SF{Prop} \finto \abs{PropValue} \times \abs{Absent} \\
+\hat{propv} \into & \abs{PropValue} & = &
 %    \abs{ObjectValue} \times \powerset{\fid} \\
 \left\{ \begin{array}{rcl}
 \emph{objval} & : & \abs{ObjectValue} \\
 \emph{fidSet} & : & \powerset{\fid} \\
 \end{array} \right\} \vspace{1mm}\\
 
-\hat{objv} \in & \abs{ObjectValue} & = & 
+\hat{objv} \into & \abs{ObjectValue} & = &
 %    \aValue \times \abs{Bool} \times \abs{Bool} \times \abs{Bool} \\
 %    & & & {\inblue value,\ writable,\ enumerable,\ configurable} \\
 \left\{ \begin{array}{rcl}
@@ -68,7 +68,7 @@ Assumptions and limitations are as follows:
 \emph{configurable} & : & \abs{Bool} \\
 \end{array} \right\} \vspace{1mm}\\
 
-\hat{v} \in & \aValue & = & 
+\hat{v} \into & \aValue & = &
 %    \abs{PValue} \times \powerset{\aLoc} \\
 \left\{ \begin{array}{rcl}
 \emph{pvalue} & : & \abs{PValue} \\
@@ -76,7 +76,7 @@ Assumptions and limitations are as follows:
 \emph{toAbsBool} & : & \SF{Unit} \rightarrow \abs{Bool}
 \end{array} \right\} \vspace{1mm}\\
 
-\hat{pv}\in & \abs{PValue} & = & 
+\hat{pv}\into & \abs{PValue} & = &
 %    \abs{Undef} \times \abs{Null} \times \abs{Bool} \times \abs{Number} \times \abs{String} \\
 \left\{ \begin{array}{rcl}
 \emph{undefVal} & : & \abs{Undef} \\
@@ -86,7 +86,7 @@ Assumptions and limitations are as follows:
 \emph{strVal} & : & \abs{String} \\
 \end{array} \right\} \vspace{1mm}\\
 
-\hat{exc}\in& \abs{Exception} & ::= & \hat{\exc{Error}} ~\mid~ 
+\hat{exc}\into& \abs{Exception} & ::= & \hat{\exc{Error}} ~\mid~
                                       \hat{\exc{EvalError}} ~\mid~
                                       \hat{\exc{RangeError}} ~\mid~
                                       \hat{\exc{ReferenceError}} ~\mid~
@@ -95,9 +95,9 @@ Assumptions and limitations are as follows:
                                       \hat{\exc{TypeError}} ~\mid~ 
                                       \hat{\exc{URIError}} \vspace{1mm}\\
 
-\cfgnext, (\hat{cp}_1, \hat{cp}_2, \hat{C}, \hat{o}) \in & \abs{IPEdge} & = & 
+\cfgnext, (\hat{cp}_1, \hat{cp}_2, \hat{C}, \hat{o}) \into & \abs{IPEdge} & = &
     \aControlPoint \times \aControlPoint \times \abs{Context} \times \abs{Obj} \\
-\ipnext\ \in & \powerset{\abs{IPEdge}} & & \\
+\ipnext\ \into & \powerset{\abs{IPEdge}} & & \\
 
 \end{array}
 \]
@@ -247,15 +247,15 @@ Assumptions and limitations are as follows:
 \section{Semantics}
 \[
 \begin{array}{lcl}
-\aE & \in & \abs{IPEdge} \rightarrow \aState \rightarrow \aState \\
-\aC & \in & \aControlPoint \rightarrow \aState \rightarrow \aState \times \aState\\
-\aI & \in & \SF{Instruction} 
+\aE & \into & \abs{IPEdge} \rightarrow \aState \rightarrow \aState \\
+\aC & \into & \aControlPoint \rightarrow \aState \rightarrow \aState \times \aState\\
+\aI & \into & \SF{Instruction}
     \rightarrow \aState \times \aState \rightarrow \aState \times \aState\\
-\aCI & \in & \aControlPoint \rightarrow \SF{CallInstruction} 
+\aCI & \into & \aControlPoint \rightarrow \SF{CallInstruction}
     \rightarrow \aState \times \aState \rightarrow \aState \times \aState\\
-\aV & \in & \SF{Expression} \rightarrow \aState 
+\aV & \into & \SF{Expression} \rightarrow \aState
     \rightarrow \aValue \times \powerset{\abs{Exception}} \\
-\aB & \in & \SF{Expression} \rightarrow \aState \times \aState 
+\aB & \into & \SF{Expression} \rightarrow \aState \times \aState
     \rightarrow \aState \times \aState\\
 \end{array}
 \]
@@ -265,14 +265,14 @@ Assumptions and limitations are as follows:
 \renewcommand\arraystretch{1.5}
 \begin{array}{l}
 % call edge (bottom heap)
-\aE \lbr ( \acp, (n \in \SF{Entry},\hat{cc}), \hat{C}, \hat{o} ) \rbr (\bot_{Heap},\hat{C}_1) 
+\aE \lbr ( \acp, (n \into \SF{Entry},\hat{cc}), \hat{C}, \hat{o} ) \rbr (\bot_{Heap},\hat{C}_1)
     = \bot_{State}\\
 
 % call edge
-\aE \lbr ( \acp, (n \in \SF{Entry},\hat{cc}), \hat{C},\hat{o} ) \rbr (\hat{H}_1,\hat{C}_1) 
+\aE \lbr ( \acp, (n \into \SF{Entry},\hat{cc}), \hat{C},\hat{o} ) \rbr (\hat{H}_1,\hat{C}_1)
     = (\hat{H}_3,\hat{C}_1) \\
   \quad\wherec{
-    \hat{H}_3 = \bigsqcup_{\hat{l}_{env}\in \hat{L}_{env}} \hat{H}_2[\hat{l}_{env} \mapsto \hat{o}_{env}]\\
+    \hat{H}_3 = \bigsqcup_{\hat{l}_{env}\into \hat{L}_{env}} \hat{H}_2[\hat{l}_{env} \mapsto \hat{o}_{env}]\\
     \land\ \hat{L}_{env} = \hat{o}_2(\varprop{env})\emph{.objval.value.locSet}\\
     \land\ \hat{H}_2 = \hat{H}_1[\avarloc{PureLocal}_R \mapsto \hat{o}_2] \\
     \land\ \hat{o}_2 = \hat{o} - \varprop{scope} \\
@@ -282,14 +282,14 @@ Assumptions and limitations are as follows:
 \\\\
 
 % normal return edge (bottom heap/context)
-\aE \lbr ( (n \in \SF{Exit}, \hat{cc}), \acp, \hat{C},\hat{o} ) \rbr (\bot_{Heap}, \hat{C}_1)
+\aE \lbr ( (n \into \SF{Exit}, \hat{cc}), \acp, \hat{C},\hat{o} ) \rbr (\bot_{Heap}, \hat{C}_1)
     = \bot_{State}\\
 
-\aE \lbr ( (n \in \SF{Exit}, \hat{cc}), \acp, \hat{C},\hat{o} ) \rbr (\hat{H}_1, \bot_{Context})
+\aE \lbr ( (n \into \SF{Exit}, \hat{cc}), \acp, \hat{C},\hat{o} ) \rbr (\hat{H}_1, \bot_{Context})
     = \bot_{State}\\
 
 % normal return edge
-\aE \lbr ( (n_1 \in \SF{Exit}, \hat{cc}_1), (n_2 \in \SF{AfterCall}, \hat{cc}_2), \hat{C}, \hat{o} ) \rbr (\hat{H}_1, \hat{C}_1)
+\aE \lbr ( (n_1 \into \SF{Exit}, \hat{cc}_1), (n_2 \into \SF{AfterCall}, \hat{cc}_2), \hat{C}, \hat{o} ) \rbr (\hat{H}_1, \hat{C}_1)
    = \left\{
    \begin{array}{ll}
    \emph{\TT{new}\ State}(\hat{H}_3, \hat{C}_2) & \ifc{\hat{C}_2 \neq \bot_{Context}}\\
@@ -303,18 +303,18 @@ Assumptions and limitations are as follows:
 	\land\ (\hat{C}_2, \hat{o}_1) = \ahf{FixOldify}(\hat{C},\ \hat{o},\ \hat{C}_1\emph{.mayOld},\ \hat{C}_1\emph{.mustOld})
 }\\\\
 
-\aE \lbr ( (n_1 \in \SF{Exit}, \hat{cc}_1), (n_2 \not\in \SF{AfterCall}, \hat{cc}_2), \hat{C}, \hat{o} ) \rbr\ \hat{S}
+\aE \lbr ( (n_1 \into \SF{Exit}, \hat{cc}_1), (n_2 \not\into \SF{AfterCall}, \hat{cc}_2), \hat{C}, \hat{o} ) \rbr\ \hat{S}
     \quad \comment{\inblue Impossible Case: IPFromExitToNoneError} \\
 
 % exception return edge (bottom heap/context)
-\aE \lbr ( (n \in \SF{ExitExc}, \hat{cc}), \acp, \hat{C},\hat{o} ) \rbr (\bot_{Heap}, \hat{C}_1)
+\aE \lbr ( (n \into \SF{ExitExc}, \hat{cc}), \acp, \hat{C},\hat{o} ) \rbr (\bot_{Heap}, \hat{C}_1)
     = \bot_{State}\\
 
-\aE \lbr ( (n \in \SF{ExitExc}, \hat{cc}), \acp, \hat{C},\hat{o} ) \rbr (\hat{H}_1, \bot_{Context})
+\aE \lbr ( (n \into \SF{ExitExc}, \hat{cc}), \acp, \hat{C},\hat{o} ) \rbr (\hat{H}_1, \bot_{Context})
     = \bot_{State}\\
 
 % exception return inter-procedural edge
-\aE \lbr ( (n_1 \in \SF{ExitExc}, \hat{cc}_1), (n_2 \in \SF{AfterCatch}, \hat{cc}_2), \hat{C}, \hat{o} ) \rbr (\hat{H}_1, \hat{C}_1)
+\aE \lbr ( (n_1 \into \SF{ExitExc}, \hat{cc}_1), (n_2 \into \SF{AfterCatch}, \hat{cc}_2), \hat{C}, \hat{o} ) \rbr (\hat{H}_1, \hat{C}_1)
    = \left\{
    \begin{array}{ll}
    \emph{\TT{new}\ State}(\hat{H}_2, \hat{C}_2) & \ifc{\hat{C}_2 \neq \bot_{Context}}\\
@@ -332,7 +332,7 @@ Assumptions and limitations are as follows:
 	\land\ (\hat{C}_2, \hat{o}_1) = \ahf{FixOldify}(\hat{C},\ \hat{o},\ \hat{C}_1\emph{.mayOld},\ \hat{C}_1\emph{.mustOld})
 }\\\\
 
-\aE \lbr ( (n_1 \in \SF{ExitExc}, \hat{cc}_1), (n_2 \not\in \SF{AfterCatch}, \hat{cc}_2), \hat{C}, \hat{o} ) \rbr\ \hat{S}
+\aE \lbr ( (n_1 \into \SF{ExitExc}, \hat{cc}_1), (n_2 \not\into \SF{AfterCatch}, \hat{cc}_2), \hat{C}, \hat{o} ) \rbr\ \hat{S}
     \quad \comment{\inblue Impossible Case: IPFromExitToNoneError} \\
 
 \end{array}
@@ -346,34 +346,34 @@ Assumptions and limitations are as follows:
 \aC \lbr \hat{cp} \rbr\ \bot_{State} = (\bot_{State}, \bot_{State}) \\
 
 % Entry Block
-\aC \lbr (n \in \SF{Entry}, \hat{cc}) \rbr (\hat{H}_0, \hat{C}) = ((\hat{H}_m, \hat{C}), \bot_{State}) \\
+\aC \lbr (n \into \SF{Entry}, \hat{cc}) \rbr (\hat{H}_0, \hat{C}) = ((\hat{H}_m, \hat{C}), \bot_{State}) \\
 \quad\wherec{
 \forall n+1 \leq j \leq m.\ \hat{H}_j = \ahf{CreateMutableBinding}(\hat{H}_{j-1}, x_j, \abs{Value}(\aundef)) \\
 \land\ \forall 1 \leq i \leq n.\ \hat{H}_i = \ahf{CreateMutableBinding}(\hat{H}_{i-1}, x_i,
-    \bigsqcup_{\hat{l}_{arg} \in \hat{L}_{arg}}\ \ahf{Proto}(\hat{H}_{i-1}, \hat{l}_{arg}, \hat{``i-1"}) \\
+    \bigsqcup_{\hat{l}_{arg} \into \hat{L}_{arg}}\ \ahf{Proto}(\hat{H}_{i-1}, \hat{l}_{arg}, \hat{``i-1"}) \\
 \land\ x_{n+1} \cdots x_m = n\emph{.func.localVars} \
 \land\ x_1 \cdots x_n = n\emph{.func.argVars} \\
 \land\ \hat{L}_{arg} = \hat{H}_0(\avarloc{PureLocal})(n\emph{.func.argumentsName})\emph{.objval.value.locSet}
 }\\\\
 
 % Exit Block
-\aC \lbr (n \in \SF{Exit}, \hat{cc}) \rbr\ \hat{S} = (\hat{S}, \bot_{State}) \\
+\aC \lbr (n \into \SF{Exit}, \hat{cc}) \rbr\ \hat{S} = (\hat{S}, \bot_{State}) \\
 
 % ExitExc Block
-\aC \lbr (n \in \SF{ExitExc}, \hat{cc}) \rbr\ \hat{S} = (\hat{S}, \bot_{State}) \\
+\aC \lbr (n \into \SF{ExitExc}, \hat{cc}) \rbr\ \hat{S} = (\hat{S}, \bot_{State}) \\
 
 % Call Block
-\aC \lbr (n \in \SF{Call}, \hat{cc}) \rbr\ \hat{S} 
+\aC \lbr (n \into \SF{Call}, \hat{cc}) \rbr\ \hat{S}
 = \aCI_{(n, \hat{cc})} \lbr n\emph{.callInst} \rbr (\hat{S}, \bot_{State}) \\
 
 % AfterCall Block
-\aC \lbr (n \in \SF{AfterCall}, \hat{cc}) \rbr\ \hat{S} = (\hat{S}, \bot_{State}) \\
+\aC \lbr (n \into \SF{AfterCall}, \hat{cc}) \rbr\ \hat{S} = (\hat{S}, \bot_{State}) \\
 
 % AfterCatch Block
-\aC \lbr (n \in \SF{AfterCatch}, \hat{cc}) \rbr\ \hat{S} = (\hat{S}, \bot_{State}) \\
+\aC \lbr (n \into \SF{AfterCatch}, \hat{cc}) \rbr\ \hat{S} = (\hat{S}, \bot_{State}) \\
 
 % Normal Block
-\aC \lbr (n \in \SF{Block}, \hat{cc}) \rbr\ \hat{S}_0 = (\hat{S}_n, \hat{E}_n) \\
+\aC \lbr (n \into \SF{Block}, \hat{cc}) \rbr\ \hat{S}_0 = (\hat{S}_n, \hat{E}_n) \\
 \quad\wherec{
 \forall 1 \leq k \leq n.\ 
 (\hat{S}_k, \hat{E}_k) = \aI \lbr i_k \rbr (\hat{S}_{k-1}, \hat{E}_{k-1}) \\
@@ -463,7 +463,7 @@ Assumptions and limitations are as follows:
 \hat{H}_2 = \ahf{VarStore}(\hat{H}_1,\ x_1,\ \abs{Value}(\hat{b})) \\
 \land\ (\hat{H}_1, \hat{b}) = \left \{ \begin{array}{ll}
 (\hat{H}, \atrue) & \ifc{\hat{L}_{base} = \varnothing} \\
-\bigsqcup_{\hat{l} \in \hat{L}_{base}} \ahf{Delete}(\hat{H},\ \hat{l},\ \hat{x_2}) & \owc \\
+\bigsqcup_{\hat{l} \into \hat{L}_{base}} \ahf{Delete}(\hat{H},\ \hat{l},\ \hat{x_2}) & \owc \\
 \end{array} \right. \\
 \land\ \hat{L}_{base} = \ahf{LookupBase}(\hat{H},\ x_2)
 }\\\\
@@ -486,7 +486,7 @@ Assumptions and limitations are as follows:
 (\bot_{Heap}, \bot_{Context}) & \owc \\
 \end{array} \right.\\
 \land\ (\hat{H}_1, \hat{b}) = \left \{ \begin{array}{ll}
-\bigsqcup_{\hat{l} \in \hat{v}_1\emph{.locSet}} \bigsqcup_{\hat{s} \in S_{idx}} \ahf{Delete}(\hat{H},\ \hat{l},\ \hat{s}) 
+\bigsqcup_{\hat{l} \into \hat{v}_1\emph{.locSet}} \bigsqcup_{\hat{s} \into S_{idx}} \ahf{Delete}(\hat{H},\ \hat{l},\ \hat{s})
     & \ifc{\hat{v}_1\emph{.locSet} \neq \varnothing \land\ S_{idx} \neq \varnothing} \\
 (\bot_{Heap}, \bot_{Bool}) & \owc \\
 \end{array} \right. \\
@@ -518,13 +518,13 @@ Assumptions and limitations are as follows:
 
 \land\ \hat{H}_1 = \hat{H}_{cantPut} \sqcup \hat{H}_{notArr} \sqcup \hat{H}_{Arr} \\
 \land\ \hat{H}_{cantPut} = \left \{ \begin{array}{ll} 
-\hat{H} & \ifc{\exists\ \hat{l} \in \hat{L}_1 ~\mid~ \afalse \sqsubseteq \ahf{CanPut}(\hat{H},\ \hat{l},\ \hat{s}) } \\
+\hat{H} & \ifc{\exists\ \hat{l} \into \hat{L}_1 ~\mid~ \afalse \sqsubseteq \ahf{CanPut}(\hat{H},\ \hat{l},\ \hat{s}) } \\
 \bot_{Heap} & \owc \\
 \end{array} \right.\\
 
-\land\ \hat{H}_{notArr} = \bigsqcup_{\hat{l}_n \in \hat{L}_{notArr}} \ahf{PropStore}(\hat{H},\ \hat{l}_n,\ \hat{s},\ \hat{v}_3) \\
+\land\ \hat{H}_{notArr} = \bigsqcup_{\hat{l}_n \into \hat{L}_{notArr}} \ahf{PropStore}(\hat{H},\ \hat{l}_n,\ \hat{s},\ \hat{v}_3) \\
 
-\land\ (\hat{H}_{Arr},\ \hat{es}_4) = \bigsqcup_{\hat{l}_a \in \hat{L}_{Arr}} 
+\land\ (\hat{H}_{Arr},\ \hat{es}_4) = \bigsqcup_{\hat{l}_a \into \hat{L}_{Arr}}
 (\hat{H}_{length} \sqcup \hat{H}_{idx} \sqcup \hat{H}_{other},\ \hat{es}_{length}) \\
 \quad\wherec {
 (\hat{H}_{length},\ \hat{es}_{length}) = \ahf{ArrayLenghtStore}(\hat{H},\ \hat{s},\ \hat{v},\ \hat{l}_a) \\
@@ -536,9 +536,9 @@ Assumptions and limitations are as follows:
 \end{array} \right.
 } \vspace{1mm} \\
 
-\land\ \hat{L}_{notArr} = \set{\hat{l} \in \hat{L}_1 ~\mid~  \afalse \sqsubseteq \ahf{IsArray}(\hat{H},\ \hat{l}) \ 
+\land\ \hat{L}_{notArr} = \set{\hat{l} \into \hat{L}_1 ~\mid~  \afalse \sqsubseteq \ahf{IsArray}(\hat{H},\ \hat{l}) \
 \land\ \atrue \sqsubseteq \ahf{CanPut}(\hat{H},\ \hat{l},\ \hat{s}) } \\
-\land\ \hat{L}_{Arr} = \set{\hat{l} \in \hat{L}_1 ~\mid~  \atrue \sqsubseteq \ahf{IsArray}(\hat{H},\ \hat{l}) \ 
+\land\ \hat{L}_{Arr} = \set{\hat{l} \into \hat{L}_1 ~\mid~  \atrue \sqsubseteq \ahf{IsArray}(\hat{H},\ \hat{l}) \
 \land\ \atrue \sqsubseteq \ahf{CanPut}(\hat{H},\ \hat{l},\ \hat{s}) } \\
 \land\ \hat{L}_1 = \hat{v}_1\emph{.locSet} \
 \land\ (\hat{v}_1, \hat{es}_1) = \aV \lbr e_1 \rbr (\hat{H}, \hat{C}) \
@@ -555,17 +555,17 @@ Assumptions and limitations are as follows:
 \hat{E}_1 = \ahf{RaiseException}((\hat{H}, \hat{C}),\ \hat{es}_2 \sqcup \hat{es}_3) \\
 \land\ \hat{E}_2 = \ahf{RaiseException}((\hat{H}, \hat{C}),\ \hat{es}_2 \sqcup \hat{es}_3 \sqcup \hat{es}_4) \\
 
-\land\ (\hat{H}_1,\ \hat{es}_4) = \bigsqcup_{\hat{s} \in S_{idx}}
+\land\ (\hat{H}_1,\ \hat{es}_4) = \bigsqcup_{\hat{s} \into S_{idx}}
 (\hat{H}_{cantPut} \sqcup \hat{H}_{notArr} \sqcup \hat{H}_{Arr},\ \hat{es}_{Arr}) \\
 \quad\wherec{
 \hat{H}_{cantPut} = \left \{ \begin{array}{ll} 
-\hat{H} & \ifc{\exists\ \hat{l} \in \hat{L}_1 ~\mid~ \afalse \sqsubseteq \ahf{CanPut}(\hat{H},\ \hat{l},\ \hat{s}) } \\
+\hat{H} & \ifc{\exists\ \hat{l} \into \hat{L}_1 ~\mid~ \afalse \sqsubseteq \ahf{CanPut}(\hat{H},\ \hat{l},\ \hat{s}) } \\
 \bot_{Heap} & \owc \\
 \end{array} \right.\\
 
-\land\ \hat{H}_{notArr} = \bigsqcup_{\hat{l}_n \in \hat{L}_{notArr}} \ahf{PropStore}(\hat{H},\ \hat{l}_n,\ \hat{s},\ \hat{v}_3) \\
+\land\ \hat{H}_{notArr} = \bigsqcup_{\hat{l}_n \into \hat{L}_{notArr}} \ahf{PropStore}(\hat{H},\ \hat{l}_n,\ \hat{s},\ \hat{v}_3) \\
 
-\land\ (\hat{H}_{Arr},\ \hat{es}_{Arr}) = \bigsqcup_{\hat{l}_a \in \hat{L}_{Arr}} 
+\land\ (\hat{H}_{Arr},\ \hat{es}_{Arr}) = \bigsqcup_{\hat{l}_a \into \hat{L}_{Arr}}
 (\hat{H}_{length} \sqcup \hat{H}_{idx} \sqcup \hat{H}_{other},\ \hat{es}_{length}) \\
 \quad\wherec {
 (\hat{H}_{length},\ \hat{es}_{length}) = \ahf{ArrayLenghtStore}(\hat{H},\ \hat{s},\ \hat{v},\ \hat{l}_a) \\
@@ -577,9 +577,9 @@ Assumptions and limitations are as follows:
 \end{array} \right.
 } \vspace{1mm} \\
 
-\land\ \hat{L}_{notArr} = \set{\hat{l} \in \hat{L}_1 ~\mid~  \afalse \sqsubseteq \ahf{IsArray}(\hat{H},\ \hat{l}) \ 
+\land\ \hat{L}_{notArr} = \set{\hat{l} \into \hat{L}_1 ~\mid~  \afalse \sqsubseteq \ahf{IsArray}(\hat{H},\ \hat{l}) \
 \land\ \atrue \sqsubseteq \ahf{CanPut}(\hat{H},\ \hat{l},\ \hat{s}) } \\
-\land\ \hat{L}_{Arr} = \set{\hat{l} \in \hat{L}_1 ~\mid~  \atrue \sqsubseteq \ahf{IsArray}(\hat{H},\ \hat{l}) \ 
+\land\ \hat{L}_{Arr} = \set{\hat{l} \into \hat{L}_1 ~\mid~  \atrue \sqsubseteq \ahf{IsArray}(\hat{H},\ \hat{l}) \
 \land\ \atrue \sqsubseteq \ahf{CanPut}(\hat{H},\ \hat{l},\ \hat{s}) } \\
 } \vspace{1mm} \\
 
@@ -820,16 +820,16 @@ Assumptions and limitations are as follows:
 \hat{H}_2 & \ifc{ \hat{L}_f \neq \varnothing } \\
 \bot_{Heap} & \owc \\
 \end{array} \right.\\
-\land\ \hat{H}_2 = \bigsqcup_{\hat{l} \in \hat{v}_{arg}\emph{.locSet}}
+\land\ \hat{H}_2 = \bigsqcup_{\hat{l} \into \hat{v}_{arg}\emph{.locSet}}
 \hat{H}_1 \left[ \hat{l} \mapsto \hat{H}_1(\hat{l}) \left[ ``callee" \mapsto 
 \langle \abs{Value}(\hat{L}_f),\ \atrue,\ \afalse,\ \atrue \rangle\right] \right] \\
 \land\ (\hat{H}_1,\ -) = \ahf{Oldify}(\hat{S},\ \hat{a}_1)\
 \land\ \hat{l}_R = \emph{\TT{new} Loc}(\hat{a}_1, \hat{Recent}) \\
-\land\ \hat{L}_f = \set{\hat{l} \in \hat{v}_{fun}\emph{.locSet} 
+\land\ \hat{L}_f = \set{\hat{l} \into \hat{v}_{fun}\emph{.locSet}
 ~\mid~ \atrue \sqsubseteq \ahf{IsCallabel}(\hat{H}_1,\ \hat{l})} \\
 \land\ \hat{es}_{type} = \left \{ \begin{array}{ll}
 \set{\hat{\exc{TypeError}}} & \ifc{ \begin{array}{l}
-\exists\ \hat{l} \in \hat{v}_{fun}\emph{.locSet} ~\mid~ \afalse \sqsubseteq \ahf{IsCallable}(\hat{H}_1,\ \hat{l}) \\
+\exists\ \hat{l} \into \hat{v}_{fun}\emph{.locSet} ~\mid~ \afalse \sqsubseteq \ahf{IsCallable}(\hat{H}_1,\ \hat{l}) \\
 \lor\ \hat{v}_{fun}\emph{.pvalue} \not\sqsubseteq \bot_{PValue} \\
 \end{array}}\\
 \varnothing & \owc \\
@@ -839,7 +839,7 @@ Assumptions and limitations are as follows:
 \land\ (\hat{v}_{arg}, \hat{es}_{arg}) = \aV \lbr e_{arg} \rbr\ \hat{S}
 } \vspace{1mm}\\
 
-\quad \forall \hat{l}_f \in \hat{L}_f.\ \forall f \in S_{fun}.\ 
+\quad \forall \hat{l}_f \into \hat{L}_f.\ \forall f \into S_{fun}.\
 \ipnext\ =\ \ipnext\ \cup\ (\acp, \acp_1, \bot_{Context}, \hat{o}_1) \
 \cup\ (\acp_2, \hat{cp}_4, \hat{C}, \hat{o}_3) \ 
 \cup\ (\acp_3, \hat{cp}_5, \hat{C}, \hat{o}_3)\\
@@ -870,16 +870,16 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 \hat{H}_2 & \ifc{ \hat{L}_f \neq \varnothing } \\
 \bot_{Heap} & \owc \\
 \end{array} \right.\\
-\land\ \hat{H}_2 = \bigsqcup_{\hat{l} \in \hat{v}_{arg}\emph{.locSet}}
+\land\ \hat{H}_2 = \bigsqcup_{\hat{l} \into \hat{v}_{arg}\emph{.locSet}}
 \hat{H}_1 \left[ \hat{l} \mapsto \hat{H}_1(\hat{l}) \left[ ``callee" \mapsto 
 \langle \abs{Value}(\hat{L}_f),\ \atrue,\ \afalse,\ \atrue \rangle\right] \right] \\
 \land\ (\hat{H}_1,\ -) = \ahf{Oldify}(\hat{S},\ \hat{a}_1)\
 \land\ \hat{l}_R = \emph{\TT{new} Loc}(\hat{a}_1, \hat{Recent}) \\
-\land\ \hat{L}_f = \set{\hat{l} \in \hat{v}_{fun}\emph{.locSet} 
+\land\ \hat{L}_f = \set{\hat{l} \into \hat{v}_{fun}\emph{.locSet}
 ~\mid~ \atrue \sqsubseteq \ahf{HasConstruct}(\hat{H}_1,\ \hat{l})} \\
 \land\ \hat{es}_{type} = \left \{ \begin{array}{ll}
 \set{\hat{\exc{TypeError}}} & \ifc{ \begin{array}{l}
-\exists\ \hat{l} \in \hat{v}_{fun}\emph{.locSet} ~\mid~ \afalse \sqsubseteq \ahf{HasConstruct}(\hat{H}_1,\ \hat{l}) \\
+\exists\ \hat{l} \into \hat{v}_{fun}\emph{.locSet} ~\mid~ \afalse \sqsubseteq \ahf{HasConstruct}(\hat{H}_1,\ \hat{l}) \\
 \lor\ \hat{v}_{fun}\emph{.pvalue} \not\sqsubseteq \bot_{PValue} \\
 \end{array}}\\
 \varnothing & \owc \\
@@ -889,7 +889,7 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 \land\ (\hat{v}_{arg}, \hat{es}_{arg}) = \aV \lbr e_{arg} \rbr\ \hat{S}
 } \vspace{1mm}\\
 
-\quad \forall \hat{l}_f \in \hat{L}_f.\ \forall f \in S_{fun}.\ 
+\quad \forall \hat{l}_f \into \hat{L}_f.\ \forall f \into S_{fun}.\
 \ipnext\ =\ \ipnext\ \cup\ (\acp, \acp_1, \bot_{Context}, \hat{o}_1) \
 \cup\ (\acp_2, \hat{cp}_4, \hat{C}, \hat{o}_3) \ 
 \cup\ (\acp_3, \hat{cp}_5, \hat{C}, \hat{o}_3)\\
@@ -925,7 +925,7 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 % CFGLoad
 \aV \lbr e_1\verb+[+e_2\verb+]+ \rbr (\hat{H}, \hat{C}) = (\hat{v}_3,\ \hat{es}_2) \\
 \quad\wherec{
-\hat{v}_3 = \bigsqcup_{\hat{l} \in \hat{L}} \bigsqcup_{\hat{s} \in S_{idx}}
+\hat{v}_3 = \bigsqcup_{\hat{l} \into \hat{L}} \bigsqcup_{\hat{s} \into S_{idx}}
 \ahf{Proto}(\hat{H}, \hat{l}, \hat{s}) \\
 \land\ \hat{L} = \hat{v}_1\emph{.locSet} \
 \land\ S_{idx} = \hat{v}_2\emph{.toPrimitive}(\hat{H})\emph{.toStringSet} \\
@@ -953,7 +953,7 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 }\\\\
 
 \aV \lbr e_1 \inop e_2 \rbr\ \hat{S} = (\hat{v}_3,\ \hat{es}_1 \sqcup \hat{es}_2)
-\quad\ifc{\inop \in } \left\{ \verb+|+ ,\ \verb+&+ ,\ \verb+^+ ,\ \verb+<<+ ,\ \verb+>>+ ,\ \verb+>>>+ \right\}\\
+\quad\ifc{\inop \into } \left\{ \verb+|+ ,\ \verb+&+ ,\ \verb+^+ ,\ \verb+<<+ ,\ \verb+>>+ ,\ \verb+>>>+ \right\}\\
 \quad\wherec{
 \hat{v}_3 = \abs{Value}(\hat{n}_1 ~~\hat{\inop}~~ \hat{n}_2) \\
 \land\ \hat{n}_1 = \ahf{toInt32}(\hat{v}_1) \
@@ -973,7 +973,7 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 }\\\\
 
 \aV \lbr e_1 \inop e_2 \rbr\ \hat{S} = (\abs{Value}(\hat{n}), \hat{es}_1 \sqcup \hat{es}_2)
-\quad\ifc{\inop \in } \left\{ \verb+-+ ,\ \verb+*+ ,\ \verb+/+ ,\ \verb+%+ \right\}\\
+\quad\ifc{\inop \into } \left\{ \verb+-+ ,\ \verb+*+ ,\ \verb+/+ ,\ \verb+%+ \right\}\\
 \quad\wherec{
 \hat{n} = \hat{v}_1\emph{.toPrimitive.toAbsNumber} ~~\hat{\inop}~~ \hat{v}_2\emph{.toPrimitive.toAbsNumber} \\
 \land\ (\hat{v}_1,\ \hat{es}_1) = \aV \lbr e_1 \rbr\ \hat{S} \
@@ -992,9 +992,9 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 \hat{v}_3 = \abs{Value}(\hat{b}_1 \sqcup \hat{b}_2 \sqcup \hat{b}_3 \sqcup \hat{b}_4) \\
 \land\ \hat{b}_1 = \hat{n}_1 ~~\hat{=}~~ \hat{n}_2 \
 \land\ \hat{b}_2 = \hat{s}_1 ~~\hat{=}~~ \hat{s}_2 \\
-\land\ \hat{b}_3 = \bigsqcup_{\hat{l} \in \hat{v}_1\emph{.locSet}}
+\land\ \hat{b}_3 = \bigsqcup_{\hat{l} \into \hat{v}_1\emph{.locSet}}
 (\hat{l}\emph{.toPrimitive.numVal} ~~\hat{=}~~ \hat{n}_2 )\ \sqcup\ (\hat{l}\emph{.toPrimitive.strVal} ~~\hat{=}~~ \hat{s}_2) \\
-\land\ \hat{b}_4 = \bigsqcup_{\hat{l} \in \hat{v}_2\emph{.locSet}} 
+\land\ \hat{b}_4 = \bigsqcup_{\hat{l} \into \hat{v}_2\emph{.locSet}}
 (\hat{n}_1 ~~\hat{=}~~ \hat{l}\emph{.toPrimitive.numVal} )\ \sqcup\ (\hat{s}_1 ~~\hat{=}~~ \hat{l}\emph{.toPrimitive.strVal}) \\
 \land\ \hat{n}_1 = \hat{v}_1\emph{.pvalue.toAbsNumber} \
 \land\ \hat{n}_2 = \hat{v}_2\emph{.pvalue.toAbsNumber} \\
@@ -1020,7 +1020,7 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 \land\ \hat{b}_2 =  \left \{ \begin{array}{ll}
 \afalse & \ifc{\hat{L}_1 \cap \hat{L}_2 = \varnothing} \\
 \atrue & \ifc{|\hat{L}_1| = 1 \ \land\ |\hat{L}_2| = 1 \land\ \hat{L}_1 \
-\land\ \forall \hat{l} \in (\hat{L}_1 \cap \hat{L}_2) \hat{l}\emph{.isRecent} } \\
+\land\ \forall \hat{l} \into (\hat{L}_1 \cap \hat{L}_2) \hat{l}\emph{.isRecent} } \\
 \bot_{Bool} & \ifc{\hat{L}_1 = \varnothing\ \land\ \hat{L}_2 = \varnothing }\\
 \top_{Bool} & \owc \\ 
 \end{array} \right. \\
@@ -1044,7 +1044,7 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 }\\\\
 
 \aV \lbr e_1 \inop e_2 \rbr\ \hat{S} = (\hat{v}_3, \hat{es}_1 \sqcup \hat{es}_2)
-\quad\ifc{\inop \in } \left\{ \verb+<+ ,\ \verb+>+ ,\ \verb+<=+ ,\ \verb+>=+ \right\}\\
+\quad\ifc{\inop \into } \left\{ \verb+<+ ,\ \verb+>+ ,\ \verb+<=+ ,\ \verb+>=+ \right\}\\
 \quad\wherec{
 \hat{v}_3 = \abs{Value}(\hat{b}_1 \sqcup \hat{b}_2) \\
 \land\ \hat{b}_1 = \hat{v}_1\emph{.toPrimitive.toAbsNum} ~~\hat{\inop}~~ \hat{v}_2\emph{.toPrimitive.toAbsNum} \\
@@ -1064,7 +1064,7 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 \aV \lbr e_1 ~\verb+instanceof+~ e_2 \rbr (\hat{H}, \hat{C}) 
 = (\hat{v}_3 \sqcup \hat{v}_4, \hat{es}_1 \sqcup \hat{es}_2 \sqcup \hat{es}_3 )\\
 \quad\wherec{
-\land\ \hat{v}_3 = \bigsqcup_{\hat{l}_1 \in \hat{v}_1\emph{.locSet}} \bigsqcup_{\hat{l}_2 \in \hat{v}_p\emph{.locSet}}
+\land\ \hat{v}_3 = \bigsqcup_{\hat{l}_1 \into \hat{v}_1\emph{.locSet}} \bigsqcup_{\hat{l}_2 \into \hat{v}_p\emph{.locSet}}
 \ahf{Inherit}(\hat{H},\ \hat{l}_1,\ \hat{l}_2) \\
 \land\ \hat{v}_4 = \left \{ \begin{array}{ll}
 \abs{Value}(\afalse) & \ifc{\hat{v}_2\emph{.pvalue} \not\sqsubseteq \bot_{PValue} 
@@ -1077,23 +1077,23 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 \land\ \hat{v}_p\emph{.pvalue} \not\sqsubseteq \bot_{PValue} \\} \\
 \varnothing & \owc \\
 \end{array} \right. \\
-\land\ \hat{v}_p = \bigsqcup_{\hat{l} \in \hat{L}_t} \ahf{Proto}(\hat{H},\ \hat{l},\ \hat{``prototype"}) \\
-\land\ \hat{L}_f = \set{\hat{l} \in \hat{v}_2\emph{.locSet} \mid 
+\land\ \hat{v}_p = \bigsqcup_{\hat{l} \into \hat{L}_t} \ahf{Proto}(\hat{H},\ \hat{l},\ \hat{``prototype"}) \\
+\land\ \hat{L}_f = \set{\hat{l} \into \hat{v}_2\emph{.locSet} \mid
 \afalse \sqsubseteq \ahf{HasInstance(\hat{H},\ \hat{l})} } \\
-\land\ \hat{L}_t = \set{ \hat{l} \in \hat{v}_2\emph{.locSet} \mid 
+\land\ \hat{L}_t = \set{ \hat{l} \into \hat{v}_2\emph{.locSet} \mid
 \atrue \sqsubseteq \ahf{HasInstance}(\hat{H},\ \hat{l}) } \\
 \land\ (\hat{v}_1,\ \hat{es}_1) = \aV \lbr e_1 \rbr\ \hat{S} \
 \land\ (\hat{v}_2,\ \hat{es}_2) = \aV \lbr e_2 \rbr\ \hat{S} \\
 }\\\\
 
-\aV \lbr e_1 ~\verb+in+~ e_2 \rbr (\hat{H}, \hat{C}) = (\hat{v}, \hat{es}_1 \sqcup \hat{es}_2 \sqcup \hat{es}_3)\\
+\aV \lbr e_1 ~\verb+into+~ e_2 \rbr (\hat{H}, \hat{C}) = (\hat{v}, \hat{es}_1 \sqcup \hat{es}_2 \sqcup \hat{es}_3)\\
 \quad\wherec{
 \hat{v}_3 = \abs{Value}(\hat{b}) \\
 \land\ \hat{es}_3 = \left \{ \begin{array}{ll}
 \set{\hat{\exc{TypeError}}} & \ifc{\hat{v}_2\emph{.pvalue} \not\sqsubseteq \bot_{PValue}} \\
 \varnothing & \owc \\
 \end{array} \right. \\
-\land\ \hat{b} = \bigsqcup_{\hat{l} \in \hat{v}_2\emph{.locset}} \abs{HasProperty}(\hat{H},\ \hat{loc},\ \hat{s}) \
+\land\ \hat{b} = \bigsqcup_{\hat{l} \into \hat{v}_2\emph{.locset}} \abs{HasProperty}(\hat{H},\ \hat{loc},\ \hat{s}) \
 \land\ \hat{s} = \hat{v}_1\emph{.toPrimitive.toAbsString} \\
 \land\ (\hat{v}_1,\ \hat{es}_1) = \aV \lbr e_1 \rbr\ \hat{S} \
 \land\ (\hat{v}_2,\ \hat{es}_2) = \aV \lbr e_2 \rbr\ \hat{S} \\
@@ -1146,7 +1146,7 @@ f\emph{.argumentsName} \mapsto \langle \hat{v}_{arg},\ \atrue,\ \afalse,\ \afals
 \hat{v}_1 = \abs{Value}(\hat{s}_1 \sqcup \hat{s}_2) \\
 \land\ \hat{s}_1 = \hat{v}\emph{.typeTag}(\hat{H}) \\
 \land\ \hat{s}_2 = \left \{ \begin{array}{ll}
-\hat{``undefinde"} & \ifc{\hat{\exc{ReferenceError}} \in \hat{es}} \\
+\hat{``undefinde"} & \ifc{\hat{\exc{ReferenceError}} \into \hat{es}} \\
 \bot_{String} & \owc \\
 \end{array} \right. \\
 \land\ (\hat{v},\ \hat{es}) = \aV \lbr e \rbr\ \hat{S}

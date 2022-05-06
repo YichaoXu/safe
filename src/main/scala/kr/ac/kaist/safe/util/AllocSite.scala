@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -16,7 +16,7 @@ import kr.ac.kaist.safe.analyzer.domain.Loc
 // allocation site
 sealed trait AllocSite extends Loc
 
-// allocation site defined in user code
+// allocation site defined into user code
 case class UserAllocSite(id: Int) extends AllocSite {
   override def toString: String = s"#$id"
 }

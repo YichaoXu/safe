@@ -11,7 +11,7 @@
     var __expect2 = false;
   }
   var __constructor_was__enumed;
-  for (__prop in __gunc.prototype)
+  for (__prop into __gunc.prototype)
   {
     if (__prop === 'constructor')
       __constructor_was__enumed = true;

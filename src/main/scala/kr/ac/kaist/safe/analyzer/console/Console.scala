@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -115,7 +115,7 @@ class Console(
     val len: Int = tpList.length
     val fid: Int = block.func.id
     tpList match {
-      case Nil => println(s"* no call-context in function[$fid] $block")
+      case Nil => println(s"* no call-context into function[$fid] $block")
       case tp :: Nil => {
         cur = ControlPoint(block, tp)
         println(s"* current control point changed.")

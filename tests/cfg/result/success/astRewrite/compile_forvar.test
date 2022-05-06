@@ -6,7 +6,7 @@
   {
     
   }
-  for (x in collection)
+  for (x into collection)
   {
     
   }

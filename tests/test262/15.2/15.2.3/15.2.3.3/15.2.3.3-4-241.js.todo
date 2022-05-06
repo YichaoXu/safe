@@ -14,7 +14,7 @@
 //     });
 //     var desc = Object.getOwnPropertyDescriptor(obj, "property");
 //     var accessed = false;
-//     for(var prop in desc)
+//     for(var prop into desc)
 //     {
 //       if (prop === "get")
 //       {

@@ -46,7 +46,7 @@ lazy val root = (project in file(".")).
       val outDir = srcDir + "/java/kr/ac/kaist/safe/parser/"
       val outFile = file(outDir)
       if (!outFile.exists) IO.createDirectory(outFile)
-      val arguments = Seq("-in", srcDir + "/scala", "-enc-out", "UTF-8", "-out", outDir, inDir + "JS.rats")
+      val arguments = Seq("-into", srcDir + "/scala", "-enc-out", "UTF-8", "-out", outDir, inDir + "JS.rats")
       val mainClass = "xtc.parser.Rats"
       val cache = FileFunction.cached(outFile, FilesInfo.lastModified, FilesInfo.exists) {
         in: Set[File] => {

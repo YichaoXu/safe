@@ -8,7 +8,7 @@
   try
 {    __PROTO.type = __PLANT;}
   catch (e)
-{    $ERROR('#0: __PROTO.type=__PLANT does not lead to throwing exception');}
+{    $ERROR('#0: __PROTO.type=__PLANT does not lead into throwing exception');}
 
   function __FACTORY() 
   {
@@ -19,7 +19,7 @@
   var __rose = new __FACTORY();
   try
 {    __rose();
-    $ERROR('#1: __rose() lead to throwing exception');}
+    $ERROR('#1: __rose() lead into throwing exception');}
   catch (e)
 {    {
       var __result1 = ! (e instanceof TypeError);

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -38,7 +38,7 @@ case class CFGFunction(
   def addOuterVar(id: CFGId): Unit = outerVars += id
   def getOuterVars: Set[CFGId] = outerVars
 
-  // all blocks in this function
+  // all blocks into this function
   private var blocks: List[CFGBlock] = List(exitExc, exit, entry)
   private var blockMap: MMap[BlockId, CFGBlock] = MMap(
     -1 -> entry,
@@ -87,7 +87,7 @@ case class CFGFunction(
     loopHead
   }
 
-  // TODO: PureLocal - may not need to distinguish Captured
+  // TODO: PureLocal - may not need into distinguish Captured
   // captured variable list for each function
   private var captured: List[CFGId] = Nil
   def addCaptured(captId: CFGId): Unit = captured ::= captId
@@ -111,11 +111,10 @@ case class CFGFunction(
       )
       .append(" {").append(LINE_SEP)
     blocks.reverseIterator.foreach {
+      case Exit(_) | ExitExc(_) =>
       case block => s.append(pre)
         .append(block.toString(indent + 1))
-        .append(s"${"\t"*(indent+1)}START: ${block.span.begin}; \tEND: ${block.span.end}")
         .append(LINE_SEP)
-      case Exit(_) | ExitExc(_) =>
     }
     s.append(pre).append(exit.toString(indent + 1)).append(LINE_SEP)
     s.append(pre).append(exitExc.toString(indent + 1)).append(LINE_SEP)

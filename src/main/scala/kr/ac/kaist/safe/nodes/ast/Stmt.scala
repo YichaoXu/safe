@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -29,8 +29,8 @@ trait Stmt extends ASTNode {
 
 /**
  * Internally generated NoOperation
- * currently to denote the end of a file by Shell
- * Do not appear in the JavaScript source text
+ * currently into denote the end of a file by Shell
+ * Do not appear into the JavaScript source text
  */
 case class NoOp(
   info: ASTNodeInfo,
@@ -40,7 +40,7 @@ case class NoOp(
 
 /**
  * Internally generated statement unit by Hoister
- * Do not appear in the JavaScript source text
+ * Do not appear into the JavaScript source text
  */
 case class StmtUnit(
   info: ASTNodeInfo,
@@ -252,7 +252,7 @@ case class For(
   }
 }
 
-// Stmt ::= for ( lhs in Expr ) Stmt
+// Stmt ::= for ( lhs into Expr ) Stmt
 case class ForIn(
   info: ASTNodeInfo,
   lhs: LHS,
@@ -264,7 +264,7 @@ case class ForIn(
     val bodyIndent = body.getIndent(indent)
     s.append("for (")
       .append(lhs.toString(indent))
-      .append(" in ")
+      .append(" into ")
       .append(expr.toString(indent))
       .append(")")
       .append(LINE_SEP)
@@ -303,7 +303,7 @@ case class ForVar(
   }
 }
 
-// Stmt ::= for ( var VarDecl in Expr ) Stmt
+// Stmt ::= for ( var VarDecl into Expr ) Stmt
 case class ForVarIn(
   info: ASTNodeInfo,
   vd: VarDecl,
@@ -315,7 +315,7 @@ case class ForVarIn(
     val bodyIndent = body.getIndent(indent)
     s.append("for(var ")
       .append(vd.toString(indent))
-      .append(" in ")
+      .append(" into ")
       .append(expr.toString(indent))
       .append(")")
       .append(LINE_SEP)

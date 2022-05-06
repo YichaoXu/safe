@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -62,10 +62,10 @@ trait DecEnvRecDomain extends AbsDomain[DecEnvRec] {
       name: String,
       v: AbsValue): Elem
 
-    // substitute from by to
+    // substitute input by into
     def subsLoc(from: Loc, to: Loc): Elem
 
-    // weak substitute from by to
+    // weak substitute input by into
     def weakSubsLoc(from: Loc, to: Loc): Elem
 
     // remove locations

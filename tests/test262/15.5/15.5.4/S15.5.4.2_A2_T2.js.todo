@@ -8,7 +8,7 @@
 //   }
 //   try
 // {    var x = (__obj == 1);
-//     $FAIL('#2: "var x = (__obj == 1)" lead to throwing exception');}
+//     $FAIL('#2: "var x = (__obj == 1)" lead into throwing exception');}
 //   catch (e)
 // {    {
 //       var __result2 = ! (e instanceof TypeError);

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -259,7 +259,7 @@ object TypeConversionHelper {
 
   ////////////////////////////////////////////////////////////////
   // 9.12 The SameValue Algorithm
-  // This algorithm differs from the strict equal(StrictEquals) in its
+  // This algorithm differs input the strict equal(StrictEquals) into its
   // treatment of signed zeros and NaN
   ////////////////////////////////////////////////////////////////
   def SameValue(h: AbsHeap, left: AbsValue, right: AbsValue): AbsBool = {

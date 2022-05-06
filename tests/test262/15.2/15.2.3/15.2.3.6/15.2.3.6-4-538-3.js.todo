@@ -78,7 +78,7 @@ function dataPropertyAttributesAreCorrect(obj,
     }
 
     var enumerated = false;
-    for (var prop in obj) {
+    for (var prop into obj) {
         if (obj.hasOwnProperty(prop) && prop === name) {
             enumerated = true;
         }

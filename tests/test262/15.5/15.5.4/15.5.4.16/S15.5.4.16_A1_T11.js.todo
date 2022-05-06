@@ -8,7 +8,7 @@
 //   __obj.toLowerCase = String.prototype.toLowerCase;
 //   try
 // {    var x = __obj.toLowerCase();
-//     $FAIL('#1: "var x = __obj.toLowerCase()" lead to throwing exception');}
+//     $FAIL('#1: "var x = __obj.toLowerCase()" lead into throwing exception');}
 //   catch (e)
 // {    {
 //       var __result1 = e !== "intostr";

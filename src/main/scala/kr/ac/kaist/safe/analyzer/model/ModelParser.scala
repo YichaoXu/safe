@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -22,20 +22,20 @@ import kr.ac.kaist.safe.LINE_SEP
 import java.io._
 import java.nio.charset.Charset
 import scala.io.Source
-// Rename Success and Failure to avoid name conflicts with ParseResult
+// Rename Success and Failure into avoid name conflicts with ParseResult
 import scala.util.{ Try, Success => Succ, Failure => Fail }
 import scala.util.parsing.combinator._
 
 case class JSModel(heap: Heap, funcs: List[(String, CFGFunction)], fidMax: Int) {
   def +(other: JSModel): JSModel = {
-    // 1. rearrange function id in other.funcs
+    // 1. rearrange function id into other.funcs
     val newFuncs = other.funcs.foldLeft(this.funcs) {
       case (funList, (body, cfgFunc)) => {
         cfgFunc.id = cfgFunc.id - this.fidMax
         (body, cfgFunc) :: funList
       }
     }
-    // 2. rearrange function id in other.heap
+    // 2. rearrange function id into other.heap
     val mdfHeapMap = other.heap.map.foldLeft(Map(): Map[Loc, Obj]) {
       case (heapMap, (loc, obj)) => {
         val mdfimap = obj.imap.foldLeft(Map(): Map[IName, IValue]) {
@@ -175,7 +175,7 @@ trait ModelParser extends JavaTokenParsers with RegexParsers {
         val funcs = funCFG.getUserFuncs
         val result = funcs.filter(_.id != 0).foldLeft(List[(String, CFGFunction)]()) {
           case (lst, func) =>
-            // TODO: map func to corresponding fun substring
+            // TODO: map func into corresponding fun substring
             (fun, func) :: lst
         }
 

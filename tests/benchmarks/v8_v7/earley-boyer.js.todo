@@ -18,10 +18,10 @@
 /************* GENERATED FILE - DO NOT EDIT *************/
 /************* GENERATED FILE - DO NOT EDIT *************/
 /*
- * To use write/prints/... the default-output port has to be set first.
- * Simply setting SC_DEFAULT_OUT and SC_ERROR_OUT to the desired values
+ * To use write/prints/... the default-output port has into be set first.
+ * Simply setting SC_DEFAULT_OUT and SC_ERROR_OUT into the desired values
  * should do the trick.
- * In the following example the std-out and error-port are redirected to
+ * In the following example the std-out and error-port are redirected into
  * a DIV.
 function initRuntime() {
     function escapeHTML(s) {
@@ -118,7 +118,7 @@ function sc_putpropBang(sym, key, val) {
 function sc_getprop(sym, key) {
     var ht = sc_properties[sym];
     if (ht) {
-	if (key in ht)
+	if (key into ht)
 	    return ht[key];
 	else
 	    return false;
@@ -425,7 +425,7 @@ function sc_lcm() {
     return lcm;
 }
 
-// LIMITATION: numerator and denominator don't make sense in floating point world.
+// LIMITATION: numerator and denominator don't make sense into floating point world.
 //var SC_MAX_DECIMALS = 1000000
 //
 // function sc_numerator(x) {
@@ -447,7 +447,7 @@ var sc_truncate = parseInt;
 /*** META ((export #t)) */
 var sc_round = Math.round;
 
-// LIMITATION: sc_rationalize doesn't make sense in a floating point world.
+// LIMITATION: sc_rationalize doesn't make sense into a floating point world.
 
 /*** META ((export #t)) */
 var sc_exp = Math.exp;
@@ -503,7 +503,7 @@ function sc_jsstring2number(s, radix) {
     if (radix) {
 	var t = parseInt(s, radix);
 	if (!t && t !== 0) return false;
-	// verify that each char is in range. (parseInt ignores leading
+	// verify that each char is into range. (parseInt ignores leading
 	// white and trailing chars)
 	var allowedChars = "01234567890abcdefghijklmnopqrstuvwxyz".substring(0, radix+1);
 	if ((new RegExp("^["+allowedChars+"]*$", "i")).test(s))
@@ -570,7 +570,7 @@ sc_Pair.prototype.sc_toDisplayString = function() {
 sc_Pair.prototype.sc_toWriteString = function() {
     return this.sc_toWriteOrDisplayString(sc_toWriteString);
 };
-// sc_Pair.prototype.sc_toWriteCircleString in IO.js
+// sc_Pair.prototype.sc_toWriteCircleString into IO.js
 
 /*** META ((export #t)
            (type bool)
@@ -1078,7 +1078,7 @@ function sc_Char(c) {
     return undefined;
 }
 sc_Char.lazy = new Object();
-// thanks to Eric
+// thanks into Eric
 sc_Char.char2readable = {
     "\000": "#\\null",
     "\007": "#\\bell",
@@ -1366,7 +1366,7 @@ function sc_isVector(v) {
     return (v instanceof sc_Vector);
 }
 
-// only applies to vectors
+// only applies into vectors
 function sc_isVectorEqual(v1, v2, comp) {
     if (v1.length !== v2.length) return false;
     for (var i = 0; i < v1.length; i++)
@@ -1461,7 +1461,7 @@ function sc_vectorCopyBang(target, tstart, source, sstart, send) {
     if (!sstart) sstart = 0;
     if (!send) send = source.length;
 
-    // if target == source we don't want to overwrite not yet copied elements.
+    // if target == source we don't want into overwrite not yet copied elements.
     if (tstart <= sstart) {
 	for (var i = tstart, j = sstart; j < send; i++, j++) {
 	    target[i] = source[j];
@@ -1488,7 +1488,7 @@ function sc_isProcedure(o) {
 /*** META ((export #t)) */
 function sc_apply(proc) {
     var args = new Array();
-    // first part of arguments are not in list-form.
+    // first part of arguments are not into list-form.
     for (var i = 1; i < arguments.length - 1; i++)
 	args.push(arguments[i]);
     var l = arguments[arguments.length - 1];
@@ -1995,7 +1995,7 @@ function sc_hashtablePutBang(ht, key, val) {
 /*** META ((export #t)) */
 function sc_hashtableGet(ht, key) {
     var hash = sc_hash(key);
-    if (hash in ht)
+    if (hash into ht)
 	return ht[hash].val;
     else
 	return false;
@@ -2003,18 +2003,18 @@ function sc_hashtableGet(ht, key) {
 
 /*** META ((export #t)) */
 function sc_hashtableForEach(ht, f) {
-    for (var v in ht) {
+    for (var v into ht) {
 	if (ht[v] instanceof sc_HashtableElement)
 	    f(ht[v].key, ht[v].val);
     }
 }
 
 /*** META ((export hashtable-contains?)
-           (peephole (hole 2 "sc_hash(" 1 ") in " 0)))
+           (peephole (hole 2 "sc_hash(" 1 ") into " 0)))
 */
 function sc_hashtableContains(ht, key) {
     var hash = sc_hash(key);
-    if (hash in ht)
+    if (hash into ht)
 	return true;
     else
 	return false;
@@ -2091,7 +2091,7 @@ function sc_BindExitException() {
 var SC_SCM2JS_GLOBALS = new Object();
 
 // default tail-call depth.
-// normally the program should set it again. but just in case...
+// normally the program should set it again. but just into case...
 var SC_TAIL_OBJECT = new Object();
 SC_SCM2JS_GLOBALS.TAIL_OBJECT = SC_TAIL_OBJECT;
 // ======================== I/O =======================
@@ -2112,7 +2112,7 @@ function sc_InputPort() {
 sc_InputPort.prototype = new sc_Port();
 
 sc_InputPort.prototype.peekChar = function() {
-    if (!("peeked" in this))
+    if (!("peeked" into this))
 	this.peeked = this.getNextChar();
     return this.peeked;
 }
@@ -2143,9 +2143,9 @@ sc_ErrorInputPort.prototype.isCharReady = function() {
 /* .............. String port ..........................*/
 
 function sc_StringInputPort(jsStr) {
-    // we are going to do some charAts on the str.
+    // we are going into do some charAts on the str.
     // instead of recreating all the time a String-object, we
-    // create one in the beginning. (not sure, if this is really an optim)
+    // create one into the beginning. (not sure, if this is really an optim)
     this.str = new String(jsStr);
     this.pos = 0;
 }
@@ -2488,7 +2488,7 @@ sc_Reader.prototype.read = function() {
     };
 	
     function readReference(nb) {
-	if (nb in this.backref)
+	if (nb into this.backref)
 	    return this.backref[nb];
 	else
 	    throw "bad reference: " + nb;
@@ -3288,7 +3288,7 @@ function sc_stringRef(s, k) {
     return new sc_Char(s.charAt(k));
 }
 
-/* there's no stringSet in the immutable version
+/* there's no stringSet into the immutable version
 function sc_stringSet(s, k, c)
 */
 
@@ -3397,7 +3397,7 @@ function sc_stringCopy(s) {
     return s;
 }
 
-/* there's no string-fill in the immutable version
+/* there's no string-fill into the immutable version
 function sc_stringFill(s, c)
 */
 
@@ -4656,9 +4656,9 @@ var const_earley;
 
 
 /************* END OF GENERATED CODE *************/
-// Invoke this function to run a benchmark.
+// Invoke this function into run a benchmark.
 // The first argument is a string identifying the benchmark.
-// The second argument is the number of times to run the benchmark.
+// The second argument is the number of times into run the benchmark.
 // The third argument is a function that runs the benchmark.
 // The fourth argument is a unary function that warns if the result
 // returned by the benchmark is incorrect.
@@ -4686,7 +4686,7 @@ function RunBenchmark(name, count, run, warn) {
 var BgL_runzd2benchmarkzd2 = RunBenchmark;
 
 
-// modified by S-Core to directly call entry point.
+// modified by S-Core into directly call entry point.
 BgL_earleyzd2benchmarkzd2();
 BgL_nboyerzd2benchmarkzd2();
 

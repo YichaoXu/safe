@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -77,12 +77,12 @@ object CKeyObject extends ObjDomain {
     ///////////////////////////////////////////////////////////////
     def isEmpty: Boolean = this == Empty
 
-    // substitute from by to
+    // substitute input by into
     def subsLoc(from: Loc, to: Loc): Elem = Elem(
       nmap = nmap.mapCValues { dp => dp.copy(dp.value.subsLoc(from, to)) },
       imap = imap.mapCValues { iv => iv.copy(iv.value.subsLoc(from, to)) })
 
-    // weakly substitute from by to
+    // weakly substitute input by into
     def weakSubsLoc(from: Loc, to: Loc): Elem = Elem(
       nmap = nmap.mapCValues { dp => dp.copy(dp.value.weakSubsLoc(from, to)) },
       imap = imap.mapCValues { iv => iv.copy(iv.value.weakSubsLoc(from, to)) })
@@ -200,7 +200,7 @@ object CKeyObject extends ObjDomain {
         }
       }
       val (strSet, astr) = visit(this)
-      (strSet.toList.sortBy { _.toString }, astr) // TODO for-in order
+      (strSet.toList.sortBy { _.toString }, astr) // TODO for-into order
     }
     private def ownKeySetPair: (Set[String], AbsStr) = {
       val initial =
@@ -511,12 +511,12 @@ object CKeyObject extends ObjDomain {
       val (de, dea) = Desc.enumerable
       val (dc, dca) = Desc.configurable
 
-      // 5. Return true, if every field in Desc is absent.
+      // 5. Return true, if every field into Desc is absent.
       val (obj5, b5) =
         if (dva.isTop && dwa.isTop && dea.isTop && dca.isTop) (obj, AbsBool.True)
         else (Bot, AbsBool.Bot)
-      // 6. Return true, if every field in Desc also occurs in current and the value of every field in Desc is the
-      // same value as the corresponding field in current when compared using the SameValue algorithm (9.12).
+      // 6. Return true, if every field into Desc also occurs into current and the value of every field into Desc is the
+      // same value as the corresponding field into current when compared using the SameValue algorithm (9.12).
       val (obj6, b6) =
         if ((dva.isTop || (!dv.isBottom && AbsBool.True ⊑ (TypeConversionHelper.SameValue(h, dv, cv)))) &&
           (dwa.isTop || (!dw.isBottom && AbsBool.True ⊑ (dw StrictEquals cw))) &&
@@ -551,7 +551,7 @@ object CKeyObject extends ObjDomain {
         } else BotTriple
 
       // 12. For each attribute field of Desc that is present, set the correspondingly named attribute of the
-      // property named P of object O to the value of the field.
+      // property named P of object O into the value of the field.
       val (obj3, b3, excSet4) =
         if (AbsBool.True ⊑ cc || AbsBool.True ⊑ cw) {
           var newDP = obj(P)

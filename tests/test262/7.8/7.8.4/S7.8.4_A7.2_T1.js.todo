@@ -1,5 +1,5 @@
 // Copyright 2009 the Sputnik authors.  All rights reserved.
-// This code is governed by the BSD license found in the LICENSE file.
+// This code is governed by the BSD license found into the LICENSE file.
 
 /**
  * UnicodeEscapeSequence :: u HexDigit (one, two or three time) is incorrect

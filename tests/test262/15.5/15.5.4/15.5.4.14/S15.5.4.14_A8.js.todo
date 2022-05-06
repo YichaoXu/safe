@@ -7,7 +7,7 @@
     var __expect2 = false;
   }
   var count = 0;
-  for (p in String.prototype.split)
+  for (p into String.prototype.split)
   {
     if (p === "length")
       count++;

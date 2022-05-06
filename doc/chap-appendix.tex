@@ -3,11 +3,11 @@
 \chapter{Appendix}
 
 This appendix provides the definitions of
-AST, IR, and translation rules from AST to IR in \safe.
+AST, IR, and translation rules from AST into IR into \safe.
 
 \section{AST}
 This section describes each construct of the JavaScript language
-in both the BNF notation and its corresponding implementation.
+into both the BNF notation and its corresponding implementation.
 The implementation of AST nodes is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/
@@ -59,12 +59,12 @@ $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/
   &\mid& {\tt for} \ \verb+(+\expr^?\verb+;+ \expr^?\verb+;+ \expr^? \verb+)+ \ \stmt\\
 && \mtt{For(init:~Option[Expr], cond:~Option[Expr],}\\
 &&\mtt{\phantom{For(}action:~Option[Expr], body:~Stmt)}\\
-  &\mid& {\tt for} \ \verb+(+ \lhs \ {\tt in} \ \expr \verb+)+ \ \stmt \\
+  &\mid& {\tt for} \ \verb+(+ \lhs \ {\tt into} \ \expr \verb+)+ \ \stmt \\
 &&\mtt{ForIn(lhs:~LHS, expr:~Expr, body:~Stmt)}\\
   &\mid& {\tt for} \ \verb+(+{\tt var} \ \vd(\verb+,+ \vd)^*\verb+;+ \expr^?\verb+;+ \expr^?\verb+)+ \ \stmt\\
 && \mtt{ForVar(vars:~List[VarDecl], cond:~Option[Expr],}\\
 &&\mtt{\phantom{ForVar(}action:~Option[Expr], body:~Stmt)}\\
-&\mid& {\tt for} \ \verb+(+{\tt var} \ \vd \ {\tt in} \ \expr \verb+)+ \ \stmt \\
+&\mid& {\tt for} \ \verb+(+{\tt var} \ \vd \ {\tt into} \ \expr \verb+)+ \ \stmt \\
 && \mtt{ForVarIn(vd:~VarDecl, expr:~Expr, body:~Stmt)}\\
 & \mid & {\tt continue} \  \myid^{?} \verb+;+ \\
 && \mtt{Continue(target:~Option[Label])}\\
@@ -186,7 +186,7 @@ $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/
  & \mid & \verb+>=+ \\
  & \mid &
 \lefteqn{
- {\tt instanceof} \ \mid \ {\tt in} }\\
+ {\tt instanceof} \ \mid \ {\tt into} }\\
 
 \preop &::=& \verb!++! & \mid & \verb+--+ & \mid & \verb+~+ & \mid & \verb+!+ & \mid & \verb!+! & \mid & \verb+-+ & \mid &
 \lefteqn{
@@ -207,7 +207,7 @@ ASTs should have the following invariants:
 
 \section{IR}
 This section describes each construct of the \safe IR
-in both the BNF notation and its corresponding implementation.
+into both the BNF notation and its corresponding implementation.
 The implementation of IR nodes is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/ir/
@@ -340,18 +340,18 @@ The \safe IR has the following assumptions and notations:
 \item We denote a list as a possibly empty, semicolon-separated sequence, enclosed by $\langle$ and $\rangle$.
 \item We denote a series of list appends as superscripted $*$ such as $\stmt^*$.
 \item We abuse our notations by interchanging semicolon-separated sequences and lists.
-\item To denote an AST-level statement granularity in the translated IR statements,
-we use {\tt IRStmtUnit} which is represented as green angle brackets {\ingreen $\open\ \close$} in this document.
-\item Declarations of functions and variables are hoisted to their closest enclosing functions
+\item To denote an AST-level statement granularity into the translated IR statements,
+we use {\tt IRStmtUnit} which is represented as green angle brackets {\ingreen $\open\ \close$} into this document.
+\item Declarations of functions and variables are hoisted into their closest enclosing functions
 or the top level via the \verb!Hoister! transformation of the \verb!astRewriter! phase.
-\item Identifiers and labels that exist in the source program,
+\item Identifiers and labels that exist into the source program,
 except when they appear at top level or within the {\tt with} statement,
 are already disambiguated via the \verb!Disambiguator! transformation of the \verb!astRewriter! phase
 so that they have unique names.
 \end{itemize}
 
-\section{AST to IR}
-This section describes the \safe translation rules from AST to IR,
+\section{AST into IR}
+This section describes the \safe translation rules from AST into IR,
 whose implementation is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/compiler/
@@ -359,15 +359,15 @@ $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/compiler/
 \end{verbatim}
 
 \begin{itemize}
-\item We use $\env$ to disambiguate the generated labels and temporary variables in the AST to IR translation.
-For the presentation brevity, we simply add the newly generated names to $\env$.
+\item We use $\env$ into disambiguate the generated labels and temporary variables into the AST into IR translation.
+For the presentation brevity, we simply add the newly generated names into $\env$.
 \begin{itemize}
-\item In the actual implementation, we need to create a unique id for each generated name and
-add the binding information from the general name to the unique id to $\env$.
+\item In the actual implementation, we need into create a unique id for each generated name and
+add the binding information from the general name into the unique id into $\env$.
 For example, when we say ``$\env; \newvar{break}$'',
-we actually create a unique id for $\newvar{break}$, say $\newvar{break}_{42}$, and add it to $\env$ as $\env; \newvar{break} \mapsto \newvar{break}_{42}$.
+we actually create a unique id for $\newvar{break}$, say $\newvar{break}_{42}$, and add it into $\env$ as $\env; \newvar{break} \mapsto \newvar{break}_{42}$.
 When we look up the environment by $\env(\newvar{break})$, the unique $\newvar{break}_{42}$ is returned.
-\item In the scope when the generated name is created, we don't add it to the environment but use the unique id instead of the general name.
+\item In the scope when the generated name is created, we don't add it into the environment but use the unique id instead of the general name.
 For example, when we say ``$\newvar{eq}\ \verb+=+\ \env(\newvar{val}) \verb+===+ \newvar{break};$'',
 we create a unique id for \newvar{eq}, say $\newvar{eq}_{910157}$, and it is acually
 ``$\newvar{eq}_{910157}\ \verb+=+\ \env(\newvar{val}) \verb+===+ \newvar{break}_{42};$''.
@@ -379,12 +379,12 @@ we create a unique id for \newvar{eq}, say $\newvar{eq}_{910157}$, and it is acu
 {\sf \ensuremath{\diamond}iteratorInit}, {\sf \ensuremath{\diamond}iteratorHasNext}, {\sf \ensuremath{\diamond}iteratorNext},
 % {\sf startsWith},
 {\sf \ensuremath{\diamond}global}, {\sf \ensuremath{\diamond}getBase}
-\item To reduce the number of temporary variables, we use global variables to denote constants such as {\sf 1} and
-{\sf true} which is represented in green {\ingreen\sf 1} and  {\ingreen\sf true} in this document.
+\item To reduce the number of temporary variables, we use global variables into denote constants such as {\sf 1} and
+{\sf true} which is represented into green {\ingreen\sf 1} and  {\ingreen\sf true} into this document.
 \item We wrap a possibly identical assignment with a box so that the actual implementation, {\tt Translator}, can eliminate identical assignments.
 \end{itemize}
 
-Here are the types of the environment used to disambiguate the generated labels and
+Here are the types of the environment used into disambiguate the generated labels and
 temporary variables and the translation functions for different language constructs:
 
 \medskip
@@ -444,7 +444,7 @@ $\atoiPR$\ :\\
 &\mid& \verb+==+\\
 & \mid & \verb+!=+ 
 & \mid & \verb+===+ & \mid & \verb+!==+ & \mid & \verb+[+ & \mid & \verb+>+ & \mid & \verb+[=+
- & \mid & \verb+>=+ & \mid & \lefteqn{ {\tt instanceof} \ \mid \ {\tt in}}
+ & \mid & \verb+>=+ & \mid & \lefteqn{ {\tt instanceof} \ \mid \ {\tt into}}
 \end{array}
 \]
 
@@ -763,25 +763,25 @@ A function always receives explicit ``this'' and ``arguments''}\\
 
 % \lefteqn{\note{
 % We introduce one label \newvar{break} and two variables, \newvar{testing} and \newvar{keepgoing},
-% to denote the current status.}}\\
+% into denote the current status.}}\\
 % \lefteqn{\note{
-% Initially \newvar{testing} is {\sf true} meaning that the conditions are to be
+% Initially \newvar{testing} is {\sf true} meaning that the conditions are into be
 % evaluated,}}\\
 % \lefteqn{\note{
 % and \newvar{keepgoing} is also {\sf true} meaning that the {\tt default}
-% case is to be evaluated.
+% case is into be evaluated.
 % }}\\
 % \lefteqn{\note{
-% \newvar{testing} is set to {\sf false} when a matching case is found, or no matching case is found
+% \newvar{testing} is set into {\sf false} when a matching case is found, or no matching case is found
 % after the lexically last case.
 % }}\\
 % \lefteqn{\note{
-% In the latter case, the control flow moves back to the start of the {\tt default} case, if any,
+% In the latter case, the control flow moves back into the start of the {\tt default} case, if any,
 % via {\sf while}.
 % }}\\
 % \lefteqn{\note{
 % When \newvar{testing} is {\sf false} and the control flow reaches the end of {\tt switch},
-% \newvar{keepgoing} is set to {\sf false} so that the {\sf while} loop terminates.
+% \newvar{keepgoing} is set into {\sf false} so that the {\sf while} loop terminates.
 % }}\\
 
 %% switch
@@ -1016,8 +1016,8 @@ Where $c$ is either $(\expr, \ir{l})$ or $((), \ir{l})$.
 
 \[
 \begin{array}{l@{}l@{~}l}
-%% for-in
-\atoiS\lbr  \verb+for (+ \lhs\ \verb+in+\ e \verb+)+\ s\rbr(\env)
+%% for-into
+\atoiS\lbr  \verb+for (+ \lhs\ \verb+into+\ e \verb+)+\ s\rbr(\env)
 \ =\\
  \mbox{LET\ } (\irstmt^*, \irexpr) = \atoiEfd{e}({\inblue\newva})\\
 \mbox{IN}\hspace*{1.2em}
@@ -1062,22 +1062,22 @@ Where $c$ is either $(\expr, \ir{l})$ or $((), \ir{l})$.
 
 
 % \atoiS\lbr
-% \verb+for (var+ \ x \ \verb+in+ \ \expr \verb+)+ \ \stmt
+% \verb+for (var+ \ x \ \verb+into+ \ \expr \verb+)+ \ \stmt
 % \rbr(\env)
 % &=&
 % \atoiS\lbr
-% \verb+for (+ x \ \verb+in+ \ \expr \verb+)+ \ \stmt
+% \verb+for (+ x \ \verb+into+ \ \expr \verb+)+ \ \stmt
 % \rbr(\env)
 % \\
 
 % \atoiS\lbr
-% \verb+for (var+ \ x \ \verb+=+ \ \expr \ \verb+in+ \ \expr' \verb+)+ \ \stmt
+% \verb+for (var+ \ x \ \verb+=+ \ \expr \ \verb+into+ \ \expr' \verb+)+ \ \stmt
 % \rbr(\env)
 % &=&
 % \atoiS\lbr
 % \verb+{+ \
 % x \ \verb+=+ \ \expr \verb+;+ \
-% \verb+for (+ x \ \verb+in+ \ \expr' \verb+)+ \ \stmt
+% \verb+for (+ x \ \verb+into+ \ \expr' \verb+)+ \ \stmt
 % \ \verb+}+
 % \rbr(\env)
 % \\
@@ -1509,14 +1509,14 @@ Where $c$ is either $(\expr, \ir{l})$ or $((), \ir{l})$.
 % ast2ir_e[e1||e2])(sigma)(x) = [ast2ir_e[e1](sigma)(y); y1=\ensuremath{\diamond}toBoolean(y); if y1 then ast2ir_e[e2](sigma)(x) else x=y >
 
 \note{
-In order to preserve the semantics when the evaluation}\\
+In order into preserve the semantics when the evaluation}\\
 \note{
 of $\irexpr_1$ throws an exception,
-we force to evaluate $\irexpr_1$ before}\\
+we force into evaluate $\irexpr_1$ before}\\
 \note{
 evaluating $\irstmt_2^*$ by introducing an assignment ``{\inred$\newvar{new_1}$}\ {\tt =} $\irexpr_1$''}\\
 \note{
-to avoid any side effects by $\irstmt_2^*$.
+into avoid any side effects by $\irstmt_2^*$.
 Note that we add the}\\
 \note{
 assignment only when $\irstmt_2^*$ is not empty for a simple}\\
@@ -1873,7 +1873,7 @@ optimization.
 
 \section{CFG}
 This section describes each construct of the \safe CFG
-in both the BNF notation and its corresponding implementation.
+into both the BNF notation and its corresponding implementation.
 The implementation of CFG nodes is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/cfg/
@@ -1883,25 +1883,25 @@ $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/cfg/
 \small
 \[
 \begin{array}{r@{~~}r@{~~}l@{}ll}
-\embox{cfg} \in \CFG & = & \powerset{\CFGFunction} & \\
-\multicolumn{3}{l}{f,\ \langle B, \hookrightarrow, C \rangle \in \CFGFunction \ =}\\
+\embox{cfg} \into \CFG & = & \powerset{\CFGFunction} & \\
+\multicolumn{3}{l}{f,\ \langle B, \hookrightarrow, C \rangle \into \CFGFunction \ =}\\
 \multicolumn{3}{r}{
  \powerset{\CFGBlock} \times \powerset{\CFGEdge}
 \times \powerset{\CFGCallTriple}} & \\
-b \in \CFGBlock & = & \multicolumn{2}{@{}l}{\Entry \mid \Exit \mid \ExitExc \mid \Call \mid \AfterCall}\\
+b \into \CFGBlock & = & \multicolumn{2}{@{}l}{\Entry \mid \Exit \mid \ExitExc \mid \Call \mid \AfterCall}\\
 &\mid& \multicolumn{2}{@{}l}{\AfterCatch \mid \NormalBlock \mid \ModelBlock} \\
 \NormalBlock & = & \CFGInst^+ & \\
 \CFGEdge & = & \CFGBlock \times \CFGBlock \times \EdgeType & \\
 \EdgeType & = & \EdgeNormal \mid \EdgeExc & \\
-C \in \CFGCallTriple & = & \Call \times \AfterCall \times \AfterCatch & \\
+C \into \CFGCallTriple & = & \Call \times \AfterCall \times \AfterCatch & \\
 
-i \in \CFGInst & = & \CFGNormalInst \mid \CFGCallInst &
+i \into \CFGInst & = & \CFGNormalInst \mid \CFGCallInst &
 \\
 
-x \in \CFGId & = & \String \times \SF{VarKind} &
+x \into \CFGId & = & \String \times \SF{VarKind} &
 \\
 
-s \in \String &&&\\
+s \into \String &&&\\
 
 \SF{VarKind} & ::= &
 \multicolumn{2}{@{} l}{
@@ -1909,10 +1909,10 @@ s \in \String &&&\\
 &  \mid & \TT{CapturedVar} \mid \TT{CapturedCatchVar}
 \\
 
-a \in \SF{Address} & = & \SF{Integer} &
+a \into \SF{Address} & = & \SF{Integer} &
 \\
 
-v \in \SF{EJSVal} & = &
+v \into \SF{EJSVal} & = &
 \multicolumn{2}{@{} l}{
  \SF{Number} \mid \String \mid \SF{Boolean} \mid \SF{Null}}\\
 & \mid &\SF{Undefined}
@@ -1996,7 +1996,7 @@ x~\verb+:=+~\TT{alloc}\verb+(+ e^{?} \verb+)+ @ a
 \\\\
 
 \lefteqn{\!\!\!\!\!\!\!\!\!\!\!\!
-e \in \CFGExpr}\\
+e \into \CFGExpr}\\
 ::= & x & \SF{CFGVarRef}\\
 \mid & e \inop e & \SF{CFGBin}\\
 \mid & \preop e & \SF{CFGUn}\\
@@ -2010,7 +2010,7 @@ e \in \CFGExpr}\\
 \\
 \inop ::= &
 \multicolumn{2}{@{} l}{
- \TT{instanceof} \mid \TT{in} \mid \TT{|} \mid \TT{\&}
+ \TT{instanceof} \mid \TT{into} \mid \TT{|} \mid \TT{\&}
                \mid \TT{\^} \mid \TT{<<} \mid \TT{>>} \mid \TT{>>>}
 \mid \TT{+} \mid \TT{-} \mid \TT{*} \mid \TT{/} \mid \TT{\%}}\\
 \mid & \multicolumn{2}{@{} l}{
@@ -2023,54 +2023,54 @@ e \in \CFGExpr}\\
 \item \Entry, \Exit, and \ExitExc blocks always uniquely exist for each \CFGFunction,
 and an \Entry block has no predecessor, \Exit and \ExitExc blocks have no successor.
 \begin{itemize}
-\item $\forall \langle B, \_, \_ \rangle \in \CFGFunction.$
+\item $\forall \langle B, \_, \_ \rangle \into \CFGFunction.$
 
-$\quad(\nexists\ \entry \in\Entry\cap B)$,
+$\quad(\nexists\ \entry \into\Entry\cap B)$,
 
-$\quad(\nexists\ \exit \in \Exit \cap B)$,
+$\quad(\nexists\ \exit \into \Exit \cap B)$,
 
-$\quad(\nexists\ \exitExc \in \ExitExc \cap B)$
-\item $\forall \langle B, \hookrightarrow, \_ \rangle \in \CFGFunction.$
-$\nexists b \in B.$ s.t.
+$\quad(\nexists\ \exitExc \into \ExitExc \cap B)$
+\item $\forall \langle B, \hookrightarrow, \_ \rangle \into \CFGFunction.$
+$\nexists b \into B.$ s.t.
 
 $(b \hookrightarrow \entry) \vee (\exit \hookrightarrow b) \vee (\exitExc \hookrightarrow b)$
-where $\entry \in \Entry,\ \exit \in \Exit,\ \exitExc \in \ExitExc$
+where $\entry \into \Entry,\ \exit \into \Exit,\ \exitExc \into \ExitExc$
 \end{itemize}
 
-\item Each edge connects 2 blocks in the same \CFGFunction.
+\item Each edge connects 2 blocks into the same \CFGFunction.
 \begin{itemize}
-\item $\forall \langle B, \hookrightarrow, \_ \rangle \in \CFGFunction.\ \hookrightarrow\ \subseteq B \times B$
+\item $\forall \langle B, \hookrightarrow, \_ \rangle \into \CFGFunction.\ \hookrightarrow\ \subseteq B \times B$
 \end{itemize}
 
 \item Each \CFGFunction records \Call, \AfterCall, and \AfterCatch
 without any edges between them, and the triple consisting of them is unique.
 \begin{itemize}
-\item $\forall \langle B, \_, C \rangle \in \CFGFunction.$
+\item $\forall \langle B, \_, C \rangle \into \CFGFunction.$
 
-$\forall \call \in \Call \cap B.\ $
+$\forall \call \into \Call \cap B.\ $
 
-$\forall \acall \in \AfterCall \cap B.\ $
+$\forall \acall \into \AfterCall \cap B.\ $
 
-$\forall \acatch \in \AfterCatch \cap B.\ $
+$\forall \acatch \into \AfterCatch \cap B.\ $
 
-$\quad(\call, \_, \_),\ (\_, \acall, \_),\ (\_, \_, \acatch) \in C$
-\item $\forall \langle \_, \_, C \rangle \in \CFGFunction.$
+$\quad(\call, \_, \_),\ (\_, \acall, \_),\ (\_, \_, \acatch) \into C$
+\item $\forall \langle \_, \_, C \rangle \into \CFGFunction.$
 
-\mbox{$\forall (\call, \acall, \acatch), (\call', \acall', \acatch') \in C.$}
+\mbox{$\forall (\call, \acall, \acatch), (\call', \acall', \acatch') \into C.$}
 
 $\quad\call = \call' \Leftrightarrow \acall = \acall'$
 
 $\phantom{\quad\call = \call' }\Leftrightarrow \acatch = \acatch'$
 \end{itemize}
 
-\item There is no instruction after \TT{return} in a block. There is no instruction before \TT{catch} in a block.
+\item There is no instruction after \TT{return} into a block. There is no instruction before \TT{catch} into a block.
 \begin{itemize}
-\item $\forall b \in \NormalBlock.$
+\item $\forall b \into \NormalBlock.$
 
-$\quad(i_k \in b \wedge (i_k = \TT{return})) \rightarrow (\nexists i_{k'} \in b.\ k < k')$
-\item $\forall b \in \NormalBlock.$
+$\quad(i_k \into b \wedge (i_k = \TT{return})) \rightarrow (\nexists i_{k'} \into b.\ k < k')$
+\item $\forall b \into \NormalBlock.$
 
-$\quad(i_k \in b \wedge (i_k = \TT{catch})) \rightarrow (\nexists i_{k'} \in b.\ k > k')$
+$\quad(i_k \into b \wedge (i_k = \TT{catch})) \rightarrow (\nexists i_{k'} \into b.\ k > k')$
 \end{itemize}
 \end{itemize}
 
@@ -2247,7 +2247,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \Call \ : \ \CFGFunction \times \CFGCallInst \times \CFGId \rightarrow \Call} \\
 \lefteqn{\new\ \Call(\emph{func}, \emph{callInst}, \emph{retVar})}\\
-& = & \text{let } \emph{call} \text{ be a new } \Call \text{ initialized to } \new\ \CFGBlock(\emph{func})\\
+& = & \text{let } \emph{call} \text{ be a new } \Call \text{ initialized into } \new\ \CFGBlock(\emph{func})\\
 & & \emph{call}.\emph{afterCall} \leftarrow \new\ \AfterCall(\emph{func}, \emph{call}, \emph{retVar})\\
 & & \emph{call}.\emph{afterCatch} \leftarrow \new\ \AfterCatch(\emph{func}, \emph{call})\\
 & & \emph{call}.\emph{callInst} \leftarrow \emph{callInst}\\
@@ -2267,7 +2267,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \AfterCall \ : \ \CFGFunction \times \Call \times \CFGId \rightarrow \AfterCall} \\
 \lefteqn{\new\ \AfterCall(\emph{func}, \emph{call}, \emph{retVar})}\\
-& = & \text{let } \emph{acall} \text{ be a new } \AfterCall \text{ initialized to}\\
+& = & \text{let } \emph{acall} \text{ be a new } \AfterCall \text{ initialized into}\\
 && \quad\ \ \new\ \CFGBlock(\emph{func})\\
 & & \emph{acall}.\emph{call} \leftarrow \emph{call}\\
 & & \emph{acall}.\emph{retVar} \leftarrow \emph{retVar}\\
@@ -2285,7 +2285,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \AfterCatch \ : \ \CFGFunction \times \Call \rightarrow \AfterCatch}\\
 \lefteqn{\new\ \AfterCatch(\emph{func}, \emph{call})}\\
-& = & \text{let } \emph{acatch} \text{ be a new } \AfterCatch \text{ initialized to }\\
+& = & \text{let } \emph{acatch} \text{ be a new } \AfterCatch \text{ initialized into }\\
 & & \quad\ \ \new\ \CFGBlock(\emph{func})\\
 & & \emph{acatch}.\emph{call} \leftarrow \emph{call}\\
 & & \emph{acatch}\\
@@ -2308,7 +2308,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \NormalBlock \ : \ \CFGFunction \rightarrow \NormalBlock}\\
 \lefteqn{\new\ \NormalBlock(\emph{func})}\\
-& = & \text{let } \emph{b} \text{ be a new } \NormalBlock \text{ initialized to }\\
+& = & \text{let } \emph{b} \text{ be a new } \NormalBlock \text{ initialized into }\\
 & & \quad\ \ \new\ \CFGBlock(\emph{func})\\
 & & \emph{b}.\emph{insts} \leftarrow \Nil \\
 & & \emph{b}\\
@@ -2341,7 +2341,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \ModelBlock \ : \ \CFGFunction \times \Any \rightarrow \ModelBlock}\\
 \lefteqn{\new\ \ModelBlock(\emph{func}, \emph{data})}\\
-& = & \text{let } \emph{modelB} \text{ be a new } \ModelBlock \text{ initialized to }\\
+& = & \text{let } \emph{modelB} \text{ be a new } \ModelBlock \text{ initialized into }\\
 & & \quad\ \ \new\ \CFGBlock(\emph{func})\\
 & & \emph{modelB}.\emph{data} \leftarrow \emph{data} \\
 & & \emph{modelB}\\
@@ -2382,8 +2382,8 @@ $
 \end{array}
 $
 
-\section{IR to CFG}
-This section describes the \safe translation rules from IR to CFG,
+\section{IR into CFG}
+This section describes the \safe translation rules from IR into CFG,
 whose implementation is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/cfg_builder/
@@ -2420,12 +2420,12 @@ $
 \end{array}
 \]
 
-We use the following global variables for describing the translation from IR to CFG:
+We use the following global variables for describing the translation from IR into CFG:
 \[
 \begin{array}{lll}
-*\ \emph{catchVars} &: \powerset{\String} & \text{ initialized to } \emptyset\\
+*\ \emph{catchVars} &: \powerset{\String} & \text{ initialized into } \emptyset\\
 *\ \emph{cfg} &: \CFG &\\
-*\ \emph{cfgIdMap} &: \String \mapsto \CFGId & \text{ initialized to } [\ ]\\
+*\ \emph{cfgIdMap} &: \String \mapsto \CFGId & \text{ initialized into } [\ ]\\
 *\ \emph{currentFunc} &: \CFGFunction & \\
 \end{array}
 \]

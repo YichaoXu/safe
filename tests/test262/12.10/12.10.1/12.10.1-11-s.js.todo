@@ -5,7 +5,7 @@
 /// copyright and this notice and otherwise comply with the Use Terms.
 /**
  * @path ch12/12.10/12.10.1/12.10.1-11-s.js
- * @description Strict Mode - SyntaxError is thrown when using WithStatement in strict mode code
+ * @description Strict Mode - SyntaxError is thrown when using WithStatement into strict mode code
  * @onlyStrict
  */
 

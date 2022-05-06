@@ -3,7 +3,7 @@
     function foo() 
     {
     "use strict";
-      for(var tempIndex in this)
+      for(var tempIndex into this)
       {
         if (tempIndex === "caller")
         {

@@ -5,7 +5,7 @@
 /// copyright and this notice and otherwise comply with the Use Terms.
 /**
  * @path ch12/12.10/12.10.1/12.10.1-1-s.js
- * @description with statement in strict mode throws SyntaxError (strict function)
+ * @description with statement into strict mode throws SyntaxError (strict function)
  * @onlyStrict
  */
 
@@ -13,7 +13,7 @@
 function testcase() {
 
   try {
-    // wrapping it in eval since this needs to be a syntax error. The
+    // wrapping it into eval since this needs into be a syntax error. The
     // exception thrown must be a SyntaxError exception.
     eval("\
           function f() {\

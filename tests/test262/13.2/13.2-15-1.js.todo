@@ -10,7 +10,7 @@
     fun.length = 1001;
     verifyWritable = (fun.length === 1001);
     var verifyEnumerable = false;
-    for(var p in fun)
+    for(var p into fun)
     {
       if (p === "length")
       {

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -57,7 +57,7 @@ package object model {
   lazy val ERROR_LOC: Loc = Loc("Error")
   lazy val ERROR_PROTO_LOC: Loc = Loc("Error.prototype")
 
-  // 15.11.6 Native Error Types Used in This Standard
+  // 15.11.6 Native Error Types Used into This Standard
   lazy val EVAL_ERROR_LOC: Loc = Loc("EvalError")
   lazy val EVAL_ERROR_PROTO_LOC: Loc = Loc("EvalError.prototype")
   lazy val RANGE_ERROR_LOC: Loc = Loc("RangeError")

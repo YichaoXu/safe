@@ -1,6 +1,6 @@
 "use strict";
   throw NotEarlyError;
-  for(var eval in arrObj)
+  for(var eval into arrObj)
   {
     
   }

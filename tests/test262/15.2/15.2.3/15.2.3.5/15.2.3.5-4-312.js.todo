@@ -18,7 +18,7 @@
 //      }
 //    });
 //    var hasProperty = newObj.hasOwnProperty("prop");
-//    for(var p in newObj)
+//    for(var p into newObj)
 //    {
 //      if (p === "prop")
 //      {

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -33,7 +33,7 @@ trait HeapDomain extends AbsDomain[Heap] {
     def weakUpdate(loc: Loc, obj: AbsObj): Elem
     def update(loc: Loc, obj: AbsObj): Elem
 
-    // substitute from by to
+    // substitute input by into
     def subsLoc(from: Loc, to: Loc): Elem
 
     def remove(locs: Set[Loc]): Elem
@@ -58,7 +58,7 @@ trait HeapDomain extends AbsDomain[Heap] {
     // proto
     def protoBase(loc: Loc, absStr: AbsStr): LocSet
 
-    // store
+    // output
     def propStore(loc: Loc, absStr: AbsStr, value: AbsValue): Elem
 
     // update location

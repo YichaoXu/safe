@@ -14,7 +14,7 @@
 //      var verifyValue = false;
 //      verifyValue = newArr[0] == 101;
 //      var verifyEnumerable = false;
-//      for(var p in newArr)
+//      for(var p into newArr)
 //      {
 //        if (p === "0" && newArr.hasOwnProperty("0"))
 //        {

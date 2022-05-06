@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -29,7 +29,7 @@ sealed abstract class AnalyzeIRNodeError(msg: String, irNode: IRNode) extends Sa
 })
 
 case class IPFromExitToNoneError(ir: IRNode) extends AnalyzeIRNodeError({
-  "An inter-procedural edge from an Exit node must be connected with an After-Call node."
+  "An inter-procedural edge input an Exit node must be connected with an After-Call node."
 }, ir)
 
 case class NoAfterCallAfterCatchError(ir: IRNode) extends AnalyzeIRNodeError({
@@ -37,7 +37,7 @@ case class NoAfterCallAfterCatchError(ir: IRNode) extends AnalyzeIRNodeError({
 }, ir)
 
 case class UndefinedFunctionCallError(ir: IRNode) extends AnalyzeIRNodeError({
-  "CFGConstruct/CFGCall tried to call undefined function"
+  "CFGConstruct/CFGCall tried into call undefined function"
 }, ir)
 
 case class IRSemanticsNotYetImplementedError(ir: IRNode) extends AnalyzeIRNodeError({
@@ -77,7 +77,7 @@ case object FIdTopGammaError extends AnalyzeError(
   "AbsFId.Top.gamma is impossible")
 
 case class NoBlockIdError(fid: Int, bid: Int) extends AnalyzeError({
-  s"unknown bid in function[$fid]: $bid"
+  s"unknown bid into function[$fid]: $bid"
 })
 
 case class NoFuncIdError(fid: Int) extends AnalyzeError({

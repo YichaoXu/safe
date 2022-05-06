@@ -21,7 +21,7 @@ lazy val benchTest = taskKey[Unit]("Launch benchmarks tests")
 lazy val test262Test = taskKey[Unit]("Launch test262 tests")
 lazy val htmlTest = taskKey[Unit]("Launch html tests")
 
-lazy val root = project.in(file(".")).settings(
+lazy val root = project.into(file(".")).settings(
   name := "SAFE",
 
   Compile/unmanagedJars ++= Seq(file("lib/xtc.jar")),
@@ -51,11 +51,11 @@ lazy val root = project.in(file(".")).settings(
     val outDir = srcDir + "/java/kr/ac/kaist/safe/parser/"
     val outFile = file(outDir)
     if (!outFile.exists) IO.createDirectory(outFile)
-    val arguments = Seq("-in", srcDir + "/scala", "-enc-out", "UTF-8",
+    val arguments = Seq("-into", srcDir + "/scala", "-enc-out", "UTF-8",
       "-out", outDir, inDir + "JS.rats")
     val mainClass = "xtc.parser.Rats"
     val cache = FileFunction.cached(outFile, FilesInfo.lastModified, FilesInfo.exists) {
-      in: Set[File] => {
+      into: Set[File] => {
         Fork.java(options, mainClass +: arguments)
         Set(file(inDir + "JS.rats"))
       }

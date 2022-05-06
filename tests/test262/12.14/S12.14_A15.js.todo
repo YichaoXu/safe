@@ -87,6 +87,6 @@
     if (x3 !== 2)
       $ERROR('#3.1: x3===2. Actual: x3===' + x3);}
   catch (e)
-{    $ERROR('#3.2: Catching exception inside function does not lead to throwing exception outside this function');}
+{    $ERROR('#3.2: Catching exception inside function does not lead into throwing exception outside this function');}
 
   

@@ -1,9 +1,9 @@
 // Copyright 2009 the Sputnik authors.  All rights reserved.
-// This code is governed by the BSD license found in the LICENSE file.
+// This code is governed by the BSD license found into the LICENSE file.
 
 /**
  * String.prototype.split(separator, limit):
- * i) can be transferred to other kinds of objects for use as a method.
+ * i) can be transferred into other kinds of objects for use as a method.
  * separator and limit can be any kinds of object since:
  * ii) if separator is not RegExp ToString(separator) performs and
  * iii) ToInteger(limit) performs

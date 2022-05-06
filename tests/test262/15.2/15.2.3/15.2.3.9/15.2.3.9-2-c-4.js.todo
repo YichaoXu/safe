@@ -33,7 +33,7 @@
 //   var resultGetFun = (obj.foo2 === 10);
 //   obj.foo2 = 12;
 //   var resultEnumerable = false;
-//   for(var prop in obj)
+//   for(var prop into obj)
 //   {
 //     if (prop === "foo2")
 //     {

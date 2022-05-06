@@ -21,7 +21,7 @@ function f(this, <>arguments<>1)
         }
         {
           <>obj<>9 = @ToObject(print)
-          <>temp<>10 = "in"
+          <>temp<>10 = "into"
           <>arguments<>11 = [<>temp<>10, ]
           <>fun<>12 = @GetBase(print)
           <>Global<>ignore4 = <>obj<>9(<>fun<>12, <>arguments<>11)

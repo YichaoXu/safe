@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -28,7 +28,7 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
     ir: IRRoot,
     safeConfig: SafeConfig,
     config: CFGBuildConfig): Try[CFG] = {
-    // Build CFG from IR.
+    // Build CFG input IR.
     val cfgBuilder = new DefaultCFGBuilder(ir, safeConfig, config)
     val cfg = cfgBuilder.build()
     // Report errors.
@@ -36,13 +36,13 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
       println(cfg.relFileName + ":")
       println(cfgBuilder.excLog)
     }
-    // Pretty print to file.
+    // Pretty print into file.
     config.outFile.foreach(out => {
       val (fw, writer) = Useful.fileNameToWriters(out)
       writer.write(cfg.toString(0))
       writer.close()
       fw.close()
-      println("Dumped CFG to " + out)
+      println("Dumped CFG into " + out)
     })
     Success(cfg)
   }
@@ -52,7 +52,7 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
     ("silent", BoolOption(c => c.silent = true),
       "messages during CFG building are muted."),
     ("out", StrOption((c, s) => c.outFile = Some(s)),
-      "the resulting CFG will be written to the outfile."))
+      "the resulting CFG will be written into the outfile."))
 }
 
 // CFGBuild phase config

@@ -15,7 +15,7 @@
 //         configurable : true
 //       }
 //     });
-//     for(var i in arr)
+//     for(var i into arr)
 //     {
 //       if (i === "0" && arr.hasOwnProperty("0"))
 //       {

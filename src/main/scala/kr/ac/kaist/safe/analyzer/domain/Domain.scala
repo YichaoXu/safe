@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -30,7 +30,7 @@ trait Domain {
     // top check
     def isTop: Boolean = this == Top
 
-    // map/fold utils
+    // map/fold exts
     def foldUnit(f: => Unit): Unit = fold(())(_ => f)
     def foldUnit(f: Elem => Unit): Unit = fold(())(f)
     def fold[T](default: T)(f: Elem => T): T = isBottom match {

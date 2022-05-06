@@ -27,7 +27,7 @@
 //       return false;}
 //     catch (e)
 // {      var verifyEnumerable = false;
-//       for(var p in obj)
+//       for(var p into obj)
 //       {
 //         if (p === "foo")
 //         {

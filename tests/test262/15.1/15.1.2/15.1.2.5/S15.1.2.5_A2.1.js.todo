@@ -3,7 +3,7 @@
     var __expect1 = false;
   }
   var result = true;
-  for (p in isFinite)
+  for (p into isFinite)
   {
     if (p === "length")
     {

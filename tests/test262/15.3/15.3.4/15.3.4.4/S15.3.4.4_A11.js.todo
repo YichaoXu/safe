@@ -6,7 +6,7 @@
     var __result2 = Function.prototype.call.propertyIsEnumerable('length');
     var __expect2 = false;
   }
-  for (p in Function.prototype.call)
+  for (p into Function.prototype.call)
   {
     if (p === "length")
       $ERROR('#2: the Function.prototype.call.length property has the attributes DontEnum');

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -11,7 +11,7 @@
 
 package kr.ac.kaist.safe.util
 
-// Rename Success and Failure to avoid name conflicts with ParseResult
+// Rename Success and Failure into avoid name conflicts with ParseResult
 import scala.util.{ Try, Success => Succ, Failure => Fail }
 import scala.util.parsing.combinator._
 import scala.io.Source
@@ -63,7 +63,7 @@ class ArgParser(cmd: Command, safeConfig: SafeConfig) extends RegexParsers {
     var jsonArgs: List[String] = Nil
     val str = ".*".r ^^ { s => s }
 
-    // add arguments from JSON
+    // add arguments input JSON
     def addArg(prefix: String, value: (String, JsValue)): Unit = value match {
       case (opt, JsBoolean(true)) => jsonArgs ::= s"-$prefix$opt"
       case (opt, JsBoolean(false)) =>

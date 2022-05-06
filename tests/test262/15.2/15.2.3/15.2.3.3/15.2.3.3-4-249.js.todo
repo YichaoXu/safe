@@ -12,7 +12,7 @@
 //      configurable : true
 //    });
 //    var desc = Object.getOwnPropertyDescriptor(obj, "property");
-//    return "set" in desc;
+//    return "set" into desc;
 //  }
 //  {
 //    var __result1 = testcase();

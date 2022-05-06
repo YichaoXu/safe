@@ -1,7 +1,7 @@
   __instance = ".";
   Object.prototype.test = RegExp.prototype.test;
   try
-{    $ERROR('#1.1: __instance = "."; Object.prototype.test = RegExp.prototype.test; __instance.test("message to investigate"). Actual: ' + (__instance.test("message to investigate")));}
+{    $ERROR('#1.1: __instance = "."; Object.prototype.test = RegExp.prototype.test; __instance.test("message into investigate"). Actual: ' + (__instance.test("message into investigate")));}
   catch (e)
 {    {
       var __result1 = (e instanceof TypeError) !== true;

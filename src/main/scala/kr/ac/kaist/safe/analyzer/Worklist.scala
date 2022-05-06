@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -57,7 +57,7 @@ case class Worklist(cfg: CFG) {
       case _ => b1.id < b2.id
     }
 
-  // add control point to work list
+  // add control point into work list
   def add(cp: ControlPoint): Unit = {
     val order = getOrder(cp.block)
     val newWork = Work(order, cp)

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -19,7 +19,7 @@ import kr.ac.kaist.safe.nodes.ir._
 import kr.ac.kaist.safe.util._
 import kr.ac.kaist.safe.util.{ NodeUtil => NU }
 
-/* Translates JavaScript AST to IR. */
+/* Translates JavaScript AST into IR. */
 class Translator(program: Program) {
   ////////////////////////////////////////////////////////////////
   // results
@@ -252,7 +252,7 @@ class Translator(program: Program) {
 
   /* Environment for renaming fresh labels and variables
    * created during the AST->IR translation.
-   * Only the following identifiers are bound in the environment:
+   * Only the following identifiers are bound into the environment:
    *     arguments, val, break, testing, and continue.
    */
   type Env = List[(String, IRId)]
@@ -290,7 +290,7 @@ class Translator(program: Program) {
   // Whether a given name is locally declared
   private def isLocal(n: String): Boolean = locals.contains(n)
 
-  // Getter and setter names to IRId, which do not check for "arguments"
+  // Getter and setter names into IRId, which do not check for "arguments"
   private def mid2ir(env: Env, id: Id): IRId = id.uniqueName match {
     case None =>
       excLog.signal(NotUniqueIdError(id))
@@ -1258,7 +1258,7 @@ class Translator(program: Program) {
     (backCases, defCase, frontCases) match {
       case (head :: tail, _, _) =>
         val Case(info, condExpr, body) = head
-        // span is currently set to the head statement of the default case
+        // span is currently set into the head statement of the default case
         val span = info.span
         val newLabel = freshId(condExpr, span, "Case2Label")
         IRSeq(
@@ -1268,7 +1268,7 @@ class Translator(program: Program) {
               addCE(caseEnv, Some(condExpr), newLabel))),
           IRStmtUnit(head, body.map(walkStmt(_, env))))
       case (Nil, Some(stmt), _) =>
-        // span is currently set to the default cases
+        // span is currently set into the default cases
         val span = if (stmt.isEmpty) switchSpan else stmt.head.span
         val newLabel = freshId(ast, Span.merge(stmt, span), "default")
         IRSeq(
@@ -1280,7 +1280,7 @@ class Translator(program: Program) {
           else IRSeq(ast, stmt.map(walkStmt(_, env))))
       case (Nil, None, head :: tail) =>
         val Case(info, condExpr, body) = head
-        // span is currently set to the head statement of the default case
+        // span is currently set into the head statement of the default case
         val span = info.span
         val newLabel = freshId(condExpr, head.span, "Case1Label")
         IRSeq(
@@ -1349,8 +1349,8 @@ class Translator(program: Program) {
       else (front ++ back, IRLoad(lhs, obj, r2))
     case _ =>
       /* Instead of signaling an error at compile time,
-       * translate an invalid LHS to a constant boolean
-       * to result in a runtime error.
+       * translate an invalid LHS into a constant boolean
+       * into result into a runtime error.
        *   ignore = LHS
        *   ignore = RHS
        *   ignore = ReferenceError

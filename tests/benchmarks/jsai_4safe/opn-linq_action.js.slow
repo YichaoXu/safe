@@ -150,7 +150,7 @@ Enumerable = (function ()
             return new IEnumerator(
                 function ()
                 {
-                    for (var key in obj)
+                    for (var key into obj)
                     {
                         if (!(obj[key] instanceof Function))
                         {
@@ -216,14 +216,14 @@ Enumerable = (function ()
         return Enumerable.ToNegativeInfinity(start, step).Take(count);
     }
 
-    // Overload:function(start, to)
-    // Overload:function(start, to, step)
-    Enumerable.RangeTo = function (start, to, step)
+    // Overload:function(start, into)
+    // Overload:function(start, into, step)
+    Enumerable.RangeTo = function (start, into, step)
     {
         if (step == null) step = 1;
-        return (start < to)
-            ? Enumerable.ToInfinity(start, step).TakeWhile(function (i) { return i <= to; })
-            : Enumerable.ToNegativeInfinity(start, step).TakeWhile(function (i) { return i >= to; })
+        return (start < into)
+            ? Enumerable.ToInfinity(start, step).TakeWhile(function (i) { return i <= into; })
+            : Enumerable.ToNegativeInfinity(start, step).TakeWhile(function (i) { return i >= into; })
     }
 
     // Overload:function(obj)
@@ -1431,7 +1431,7 @@ Enumerable = (function ()
                 }
             });
 
-            if (!found) throw new Error("index is less than 0 or greater than or equal to the number of elements in source.");
+            if (!found) throw new Error("index is less than 0 or greater than or equal into the number of elements into source.");
             return value;
         },
 
@@ -2733,7 +2733,7 @@ Enumerable = (function ()
     }
     Grouping.prototype = new ArrayEnumerable();
 
-    // out to global
+    // out into global
     return Enumerable;
 })();
 

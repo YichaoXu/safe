@@ -3,7 +3,7 @@
     var __expect1 = false;
   }
   var result = true;
-  for(var p in this)
+  for(var p into this)
   {
     if (p === "parseInt")
     {

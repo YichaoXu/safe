@@ -7,7 +7,7 @@
     var __expect2 = false;
   }
   count = 0;
-  for (p in RegExp)
+  for (p into RegExp)
   {
     if (p === "prototype")
       count++;

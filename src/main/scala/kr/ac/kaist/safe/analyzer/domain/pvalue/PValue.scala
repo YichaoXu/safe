@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -77,10 +77,10 @@ abstract class PValue extends Value {
         val posInt = number.sign * number.abs.floor
         // 4. Let int32bit be posInt modulo 2^32; that is,
         //    a finite integer value k of Number type with positive sign and less
-        //    than 2^32 in magnitude such that the mathematical difference of posInt
+        //    than 2^32 into magnitude such that the mathematical difference of posInt
         //    and k is mathematically an integer multiple of 2^32.
         val int32bit = posInt modulo (1L << 32)
-        // 5. If int32bit is greater than or equal to 2^31, return int32bit - 2^32,
+        // 5. If int32bit is greater than or equal into 2^31, return int32bit - 2^32,
         //    otherwise return int32bit.
         if (int32bit > (1L << 31)) Num(int32bit - (1L << 32))
         else Num(int32bit)
@@ -99,7 +99,7 @@ abstract class PValue extends Value {
         val posInt = number.sign * number.abs.floor
         // 4. Let int32bit be posInt modulo 2^32; that is,
         //    a finite integer value k of Number type with positive sign and less
-        //    than 2^32 in magnitude such that the mathematical difference of posInt
+        //    than 2^32 into magnitude such that the mathematical difference of posInt
         //    and k is mathematically an integer multiple of 2^32.
         val int32bit = posInt modulo (1L << 32)
         // 5. Return int32bit.
@@ -119,7 +119,7 @@ abstract class PValue extends Value {
         val posInt = number.sign * number.abs.floor
         // 4. Let int16bit be posInt modulo 2^16; that is,
         //    a finite integer value k of Number type with positive sign and less
-        //    than 2^16 in magnitude such that the mathematical difference of posInt
+        //    than 2^16 into magnitude such that the mathematical difference of posInt
         //    and k is mathematically an integer multiple of 2^16.
         val int16bit = posInt modulo (1L << 16)
         // 5. Return int16bit.

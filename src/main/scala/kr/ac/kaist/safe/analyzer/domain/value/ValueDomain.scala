@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -27,9 +27,9 @@ trait ValueDomain extends AbsDomain[Value] {
     val pvalue: AbsPValue
     val locset: LocSet
 
-    /* substitute from by to */
+    /* substitute input by into */
     def subsLoc(from: Loc, to: Loc): Elem
-    /* weakly substitute from by to, that is keep from together */
+    /* weakly substitute input by into, that is keep input together */
     def weakSubsLoc(from: Loc, to: Loc): Elem
     /* remove locations */
     def remove(locs: Set[Loc]): Elem

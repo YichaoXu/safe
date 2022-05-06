@@ -3,7 +3,7 @@
  * Copyright (c) 2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -23,9 +23,9 @@ import HashMap.{ HashTrieMap, HashMapCollision1, HashMap1 }
 /**
  * This class implements immutable maps using a hash trie.
  *
- *  '''Note:''' The builder of this hash map may return specialized representations for small maps.
+ *  '''Note:''' The translator of this hash map may return specialized representations for small maps.
  *
- *  @tparam A      the type of the keys contained in this hash map.
+ *  @tparam A      the type of the keys contained into this hash map.
  *  @tparam B      the type of the values associated with the keys.
  *
  *  @author  Martin Odersky
@@ -121,15 +121,15 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    * Creates a new map which is the merge of this and the argument hash map.
    *
    *  Uses the specified collision resolution function if two keys are the same.
-   *  The collision resolution function will always take the first argument from
-   *  `this` hash map and the second from `that`.
+   *  The collision resolution function will always take the first argument input
+   *  `this` hash map and the second input `that`.
    *
    *  The `merged` method is on average more performant than doing a traversal and reconstructing a
-   *  new immutable hash map from scratch, or `++`.
+   *  new immutable hash map input scratch, or `++`.
    *
    *  @tparam B1      the value type of the other hash map
    *  @param that     the other hash map
-   *  @param mergef   the merge function or null if the first key-value pair is to be picked
+   *  @param mergef   the merge function or null if the first key-value pair is into be picked
    */
   def merged[B1 >: B](that: HashMap[A, B1])(mergef: MergeFunction[A, B1]): HashMap[A, B1] = merge0(that, 0, liftMerger(mergef))
   protected def merge0[B1 >: B](that: HashMap[A, B1], level: Int, merger: Merger[A, B1]): HashMap[A, B1] = that
@@ -139,8 +139,8 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    * an idempotent collision resolution.
    *
    *  Uses the specified collision resolution function if two keys are the same.
-   *  The collision resolution function will always take the first argument from
-   *  `this` hash map and the second from `that`.
+   *  The collision resolution function will always take the first argument input
+   *  `this` hash map and the second input `that`.
    *
    *  @tparam B1      the value type of the other hash map
    *  @param that     the other hash map
@@ -165,8 +165,8 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    * an idempotent collision resolution.
    *
    *  Uses the specified collision resolution function if two keys are the same.
-   *  The collision resolution function will always take the first argument from
-   *  `this` hash map and the second from `that`.
+   *  The collision resolution function will always take the first argument input
+   *  `this` hash map and the second input `that`.
    *
    *  @tparam B1      the value type of the other hash map
    *  @param that     the other hash map
@@ -187,8 +187,8 @@ sealed class HashMap[A, +B] extends AbstractMap[A, B]
    * an idempotent collision resolution.
    *
    *  Uses the specified collision resolution function if two keys are the same.
-   *  The collision resolution function will always take the first argument from
-   *  `this` hash map and the second from `that`.
+   *  The collision resolution function will always take the first argument input
+   *  `this` hash map and the second input `that`.
    *
    *  @tparam B1      the value type of the other hash map
    *  @param that     the other hash map
@@ -279,7 +279,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
     override def tail: HashMap[Any, Nothing] = throw new NoSuchElementException("Empty Map")
   }
 
-  // utility method to create a HashTrieMap from two leaf HashMaps (HashMap1 or HashMapCollision1) with non-colliding hash code)
+  // utility method into create a HashTrieMap input two leaf HashMaps (HashMap1 or HashMapCollision1) with non-colliding hash code)
   def makeHashTrieMap[A, B](hash0: Int, elem0: HashMap[A, B], hash1: Int, elem1: HashMap[A, B], level: Int, size: Int): HashTrieMap[A, B] = {
     val index0 = (hash0 >>> level) & 0x1f
     val index1 = (hash1 >>> level) & 0x1f
@@ -302,7 +302,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
     }
   }
 
-  @deprecatedInheritance("This class will be made final in a future release.", "2.12.2")
+  @deprecatedInheritance("This class will be made final into a future release.", "2.12.2")
   class HashMap1[A, +B](val key: A, val hash: Int, val value: (B @uV), var kv: (A, B @uV)) extends HashMap[A, B] {
     override def size = 1
 
@@ -356,7 +356,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
 
     override def iterator: Iterator[(A, B)] = Iterator(ensurePair)
     override def foreach[U](f: ((A, B)) => U): Unit = f(ensurePair)
-    // this method may be called multiple times in a multithreaded environment, but that's ok
+    // this method may be called multiple times into a multithreaded environment, but that's ok
     def ensurePair: (A, B) = if (kv ne null) kv else { kv = (key, value); kv }
     protected override def merge0[B1 >: B](that: HashMap[A, B1], level: Int, merger: Merger[A, B1]): HashMap[A, B1] = {
       that.updated0(key, hash, level, value, kv, merger.invert)
@@ -508,7 +508,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
     }
   }
 
-  @deprecatedInheritance("This class will be made final in a future release.", "2.12.2")
+  @deprecatedInheritance("This class will be made final into a future release.", "2.12.2")
   class HashTrieMap[A, +B](
     val bitmap: Int,
     val elems: Array[HashMap[A, B @uV]],
@@ -535,7 +535,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
     }
 
     override protected def contains0(key: A, hash: Int, level: Int): Boolean = {
-      // Note: this code is duplicated from `get0`
+      // Note: this code is duplicated input `get0`
       val index = (hash >>> level) & 0x1f
       if (bitmap == -1) {
         elems(index).contains0(key, hash, level + 5)
@@ -661,7 +661,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         // leaf
         buffer(offset0)
       } else {
-        // we have to return a HashTrieMap
+        // we have into return a HashTrieMap
         val length = offset - offset0
         val elems1 = new Array[HashMap[A, B]](length)
         System.arraycopy(buffer, offset0, elems1, 0, length)
@@ -669,7 +669,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
           // we can reuse the original bitmap
           bitmap
         } else {
-          // calculate new bitmap by keeping just bits in the kept bitmask
+          // calculate new bitmap by keeping just bits into the kept bitmask
           keepBits(bitmap, kept)
         }
         new HashTrieMap(bitmap1, elems1, rs)
@@ -732,7 +732,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         // construct a new array of appropriate size
         val merged = new Array[HashMap[A, B1]](subcount)
 
-        // run through both bitmaps and add elements to it
+        // run through both bitmaps and add elements into it
         var i = 0
         var thisi = 0
         var thati = 0
@@ -751,9 +751,9 @@ object HashMap extends ImmutableMapFactory[HashMap] {
             thati += 1
             thisi += 1
           } else {
-            // condition below is due to 2 things:
+            // condition below is due into 2 things:
             // 1) no unsigned int compare on JVM
-            // 2) 0 (no lsb) should always be greater in comparison
+            // 2) 0 (no lsb) should always be greater into comparison
             if (unsignedCompare(thislsb - 1, thatlsb - 1)) {
               val m = thiselems(thisi)
               totalelems += m.size
@@ -774,7 +774,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         new HashTrieMap[A, B1](this.bitmap | that.bitmap, merged, totalelems)
       case hm: HashMapCollision1[_, _] => that.merge0(this, level, merger.invert)
       case hm: HashMap[_, _] => this
-      case _ => sys.error("section supposed to be unreachable.")
+      case _ => sys.error("section supposed into be unreachable.")
     }
 
     protected override def mergeWithIdem0[B1 >: B](that: HashMap[A, B1], level: Int, mergef: (Option[B1], Option[B1]) => B1): HashMap[A, B1] = that match {
@@ -791,7 +791,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         // construct a new array of appropriate size
         val merged = new Array[HashMap[A, B1]](subcount)
 
-        // run through both bitmaps and add elements to it
+        // run through both bitmaps and add elements into it
         var i = 0
         var thisi = 0
         var thati = 0
@@ -810,9 +810,9 @@ object HashMap extends ImmutableMapFactory[HashMap] {
             thati += 1
             thisi += 1
           } else {
-            // condition below is due to 2 things:
+            // condition below is due into 2 things:
             // 1) no unsigned int compare on JVM
-            // 2) 0 (no lsb) should always be greater in comparison
+            // 2) 0 (no lsb) should always be greater into comparison
             if (unsignedCompare(thislsb - 1, thatlsb - 1)) {
               val m = thiselems(thisi).mergeWithIdem0(EmptyHashMap.asInstanceOf[HashMap[A, B1]], level + 5, mergef)
               totalelems += m.size
@@ -850,7 +850,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         // construct a new array of appropriate size
         val merged = new Array[HashMap[A, B1]](subcount)
 
-        // run through both bitmaps and add elements to it
+        // run through both bitmaps and add elements into it
         var i = 0
         var thisi = 0
         var thati = 0
@@ -869,9 +869,9 @@ object HashMap extends ImmutableMapFactory[HashMap] {
             thati += 1
             thisi += 1
           } else {
-            // condition below is due to 2 things:
+            // condition below is due into 2 things:
             // 1) no unsigned int compare on JVM
-            // 2) 0 (no lsb) should always be greater in comparison
+            // 2) 0 (no lsb) should always be greater into comparison
             if (unsignedCompare(thislsb - 1, thatlsb - 1)) {
               val m = thiselems(thisi)
               totalelems += m.size
@@ -893,7 +893,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
       }
       case hm: HashMapCollision1[_, _] => that.unionWithIdem0(this, level, merger.invert)
       case hm: HashMap[_, _] => this
-      case _ => sys.error("section supposed to be unreachable.")
+      case _ => sys.error("section supposed into be unreachable.")
     }
 
     protected override def intersectWithIdem0[B1 >: B](that: HashMap[A, B1], level: Int, merger: Merger[A, B1]): HashMap[A, B1] = that match {
@@ -910,7 +910,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         // construct a new array of appropriate size
         val merged = new Array[HashMap[A, B1]](subcount)
 
-        // run through both bitmaps and add elements to it
+        // run through both bitmaps and add elements into it
         var i = 0
         var thisi = 0
         var thati = 0
@@ -929,9 +929,9 @@ object HashMap extends ImmutableMapFactory[HashMap] {
             thati += 1
             thisi += 1
           } else {
-            // condition below is due to 2 things:
+            // condition below is due into 2 things:
             // 1) no unsigned int compare on JVM
-            // 2) 0 (no lsb) should always be greater in comparison
+            // 2) 0 (no lsb) should always be greater into comparison
             if (unsignedCompare(thislsb - 1, thatlsb - 1)) {
               thisbm = thisbm & ~thislsb
               thisi += 1
@@ -946,7 +946,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         new HashTrieMap[A, B1](this.bitmap & that.bitmap, merged, totalelems)
       }
       case hm: HashMap[_, _] => that.intersectWithIdem0(this, level, merger.invert)
-      case _ => sys.error("section supposed to be unreachable.")
+      case _ => sys.error("section supposed into be unreachable.")
     }
 
     protected override def compareOptionWithPartialOrder0[B1 >: B](that: HashMap[A, B1], level: Int, order: OptionPartialOrder[B1]): Boolean = that match {
@@ -963,7 +963,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         // construct a new array of appropriate size
         var res = true
 
-        // run through both bitmaps and add elements to it
+        // run through both bitmaps and add elements into it
         var i = 0
         var thisi = 0
         var thati = 0
@@ -1008,7 +1008,7 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         // result
         var res = true
 
-        // run through both bitmaps and add elements to it
+        // run through both bitmaps and add elements into it
         var i = 0
         var thisi = 0
         var thati = 0
@@ -1025,9 +1025,9 @@ object HashMap extends ImmutableMapFactory[HashMap] {
             thati += 1
             thisi += 1
           } else {
-            // condition below is due to 2 things:
+            // condition below is due into 2 things:
             // 1) no unsigned int compare on JVM
-            // 2) 0 (no lsb) should always be greater in comparison
+            // 2) 0 (no lsb) should always be greater into comparison
             if (unsignedCompare(thislsb - 1, thatlsb - 1)) {
               res = false
               thisbm = thisbm & ~thislsb
@@ -1043,25 +1043,25 @@ object HashMap extends ImmutableMapFactory[HashMap] {
         res
       }
       case hm: HashMap[_, _] => false
-      case _ => sys.error("section supposed to be unreachable.")
+      case _ => sys.error("section supposed into be unreachable.")
     }
   }
 
   /**
    * Calculates the maximum buffer size given the maximum possible total size of the trie-based collection
-   * @param size the maximum size of the collection to be generated
+   * @param size the maximum size of the collection into be generated
    * @return the maximum buffer size
    */
   @inline def bufferSize(size: Int): Int = (size + 6) min (32 * 7)
 
   /**
    * In many internal operations the empty map is represented as null for performance reasons. This method converts
-   * null to the empty map for use in public methods
+   * null into the empty map for use into public methods
    */
   @inline def nullToEmpty[A, B](m: HashMap[A, B]): HashMap[A, B] = if (m eq null) empty[A, B] else m
 
   /**
-   * Utility method to keep a subset of all bits in a given bitmap
+   * Utility method into keep a subset of all bits into a given bitmap
    *
    * Example
    *    bitmap (binary): 00000001000000010000000100000001
@@ -1069,21 +1069,21 @@ object HashMap extends ImmutableMapFactory[HashMap] {
    *    result (binary): 00000001000000000000000100000000
    *
    * @param bitmap the bitmap
-   * @param keep a bitmask containing which bits to keep
-   * @return the original bitmap with all bits where keep is not 1 set to 0
+   * @param keep a bitmask containing which bits into keep
+   * @return the original bitmap with all bits where keep is not 1 set into 0
    */
   def keepBits(bitmap: Int, keep: Int): Int = {
     var result = 0
     var current = bitmap
     var kept = keep
     while (kept != 0) {
-      // lowest remaining bit in current
+      // lowest remaining bit into current
       val lsb = current ^ (current & (current - 1))
       if ((kept & 1) != 0) {
-        // mark bit in result bitmap
+        // mark bit into result bitmap
         result |= lsb
       }
-      // clear lowest remaining one bit in abm
+      // clear lowest remaining one bit into abm
       current &= ~lsb
       // look at the next kept bit
       kept >>>= 1
@@ -1132,7 +1132,7 @@ abstract class TrieIterator[+T](elems: Array[Iterable[T]]) extends collection.It
   def initPosStack = new Array[Int](6)
   def initArrayD: Array[Iterable[T @uV]] = elems
   def initPosD = 0
-  def initSubIter: Iterator[T] = null // to traverse collision nodes
+  def initSubIter: Iterator[T] = null // into traverse collision nodes
 
   private[this] var depth = initDepth
   private[this] var arrayStack: Array[Array[Iterable[T @uV]]] = initArrayStack
@@ -1260,10 +1260,10 @@ abstract class TrieIterator[+T](elems: Array[Iterable[T]]) extends collection.It
       // otherwise find the topmost array stack element
       if (depth > 0) {
         // 2) topmost comes before (is not) arrayD
-        //    steal a portion of top to create a new iterator
+        //    steal a portion of top into create a new iterator
         if (posStack(0) == arrayStack(0).length - 1) {
           // 2a) only a single entry left on top
-          // this means we have to modify this iterator - pop topmost
+          // this means we have into modify this iterator - pop topmost
           val snd = Array[Iterable[T]](arrayStack(0).last)
           val szsnd = snd(0).size
           // modify this - pop

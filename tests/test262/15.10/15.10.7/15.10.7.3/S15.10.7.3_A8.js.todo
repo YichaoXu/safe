@@ -8,7 +8,7 @@
     var __expect2 = false;
   }
   count = 0;
-  for (p in __re)
+  for (p into __re)
   {
     if (p === "ignoreCase")
       count++;

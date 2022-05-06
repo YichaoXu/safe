@@ -21,7 +21,7 @@
 //      verifyGet = true;
 //    }
 //    var verifyEnumerable = false;
-//    for(var p in newObj)
+//    for(var p into newObj)
 //    {
 //      if (p === "prop")
 //      {

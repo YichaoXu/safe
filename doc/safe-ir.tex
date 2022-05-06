@@ -1,6 +1,6 @@
 \chapter{IR}
 This section describes each construct of the \safe IR
-in both the BNF notation and its corresponding implementation.
+into both the BNF notation and its corresponding implementation.
 The implementation of IR nodes is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/ir/
@@ -137,11 +137,11 @@ The \safe IR has the following assumptions and notations:
 \item We denote a list as a possibly empty, semicolon-separated sequence, enclosed by $\langle$ and $\rangle$.
 \item We denote a series of list appends as superscripted $*$ such as $\stmt^*$.
 \item We abuse our notations by interchanging semicolon-separated sequences and lists.
-\item To denote an AST-level statement granularity in the translated IR statements,
-we use {\tt IRStmtUnit} which is represented as green angle brackets {\ingreen $\open\ \close$} in this document.
-\item Declarations of functions and variables are hoisted to their closest enclosing functions
+\item To denote an AST-level statement granularity into the translated IR statements,
+we use {\tt IRStmtUnit} which is represented as green angle brackets {\ingreen $\open\ \close$} into this document.
+\item Declarations of functions and variables are hoisted into their closest enclosing functions
 or the top level via the \verb!Hoister! transformation of the \verb!astRewriter! phase.
-\item Identifiers and labels that exist in the source program,
+\item Identifiers and labels that exist into the source program,
 except when they appear at top level or within the {\tt with} statement,
 are already disambiguated via the \verb!Disambiguator! transformation of the \verb!astRewriter! phase
 so that they have unique names.

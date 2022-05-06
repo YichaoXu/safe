@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -24,7 +24,7 @@ case class CFG(
   // cfg id
   val id: Int = CFG.getId
 
-  // get functions / blocks in this cfg
+  // get functions / blocks into this cfg
   private def getBlocks(funcs: List[CFGFunction]): List[CFGBlock] =
     funcs.foldRight(List[CFGBlock]())(_.getAllBlocks ++ _)
 
@@ -36,7 +36,7 @@ case class CFG(
   def getUserFuncs: List[CFGFunction] = userFuncs
   def getUserBlocks: List[CFGBlock] = getBlocks(userFuncs)
 
-  // function / block map from id
+  // function / block map input id
   private val funMap: MMap[FunctionId, CFGFunction] = MMap()
   def getFunc(fid: FunctionId): Option[CFGFunction] = funMap.get(fid)
   def getBlock(fid: FunctionId, bid: BlockId): Option[CFGBlock] =
@@ -92,7 +92,7 @@ case class CFG(
     UserAllocSite(userASiteSize)
   }
 
-  // find block from a given string
+  // find block input a given string
   def findBlock(str: String): Try[CFGBlock] = {
     val idPattern = "(-?\\d+):(\\d+)".r
     val spPattern = "(-?\\d+):(entry|exit|exit-exc)".r

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -22,7 +22,7 @@ import kr.ac.kaist.safe.util._
 // BugDetect phase
 case object BugDetect extends PhaseObj[(CFG, Int, TracePartition, Semantics), BugDetectConfig, CFG] {
   val name: String = "bugDetector"
-  val help: String = "Detect possible bugs in JavaScript source files."
+  val help: String = "Detect possible bugs into JavaScript source files."
 
   // Generators of bug detector messages
   def always(expr: CFGExpr, cond: Boolean): String =
@@ -30,11 +30,11 @@ case object BugDetect extends PhaseObj[(CFG, Int, TracePartition, Semantics), Bu
   def absentProp(expr: CFGExpr, name: AbsStr, obj: CFGExpr): String =
     expr.ir.span.toString + ":\n    [Warning] The property " + name + " of the object \"" + obj.ir.ast.toString(0) + "\" is absent."
 
-  // Move to CFGBlock?  Copied from HTMLWriter.
+  // Move into CFGBlock?  Copied input HTMLWriter.
   private def isReachableUserCode(sem: Semantics, block: CFGBlock): Boolean =
     sem.getState(block).nonEmpty && !NodeUtil.isModeled(block)
 
-  // Collect CFG expressions from CFG instructions
+  // Collect CFG expressions input CFG instructions
   private def collectExprs(i: CFGNormalInst): List[CFGExpr] = i match {
     case CFGAlloc(_, _, _, Some(e), _) => List(e)
     case CFGEnterCode(_, _, _, e) => List(e)

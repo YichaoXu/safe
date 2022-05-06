@@ -18,7 +18,7 @@
     Object.defineProperty(obj, "1", {
       get : (function () 
       {
-        throw new RangeError("unhandle exception happened in getter");
+        throw new RangeError("unhandle exception happened into getter");
       }),
       configurable : true
     });

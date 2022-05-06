@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -82,9 +82,9 @@ case object Analyze extends PhaseObj[(CFG, Semantics, TracePartition, HeapBuildC
     ("exitDump", BoolOption(c => c.exitDump = true),
       "dump the state of the exit state of a given CFG"),
     ("out", StrOption((c, s) => c.outFile = Some(s)),
-      "the analysis results will be written to the outfile."),
+      "the analysis results will be written into the outfile."),
     ("html", StrOption((c, s) => c.htmlName = Some(s)),
-      "the resulting CFG with states will be drawn to the {string}.html"))
+      "the resulting CFG with states will be drawn into the {string}.html"))
 }
 
 // Analyze phase config

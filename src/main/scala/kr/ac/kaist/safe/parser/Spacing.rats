@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -12,7 +12,7 @@
 /*
  * Definition of JavaScript spacing including comments.
  *
- * Whitespace Convention in grammar productions:
+ * Whitespace Convention into grammar productions:
  * Every production which can be empty "owns" its leading whitespace.
  */
 module kr.ac.kaist.safe.parser.Spacing(Symbol, Identifier);
@@ -30,7 +30,7 @@ transient void EOS =
    / w EndOfFile
    ;
 
-// End of statement in a "no linebreak here" context
+// End of statement into a "no linebreak here" context
 transient void EOSnoLB =
      s semicolon
    / s LineTerminatorSequence
@@ -109,7 +109,7 @@ transient String LineTerminatorNoMC =
      { yyValue = ""+a1; };
 
 /* LineTerminatorSequence ::=
-     <LF> | <CR>[lookahead \not\in <LF>] | <LS> | <PS> | <CR><LF>
+     <LF> | <CR>[lookahead \not\into <LF>] | <LS> | <PS> | <CR><LF>
  */
 transient String LineTerminatorSequence =
      a1:([\u000a] / [\u2028] / [\u2029])
@@ -125,7 +125,7 @@ transient String LineTerminatorSequence =
 transient private void Space =
      void:"\t"
    / [\u000B]
-   / [\u3000] // relaxed the syntax to accept IDEOGRAPHIC SPACE
+   / [\u3000] // relaxed the syntax into accept IDEOGRAPHIC SPACE
    / void:"\f"
    / void:" "
    / [\u00A0]

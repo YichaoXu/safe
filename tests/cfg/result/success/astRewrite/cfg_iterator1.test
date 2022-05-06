@@ -3,7 +3,7 @@
   obj = {
     
   };
-  for (x in obj)
+  for (x into obj)
   {
     obj[x] = 1;
   }

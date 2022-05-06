@@ -1,5 +1,5 @@
-\chapter{IR to CFG}
-This section describes the \safe translation rules from IR to CFG,
+\chapter{IR into CFG}
+This section describes the \safe translation rules from IR into CFG,
 whose implementation is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/cfg_builder/
@@ -36,12 +36,12 @@ $
 \end{array}
 \]
 
-We use the following global variables for describing the translation from IR to CFG:
+We use the following global variables for describing the translation from IR into CFG:
 \[
 \begin{array}{lll}
-*\ \emph{catchVars} &: \powerset{\String} & \text{ initialized to } \emptyset\\
+*\ \emph{catchVars} &: \powerset{\String} & \text{ initialized into } \emptyset\\
 *\ \emph{cfg} &: \CFG &\\
-*\ \emph{cfgIdMap} &: \String \mapsto \CFGId & \text{ initialized to } [\ ]\\
+*\ \emph{cfgIdMap} &: \String \mapsto \CFGId & \text{ initialized into } [\ ]\\
 *\ \emph{currentFunc} &: \CFGFunction & \\
 \end{array}
 \]

@@ -3,7 +3,7 @@
     var __expect1 = false;
   }
   result = true;
-  for (p in encodeURI)
+  for (p into encodeURI)
   {
     if (p === "length")
     {

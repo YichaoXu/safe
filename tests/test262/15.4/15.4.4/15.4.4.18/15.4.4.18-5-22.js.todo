@@ -5,7 +5,7 @@
     {
       result = (this.valueOf() === false);
     }
-// TODO: add ToObject to javascript modeling
+// TODO: add ToObject into javascript modeling
     [11, ].forEach(callbackfn, false);
     return result;
   }

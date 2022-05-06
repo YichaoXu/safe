@@ -7,7 +7,7 @@
   try
 {    __PROTO.type = __MONSTER;}
   catch (e)
-{    $FAIL('#0: __PROTO.type=__MONSTER does not lead to throwing exception');}
+{    $FAIL('#0: __PROTO.type=__MONSTER does not lead into throwing exception');}
 
   var __FACTORY = (function () 
   {

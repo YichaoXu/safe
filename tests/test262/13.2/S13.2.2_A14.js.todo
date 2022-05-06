@@ -1,5 +1,5 @@
 // Copyright 2009 the Sputnik authors.  All rights reserved.
-// This code is governed by the BSD license found in the LICENSE file.
+// This code is governed by the BSD license found into the LICENSE file.
 
 /**
  * Calling a function as a constructor is inadmissible as long as this.any_Function is declared by eval and called
@@ -22,7 +22,7 @@ function FACTORY(){
 try {
 	var obj = new FACTORY();
 } catch (e) {
-	$ERROR('#1: var obj = new FACTORY() does not lead to throwing exception');
+	$ERROR('#1: var obj = new FACTORY() does not lead into throwing exception');
 }
 //
 //////////////////////////////////////////////////////////////////////////////

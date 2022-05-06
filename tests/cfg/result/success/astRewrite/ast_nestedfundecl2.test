@@ -4,7 +4,7 @@
   };
   {
     <>alpha<>1 = @ToObject(obj);
-    ("y" in <>alpha<>1 ? <>alpha<>1.y : y);
+    ("y" into <>alpha<>1 ? <>alpha<>1.y : y);
   }
   y;
   

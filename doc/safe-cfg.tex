@@ -1,6 +1,6 @@
 \chapter{CFG}
 This section describes each construct of the \safe CFG
-in both the BNF notation and its corresponding implementation.
+into both the BNF notation and its corresponding implementation.
 The implementation of CFG nodes is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/cfg/
@@ -10,25 +10,25 @@ $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/nodes/cfg/
 \small
 \[
 \begin{array}{r@{~~}r@{~~}l@{}ll}
-\embox{cfg} \in \CFG & = & \powerset{\CFGFunction} & \\
-\multicolumn{3}{l}{f,\ \langle B, \hookrightarrow, C \rangle \in \CFGFunction \ =}\\
+\embox{cfg} \into \CFG & = & \powerset{\CFGFunction} & \\
+\multicolumn{3}{l}{f,\ \langle B, \hookrightarrow, C \rangle \into \CFGFunction \ =}\\
 \multicolumn{3}{r}{
  \powerset{\CFGBlock} \times \powerset{\CFGEdge}
 \times \powerset{\CFGCallTriple}} & \\
-b \in \CFGBlock & = & \multicolumn{2}{@{}l}{\Entry \mid \Exit \mid \ExitExc \mid \Call \mid \AfterCall}\\
+b \into \CFGBlock & = & \multicolumn{2}{@{}l}{\Entry \mid \Exit \mid \ExitExc \mid \Call \mid \AfterCall}\\
 &\mid& \multicolumn{2}{@{}l}{\AfterCatch \mid \NormalBlock \mid \ModelBlock} \\
 \NormalBlock & = & \CFGInst^+ & \\
 \CFGEdge & = & \CFGBlock \times \CFGBlock \times \EdgeType & \\
 \EdgeType & = & \EdgeNormal \mid \EdgeExc & \\
-C \in \CFGCallTriple & = & \Call \times \AfterCall \times \AfterCatch & \\
+C \into \CFGCallTriple & = & \Call \times \AfterCall \times \AfterCatch & \\
 
-i \in \CFGInst & = & \CFGNormalInst \mid \CFGCallInst &
+i \into \CFGInst & = & \CFGNormalInst \mid \CFGCallInst &
 \\
 
-x \in \CFGId & = & \String \times \SF{VarKind} &
+x \into \CFGId & = & \String \times \SF{VarKind} &
 \\
 
-s \in \String &&&\\
+s \into \String &&&\\
 
 \SF{VarKind} & ::= &
 \multicolumn{2}{@{} l}{
@@ -36,10 +36,10 @@ s \in \String &&&\\
 &  \mid & \TT{CapturedVar} \mid \TT{CapturedCatchVar}
 \\
 
-a \in \SF{Address} & = & \SF{Integer} &
+a \into \SF{Address} & = & \SF{Integer} &
 \\
 
-v \in \SF{EJSVal} & = &
+v \into \SF{EJSVal} & = &
 \multicolumn{2}{@{} l}{
  \SF{Number} \mid \String \mid \SF{Boolean} \mid \SF{Null}}\\
 & \mid &\SF{Undefined}
@@ -126,7 +126,7 @@ x~\verb+:=+~\TT{alloc}\verb+(+ e^{?} \verb+)+ @ a
 \\\\
 
 \lefteqn{\!\!\!\!\!\!\!\!\!\!\!\!
-e \in \CFGExpr}\\
+e \into \CFGExpr}\\
 ::= & x & \SF{CFGVarRef}\\
 \mid & e \inop e & \SF{CFGBin}\\
 \mid & \preop e & \SF{CFGUn}\\
@@ -140,7 +140,7 @@ e \in \CFGExpr}\\
 \\
 \inop ::= &
 \multicolumn{2}{@{} l}{
- \TT{instanceof} \mid \TT{in} \mid \TT{|} \mid \TT{\&}
+ \TT{instanceof} \mid \TT{into} \mid \TT{|} \mid \TT{\&}
                \mid \TT{\^} \mid \TT{<<} \mid \TT{>>} \mid \TT{>>>}
 \mid \TT{+} \mid \TT{-} \mid \TT{*} \mid \TT{/} \mid \TT{\%}}\\
 \mid & \multicolumn{2}{@{} l}{
@@ -153,54 +153,54 @@ e \in \CFGExpr}\\
 \item \Entry, \Exit, and \ExitExc blocks always uniquely exist for each \CFGFunction,
 and an \Entry block has no predecessor, \Exit and \ExitExc blocks have no successor.
 \begin{itemize}
-\item $\forall \langle B, \_, \_ \rangle \in \CFGFunction.$
+\item $\forall \langle B, \_, \_ \rangle \into \CFGFunction.$
 
-$\quad(\nexists\ \entry \in\Entry\cap B)$,
+$\quad(\nexists\ \entry \into\Entry\cap B)$,
 
-$\quad(\nexists\ \exit \in \Exit \cap B)$,
+$\quad(\nexists\ \exit \into \Exit \cap B)$,
 
-$\quad(\nexists\ \exitExc \in \ExitExc \cap B)$
-\item $\forall \langle B, \hookrightarrow, \_ \rangle \in \CFGFunction.$
-$\nexists b \in B.$ s.t.
+$\quad(\nexists\ \exitExc \into \ExitExc \cap B)$
+\item $\forall \langle B, \hookrightarrow, \_ \rangle \into \CFGFunction.$
+$\nexists b \into B.$ s.t.
 
 $(b \hookrightarrow \entry) \vee (\exit \hookrightarrow b) \vee (\exitExc \hookrightarrow b)$
-where $\entry \in \Entry,\ \exit \in \Exit,\ \exitExc \in \ExitExc$
+where $\entry \into \Entry,\ \exit \into \Exit,\ \exitExc \into \ExitExc$
 \end{itemize}
 
-\item Each edge connects 2 blocks in the same \CFGFunction.
+\item Each edge connects 2 blocks into the same \CFGFunction.
 \begin{itemize}
-\item $\forall \langle B, \hookrightarrow, \_ \rangle \in \CFGFunction.\ \hookrightarrow\ \subseteq B \times B$
+\item $\forall \langle B, \hookrightarrow, \_ \rangle \into \CFGFunction.\ \hookrightarrow\ \subseteq B \times B$
 \end{itemize}
 
 \item Each \CFGFunction records \Call, \AfterCall, and \AfterCatch
 without any edges between them, and the triple consisting of them is unique.
 \begin{itemize}
-\item $\forall \langle B, \_, C \rangle \in \CFGFunction.$
+\item $\forall \langle B, \_, C \rangle \into \CFGFunction.$
 
-$\forall \call \in \Call \cap B.\ $
+$\forall \call \into \Call \cap B.\ $
 
-$\forall \acall \in \AfterCall \cap B.\ $
+$\forall \acall \into \AfterCall \cap B.\ $
 
-$\forall \acatch \in \AfterCatch \cap B.\ $
+$\forall \acatch \into \AfterCatch \cap B.\ $
 
-$\quad(\call, \_, \_),\ (\_, \acall, \_),\ (\_, \_, \acatch) \in C$
-\item $\forall \langle \_, \_, C \rangle \in \CFGFunction.$
+$\quad(\call, \_, \_),\ (\_, \acall, \_),\ (\_, \_, \acatch) \into C$
+\item $\forall \langle \_, \_, C \rangle \into \CFGFunction.$
 
-\mbox{$\forall (\call, \acall, \acatch), (\call', \acall', \acatch') \in C.$}
+\mbox{$\forall (\call, \acall, \acatch), (\call', \acall', \acatch') \into C.$}
 
 $\quad\call = \call' \Leftrightarrow \acall = \acall'$
 
 $\phantom{\quad\call = \call' }\Leftrightarrow \acatch = \acatch'$
 \end{itemize}
 
-\item There is no instruction after \TT{return} in a block. There is no instruction before \TT{catch} in a block.
+\item There is no instruction after \TT{return} into a block. There is no instruction before \TT{catch} into a block.
 \begin{itemize}
-\item $\forall b \in \NormalBlock.$
+\item $\forall b \into \NormalBlock.$
 
-$\quad(i_k \in b \wedge (i_k = \TT{return})) \rightarrow (\nexists i_{k'} \in b.\ k < k')$
-\item $\forall b \in \NormalBlock.$
+$\quad(i_k \into b \wedge (i_k = \TT{return})) \rightarrow (\nexists i_{k'} \into b.\ k < k')$
+\item $\forall b \into \NormalBlock.$
 
-$\quad(i_k \in b \wedge (i_k = \TT{catch})) \rightarrow (\nexists i_{k'} \in b.\ k > k')$
+$\quad(i_k \into b \wedge (i_k = \TT{catch})) \rightarrow (\nexists i_{k'} \into b.\ k > k')$
 \end{itemize}
 \end{itemize}
 
@@ -377,7 +377,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \Call \ : \ \CFGFunction \times \CFGCallInst \times \CFGId \rightarrow \Call} \\
 \lefteqn{\new\ \Call(\emph{func}, \emph{callInst}, \emph{retVar})}\\
-& = & \text{let } \emph{call} \text{ be a new } \Call \text{ initialized to } \new\ \CFGBlock(\emph{func})\\
+& = & \text{let } \emph{call} \text{ be a new } \Call \text{ initialized into } \new\ \CFGBlock(\emph{func})\\
 & & \emph{call}.\emph{afterCall} \leftarrow \new\ \AfterCall(\emph{func}, \emph{call}, \emph{retVar})\\
 & & \emph{call}.\emph{afterCatch} \leftarrow \new\ \AfterCatch(\emph{func}, \emph{call})\\
 & & \emph{call}.\emph{callInst} \leftarrow \emph{callInst}\\
@@ -397,7 +397,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \AfterCall \ : \ \CFGFunction \times \Call \times \CFGId \rightarrow \AfterCall} \\
 \lefteqn{\new\ \AfterCall(\emph{func}, \emph{call}, \emph{retVar})}\\
-& = & \text{let } \emph{acall} \text{ be a new } \AfterCall \text{ initialized to}\\
+& = & \text{let } \emph{acall} \text{ be a new } \AfterCall \text{ initialized into}\\
 && \quad\ \ \new\ \CFGBlock(\emph{func})\\
 & & \emph{acall}.\emph{call} \leftarrow \emph{call}\\
 & & \emph{acall}.\emph{retVar} \leftarrow \emph{retVar}\\
@@ -415,7 +415,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \AfterCatch \ : \ \CFGFunction \times \Call \rightarrow \AfterCatch}\\
 \lefteqn{\new\ \AfterCatch(\emph{func}, \emph{call})}\\
-& = & \text{let } \emph{acatch} \text{ be a new } \AfterCatch \text{ initialized to }\\
+& = & \text{let } \emph{acatch} \text{ be a new } \AfterCatch \text{ initialized into }\\
 & & \quad\ \ \new\ \CFGBlock(\emph{func})\\
 & & \emph{acatch}.\emph{call} \leftarrow \emph{call}\\
 & & \emph{acatch}\\
@@ -438,7 +438,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \NormalBlock \ : \ \CFGFunction \rightarrow \NormalBlock}\\
 \lefteqn{\new\ \NormalBlock(\emph{func})}\\
-& = & \text{let } \emph{b} \text{ be a new } \NormalBlock \text{ initialized to }\\
+& = & \text{let } \emph{b} \text{ be a new } \NormalBlock \text{ initialized into }\\
 & & \quad\ \ \new\ \CFGBlock(\emph{func})\\
 & & \emph{b}.\emph{insts} \leftarrow \Nil \\
 & & \emph{b}\\
@@ -471,7 +471,7 @@ $
 \begin{array}{l@{}l@{~}l}
 \lefteqn{\new \ \ModelBlock \ : \ \CFGFunction \times \Any \rightarrow \ModelBlock}\\
 \lefteqn{\new\ \ModelBlock(\emph{func}, \emph{data})}\\
-& = & \text{let } \emph{modelB} \text{ be a new } \ModelBlock \text{ initialized to }\\
+& = & \text{let } \emph{modelB} \text{ be a new } \ModelBlock \text{ initialized into }\\
 & & \quad\ \ \new\ \CFGBlock(\emph{func})\\
 & & \emph{modelB}.\emph{data} \leftarrow \emph{data} \\
 & & \emph{modelB}\\

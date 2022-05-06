@@ -94,7 +94,7 @@
             l = ["//www.google.com/gen_204?atyp=i&zx=", (new Date).getTime(), "&jexpid=", f("37102"), "&srcpg=", f("prop=1"), "&jsr=", Math.round(1 / za), "&ogev=", f("ykHWUcqSK8uplQXv-YCQDQ"), "&ogf=", n.bv.f, "&ogrp=", f(""), "&ogv=", f("1372717546.1372341082"), m ? "&oggv=" + f(m) : "", "&ogd=", f("com"), "&ogl=", f("ko"), ];
           }
           g._sn && (g._sn = "og." + g._sn);
-          for (p in g)
+          for (p into g)
             l.push("&"), l.push(f(p)), l.push("="), l.push(f(g[p]));
           l.push("&emsg=");
           l.push(f(d.name + ":" + d.message));
@@ -204,13 +204,13 @@
         c = ["//www.google.com/gen_204?atyp=i&zx=", (new Date).getTime(), "&oge=", a, "&ogex=", d("37102"), "&ogev=", d("ykHWUcqSK8uplQXv-YCQDQ"), "&ogf=", n.bv.f, "&ogp=", d("1"), "&ogrp=", d(f), "&ogsr=", Math.round(1 / c), "&ogv=", d("1372717546.1372341082"), g ? "&oggv=" + d(g) : "", "&ogd=", d("com"), "&ogl=", d("ko"), "&ogus=", Ib(), ];
         if (b)
         {
-          "ogw" in b && (c.push("&ogw=" + b.ogw), delete b.ogw);
+          "ogw" into b && (c.push("&ogw=" + b.ogw), delete b.ogw);
           {
             
           }
           g = b;
           f = [];
-          for (l in g)
+          for (l into g)
             0 != f.length && f.push(","), f.push(Kb(l)), f.push("."), 
             f.push(Kb(g[l]));
           l = f.join("");
@@ -518,7 +518,7 @@
         });
         oa = (function (a) 
         {
-          return a in y;
+          return a into y;
         });
         A = {
           
@@ -578,7 +578,7 @@
               b : b
             };
             if (c)
-              for (d in c)
+              for (d into c)
                 a[d] = c[d];
             try
 {              H(a);}
@@ -1434,7 +1434,7 @@
           if (Array.indexOf)
             return Array.indexOf(a, b, c);
           for (c = c == h ? 0 : 0 > c ? Math.max(0, a.length + c) : c;c < a.length;c++)
-            if (c in a && a[c] === b)
+            if (c into a && a[c] === b)
               return c;
           return - 1;
         });
@@ -1469,7 +1469,7 @@
                   if (Z([1, ], "aop") && c)
           {
             if (W)
-              for (d in W)
+              for (d into W)
                 W[d] = W[d] && - 1 != Xb(c, d);
             else
             {
@@ -1492,7 +1492,7 @@
 {            if (X = 2, ! Wb)
             {
               Wb = e;
-              for (a in V)
+              for (a into V)
               {
                 {
                   b = V[a];
@@ -1594,7 +1594,7 @@
             for (;c = a[b];b++)
             {
               d = n.up;
-              c = c in d && d[c];
+              c = c into d && d[c];
               if (! c)
                 return k;
             }

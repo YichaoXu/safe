@@ -12,7 +12,7 @@
 //         configurable : true
 //       });
 //       var verifyEnumerable = false;
-//       for(var p in Math)
+//       for(var p into Math)
 //       {
 //         if (p === "prop")
 //         {

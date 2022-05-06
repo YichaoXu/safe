@@ -6,7 +6,7 @@
   }
   try
 {    var x = __func();
-    $ERROR('#0: var x=__func() lead to throwing exception');}
+    $ERROR('#0: var x=__func() lead into throwing exception');}
   catch (e)
 {    {
       var __result1 = e !== "Catch Me If You Can";

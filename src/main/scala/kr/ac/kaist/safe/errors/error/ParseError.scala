@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -22,7 +22,7 @@ sealed abstract class ParseError(msg: String, spanOpt: Option[Span]) extends Saf
 })
 
 case class NoFileError(cmd: String) extends ParseError({
-  s"Need a file to $cmd."
+  s"Need a file into $cmd."
 }, None)
 
 case class NotJSFileError(fileName: String) extends ParseError({

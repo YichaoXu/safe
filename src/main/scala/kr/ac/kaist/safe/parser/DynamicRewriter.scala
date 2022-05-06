@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -18,7 +18,7 @@ import kr.ac.kaist.safe.util.{ NodeUtil => NU }
 
 /* Rewrites a JavaScript source code
  * using dynamic code generation with string constants
- * to another one without using it.
+ * into another one without using it.
  * Used by parser/Parser.scala
  */
 object DynamicRewriter extends ASTWalker {

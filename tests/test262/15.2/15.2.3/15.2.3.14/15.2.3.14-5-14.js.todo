@@ -11,7 +11,7 @@
       configurable : true
     });
     var arr = Object.keys(obj);
-    for(var p in arr)
+    for(var p into arr)
     {
       if (arr[p] === "10000")
       {

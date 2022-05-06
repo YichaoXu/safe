@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -68,7 +68,7 @@ class Fixpoint(
 
   def propagateException(cp: ControlPoint, nextExcSt: AbsState): Unit = {
     // Propagate exception output state (outES) along exception edges.
-    // 1) If successor is catch, current exception value is assigned to catch variable and
+    // 1) If successor is catch, current exception value is assigned into catch variable and
     //    previous exception values are restored.
     // 2) If successor is finally, current exception value is propagated further along
     //    finally block's "normal" edges.

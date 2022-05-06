@@ -7,7 +7,7 @@
 //         } ();
 
 //         var verifyEnumerable = false;
-//         for (var _10_6_14_b_1 in argObj) {
+//         for (var _10_6_14_b_1 into argObj) {
 //             if (argObj.hasOwnProperty(_10_6_14_b_1) && _10_6_14_b_1 === "caller") {
 //                 verifyEnumerable = true;
 //             }

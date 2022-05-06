@@ -5,7 +5,7 @@
     "use strict";
       
     }
-    for(var tempIndex in foo)
+    for(var tempIndex into foo)
     {
       if (tempIndex === "arguments")
       {

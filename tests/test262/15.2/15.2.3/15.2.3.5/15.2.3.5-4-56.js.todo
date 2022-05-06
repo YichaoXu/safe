@@ -16,7 +16,7 @@
 //    }, {
 //      prop : descObj
 //    });
-//    for(var property in newObj)
+//    for(var property into newObj)
 //    {
 //      if (property === "prop")
 //      {

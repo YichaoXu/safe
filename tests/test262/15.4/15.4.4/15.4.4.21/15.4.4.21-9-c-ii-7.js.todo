@@ -9,7 +9,7 @@
       }
       if (idx === 0)
       {
-        throw new Error("Exception occurred in callbackfn");
+        throw new Error("Exception occurred into callbackfn");
       }
     }
     var obj = {

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -28,7 +28,7 @@ case class WrongTryStmtError(irTry: IRTry) extends CFGBuildError({
   "Wrong IRTryStmt."
 }, irTry)
 case class NewArgNumError(irNew: IRNew) extends CFGBuildError({
-  "IRNew should have two elements in args."
+  "IRNew should have two elements into args."
 }, irNew)
 case class NotSupportedIRError(ir: IRNode) extends CFGBuildError({
   s"${ir.getClass.getSimpleName} is not supported."

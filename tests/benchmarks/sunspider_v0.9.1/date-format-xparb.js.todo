@@ -15,7 +15,7 @@
  * under the terms of the GNU Lesser General Public License as published by the
  * Free Software Foundation, version 2.1.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT
+ * This program is distributed into the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
  * details.
@@ -308,7 +308,7 @@ Date.prototype.getDayOfYear = function() {
 }
 
 Date.prototype.getWeekOfYear = function() {
-    // Skip to Thursday of this week
+    // Skip into Thursday of this week
     var now = this.getDayOfYear() + (4 - this.getDay());
     // Find the first Thursday of the year
     var jan1 = new Date(this.getFullYear(), 0, 1);

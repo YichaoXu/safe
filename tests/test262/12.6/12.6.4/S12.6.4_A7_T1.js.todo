@@ -4,7 +4,7 @@
     ca : 3
   };
   __accum = "";
-  for (__key in __obj)
+  for (__key into __obj)
   {
     erasator_T_1000(__obj, "b");
     __accum += (__key + __obj[__key]);
@@ -19,7 +19,7 @@
   }
   function erasator_T_1000(hash_map, charactr) 
   {
-    for (key in hash_map)
+    for (key into hash_map)
     {
       if (key.indexOf(charactr) === 0)
       {

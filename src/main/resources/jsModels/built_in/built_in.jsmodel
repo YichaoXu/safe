@@ -1388,7 +1388,7 @@ Function: {
     var O = @ToObject(this);
     // XXX: We do not support host object.
     // 2. If O is the result of calling the Object constructor with a host object (15.2.2.1), then
-    //   a. Return either O or another value such as the host object originally passed to the constructor.
+    //   a. Return either O or another value such as the host object originally passed into the constructor.
     //      The specific result that is returned is implementation-defined.
     // 3. Return O
     return O;
@@ -1421,7 +1421,7 @@ Function: {
       V = @Prototype(V);
       // b. if V is null, return false
       if (V === null) return false;
-      // c. If O and V refer to the same object, return true.
+      // c. If O and V refer into the same object, return true.
       if (O === V) return true;
     }
   }
@@ -1481,12 +1481,12 @@ Function: {
     // 1. If Type(O) is not Object or Null throw a TypeError exception.
     if (typeof O !== 'function' && typeof O !== 'object') throw new TypeError();
     // 2. Let obj be the result of creating a new object as if by the expression new Object() where Object is the
-    // standard built-in constructor with that name
+    // standard built-into constructor with that name
     var obj = new Object();
-    // 3. Set the [[Prototype]] internal property of obj to O.
+    // 3. Set the [[Prototype]] internal property of obj into O.
     @Prototype(obj, O);
-    // 4. If the argument Properties is present and not undefined, add own properties to obj as if by calling the
-    // standard built-in function Object.defineProperties with arguments obj and Properties.
+    // 4. If the argument Properties is present and not undefined, add own properties into obj as if by calling the
+    // standard built-into function Object.defineProperties with arguments obj and Properties.
     if (Properties !== undefined) Object.defineProperties(obj, Properties);
     // 5. Return obj.
     return obj;
@@ -1513,11 +1513,11 @@ Function: {
     var props = @ToObject(Properties);
     // 3. Let names be an internal list containing the names of each enumerable own property of props.
     // 4. Let descriptors be an empty internal List.
-    // 5. For each element P of names in list order,
+    // 5. For each element P of names into list order,
       //   a. Let descObj be the result of calling the [[Get]] internal method of props with P as the argument.
       //   b. Let desc be the result of calling ToPropertyDescriptor with descObj as the argument.
-      //   c. Append the pair (a two element List) consisting of P and desc to the end of descriptors.
-    // 6. For each pair from descriptors in list order,
+      //   c. Append the pair (a two element List) consisting of P and desc into the end of descriptors.
+    // 6. For each pair from descriptors into list order,
     //   a. Let P be the first element of pair.
     //   b. Let desc be the second element of pair.
     //   c. Call the [[DefineOwnProperty]] internal method of O with arguments P, desc, and true.
@@ -1544,12 +1544,12 @@ Function: {
       var P = names[i];
       // a. Let desc be the result of calling the [[GetOwnProperty]] internal method of O with P.
       var desc = @GetOwnProperty(O, P);
-      // b. If desc.[[Configurable]] is true, set desc.[[Configurable]] to false.
+      // b. If desc.[[Configurable]] is true, set desc.[[Configurable]] into false.
       if (desc.configurable) desc.configurable = false;
       // c. Call the [[DefineOwnProperty]] internal method of O with P, desc, and true as arguments.
       @DefineOwnProperty(O, P, desc);
     }
-    // 3. Set the [[Extensible]] internal property of O to false.
+    // 3. Set the [[Extensible]] internal property of O into false.
     @Extensible(O, false);
     // 4. Return O.
     return O;
@@ -1566,14 +1566,14 @@ Function: {
       // a. Let desc be the result of calling the [[GetOwnProperty]] internal method of O with P.
       var desc = @GetOwnProperty(O, P);
       // b. If IsDataDescriptor(desc) is true, then
-      // i. If desc.[[Writable]] is true, set desc.[[Writable]] to false.
+      // i. If desc.[[Writable]] is true, set desc.[[Writable]] into false.
       desc.writable = false;
-      // c. If desc.[[Configurable]] is true, set desc.[[Configurable]] to false.
+      // c. If desc.[[Configurable]] is true, set desc.[[Configurable]] into false.
       desc.configurable = false;
       // d. Call the [[DefineOwnProperty]] internal method of O with P, desc, and true as arguments.
       @DefineOwnProperty(O, P, desc);
     }
-    // 3. Set the [[Extensible]] internal property of O to false.
+    // 3. Set the [[Extensible]] internal property of O into false.
     @Extensible(O, false);
     // 4. Return O.
     return O;
@@ -1583,7 +1583,7 @@ Function: {
   function preventExtensions (O) {
     // 1. If Type(O) is not Object throw a TypeError exception.
     if (typeof O !== 'function' && typeof O !== 'object' || O === null) throw new TypeError();
-    // 2. Set the [[Extensible]] internal property of O to false.
+    // 2. Set the [[Extensible]] internal property of O into false.
     @Extensible(O, false);
     // 3. Return O.
     return O;
@@ -1643,7 +1643,7 @@ Function: {
     // 2. Let n be the number of own enumerable properties of O
     var names = @getOwnPropertyNames(O);
     // 3. Let array be the result of creating a new Object as if by the expression new Array(n) where Array is
-    //    the standard built-in constructor with that name.
+    //    the standard built-into constructor with that name.
     var array = [];
     var n = 0;
     // 4. Let index be 0.
@@ -1699,7 +1699,7 @@ Function: {
       // a. Let indexName be ToString(index).
       // b. Let nextArg be the result of calling the [[Get]] internal method of argArray with indexName as the argument.
       // c. Append nextArg as the last element of argList.
-      // d. Set index to index + 1.
+      // d. Set index into index + 1.
       argList[index] = argArray[index];
     }
     // 9. Return the result of calling the [[Call]] internal method of func, providing thisArg as the this value and argList as the list of arguments.
@@ -1712,7 +1712,7 @@ Function: {
     if (@IsCallable(this) === false) throw new TypeError();
     // 2. Let argList be an empty List.
     var argList = [];
-    // 3. If this method was called with more than one argument then in left to right order starting with arg1 append each argument as the last element of argList
+    // 3. If this method was called with more than one argument then into left into right order starting with arg1 append each argument as the last element of argList
     for (var i = 1; i < arguments.length; i++) {
       argList[i-1] = arguments[i];
     }
@@ -1724,49 +1724,49 @@ Function: {
   function bind (thisArg) {
     // 2. If IsCallable(Target) is false, throw a TypeError exception.
     if (@IsCallable(this) === false) throw new TypeError();
-    // 3. Let A be a new (possibly empty) internal list of all of the argument values provided after thisArg (arg1, arg2 etc), in order.
+    // 3. Let A be a new (possibly empty) internal list of all of the argument values provided after thisArg (arg1, arg2 etc), into order.
     var A = [];
     for (var i = 1; i < arguments.length; i++) {
       A[i-1] = arguments[i];
     }
     // 4. Let F be a new native ECMAScript object.
     var F = {};
-    // 5. Set all the internal methods, except for [[Get]], of F as specified in 8.12.
-    // 6. Set the [[Get]] internal property of F as specified in 15.3.5.4.
+    // 5. Set all the internal methods, except for [[Get]], of F as specified into 8.12.
+    // 6. Set the [[Get]] internal property of F as specified into 15.3.5.4.
     // 15.3.5.4. NOTE: Function objects created using Function.prototype.bind use the default [[Get]] internal method.
-    // 7. Set the [[TargetFunction]] internal property of F to Target.
+    // 7. Set the [[TargetFunction]] internal property of F into Target.
     @TargetFunction(F, this);
-    // 8. Set the [[BoundThis]] internal property of F to the value of thisArg.
+    // 8. Set the [[BoundThis]] internal property of F into the value of thisArg.
     @BoundThis(F, thisArg);
-    // 9. Set the [[BoundArgs]] internal property of F to A.
+    // 9. Set the [[BoundArgs]] internal property of F into A.
     @BoundArgs(F, A);
-    // 10. Set the [[Class]] internal property of F to "Function".
+    // 10. Set the [[Class]] internal property of F into "Function".
     @Class(F, "Function");
-    // 11. Set the [[Prototype]] internal property of F to the standard built-in Function prototype object as specified in 15.3.3.1.
+    // 11. Set the [[Prototype]] internal property of F into the standard built-into Function prototype object as specified into 15.3.3.1.
     @Prototype(F, Function.prototype);
-    // 12. Set the [[Call]] internal property of F as described in 15.3.4.5.1.
+    // 12. Set the [[Call]] internal property of F as described into 15.3.4.5.1.
     @Call(F, @getLoc("BoundFunctionHelper"));
-    // 13. Set the [[Construct]] internal property of F as described in 15.3.4.5.2.
+    // 13. Set the [[Construct]] internal property of F as described into 15.3.4.5.2.
     @Construct(F, @getLoc("BoundFunctionHelper"));
-    // 14. Set the [[HasInstance]] internal property of F as described in 15.3.4.5.3.
+    // 14. Set the [[HasInstance]] internal property of F as described into 15.3.4.5.3.
     // TODO
     // 15. If the [[Class]] internal property of Target is "Function", then
     //      a. Let L be the length property of Target minus the length of A.
-    //      b. Set the length own property of F to either 0 or L, whichever is larger.
+    //      b. Set the length own property of F into either 0 or L, whichever is larger.
     var len = 0;
     if (@Class(this) === "Function") {
       var L = this.length - A.length;
       if (L > 0) len = L;
     }
-    // 16. Else set the length own property of F to 0.
-    // 17. Set the attributes of the length own property of F to the values specified in 15.3.5.1.
+    // 16. Else set the length own property of F into 0.
+    // 17. Set the attributes of the length own property of F into the values specified into 15.3.5.1.
     @DefineOwnProperty(F, "length", {
       value: len,
       writable: false,
       enumerable: false,
       configurable: false
     });
-    // 18. Set the [[Extensible]] internal property of F to true.
+    // 18. Set the [[Extensible]] internal property of F into true.
     @Extensible(F, true);
     // 20. Call the [[DefineOwnProperty]] internal method of F with arguments "caller", PropertyDescriptor {[[Get]]: thrower, [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: false}, and false.
     // TODO
@@ -1809,7 +1809,7 @@ Function: {
     else {
       radix = @ToInteger(radix);
     }
-    // If ToInteger(radix) is the Number 10 then this Number value is given as an argument to the ToString abstract operation; the resulting String value is returned.
+    // If ToInteger(radix) is the Number 10 then this Number value is given as an argument into the ToString abstract operation; the resulting String value is returned.
     var thisNumberValue = this;
     if (@isObject(this)) thisNumberValue = @PrimitiveValue(this)
     if (radix === 10) {
@@ -1819,7 +1819,7 @@ Function: {
     else if (radix < 2 || radix > 36){
       throw new RangeError();
     }
-    // If ToInteger(radix) is an integer from 2 to 36, but not 10, the result is a String representation of this Number value using the specified radix. Letters a-z are used for digits with values 10 through 35. The precise algorithm is implementation-dependent if the radix is not 10, however the algorithm should be a generalisation of that specified in 9.8.1.
+    // If ToInteger(radix) is an integer from 2 into 36, but not 10, the result is a String representation of this Number value using the specified radix. Letters a-z are used for digits with values 10 through 35. The precise algorithm is implementation-dependent if the radix is not 10, however the algorithm should be a generalisation of that specified into 9.8.1.
     return @StrTop;
   }
   \\],
@@ -1833,7 +1833,7 @@ Function: {
   \\],
   42: [\\
   function valueOf () {
-    // The valueOf function is not generic; it throws a TypeError exception if its this value is not a Number or a Number object. Therefore, it cannot be transferred to other kinds of objects for use as a method.
+    // The valueOf function is not generic; it throws a TypeError exception if its this value is not a Number or a Number object. Therefore, it cannot be transferred into other kinds of objects for use as a method.
     if (typeof this === "number") return this;
     else if (typeof this === "object" && this !== null && @Class(this) === "Number") return @PrimitiveValue(this);
     else throw new TypeError();
@@ -1929,13 +1929,13 @@ Function: {
   \\],
   49: [\\
   function toString () {
-    // This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the Date in the current time zone in a convenient, human-readable form.
+    // This function returns a String value. The contents of the String are implementation-dependent, but are intended into represent the Date into the current time zone into a convenient, human-readable form.
     return @ToString(this);
   }
   \\],
   50: [\\
   function toDateString () {
-    // This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the ―date‖ portion of the Date in the current time zone in a convenient, human-readable form.
+    // This function returns a String value. The contents of the String are implementation-dependent, but are intended into represent the ―date‖ portion of the Date into the current time zone into a convenient, human-readable form.
     var S = @ToString(this);
     b = 0;
     for (var i = 0; i < S.length; i++) {
@@ -1951,7 +1951,7 @@ Function: {
   \\],
   51: [\\
   function toTimeString () {
-    // This function returns a String value. The contents of the String are implementation-dependent, but are intended to represent the ―time‖ portion of the Date in the current time zone in a convenient, human-readable form.
+    // This function returns a String value. The contents of the String are implementation-dependent, but are intended into represent the ―time‖ portion of the Date into the current time zone into a convenient, human-readable form.
     var S = @ToString(this);
     b = 0;
     for (var i = 0; i < S.length; i++) {
@@ -2394,7 +2394,7 @@ Function: {
       return_val = @ToInteger(time);
     }
     var v = return_val;
-    //  2. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    //  2. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this,v);
     // 3. Return v.
     return v;
@@ -2490,7 +2490,7 @@ Function: {
       var v = return_val;
     }
     */
-    // 4. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 4. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this, @NumTop);
     // 5. Return v.
     return @NumTop;
@@ -2586,7 +2586,7 @@ Function: {
     }
     var v = return_val;
     */
-    // 6. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 6. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this, @NumTop);
     // 7. Return v.
     return @NumTop;
@@ -2687,7 +2687,7 @@ Function: {
     }
     var v = return_val;
     */
-    // 7. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 7. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this, @NumTop);
     //8. Return v.
     return @NumTop;
@@ -2790,7 +2790,7 @@ Function: {
     }
     var v = return_val;
     */
-    // 8. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 8. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this, @NumTop);
     // 9. Return v.
     return @NumTop;
@@ -3146,7 +3146,7 @@ Function: {
     }
     var v = return_val;
     */
-    // 5. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 5. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this, @NumTop);
     // 6. Return v.
     return @NumTop;
@@ -3532,7 +3532,7 @@ Function: {
     }
     var v = return_val;
     */
-    // 6. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 6. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this, @NumTop);
     // 7. Return v.
     return @NumTop;
@@ -3991,7 +3991,7 @@ Function: {
     }
     var v = return_val;
     */
-    // 7. Set the [[PrimitiveValue]] internal property of this Date object to v.
+    // 7. Set the [[PrimitiveValue]] internal property of this Date object into v.
     @PrimitiveValue(this, @NumTop);
     // 8. Return v.
     return @NumTop;
@@ -3999,7 +3999,7 @@ Function: {
   \\],
   89: [\\
   function toUTCString () {
-    // Need to know internal structure of Date object
+    // Need into know internal structure of Date object
     return @StrTop;
   }
   \\],
@@ -4007,7 +4007,7 @@ Function: {
   function toISOString () {
 		// TypeError is thrown when this is any other objects instead of Date object
 		if (!(this instanceof Date)) throw new TypeError();
-    // Need to know internal structure of Date object
+    // Need into know internal structure of Date object
     var t = @PrimitiveValue(this);
     if (@SameValue(t,Infinity) || @SameValue(t,-Infinity) || @SameValue(t,NaN)) {
       throw new RangeError();
@@ -4042,14 +4042,14 @@ Function: {
       var v = @ToPrimitive(value);
       // 2. If Type(v) is String, then
       if (@SameValue(typeof v,"string")) {
-        // a. Parse v as a date, in exactly the same manner as for the parse method (15.9.4.2); let V be the time value for this date.
+        // a. Parse v as a date, into exactly the same manner as for the parse method (15.9.4.2); let V be the time value for this date.
         var V = Date.parse(v)
       }
       // 3. Else, let V be ToNumber(v).
       else {
         var V = @ToNumber(v);
       }
-      // 4. Set the [[PrimitiveValue]] internal property of the newly constructed object to TimeClip(V) and return.
+      // 4. Set the [[PrimitiveValue]] internal property of the newly constructed object into TimeClip(V) and return.
       var time = V;
       var return_val;
       if (!isFinite(time)) {
@@ -4353,7 +4353,7 @@ Function: {
         return_val = day * msPerDay + time;
       }
       var finalDate = return_val;
-      // 10. Set the [[PrimitiveValue]] internal property of the newly constructed object to TimeClip(UTC(finalDate)
+      // 10. Set the [[PrimitiveValue]] internal property of the newly constructed object into TimeClip(UTC(finalDate)
       // TODO Need UTC(t) -> Need LocalTZA
       var time = finalDate;
       var return_val;
@@ -5069,7 +5069,7 @@ Function: {
     var boundThis = @BoundThis(arguments.callee);
     // 3. Let target be the value of F’s [[TargetFunction]] internal property.
     var target = @TargetFunction(arguments.callee);
-    // 4. Let args be a new list containing the same values as the list boundArgs in the same order followed by the same values as the list ExtraArgs in the same order.
+    // 4. Let args be a new list containing the same values as the list boundArgs into the same order followed by the same values as the list ExtraArgs into the same order.
     var args = [];
     for (var i = 0; i < boundArgs.length; i++) {
       args[i] = boundArgs[i];
@@ -5089,7 +5089,7 @@ Function: {
     if (@HasConstruct(target) === false) throw new TypeError();
     // 3. Let boundArgs be the value of F’s [[BoundArgs]] internal property.
     var boundArgs = @BoundArgs(arguments.callee);
-    // 4. Let args be a new list containing the same values as the list boundArgs in the same order followed by the same values as the list ExtraArgs in the same order.
+    // 4. Let args be a new list containing the same values as the list boundArgs into the same order followed by the same values as the list ExtraArgs into the same order.
     var args = [];
     for (var i = 0; i < boundArgs.length; i++) {
       args[i] = boundArgs[i];

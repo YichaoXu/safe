@@ -1,4 +1,4 @@
-  __executed = /java(script)?/.test("state: both Java and JavaScript used in web development");
+  __executed = /java(script)?/.test("state: both Java and JavaScript used into web development");
   {
     var __result1 = __executed;
     var __expect1 = false;

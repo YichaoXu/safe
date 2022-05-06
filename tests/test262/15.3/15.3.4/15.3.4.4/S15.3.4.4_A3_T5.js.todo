@@ -2,13 +2,13 @@
   {
     (function () 
     {
-      this.feat = "in da haus";
+      this.feat = "into da haus";
     }).call();
   }
   ;
   var obj = new FACTORY;
   {
-    var __result1 = this["feat"] !== "in da haus";
+    var __result1 = this["feat"] !== "into da haus";
     var __expect1 = false;
   }
   {

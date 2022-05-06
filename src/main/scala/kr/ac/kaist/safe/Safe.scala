@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -11,11 +11,11 @@
 
 package kr.ac.kaist.safe
 
-import edu.jhu.seclab.SafeSupplement
+import edu.jhu.seclab.safe.SafeSupplement
 
-import scala.util.{ Failure, Try }
+import scala.util.{Failure, Try}
 import kr.ac.kaist.safe.errors.SafeException
-import kr.ac.kaist.safe.errors.error.{ NoCmdError, NoInputError }
+import kr.ac.kaist.safe.errors.error.{NoCmdError, NoInputError}
 import kr.ac.kaist.safe.phase._
 import kr.ac.kaist.safe.util._
 

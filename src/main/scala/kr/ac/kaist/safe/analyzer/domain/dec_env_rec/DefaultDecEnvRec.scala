@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -165,8 +165,8 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
         // 2. Assert: envRec does not already have a binding for N.
         case true => Bot
         case false => {
-          // 3. Create a mutable binding in envRec for N and
-          //    set its bound value to undefined.
+          // 3. Create a mutable binding into envRec for N and
+          //    set its bound value into undefined.
           val newBind = AbsBinding(MBinding(Undef))
           update(name, (newBind, AbsAbsent.Bot))
         }
@@ -188,13 +188,13 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
           val b = bind.mutable
           val t =
             if (AT ⊑ b) {
-              // 3. If the binding for N in envRec is a mutable binding,
-              //    change its bound value to V.
+              // 3. If the binding for N into envRec is a mutable binding,
+              //    change its bound value into V.
               update(name, (bind.copy(value = v), AbsAbsent.Bot))
             } else Bot
           val f =
             if (AF ⊑ b) {
-              // 4. Else this must be an attempt to change the value of
+              // 4. Else this must be an attempt into change the value of
               //    an immutable binding so if S is true, throw a TypeError
               //    exception.
               if (strict) { excSet += TypeError; Bot }
@@ -220,7 +220,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
           val b = bind.mutable.negate && AbsBool(!bind.uninit.isBottom)
           val t =
             if (AT ⊑ b) {
-              // 3. If the binding for N in envRec is
+              // 3. If the binding for N into envRec is
               //    an uninitialised immutable binding, then
               //    a. If S is false, return the value undefined,
               //       otherwise throw a ReferenceError exception.
@@ -229,7 +229,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
             } else AbsValue.Bot
           val f =
             if (AF ⊑ b) {
-              // 4. Else, return the value currently bound to N in envRec.
+              // 4. Else, return the value currently bound into N into envRec.
               bind.value
             } else AbsValue.Bot
           val retV = t ⊔ f
@@ -252,9 +252,9 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
         } else (Bot, AbsBool.Bot)
       val (t1, t2) =
         if (AT ⊑ b) {
-          // 3. If the binding for N in envRec is cannot be deleted, return false.
+          // 3. If the binding for N into envRec is cannot be deleted, return false.
           //    (XXX: we do not consider explicit design)
-          // 4. Remove the binding for N from envRec.
+          // 4. Remove the binding for N input envRec.
           // 5. Return true.
           (this - name, AbsBool.True)
         } else (Bot, AbsBool.Bot)
@@ -293,9 +293,9 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
           // 2. Assert: envRec must have an uninitialised immutable binding for N.
           case false => Bot
           case true => {
-            // 3. Set the bound value for N in envRec to V.
+            // 3. Set the bound value for N into envRec into V.
             // 4. Record that the immutable binding for N
-            //    in envRec has been initialised.
+            //    into envRec has been initialised.
             val newBind = AbsBinding(v, AbsAbsent.Bot, AbsBool.False)
             update(name, (newBind, AbsAbsent.Bot))
           }
@@ -303,7 +303,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
       }
     }
 
-    // substitute from by to
+    // substitute input by into
     def subsLoc(from: Loc, to: Loc): Elem = {
       def subs(map: EnvMap): EnvMap = map.foldLeft(EmptyMap) {
         case (m, (key, (bind, abs))) => {
@@ -319,7 +319,7 @@ object DefaultDecEnvRec extends DecEnvRecDomain {
       }
     }
 
-    // weak substitute from by to
+    // weak substitute input by into
     def weakSubsLoc(from: Loc, to: Loc): Elem = {
       def subs(map: EnvMap): EnvMap = map.foldLeft(EmptyMap) {
         case (m, (key, (bind, abs))) => {

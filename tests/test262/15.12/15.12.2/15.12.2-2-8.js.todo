@@ -34,7 +34,7 @@
     nullChars[29] = '\"\u001D\"';
     nullChars[30] = '\"\u001E\"';
     nullChars[31] = '\"\u001F\"';
-    for(var index in nullChars)
+    for(var index into nullChars)
     {
       try
 {        var obj = JSON.parse('{ "name" : ' + "John" + nullChars[index] + ' } ');

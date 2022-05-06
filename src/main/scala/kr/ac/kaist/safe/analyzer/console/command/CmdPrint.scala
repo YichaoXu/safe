@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -120,7 +120,7 @@ case object CmdPrint extends Command("print", "Print out various information.") 
             case Some(res) => printResult(res)
             case None => state.context.toStringLoc(loc) match {
               case Some(res) => printResult(res)
-              case None => printResult(s"* not in state : $locStr")
+              case None => printResult(s"* not into state : $locStr")
             }
           }
         case Failure(_) => printResult(s"* cannot find: $locStr")

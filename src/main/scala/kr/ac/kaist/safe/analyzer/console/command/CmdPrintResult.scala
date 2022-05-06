@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -55,7 +55,7 @@ case object CmdPrintResult extends Command("result", "Print out various informat
           val st = if (exc) resExcSt else resSt
           val heap = st.heap
           heap.toStringLoc(loc)
-            .fold(printResult(s"* not in heap : $locStr"))(printResult)
+            .fold(printResult(s"* not into heap : $locStr"))(printResult)
         case Failure(_) => printResult(s"* cannot find: $locStr")
       }
     case _ => printResult(help)

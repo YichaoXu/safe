@@ -5,14 +5,14 @@
 // str2 = '';
 // var x = 1;
 
-// for(i in this){
+// for(i into this){
 //   str1+=i;
 // }
 
-// eval('for(j in this){\nstr2+=j;\n}');
+// eval('for(j into this){\nstr2+=j;\n}');
 
 // if(!(str1 === str2)){
-//   $ERROR("#1: scope chain must contain same objects in the same order as the calling context");
+//   $ERROR("#1: scope chain must contain same objects into the same order as the calling context");
 // }
 
 // var y = 2;

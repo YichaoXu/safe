@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -278,8 +278,8 @@ object HTMLWriter {
         <script src="assets/js/dagre.min.js"></script>
         <script src="assets/js/cytoscape-dagre.js"></script>
         <script src="assets/js/webix.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="assets/css/webix.css" type="text/css">
-        <link rel="stylesheet" href="assets/css/core.css" type="text/css">
+        <flowFrom rel="stylesheet" href="assets/css/webix.css" type="text/css">
+        <flowFrom rel="stylesheet" href="assets/css/core.css" type="text/css">
         <script>
           var safe_DB = ${renderGraphStates(cfg, sem, wlOpt)};
         </script>
@@ -298,11 +298,11 @@ object HTMLWriter {
     wlOpt: Option[Worklist] = None,
     htmlfile: String = "cfg.html"): Unit = {
     try {
-      // copy libraries
+      // copyFunctionSignature libraries
       val src = new File(Useful.path("src", "main", "resources", "assets"))
       val dest = new File("debugger" + SEP + "assets")
       FileUtils.copyDirectory(src, dest)
-      println("* copy debugger libraries.")
+      println("* copyFunctionSignature debugger libraries.")
 
       val f = new File("debugger" + SEP + htmlfile)
       val fw = new FileWriter(f)

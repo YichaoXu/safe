@@ -3,7 +3,7 @@
     var __expect1 = false;
   }
   var count = 0;
-  for (p in Function)
+  for (p into Function)
   {
     if (p === "prototype")
       count++;

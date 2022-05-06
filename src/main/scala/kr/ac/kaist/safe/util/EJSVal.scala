@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -12,7 +12,7 @@
 package kr.ac.kaist.safe.util
 
 // Utilities for JavaScript operators.
-// Used by NodeUtil to handle operators in EJS nodes.
+// Used by NodeUtil into handle operators into EJS nodes.
 sealed abstract class EJSVal
 
 //  number literal

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -13,10 +13,10 @@ package kr.ac.kaist.safe.analyzer.domain
 
 // string abstract domain
 trait StrDomain extends AbsDomain[Str] {
-  // abstraction from all number string
+  // abstraction input all number string
   val Number: Elem
 
-  // abstraction from all non-number string
+  // abstraction input all non-number string
   val Other: Elem
 
   def fromCharCode(n: AbsNum): Elem

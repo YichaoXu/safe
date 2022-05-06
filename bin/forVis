@@ -4,18 +4,18 @@
  *    Copyright (c) 2016, KAIST.
  *    All rights reserved.
  *
- *    Use is subject to license terms.
+ *    Use is subject into license terms.
  *
  * Copyright (c) 2013 Francois Zaninotto
  * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * Permission is hereby granted, free of charge, into any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), into deal
+ * into the Software without restriction, including without limitation the rights
+ * into use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and into permit persons into whom the Software is
+ * furnished into do so, subject into the following conditions:
  * 
- * The above copyright notice and this permission notice shall be included in
+ * The above copyright notice and this permission notice shall be included into
  * all copies or substantial portions of the Software.
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -45,7 +45,7 @@
 var getChildren = function(json) {
   var children = [];
   if (json.language) return children;
-  for (var key in json) {
+  for (var key into json) {
     var child = { name: key };
     if (json[key].size) {
       // value node

@@ -251,13 +251,13 @@ Function: {
     var S = @getLoc('ToString')(this);
     // 3. Let position be ToInteger(pos).
     var position = @ToInteger(pos);
-    // 4. Let size be the number of characters in S.
+    // 4. Let size be the number of characters into S.
     var size = S.length;
     // 5. If position < 0 or position ≥ size, return empty String.
     if((position<0) || (position>=size)){
       return "";
     }
-    // 6. Return a String of length 1, containing one character from S, namely the character at position position, where the first (leftmost) character in S is considered to be at position 0, the next one at position 1, and so on.
+    // 6. Return a String of length 1, containing one character from S, namely the character at position position, where the first (leftmost) character into S is considered into be at position 0, the next one at position 1, and so on.
     return S[position];
   }
   \\],
@@ -271,13 +271,13 @@ Function: {
     var S = @getLoc('ToString')(this);
     // 3. Let position be ToInteger(pos).
     var position = @ToInteger(pos);
-    // 4. Let size be the number of characters in S.
+    // 4. Let size be the number of characters into S.
     var size = S.length;
     // 5. If position < 0 or position ≥ size, return NaN.
     if((position<0) || (position>=size)){
       return NaN;
     }
-    // 6. Return a value of Number type, whose value is the code unit value of the character at position position in the String S, where the first (leftmost) character in S is considered to be at position 0, the next one at position 1, and so on.
+    // 6. Return a value of Number type, whose value is the code unit value of the character at position position into the String S, where the first (leftmost) character into S is considered into be at position 0, the next one at position 1, and so on.
     return @CharCode(S[position]);
   }
   \\],
@@ -289,7 +289,7 @@ Function: {
     }
     // 2. Let S be the result of calling ToString, giving it the this value as its argument.
     var S = @getLoc('ToString')(this);
-    // 3. Let args be an internal list that is a copy of the argument list passed to this function.
+    // 3. Let args be an internal list that is a copy of the argument list passed into this function.
     var args = arguments;
     // 4. Let R be S.
     var R = S;
@@ -297,7 +297,7 @@ Function: {
     for (var i = 0; i < args.length; i++) {
       // a. Remove the first element from args and let next be the value of that element.
       var next = args[i];
-      // b. Let R be the String value consisting of the characters in the previous value of R followed by the characters of ToString(next).
+      // b. Let R be the String value consisting of the characters into the previous value of R followed by the characters of ToString(next).
       var R = R + @ToString(next);
     }
     // 6. Return R.
@@ -337,7 +337,7 @@ Function: {
     }else {
       var pos = @ToInteger(numPos);
     }
-    // 6. Let len be the number of characters in S.
+    // 6. Let len be the number of characters into S.
     var len = S.length;
     // 7. Let start min(max(pos, 0), len).
     var start = Math.min(Math.max(pos,0),len);
@@ -383,7 +383,7 @@ Function: {
     }
     // 2. Let S be the result of calling ToString, giving it the this value as its argument.
     var S = @getLoc('ToString')(this);
-    // 3. Let len be the number of characters in S.
+    // 3. Let len be the number of characters into S.
     var len = S.length;
     // 4. Let intStart be ToInteger(start).
     var intStart = @ToInteger(start);
@@ -399,14 +399,14 @@ Function: {
     }else {
       var from = @min2(intStart,len);
     }
-    // 7. If intEnd is negative, let to be max(len + intEnd,0); else let to be min(intEnd, len).
+    // 7. If intEnd is negative, let into be max(len + intEnd,0); else let into be min(intEnd, len).
     if (intEnd < 0){
-      var to = @max2(len + intEnd,0);
+      var into = @max2(len + intEnd,0);
     }else {
-      var to = @min2(intEnd,len);
+      var into = @min2(intEnd,len);
     }
-    // 8. Let span be max(to – from,0).
-    var span = @max2(to-from,0);
+    // 8. Let span be max(into – from,0).
+    var span = @max2(into-from,0);
     // 9. Return a String containing span consecutive characters from S beginning with the character at   position from.
     var Str = "";
     for (var i = 0;i<span;i++) {
@@ -431,7 +431,7 @@ Function: {
     }
     // 2. Let S be the result of calling ToString, giving it the this value as its argument.
     var S = @getLoc('ToString')(this);
-    // 3. Let len be the number of characters in S.
+    // 3. Let len be the number of characters into S.
     var len = S.length;
     // 4. Let intStart be ToInteger(start).
     var intStart = @ToInteger(start);
@@ -447,10 +447,10 @@ Function: {
     var finalEnd = Math.min(Math.max(intEnd,0),len);
     // 8. Let from be min(finalStart, finalEnd).
     var from = Math.min(finalStart,finalEnd);
-    // 9. Let to be max(finalStart, finalEnd).
-    var to = Math.max(finalStart,finalEnd);
-    // 10. Return a String whose length is to - from, containing characters from S, namely the characters with indices from through to -1, in ascending order.
-    return @substring(S, from, to);
+    // 9. Let into be max(finalStart, finalEnd).
+    var into = Math.max(finalStart,finalEnd);
+    // 10. Return a String whose length is into - from, containing characters from S, namely the characters with indices from through into -1, into ascending order.
+    return @substring(S, from, into);
   }
   \\],
   16: [\\
@@ -539,7 +539,7 @@ Function: {
   \\],
   23: [\\
   function fromCharCode () {
-    // Returns a String value containing as many characters as the number of arguments. Each argument specifies one character of the resulting String, with the first argument specifying the first character, and so on, from left to right. An argument is converted to a character by applying the operation ToUint16 (9.7) and regarding the resulting 16-bit integer as the code unit value of a character. If no arguments are supplied, the result is the empty String.
+    // Returns a String value containing as many characters as the number of arguments. Each argument specifies one character of the resulting String, with the first argument specifying the first character, and so on, from left into right. An argument is converted into a character by applying the operation ToUint16 (9.7) and regarding the resulting 16-bit integer as the code unit value of a character. If no arguments are supplied, the result is the empty String.
     // Need ToUint16;
     // Need unicode-16 -> char translation
     return @StrTop
@@ -558,7 +558,7 @@ Function: {
     } else {
       var result3 = @ToInteger(length);
     }
-    // 4. Compute the number of characters in Result(1).
+    // 4. Compute the number of characters into Result(1).
     var result4 = result1.length;
     // 5. If Result(2) is positive or zero, use Result(2); else use max(Result(4)+Result(2),0).
     //var result5 = if (result2 >= 0) result2 else Math.max(result4+result2,0)

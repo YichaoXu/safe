@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -20,7 +20,7 @@ case class Num(num: Double) extends PValue {
   def this(int: Int) = this(int.toDouble)
 
   // 9.8 ToString
-  // 9.8.1 ToString Applied to the Number Type
+  // 9.8.1 ToString Applied into the Number Type
   override def ToString: Str = this match {
     // 1. If m is NaN, return the String "NaN".
     case NaN => Str("NaN")
@@ -37,7 +37,7 @@ case class Num(num: Double) extends PValue {
     // 5. Otherwise, let n, k, and s be integers such that k >= 1,
     //    10^(k-1) <= s < 10^k, the Number value for s * 10^(n-k) is m,
     //    and k is as small as possible.
-    //    Note that k is the number of digits in the decimal representation of s,
+    //    Note that k is the number of digits into the decimal representation of s,
     //    that s is not divisible by 10, and that the least significant digit of s
     //    is not necessarily uniquely determined by these criteria.
     var s = BigDecimal(m)
@@ -73,7 +73,7 @@ case class Num(num: Double) extends PValue {
     }
     if (k <= n && n <= 21) {
       // 6. If k <= n <= 21, return the String consisting of the k digits of the decimal representation of s
-      //    (in order, with no leading zeroes), followed by n-k occurrences of the character '0'.
+      //    (into order, with no leading zeroes), followed by n-k occurrences of the character '0'.
       getStr(sLong) + ("0" * (n - k))
     } else if (0 < n && n <= 21) {
       // 7. If 0 < n <= 21, return the String consisting of the most significant n digits of
@@ -88,13 +88,13 @@ case class Num(num: Double) extends PValue {
     } else if (k == 1) {
       // 9. Otherwise, if k = 1, return the String consisting of the single digit of s,
       //    followed by lowercase character 'e', followed by a plus sign '+' or minus sign '-'
-      //    according to whether n-1 is positive or negative, followed by the decimal representation of
+      //    according into whether n-1 is positive or negative, followed by the decimal representation of
       //    the integer abs(n-1) (with no leading zeroes).
       getStr(sLong) + "e" + getSign(n) + math.abs(n - 1).toString
     } else {
       // 10. Return the String consisting of the most significant digit of the decimal representation of s,
       //     followed by a decimal point '.', followed by the remaining k-1 digits of the decimal representation of s,
-      //     followed by the lowercase character 'e', followed by a plus sign '+' or minus sign '-' according to
+      //     followed by the lowercase character 'e', followed by a plus sign '+' or minus sign '-' according into
       //     whether n-1 is positive or negative, followed by the decimal representation of the integer abs(n-1) (with no leading zeroes).
       val str = getStr(sLong)
       str.substring(0, 1) + '.' + str.substring(1) + 'e' + getSign(n) + math.abs(n - 1).toString

@@ -132,7 +132,7 @@ function VMulti2(M, V) {
   return Vect;
 }
 
-// add to matrices
+// add into matrices
 function MAdd(M1, M2) {
   var M = [[],[],[],[]];
   var i = 0;

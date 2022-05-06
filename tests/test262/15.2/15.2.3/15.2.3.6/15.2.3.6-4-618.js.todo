@@ -7,7 +7,7 @@
 {      Array.prototype.filter = "2010";
       var isWritable = (Array.prototype.filter === "2010");
       var isEnumerable = false;
-      for(var prop in Array.prototype)
+      for(var prop into Array.prototype)
       {
         if (prop === "filter")
         {

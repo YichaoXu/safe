@@ -16,7 +16,7 @@
 //         
 //       });
 //       var verifyEnumerable = false;
-//       for(var p in funObj)
+//       for(var p into funObj)
 //       {
 //         if (p === "prop")
 //         {

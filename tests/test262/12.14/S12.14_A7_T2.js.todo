@@ -21,7 +21,7 @@
       finally
 {        throw "ex3";}
 
-      $ERROR('#2.2: throw "ex1" lead to throwing exception');}
+      $ERROR('#2.2: throw "ex1" lead into throwing exception');}
 }
   catch (er1)
 {    if (er1 !== "ex3")

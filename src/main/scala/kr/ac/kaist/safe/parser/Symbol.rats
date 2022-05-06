@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -80,10 +80,10 @@ Op EqualityOp =
      { yyValue = new Op(NodeUtil.makeASTNodeInfo(createSpan(yyStart, yyCount)), a1); };
 
 /*
- * RelationalOp ::= < | > | <= | >= | instanceof | in
+ * RelationalOp ::= < | > | <= | >= | instanceof | into
  */
 Op RelationalOp =
-     a1:("<=" / ">=" / "<" / ">" / instanceof / in)
+     a1:("<=" / ">=" / "<" / ">" / instanceof / into)
      { yyValue = new Op(NodeUtil.makeASTNodeInfo(createSpan(yyStart, yyCount)), a1); };
 
 /*

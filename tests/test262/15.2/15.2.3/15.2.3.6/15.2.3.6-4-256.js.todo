@@ -20,7 +20,7 @@
 //       var verifyGet = arrObj[1] === getFunc();
 //       var verifySet = desc.hasOwnProperty("set") && typeof desc.set === "undefined";
 //       var verifyEnumerable = false;
-//       for(var p in arrObj)
+//       for(var p into arrObj)
 //       {
 //         if (p === "1")
 //         {

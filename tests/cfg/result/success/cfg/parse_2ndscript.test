@@ -5118,7 +5118,7 @@ function[20] Jb {
     [0] assert(! <>b<>640)
 
   Block[79] -> [81], ExitExc
-    [0] assert("ogw" in <>b<>640)
+    [0] assert("ogw" into <>b<>640)
     [1] <>obj<>739 := @ToObject(<>c<>641) @ #355
     [2] <>y<>740 := "&ogw="
     [3] <>obj<>741 := @ToObject(<>b<>640) @ #356
@@ -5129,7 +5129,7 @@ function[20] Jb {
     [8] <>this<> := enterCode(<>obj<>739)
 
   Block[80] -> [87], [86], ExitExc
-    [0] assert(! "ogw" in <>b<>640)
+    [0] assert(! "ogw" into <>b<>640)
 
   Call[81] -> ExitExc
     [0] call(<>fun<>744, <>this<>, <>arguments<>743) @ #359
@@ -5152,12 +5152,12 @@ function[20] Jb {
     [5] <>cond1<>750 := @iteratorHasNext(<>obj<>748, <>iterator<>749)
 
   Block[86] -> [88], ExitExc
-    [0] assert(typeof "ogw" in <>b<>640 == "boolean")
+    [0] assert(typeof "ogw" into <>b<>640 == "boolean")
     [1] <>Global<>ignore67 := false
 
   Block[87] -> [88], ExitExc
-    [0] assert(typeof "ogw" in <>b<>640 != "boolean")
-    [1] <>Global<>ignore67 := "ogw" in <>b<>640
+    [0] assert(typeof "ogw" into <>b<>640 != "boolean")
+    [1] <>Global<>ignore67 := "ogw" into <>b<>640
 
   Block[88] -> [85]
 
@@ -6173,7 +6173,7 @@ function[34] oa<>funexpr@4:740-766<> {
   Entry[-1] -> [0]
 
   Block[0] -> Exit, ExitExc
-    [0] return(<>a<>1060 in <>y<>129)
+    [0] return(<>a<>1060 into <>y<>129)
 
   Exit[-2]
 
@@ -10986,22 +10986,22 @@ function[112] Xb<>funexpr@22:32-223<> {
     [0] assert(! <>y<>2807 < <>obj<>2808["length"])
 
   Block[27] -> [29], ExitExc
-    [0] assert(<>c<>2784 in <>a<>2782)
+    [0] assert(<>c<>2784 into <>a<>2782)
     [1] <>obj<>2809 := @ToObject(<>a<>2782) @ #1788
     [2] <>new<>2810 := <>obj<>2809[<>c<>2784] === <>b<>2783
 
   Block[28] -> [31], [30], ExitExc
-    [0] assert(! <>c<>2784 in <>a<>2782)
+    [0] assert(! <>c<>2784 into <>a<>2782)
 
   Block[29] -> [34], [33]
 
   Block[30] -> [32], ExitExc
-    [0] assert(typeof <>c<>2784 in <>a<>2782 == "boolean")
+    [0] assert(typeof <>c<>2784 into <>a<>2782 == "boolean")
     [1] <>new<>2810 := false
 
   Block[31] -> [32], ExitExc
-    [0] assert(typeof <>c<>2784 in <>a<>2782 != "boolean")
-    [1] <>new<>2810 := <>c<>2784 in <>a<>2782
+    [0] assert(typeof <>c<>2784 into <>a<>2782 != "boolean")
+    [1] <>new<>2810 := <>c<>2784 into <>a<>2782
 
   Block[32] -> [29]
 
@@ -12324,23 +12324,23 @@ function[126] ic<>funexpr@25:292-380<> {
     [0] assert(! <>obj<>3138[<>b<>3134])
 
   Block[4] -> [6], ExitExc
-    [0] assert(<>c<>3135 in <>d<>3136)
+    [0] assert(<>c<>3135 into <>d<>3136)
     [1] <>obj<>3140 := @ToObject(<>d<>3136) @ #1982
     [2] <>Global<>ignore580 := <>obj<>3140[<>c<>3135]
 
   Block[5] -> [8], [7], ExitExc
-    [0] assert(! <>c<>3135 in <>d<>3136)
+    [0] assert(! <>c<>3135 into <>d<>3136)
 
   Block[6] -> [11], [10], ExitExc
     [0] <>c<>3135 := <>Global<>ignore580
 
   Block[7] -> [9], ExitExc
-    [0] assert(typeof <>c<>3135 in <>d<>3136 == "boolean")
+    [0] assert(typeof <>c<>3135 into <>d<>3136 == "boolean")
     [1] <>Global<>ignore580 := false
 
   Block[8] -> [9], ExitExc
-    [0] assert(typeof <>c<>3135 in <>d<>3136 != "boolean")
-    [1] <>Global<>ignore580 := <>c<>3135 in <>d<>3136
+    [0] assert(typeof <>c<>3135 into <>d<>3136 != "boolean")
+    [1] <>Global<>ignore580 := <>c<>3135 into <>d<>3136
 
   Block[9] -> [6]
 

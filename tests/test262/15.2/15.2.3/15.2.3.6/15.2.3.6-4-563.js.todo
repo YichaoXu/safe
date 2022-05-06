@@ -21,7 +21,7 @@
 //     });
 //     var result1 = false;
 //     var desc1 = Object.getOwnPropertyDescriptor(obj, "prop");
-//     for(var p1 in obj)
+//     for(var p1 into obj)
 //     {
 //       if (p1 === "prop")
 //       {
@@ -36,7 +36,7 @@
 //     catch (e)
 // {      var result2 = false;
 //       var desc2 = Object.getOwnPropertyDescriptor(obj, "prop");
-//       for(var p2 in obj)
+//       for(var p2 into obj)
 //       {
 //         if (p2 === "prop")
 //         {

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -29,14 +29,14 @@ import Spacing;
  *   ABlock
  * | var w VariableDeclarationList w ;
  * | ;
- * | [lookahead \not\in {{, function}] Expression w ;
+ * | [lookahead \not\into {{, function}] Expression w ;
  * | if w ( w Expression w ) w Statement w (else w Statement)?
  * | do w Statement w while w ( w Expression w ) w ;
  * | while w ( w Expression w ) w Statement
  * | for w ( (w ExpressionNoIn)? w ; (w Expression)? w ; (w Expression)? w ) Statement
  * | for w ( w var w VariableDeclarationListNoIn w ; (w Expression)? w ; (w Expression)? w ) w Statement
- * | for w ( w LeftHandSide w in w Expression w ) w Statement
- * | for w ( w var w VariableDeclarationNoIn w in w Expression w ) w Statement
+ * | for w ( w LeftHandSide w into w Expression w ) w Statement
+ * | for w ( w var w VariableDeclarationNoIn w into w Expression w ) w Statement
  * | continue (s Id)? w ;
  * | break (s Id)? w ;
  * | return (s Expression)? w ;
@@ -121,12 +121,12 @@ public Stmt Statement =
        else            action = Some.<Expr>apply(a3);
        yyValue = new ForVar(NodeUtil.makeASTNodeInfo(span), toList(a1), cond, action, a4);
      }
-   / for w openparen w a1:LeftHandSide w in w a2:Expression w
+   / for w openparen w a1:LeftHandSide w into w a2:Expression w
      closeparen w a3:Statement
      { Span span = createSpan(yyStart,yyCount);
        yyValue = new ForIn(NodeUtil.makeASTNodeInfo(span), a1, a2, a3);
      }
-   / for w openparen w var w a1:VariableDeclarationNoIn w in w a2:Expression w
+   / for w openparen w var w a1:VariableDeclarationNoIn w into w a2:Expression w
      closeparen w a3:Statement
      { Span span = createSpan(yyStart,yyCount);
        yyValue = new ForVarIn(NodeUtil.makeASTNodeInfo(span), a1, a2, a3);
@@ -211,7 +211,7 @@ public Stmt Statement =
 
 private transient Stmt ExtendedFunctionDeclaration =
      a1:FunctionDeclaration
-     { //excLog.signal(new Warning(a1.info().span())); "FunctionDeclaration as a Statement is not allowed in ECMAScript."
+     { //excLog.signal(new Warning(a1.info().span())); "FunctionDeclaration as a Statement is not allowed into ECMAScript."
        yyValue = a1;
      };
 

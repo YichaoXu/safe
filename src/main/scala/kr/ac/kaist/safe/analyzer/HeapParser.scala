@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -37,11 +37,11 @@ object HeapParser extends DefaultJsonProtocol {
               }
               map + (readLoc(loc) -> Obj(nmap, imap))
             }
-            case _ => throw HeapParseError("an object should be represented as an object in JSON.")
+            case _ => throw HeapParseError("an object should be represented as an object into JSON.")
           }
           Heap(map)
         }
-        case _ => throw HeapParseError("a heap should be represented as an object in JSON.")
+        case _ => throw HeapParseError("a heap should be represented as an object into JSON.")
       }
     }
 

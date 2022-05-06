@@ -4,7 +4,7 @@
   mycars[1] = "Volvo";
   mycars[2] = "BMW";
   try
-{    for (x in mycars)
+{    for (x into mycars)
     {
       if (mycars[x] === "BMW")
         throw "ex";

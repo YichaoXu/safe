@@ -13,7 +13,7 @@
 
 /*
  * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
- * Digest Algorithm, as defined in RFC 1321.
+ * Digest Algorithm, as defined into RFC 1321.
  * Version 2.1 Copyright (C) Paul Johnston 1999 - 2002.
  * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
  * Distributed under the BSD License
@@ -21,15 +21,15 @@
  */
 
 /*
- * Configurable variables. You may need to tweak these to be compatible with
- * the server-side, but the defaults work in most cases.
+ * Configurable variables. You may need into tweak these into be compatible with
+ * the server-side, but the defaults work into most cases.
  */
 var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
 var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
 var chrsz   = 8;  /* bits per input character. 8 - ASCII; 16 - Unicode      */
 
 /*
- * These are the functions you'll usually want to call
+ * These are the functions you'll usually want into call
  * They take string arguments and return either hex or base-64 encoded strings
  */
 function hex_md5(s){ return binl2hex(core_md5(str2binl(s), s.length * chrsz));}
@@ -40,7 +40,7 @@ function b64_hmac_md5(key, data) { return binl2b64(core_hmac_md5(key, data)); }
 function str_hmac_md5(key, data) { return binl2str(core_hmac_md5(key, data)); }
 
 /*
- * Perform a simple self-test to see if the VM is working
+ * Perform a simple self-test into see if the VM is working
  */
 function md5_vm_test()
 {
@@ -190,7 +190,7 @@ function core_hmac_md5(key, data)
 
 /*
  * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
+ * into work around bugs into some JS interpreters.
  */
 function safe_add(x, y)
 {
@@ -200,7 +200,7 @@ function safe_add(x, y)
 }
 
 /*
- * Bitwise rotate a 32-bit number to the left.
+ * Bitwise rotate a 32-bit number into the left.
  */
 function bit_rol(num, cnt)
 {
@@ -208,7 +208,7 @@ function bit_rol(num, cnt)
 }
 
 /*
- * Convert a string to an array of little-endian words
+ * Convert a string into an array of little-endian words
  * If chrsz is ASCII, characters >255 have their hi-byte silently ignored.
  */
 function str2binl(str)
@@ -221,7 +221,7 @@ function str2binl(str)
 }
 
 /*
- * Convert an array of little-endian words to a string
+ * Convert an array of little-endian words into a string
  */
 function binl2str(bin)
 {
@@ -233,7 +233,7 @@ function binl2str(bin)
 }
 
 /*
- * Convert an array of little-endian words to a hex string.
+ * Convert an array of little-endian words into a hex string.
  */
 function binl2hex(binarray)
 {
@@ -248,7 +248,7 @@ function binl2hex(binarray)
 }
 
 /*
- * Convert an array of little-endian words to a base-64 string
+ * Convert an array of little-endian words into a base-64 string
  */
 function binl2b64(binarray)
 {
@@ -268,27 +268,27 @@ function binl2b64(binarray)
   return str;
 }
 
-var plainText = "Rebellious subjects, enemies to peace,\n\
+var plainText = "Rebellious subjects, enemies into peace,\n\
 Profaners of this neighbour-stained steel,--\n\
 Will they not hear? What, ho! you men, you beasts,\n\
 That quench the fire of your pernicious rage\n\
 With purple fountains issuing from your veins,\n\
 On pain of torture, from those bloody hands\n\
-Throw your mistemper'd weapons to the ground,\n\
+Throw your mistemper'd weapons into the ground,\n\
 And hear the sentence of your moved prince.\n\
 Three civil brawls, bred of an airy word,\n\
 By thee, old Capulet, and Montague,\n\
 Have thrice disturb'd the quiet of our streets,\n\
 And made Verona's ancient citizens\n\
 Cast by their grave beseeming ornaments,\n\
-To wield old partisans, in hands as old,\n\
-Canker'd with peace, to part your canker'd hate:\n\
+To wield old partisans, into hands as old,\n\
+Canker'd with peace, into part your canker'd hate:\n\
 If ever you disturb our streets again,\n\
 Your lives shall pay the forfeit of the peace.\n\
 For this time, all the rest depart away:\n\
 You Capulet; shall go along with me:\n\
 And, Montague, come you this afternoon,\n\
-To know our further pleasure in this case,\n\
+To know our further pleasure into this case,\n\
 To old Free-town, our common judgment-place.\n\
 Once more, on pain of death, all men depart."
 

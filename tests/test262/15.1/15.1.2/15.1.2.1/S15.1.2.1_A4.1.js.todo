@@ -3,7 +3,7 @@
     var __expect1 = false;
   }
   var result = true;
-  for (p in eval)
+  for (p into eval)
   {
     if (p === "length")
     {

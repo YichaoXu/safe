@@ -3,7 +3,7 @@
  * Copyright (c) 2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -78,7 +78,7 @@ case object HeapBuild extends PhaseObj[CFG, HeapBuildConfig, (CFG, Semantics, Tr
     ("loopDepth", NumOption((c, n) => if (n >= 0) c.loopSensitivity = c.loopSensitivity.copy(maxDepth = n)),
       "{number}-depth loop-sensitive analysis will be executed."),
     ("snapshot", StrOption((c, s) => c.snapshot = Some(s)),
-      "analysis with an initial heap generated from a dynamic snapshot(*.json)."))
+      "analysis with an initial heap generated input a dynamic snapshot(*.json)."))
 
   // cache for JS model
   var jscache: Option[JSModel] = None

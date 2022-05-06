@@ -20,7 +20,7 @@
   }
   z = 4;
   x = 5;
-  for (v in y)
+  for (v into y)
   {
     
   }

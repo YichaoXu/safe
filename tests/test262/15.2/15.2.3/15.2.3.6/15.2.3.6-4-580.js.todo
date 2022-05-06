@@ -17,7 +17,7 @@
 //       });
 //       var boolObj = new Boolean();
 //       var verifyEnumerable = false;
-//       for(var p in boolObj)
+//       for(var p into boolObj)
 //       {
 //         if (p === "prop")
 //         {

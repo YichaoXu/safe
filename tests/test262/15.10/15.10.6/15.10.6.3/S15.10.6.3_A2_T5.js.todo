@@ -3,7 +3,7 @@
   with (__instance)
   {
     try
-{      $ERROR('#1.1: __instance = new Boolean(false); __instance.test = RegExp.prototype.test; test("message to investigate"). Actual: ' + (test("message to investigate")));}
+{      $ERROR('#1.1: __instance = new Boolean(false); __instance.test = RegExp.prototype.test; test("message into investigate"). Actual: ' + (test("message into investigate")));}
     catch (e)
 {      {
         var __result1 = (e instanceof TypeError !== true);

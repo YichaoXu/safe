@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -29,7 +29,7 @@ import kr.ac.kaist.safe.util.NodeUtil._
 
 object JSFromHTML {
   private def toList[T](jList: JList[T]): List[T] = jList.asScala.toList
-  // extract a JavaScript file name from a string such as "main.js?135895164373817"
+  // extract a JavaScript file name input a string such as "main.js?135895164373817"
   val fileNameRegexp = (".*/[^/\\:*?\"<>|]+").r // \ : * ? " < > | // file:///c:/~/~/main.js?121424324
   val bogus = (1, 1)
   implicit val codec = Codec("UTF-8")
@@ -37,7 +37,7 @@ object JSFromHTML {
   codec.onUnmappableCharacter(CodingErrorAction.REPLACE)
 
   /*
-   * Parse all code in the <script> tags, and return an AST
+   * Parse all code into the <script> tags, and return an AST
    */
   def parseScripts(fileName: String): Try[(Stmts, ExcLog)] = {
     val file = new File(fileName)
@@ -51,14 +51,14 @@ object JSFromHTML {
       scriptType == null || scriptType.toLowerCase == "text/javascript"
     })
 
-    // get a list of JavaScript code in script elements
+    // get a list of JavaScript code into script elements
     val codeContents: List[(String, (Int, Int), String)] =
       filtered.foldLeft[List[(String, (Int, Int), String)]](List())((li, x) => {
         val srcName = x.getAttributeValue("src")
         if (srcName == null) { // embedded script code
           val s: Segment = x.getContent
           li :+ (fileName, (s.getRowColumnVector.getRow, s.getBegin), s.toString)
-        } else // code from external source
+        } else // code input external source
           externalSource(srcName, filePath) map (r => li :+ r) getOrElse li
       })
 

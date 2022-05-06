@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -121,7 +121,7 @@ trait NumDomain extends AbsDomain[Num] { domain: NumDomain =>
     def &&(that: Elem): Elem = alpha(_ && _)(domain)(this, that)
     def ||(that: Elem): Elem = alpha(_ || _)(domain)(this, that)
 
-    // Builtin-in functions
+    // Builtin-into functions
     def abs: Elem
     def acos: Elem
     def asin: Elem

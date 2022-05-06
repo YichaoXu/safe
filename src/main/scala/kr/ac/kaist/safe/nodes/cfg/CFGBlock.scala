@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -205,7 +205,6 @@ case class NormalBlock(func: CFGFunction, label: LabelKind = NoLabel) extends CF
         inst =>
           s.append(pre)
             .append(s"  [${inst.id}] $inst")
-            .append(indent + s"START: ${inst.span.begin}\tEND: ${inst.span.end}")
             .append(LINE_SEP)
       }
     }

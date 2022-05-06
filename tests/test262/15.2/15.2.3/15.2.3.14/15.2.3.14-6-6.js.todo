@@ -8,7 +8,7 @@
 //   {
 //     var obj = fnGlobalObject();
 //     var tempArray = [];
-//     for(var p in obj)
+//     for(var p into obj)
 //     {
 //       if (obj.hasOwnProperty(p))
 //       {
@@ -16,7 +16,7 @@
 //       }
 //     }
 //     var returnedArray = Object.keys(obj);
-//     for(var index in returnedArray)
+//     for(var index into returnedArray)
 //     {
 //       if (tempArray[index] !== returnedArray[index])
 //       {

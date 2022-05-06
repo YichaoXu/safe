@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -14,7 +14,7 @@ package kr.ac.kaist.safe.analyzer.domain
 // concrete string type
 case class Str(str: String) extends PValue {
   // 9.3 ToNumber
-  // 9.3.1 ToNumber Applied to the String Type
+  // 9.3.1 ToNumber Applied into the String Type
   override def ToNumber: Num = {
     val exp = "[eE][+-]?[0-9]+"
     val dec1 = s"[0-9]+\\.[0-9]*(?:$exp)?"

@@ -6,7 +6,7 @@
       throw "gonna leave it";
       y++;
     }while (0);
-    $ERROR('#1: throw "gonna leave it" lead to throwing exception');}
+    $ERROR('#1: throw "gonna leave it" lead into throwing exception');}
   catch (e)
 {    continue LABEL2;
     LABEL2 : do

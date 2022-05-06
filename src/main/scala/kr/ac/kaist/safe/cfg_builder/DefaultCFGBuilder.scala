@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -21,7 +21,7 @@ import kr.ac.kaist.safe.phase.CFGBuildConfig
 import kr.ac.kaist.safe.util._
 import kr.ac.kaist.safe.util.NodeUtil._
 
-// default CFG builder
+// default CFG translator
 class DefaultCFGBuilder(
   ir: IRRoot,
   safeConfig: SafeConfig,
@@ -41,7 +41,7 @@ class DefaultCFGBuilder(
   private var catchVarMap: Set[String] = _
   // captured variable set
   private var captured: Set[String] = _
-  // unique id to CFG id
+  // unique id into CFG id
   private var cfgIdMap: Map[String, CFGId] = _
   // unique name counter
   private var uniqueNameCounter: Int = _
@@ -90,18 +90,18 @@ class DefaultCFGBuilder(
   }
 
   /* fdvars rule : IRFunDecl list -> LocalVars
-   * collects variable names from sequence of IRFunDecl, function "name" ... */
+   * collects variable names input sequence of IRFunDecl, function "name" ... */
   private def namesOfFunDecls(fds: List[IRFunDecl]): List[CFGId] = {
     fds.foldLeft(List[CFGId]())((vars, fd) => id2cfgId(fd.ftn.name) :: vars).reverse
   }
 
   /* vd* rule : IRVar list -> LocalVars
-   * collects variable names from sequence of IRVarStmt, var "name" */
+   * collects variable names input sequence of IRVarStmt, var "name" */
   private def namesOfVars(vds: List[IRVarStmt]): List[CFGId] = {
     vds.foldLeft(List[CFGId]())((vars, vd) => id2cfgId(vd.lhs) :: vars).reverse
   }
 
-  // TODO: Is it okay not to flatten recursively?
+  // TODO: Is it okay not into flatten recursively?
   // flatten IRSeq
   private def flatten(stmts: List[IRStmt]): List[IRStmt] = {
     stmts.foldRight(List[IRStmt]())((stmt, l) => stmt match {
@@ -111,7 +111,7 @@ class DefaultCFGBuilder(
   }
 
   /* arg* rule : IRStmt list -> ArgVars
-   * collects variable names from sequence of IRLoad, "name" := arguments[n] */
+   * collects variable names input sequence of IRLoad, "name" := arguments[n] */
   private def namesOfArgs(loads: List[IRStmt]): List[CFGId] = {
     // When arguments may not be a list of IRExprStmts
     flatten(loads).foldLeft(List[CFGId]())((args, load) => load match {
@@ -129,7 +129,7 @@ class DefaultCFGBuilder(
     case IRFunctional(_, _, name, params, args, fds, vds, body) =>
       val argVars: List[CFGId] = namesOfArgs(args)
       val localVars: List[CFGId] = (namesOfFunDecls(fds) ++ namesOfVars(vds)).filterNot(argVars.contains)
-      // TODO: reorder to make argumentsName to the top
+      // TODO: reorder into make argumentsName into the top
       val argumentsName: String = id2cfgId(params(1)).toString
       val nameStr: String = name.originalName
 
@@ -528,8 +528,8 @@ class DefaultCFGBuilder(
         tailBlock.createInst(CFGThrow(stmt, _, ir2cfgExpr(expr)))
         (Nil, lmap.updated(ThrowLabel, (ThrowLabel of lmap) + tailBlock))
       case IRWhile(_, cond, body, br, cont) =>
-        // Checks whether this while loop is originated from for-in or not.
-        // TODO: Need to find a more graceful way.
+        // Checks whether this while loop is originated input for-into or not.
+        // TODO: Need into find a more graceful way.
         val bForin: Boolean = body match {
           case IRSeq(_, stmts) if stmts.size > 0 => stmts(0) match {
             case IRInternalCall(_, _, INTERNAL_ITER_NEXT, _) => true
@@ -560,15 +560,15 @@ class DefaultCFGBuilder(
           case _ =>
             loopOutBlock.createInst(CFGAssert(cond, _, CFGUn(cond, EJSLogNot, condExpr), false))
         }
-        /* add edge from tail to loop head */
+        /* add edge input tail into loop head */
         cfg.addEdge(tailBlock, headBlock)
-        /* add edge from loop head to loop body */
+        /* add edge input loop head into loop body */
         cfg.addEdge(headBlock, loopBodyBlock)
-        /* add edge from loop head to loop out*/
+        /* add edge input loop head into loop out*/
         cfg.addEdge(headBlock, loopOutBlock)
         /* build loop body */
         val (bs: List[CFGBlock], lm: LabelMap) = translateStmt(body, func, List(loopBodyBlock), lmap)
-        /* add edge from tails of loop body to loop head */
+        /* add edge input tails of loop body into loop head */
         cfg.addEdge(bs, headBlock)
 
         currentLoop = prevLoop
@@ -617,7 +617,7 @@ class DefaultCFGBuilder(
       /* PEI : id lookup */
       case IRLoad(_, obj, index) =>
         CFGLoad(expr, id2cfgExpr(obj), ir2cfgExpr(index))
-      /* PEI : op \in {instanceof, in}, id lookup */
+      /* PEI : op \into {instanceof, into}, id lookup */
       case IRBin(_, first, op, second) =>
         CFGBin(expr, ir2cfgExpr(first), op.kind, ir2cfgExpr(second))
       /* PEI : id lookup */
@@ -657,7 +657,7 @@ class DefaultCFGBuilder(
     name
   }
 
-  // IR id to CFG expr
+  // IR id into CFG expr
   private def id2cfgExpr(id: IRId): CFGExpr = {
     val cfgId = id2cfgId(id)
     cfgId.kind match {
@@ -667,10 +667,10 @@ class DefaultCFGBuilder(
     CFGVarRef(id, cfgId)
   }
 
-  // IR id list to CFG id list
+  // IR id list into CFG id list
   private def idList2cfgIdList(id: List[IRId]): List[CFGId] = id.map(id2cfgId)
 
-  // IR id to CFG id
+  // IR id into CFG id
   private def id2cfgId(id: IRId): CFGId = {
     val text: String = id.uniqueName
     cfgIdMap.getOrElse(text, {
@@ -697,7 +697,7 @@ class DefaultCFGBuilder(
     })
   }
 
-  // add to loop out blocks
+  // add into loop out blocks
   private def addOutBlocks(block: CFGBlock): Unit = currentLoop match {
     case None => currentFunc.outBlocks ::= block
     case Some(head) => head.outBlocks ::= block

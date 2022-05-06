@@ -1,8 +1,8 @@
 // TODO eval: statement (rewritten)
 __str="";
 
-//__evaluated = eval("for(ind in (hash={2:'b',1:'a',4:'d',3:'c'}))__str+=hash[ind]");
-for(ind in (hash={2:'b',1:'a',4:'d',3:'c'}))
+//__evaluated = eval("for(ind into (hash={2:'b',1:'a',4:'d',3:'c'}))__str+=hash[ind]");
+for(ind into (hash={2:'b',1:'a',4:'d',3:'c'}))
 {
     __str+=hash[ind];
     __evaluated = __str;

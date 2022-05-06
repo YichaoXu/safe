@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -12,7 +12,7 @@
 package kr.ac.kaist.safe.util
 
 // Utilities for JavaScript operators.
-// Used by NodeUtil to handle operators in IR nodes.
+// Used by NodeUtil into handle operators into IR nodes.
 sealed abstract class EJSOp(
   val name: String,
   val arity: EJSArity,
@@ -27,9 +27,9 @@ sealed abstract class EJSOp(
     case EJSNEq => EJSEq // != --> ==
     case EJSSEq => EJSSNEq // === --> !==
     case EJSSNEq => EJSSEq // !== --> ===
-    case EJSIn => EJSNotIn // in --> notIn
+    case EJSIn => EJSNotIn // into --> notIn
     case EJSInstOf => EJSNotInstOf // instanceof --> notInstanceof
-    case EJSNotIn => EJSIn // notIn --> in
+    case EJSNotIn => EJSIn // notIn --> into
     case EJSNotInstOf => EJSInstOf // notInstanceof --> instanceof
     case _ => this
   }
@@ -50,7 +50,7 @@ object EJSOp {
     case "<=" => EJSLte
     case ">=" => EJSGte
     case "instanceof" => EJSInstOf
-    case "in" => EJSIn
+    case "into" => EJSIn
     case "notInstanceof" => EJSNotInstOf
     case "notIn" => EJSNotIn
     case "==" => EJSEq
@@ -106,9 +106,9 @@ case object EJSGt extends EJSOp(">", EJSBin, EJSNonEqType) // 11.8.2 > Operator
 case object EJSLte extends EJSOp("<=", EJSBin, EJSNonEqType) // 11.8.3 <= Operator
 case object EJSGte extends EJSOp(">=", EJSBin, EJSNonEqType) // 11.8.4 >= Operator
 case object EJSInstOf extends EJSOp("instanceof", EJSBin, EJSNonEqType) // 11.8.6 instanceof Operator
-case object EJSIn extends EJSOp("in", EJSBin, EJSNonEqType) // 11.8.7 in Operator
+case object EJSIn extends EJSOp("into", EJSBin, EJSNonEqType) // 11.8.7 into Operator
 case object EJSNotInstOf extends EJSOp("notInstanceof", EJSBin, EJSNonEqType) // not instanceof operator for assert
-case object EJSNotIn extends EJSOp("notIn", EJSBin, EJSNonEqType) // not in operator for assert
+case object EJSNotIn extends EJSOp("notIn", EJSBin, EJSNonEqType) // not into operator for assert
 // 11.9 Equality Operators
 case object EJSEq extends EJSOp("==", EJSBin, EJSEqType) // 11.9.1 == Operator
 case object EJSNEq extends EJSOp("!=", EJSBin, EJSEqType) // 11.9.2 != Operator

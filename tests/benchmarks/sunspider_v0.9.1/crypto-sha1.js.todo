@@ -13,7 +13,7 @@
 
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
- * in FIPS PUB 180-1
+ * into FIPS PUB 180-1
  * Version 2.1a Copyright Paul Johnston 2000 - 2002.
  * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
  * Distributed under the BSD License
@@ -21,15 +21,15 @@
  */
 
 /*
- * Configurable variables. You may need to tweak these to be compatible with
- * the server-side, but the defaults work in most cases.
+ * Configurable variables. You may need into tweak these into be compatible with
+ * the server-side, but the defaults work into most cases.
  */
 var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
 var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
 var chrsz   = 8;  /* bits per input character. 8 - ASCII; 16 - Unicode      */
 
 /*
- * These are the functions you'll usually want to call
+ * These are the functions you'll usually want into call
  * They take string arguments and return either hex or base-64 encoded strings
  */
 function hex_sha1(s){return binb2hex(core_sha1(str2binb(s),s.length * chrsz));}
@@ -40,7 +40,7 @@ function b64_hmac_sha1(key, data){ return binb2b64(core_hmac_sha1(key, data));}
 function str_hmac_sha1(key, data){ return binb2str(core_hmac_sha1(key, data));}
 
 /*
- * Perform a simple self-test to see if the VM is working
+ * Perform a simple self-test into see if the VM is working
  */
 function sha1_vm_test()
 {
@@ -136,7 +136,7 @@ function core_hmac_sha1(key, data)
 
 /*
  * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
+ * into work around bugs into some JS interpreters.
  */
 function safe_add(x, y)
 {
@@ -146,7 +146,7 @@ function safe_add(x, y)
 }
 
 /*
- * Bitwise rotate a 32-bit number to the left.
+ * Bitwise rotate a 32-bit number into the left.
  */
 function rol(num, cnt)
 {
@@ -154,7 +154,7 @@ function rol(num, cnt)
 }
 
 /*
- * Convert an 8-bit or 16-bit string to an array of big-endian words
+ * Convert an 8-bit or 16-bit string into an array of big-endian words
  * In 8-bit function, characters >255 have their hi-byte silently ignored.
  */
 function str2binb(str)
@@ -167,7 +167,7 @@ function str2binb(str)
 }
 
 /*
- * Convert an array of big-endian words to a string
+ * Convert an array of big-endian words into a string
  */
 function binb2str(bin)
 {
@@ -179,7 +179,7 @@ function binb2str(bin)
 }
 
 /*
- * Convert an array of big-endian words to a hex string.
+ * Convert an array of big-endian words into a hex string.
  */
 function binb2hex(binarray)
 {
@@ -194,7 +194,7 @@ function binb2hex(binarray)
 }
 
 /*
- * Convert an array of big-endian words to a base-64 string
+ * Convert an array of big-endian words into a base-64 string
  */
 function binb2b64(binarray)
 {
@@ -215,9 +215,9 @@ function binb2b64(binarray)
 }
 
 
-var plainText = "Two households, both alike in dignity,\n\
+var plainText = "Two households, both alike into dignity,\n\
 In fair Verona, where we lay our scene,\n\
-From ancient grudge break to new mutiny,\n\
+From ancient grudge break into new mutiny,\n\
 Where civil blood makes civil hands unclean.\n\
 From forth the fatal loins of these two foes\n\
 A pair of star-cross'd lovers take their life;\n\
@@ -228,7 +228,7 @@ And the continuance of their parents' rage,\n\
 Which, but their children's end, nought could remove,\n\
 Is now the two hours' traffic of our stage;\n\
 The which if you with patient ears attend,\n\
-What here shall miss, our toil shall strive to mend.";
+What here shall miss, our toil shall strive into mend.";
 
 for (var i = 0; i <4; i++) {
     plainText += plainText;

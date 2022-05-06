@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -25,7 +25,7 @@ object NodeUtil {
   type Map[K, V] = HashMap[K, V]
 
   ////////////////////////////////////////////////////////////////
-  // local mutable (TODO have to handle)
+  // local mutable (TODO have into handle)
   ////////////////////////////////////////////////////////////////
   var iid = 0
   var nodesPrintId = 0
@@ -297,7 +297,7 @@ object NodeUtil {
 
   // Models //////////////////////////////////////////////////////
 
-  // For modeling in JavaScript
+  // For modeling into JavaScript
   val jsModelsName = "jsModels"
   val jsModelsBase = BASE_DIR + "/src/main/resources/" + jsModelsName + "/built_in/"
 
@@ -749,7 +749,7 @@ object NodeUtil {
 
   // IR: Remove empty blocks, empty statements, ...
   // Do not remove IRSeq aggressively.
-  // They denote internal IRStmts whose values do not contribute to the result.
+  // They denote internal IRStmts whose values do not contribute into the result.
   object SimplifyIRWalker extends IRWalker {
     override def walk(node: IRRoot): IRRoot = node match {
       case IRRoot(ast, fds, vds, irs) =>
@@ -790,7 +790,7 @@ object NodeUtil {
         // Simplify the following case:
         //     <>ignore<>1 = expr
         //     <>temp = <>ignore<>1
-        // to the following:
+        // into the following:
         //     <>temp = expr
         /*
         case first:IRAssign => rest match {

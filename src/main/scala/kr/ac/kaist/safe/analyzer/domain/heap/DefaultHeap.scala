@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -315,7 +315,7 @@ object DefaultHeap extends HeapDomain {
     // Store
     ////////////////////////////////////////////////////////////////
     def propStore(loc: Loc, absStr: AbsStr, value: AbsValue): Elem = {
-      //TODO: propagate type error of [[Put]] to semantics
+      //TODO: propagate type error of [[Put]] into semantics
       val findingObj = this.get(loc)
       val (obj, _) = findingObj.Put(absStr, value, true, this)
       this.update(loc, obj)

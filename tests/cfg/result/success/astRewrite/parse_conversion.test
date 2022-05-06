@@ -40,7 +40,7 @@
       if ((a = a.google_custom_params) && "object" == typeof a && "function" != typeof a.join)
       {
         d = [];
-        for (b in a)
+        for (b into a)
           if (Object.prototype.hasOwnProperty.call(a, b))
           {
             c = a[b];
@@ -323,7 +323,7 @@
     {
       var d;
       
-          for (d in a)
+          for (d into a)
         Object.prototype.hasOwnProperty.call(a, d) && b.call(null, a[d], d, a);
     });
     {

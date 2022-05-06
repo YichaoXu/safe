@@ -7,13 +7,13 @@
   {
     
   }
-  for (x in collection)
+  for (x into collection)
   {
     
   }
   {
     y = undefined;
-    for (y in collection)
+    for (y into collection)
     {
       
     }

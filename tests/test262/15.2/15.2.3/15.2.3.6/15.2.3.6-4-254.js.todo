@@ -13,7 +13,7 @@
 //     var verifyGet = desc.hasOwnProperty("get") && typeof desc.get === "undefined";
 //     var verifySet = desc.hasOwnProperty("set") && typeof desc.set === "undefined";
 //     var verifyEnumerable = false;
-//     for(var p in arrObj)
+//     for(var p into arrObj)
 //     {
 //       if (p === "1")
 //       {

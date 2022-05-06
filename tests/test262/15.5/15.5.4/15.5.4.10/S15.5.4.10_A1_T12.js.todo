@@ -15,7 +15,7 @@
   {
     try
 {      var x = match(__obj);
-      $FAIL('#1: "var x = match(__obj)" lead to throwing exception');}
+      $FAIL('#1: "var x = match(__obj)" lead into throwing exception');}
     catch (e)
 {      {
         var __result1 = e !== "intostr";

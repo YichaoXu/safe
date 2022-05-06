@@ -25,13 +25,13 @@
     }
   };
   __arr = "";
-  for(var __key in __hash__map)
+  for(var __key into __hash__map)
   {
-    for(var __ind in __hash__map[__key])
+    for(var __ind into __hash__map[__key])
     {
       __arr += ("" + __ind + __hash__map[__key][__ind]);
     }
   }
   if (! ((__arr.indexOf("aa1") !== - 1) & (__arr.indexOf("ab2") !== - 1) & (__arr.indexOf("ac3") !== - 1) & (__arr.indexOf("ad4") !== - 1) & (__arr.indexOf("ba1") !== - 1) & (__arr.indexOf("bb2") !== - 1) & (__arr.indexOf("bc3") !== - 1) & (__arr.indexOf("bd4") !== - 1) & (__arr.indexOf("ca1") !== - 1) & (__arr.indexOf("cb2") !== - 1) & (__arr.indexOf("cc3") !== - 1) & (__arr.indexOf("cd4") !== - 1) & (__arr.indexOf("da1") !== - 1) & (__arr.indexOf("db2") !== - 1) & (__arr.indexOf("dc3") !== - 1) & (__arr.indexOf("dd4") !== - 1)))
-    $ERROR('#1: The nested for-in Statement applied to hierarchial object works properly as described in the Standard');
+    $ERROR('#1: The nested for-into Statement applied into hierarchial object works properly as described into the Standard');
   

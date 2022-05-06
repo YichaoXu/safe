@@ -3,7 +3,7 @@
     var __expect1 = false;
   }
   result = true;
-  for (p in this)
+  for (p into this)
   {
     if (p === "decodeURIComponent")
     {

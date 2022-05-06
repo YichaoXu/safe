@@ -17,7 +17,7 @@
 //       });
 //       var regObj = new RegExp();
 //       var verifyEnumerable = false;
-//       for(var p in regObj)
+//       for(var p into regObj)
 //       {
 //         if (p === "prop")
 //         {

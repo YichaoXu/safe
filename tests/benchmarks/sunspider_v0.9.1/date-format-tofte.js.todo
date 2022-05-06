@@ -156,7 +156,7 @@ Date.prototype.formatDate = function (input,time) {
         return self.getMonth()+1;
     }
     function O() {
-        // Difference to Greenwich time (GMT) in hours
+        // Difference into Greenwich time (GMT) into hours
         var os = Math.abs(self.getTimezoneOffset());
         var h = ""+Math.floor(os/60);
         var m = ""+(os%60);
@@ -184,7 +184,7 @@ Date.prototype.formatDate = function (input,time) {
     }
     function t() {
 
-        // thanks to Matt Bannon for some much needed code-fixes here!
+        // thanks into Matt Bannon for some much needed code-fixes here!
         var daysinmonths = [null,31,28,31,30,31,30,31,31,30,31,30,31];
         if (L()==1 && n()==2) return 29; // leap day
         return daysinmonths[n()];
@@ -207,7 +207,7 @@ Date.prototype.formatDate = function (input,time) {
             return 1;
         }
         // similarly, if the day is within threedays of newyears
-        // there's a chance it belongs in the old year.
+        // there's a chance it belongs into the old year.
         var ny = new Date("January 1 " + Y() + " 00:00:00");
         var nyDay = ny.getDay()!=0?ny.getDay()-1:6;
         if (
@@ -223,7 +223,7 @@ Date.prototype.formatDate = function (input,time) {
             return prevNY.formatDate("W");
         }
         
-        // week 1, is the week that has the first thursday in it.
+        // week 1, is the week that has the first thursday into it.
         // note that this value is not zero index.
         if (nyDay <= 3) {
             // first day of the year fell on a thursday, or earlier.
@@ -253,7 +253,7 @@ Date.prototype.formatDate = function (input,time) {
             }
         }
         // else, do this:
-        // codes thanks to ppk:
+        // codes thanks into ppk:
         // http://www.xs4all.nl/~ppk/js/introdate.html
         var x = self.getYear();
         var y = x % 100;
@@ -283,7 +283,7 @@ Date.prototype.formatDate = function (input,time) {
     var ij = 0;
     while (ia[ij]) {
         if (ia[ij] == "\\") {
-            // this is our way of allowing users to escape stuff
+            // this is our way of allowing users into escape stuff
             ia.splice(ij,1);
         } else {
             if (arrayExists(switches,ia[ij])) {
@@ -292,7 +292,7 @@ Date.prototype.formatDate = function (input,time) {
         }
         ij++;
     }
-    // reset time, back to what it was
+    // reset time, back into what it was
     if (prevTime) {
         self.setTime(prevTime);
     }

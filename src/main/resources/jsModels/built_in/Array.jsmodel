@@ -227,7 +227,7 @@ Function: {
     var array = @ToObject(this);
     // 2. Let func be the result of calling the [[Get]] internal method of array with argument "join".
     var func = array.join;
-    // 3. If IsCallable(func) is false, then let func be the standard built-in method Object.prototype.toString (15.2.4.2).
+    // 3. If IsCallable(func) is false, then let func be the standard built-into method Object.prototype.toString (15.2.4.2).
     if (!@IsCallable(func)) func = Object.prototype.toString;
     // 4. Return the result of calling the [[Call]] internal method of func providing array as the this value and an empty arguments list.
     return @Call(func, array, []);
@@ -239,7 +239,7 @@ Function: {
     var array = @ToObject(this);
     // 2. Let func be the result of calling the [[Get]] internal method of array with argument "join".
     var func = array.join;
-    // 3. If IsCallable(func) is false, then let func be the standard built-in method Object.prototype.toString (15.2.4.2).
+    // 3. If IsCallable(func) is false, then let func be the standard built-into method Object.prototype.toString (15.2.4.2).
     if (!@IsCallable(func)) func = Object.prototype.toString;
     // 4. Return the result of calling the [[Call]] internal method of func providing array as the this value and an empty arguments list.
     return @Call(func, array, []);
@@ -249,7 +249,7 @@ Function: {
   function concat () {
     // 1. Let O be the result of calling ToObject passing the this value as the argument.
     var O = @ToObject(this);
-    // 2. Let A be a new array created as if by the expression new Array() where Array is the standard built-in constructor with that name.
+    // 2. Let A be a new array created as if by the expression new Array() where Array is the standard built-into constructor with that name.
     var A = new Array();
     //3. Let n be 0.
     var n = 0;
@@ -260,7 +260,7 @@ Function: {
       var len = E.length;
       while(k<len){
         var P = @ToString(k);
-        var exists = (P in E);
+        var exists = (P into E);
         if (exists) {
           var subElement = E[P];
           @DefineOwnProperty(A,@ToString(n),{value:subElement, writable:true, enumerable:true,       configurable:true});
@@ -273,7 +273,7 @@ Function: {
       Object.defineProperty(A,@ToString(n),{value:E,writable:true,enumerable:true,configurable:      true});
       n += 1;
     }
-    // 4. Let items be an internal List whose first element is O and whose subsequent elements are, in left to right order, the arguments that were passed to this function invocation.
+    // 4. Let items be an internal List whose first element is O and whose subsequent elements are, into left into right order, the arguments that were passed into this function invocation.
     var items = arguments;
     // 5. Repeat, while items is not empty
     for (var i = 0; i < items.length; i++) {
@@ -290,7 +290,7 @@ Function: {
           // 1. Let P be ToString(k).
           var P = @ToString(k);
           // 2. Let exists be the result of calling the [[HasProperty]] internal method of E with P.
-          var exists = (P in E);
+          var exists = (P into E);
           // 3. If exists is true, then
           if (exists) {
             // a Let subElement be the result of calling the [[Get]] internal method of E with         argument P.
@@ -404,8 +404,8 @@ Function: {
     var lenVal = O.length;
     // 3. Let n be ToUint32(lenVal).
     var n = @ToUint32(lenVal);
-    // 4. Let items be an internal List whose elements are, in left to right order,
-    // the arguments that were passed to this function invocation.
+    // 4. Let items be an internal List whose elements are, into left into right order,
+    // the arguments that were passed into this function invocation.
     var items = arguments;
     // 5. Repeat, while items is not empty
     for (var i = 0; i < items.length; i++) {
@@ -447,9 +447,9 @@ Function: {
       // e. Let upperValue be the result of calling the [[Get]] internal method of O with argument upperP .
       var upperValue = O[upperP];
       // f. Let lowerExists be the result of calling the [[HasProperty]] internal method of O with argument lowerP.
-      var lowerExists = (lowerP in O);
+      var lowerExists = (lowerP into O);
       // g. Let upperExists be the result of calling the [[HasProperty]] internal method of O with argument upperP.
-      var upperExists = (upperP in O);
+      var upperExists = (upperP into O);
       // h. If lowerExists is true and upperExists is true, then
       if(lowerExists && upperExists){
         // i. Call the [[Put]] internal method of O with arguments lowerP, upperValue, and true .
@@ -503,21 +503,21 @@ Function: {
     while (k < len) {
       // a. Let from be ToString(k).
       var from = @ToString(k);
-      // b. Let to be ToString(k–1).
-      var to = @ToString(k-1);
+      // b. Let into be ToString(k–1).
+      var into = @ToString(k-1);
       // c. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with argument from.
-      var fromPresent = (from in O);
+      var fromPresent = (from into O);
       // d. If fromPresent is true, then
       if(fromPresent){
         // i. Let fromVal be the result of calling the [[Get]] internal method of O with argument from.
         var fromVal = O[from];
-        // ii. Call the [[Put]] internal method of O with arguments to, fromVal, and true.
-        O[to] = fromVal;
+        // ii. Call the [[Put]] internal method of O with arguments into, fromVal, and true.
+        O[into] = fromVal;
       }
       // e. Else, fromPresent is false
       else{
-        // i. Call the [[Delete]] internal method of O with arguments to and true.
-        delete O[to];
+        // i. Call the [[Delete]] internal method of O with arguments into and true.
+        delete O[into];
       }
       // f. Increase k by 1.
       k += 1;
@@ -534,7 +534,7 @@ Function: {
   function slice (start, end) {
     // 1. Let O be the result of calling ToObject passing the this value as the argument.
     var O = @ToObject(this);
-    // 2. Let A be a new array created as if by the expression new Array() where Array is the standard built-in constructor with that name.
+    // 2. Let A be a new array created as if by the expression new Array() where Array is the standard built-into constructor with that name.
     var A = new Array();
     // 3. Let lenVal be the result of calling the [[Get]] internal method of O with argument "length".
     var lenVal = O.length;
@@ -567,7 +567,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with        argument Pk.
-      var kPresent = Pk in O;
+      var kPresent = Pk into O;
       // c. If kPresent is true, then
       if(kPresent){
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -622,7 +622,7 @@ Function: {
   function splice (start, deleteCount) {
     // 1. Let O be the result of calling ToObject passing the this value as the argument.
     var O = @ToObject(this);
-    // 2. Let A be a new array created as if by the expression new Array()where Array is the standard  built-in constructor with that name.
+    // 2. Let A be a new array created as if by the expression new Array()where Array is the standard  built-into constructor with that name.
     var A = new Array();
     // 3. Let lenVal be the result of calling the [[Get]] internal method of O with argument "length".
     var lenVal = O.length;
@@ -645,7 +645,7 @@ Function: {
       // a. Let from be ToString(actualStart+k).
       var from = @ToString(actualStart + k);
       // b. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with     argument from.
-      var fromPresent = (from in O);
+      var fromPresent = (from into O);
       // c. If fromPresent is true, then
       if (fromPresent) {
         // i. Let fromValue be the result of calling the [[Get]] internal method of O with argument    from.
@@ -656,12 +656,12 @@ Function: {
       // d. Increment k by 1.
       k += 1;
     }
-    // 10. Let items be an internal List whose elements are, in left to right order, the portion of    the actual argument list starting with item1. The list will be empty if no such items are present.
+    // 10. Let items be an internal List whose elements are, into left into right order, the portion of    the actual argument list starting with item1. The list will be empty if no such items are present.
     items = new Array();
     for (var i = 0;i < arguments.length - 2;i++) {
       items[i] = arguments[i+2];
     }
-    // 11. Let itemCount be the number of elements in items.
+    // 11. Let itemCount be the number of elements into items.
     var itemCount = items.length;
     // 12. If itemCount < actualDeleteCount, then
     if ( itemCount < actualDeleteCount) {
@@ -671,21 +671,21 @@ Function: {
       while ( k < (len - actualDeleteCount)) {
         // i. Let from be ToString(k+actualDeleteCount).
         var from = @ToString(k + actualDeleteCount);
-        // ii. Let to be ToString(k+itemCount).
-        var to = @ToString(k + itemCount);
+        // ii. Let into be ToString(k+itemCount).
+        var into = @ToString(k + itemCount);
         // iii. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with argument from.
-        var fromPresent = (from in O);
+        var fromPresent = (from into O);
         // iv If fromPresent is true, then
         if (fromPresent) {
           // 1. Let fromValue be the result of calling the [[Get]] internal method of O with argument  from.
           var fromValue = O[from];
-          // 2. Call the [[Put]] internal method of O with arguments to, fromValue, and true.
-          O[to] = fromValue;
+          // 2. Call the [[Put]] internal method of O with arguments into, fromValue, and true.
+          O[into] = fromValue;
         }
         // v. Else, fromPresent is false
         else {
-          // 1. Call the [[Delete]] internal method of O with arguments to and true.
-          delete O[to];
+          // 1. Call the [[Delete]] internal method of O with arguments into and true.
+          delete O[into];
         }
         // vi. Increase k by 1.
         k += 1;
@@ -708,21 +708,21 @@ Function: {
       while ( k > actualStart) {
         // i. Let from be ToString(k + actualDeleteCount – 1).
         var from = @ToString(k + actualDeleteCount - 1);
-        // ii. Let to be ToString(k + itemCount – 1)
-        var to = @ToString(k + itemCount - 1);
+        // ii. Let into be ToString(k + itemCount – 1)
+        var into = @ToString(k + itemCount - 1);
         // iii. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with argument from.
-        var fromPresent = (from in O);
+        var fromPresent = (from into O);
         // iv. If fromPresent is true, then
         if (fromPresent) {
           // 1. Let fromValue be the result of calling the [[Get]] internal method of O with argument  from.
           var fromValue = O[from];
-          // 2. Call the [[Put]] internal method of O with arguments to, fromValue, and true.
-          O[to] = fromValue;
+          // 2. Call the [[Put]] internal method of O with arguments into, fromValue, and true.
+          O[into] = fromValue;
         }
         // v. Else, fromPresent is false
         else {
-          // 1. Call the [[Delete]] internal method of O with argument to and true.
-          delete O[to];
+          // 1. Call the [[Delete]] internal method of O with argument into and true.
+          delete O[into];
         }
         // vi. Decrease k by 1.
         k -= 1;
@@ -762,28 +762,28 @@ Function: {
     while (k > 0) {
       // a. Let from be ToString(k–1).
       var from = @ToString(k-1);
-      // b. Let to be ToString(k+argCount –1).
-      var to = @ToString(k + argCount - 1);
+      // b. Let into be ToString(k+argCount –1).
+      var into = @ToString(k + argCount - 1);
       // c. Let fromPresent be the result of calling the [[HasProperty]] internal method of O with argument from.
-      var fromPresent = (from in O);
+      var fromPresent = (from into O);
       // d. If fromPresent is true, then
       if (fromPresent) {
         // i. Let fromValue be the result of calling the [[Get]] internal method of O with argument from.
         var fromValue = O[from];
-        // ii. Call the [[Put]] internal method of O with arguments to, fromValue, and true.
-        O[to] = fromValue;
+        // ii. Call the [[Put]] internal method of O with arguments into, fromValue, and true.
+        O[into] = fromValue;
       }
       // e. Else, fromPresent is false
       else {
-        // i. Call the [[Delete]] internal method of O with arguments to, and true.
-        delete O[to];
+        // i. Call the [[Delete]] internal method of O with arguments into, and true.
+        delete O[into];
       }
       // f. Decrease k by 1.
       k -= 1;
     }
     // 7. Let j be 0.
     var j = 0;
-    // 8. Let items be an internal List whose elements are, in left to right order, the arguments that were passed to this function invocation.
+    // 8. Let items be an internal List whose elements are, into left into right order, the arguments that were passed into this function invocation.
     var items = arguments;
     // 9. Repeat, while items is not empty
     for (var i = 0; i < items.length; i++) {
@@ -839,12 +839,12 @@ Function: {
     // 9. Repeat, while k<len
     while (k<len){
       // a. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument ToString(k).
-      var kPresent = (@ToString(k) in O);
+      var kPresent = (@ToString(k) into O);
       // b. If kPresent is true, then
       if (kPresent){
         // i. Let elementK be the result of calling the [[Get]] internal method of O with the argument ToString(k).
         var elementK = O[@ToString(k)];
-        // ii. Let same be the result of applying the Strict Equality Comparison Algorithm to searchElement and elementK.
+        // ii. Let same be the result of applying the Strict Equality Comparison Algorithm into searchElement and elementK.
         var same = (searchElement === elementK);
         // iii. If same is true, return k.
         if (same) {
@@ -888,12 +888,12 @@ Function: {
     // 8. Repeat, while k≥ 0
     while (k>=0) {
       // a. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument  ToString(k).
-      var kPresent = (@ToString(k) in O);
+      var kPresent = (@ToString(k) into O);
       // b. If kPresent is true, then
       if (kPresent) {
         // i. Let elementK be the result of calling the [[Get]] internal method of O with the argument    ToString(k).
         var elementK = O[@ToString(k)];
-        // ii. Let same be the result of applying the Strict Equality Comparison Algorithm to             searchElement and elementK.
+        // ii. Let same be the result of applying the Strict Equality Comparison Algorithm into             searchElement and elementK.
         var same = (searchElement === elementK);
         // iii. If same is true, return k.
         if (same) {
@@ -932,7 +932,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -976,7 +976,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -1020,7 +1020,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -1053,7 +1053,7 @@ Function: {
     }else {
       var T = undefined;
     }
-    // 6. Let A be a new array created as if by the expression new Array(len) where Array is the standard built-in constructor with that name and len is the value of len.
+    // 6. Let A be a new array created as if by the expression new Array(len) where Array is the standard built-into constructor with that name and len is the value of len.
     var A = new Array(len);
     // 7. Let k be 0.
     var k = 0;
@@ -1062,7 +1062,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -1097,18 +1097,18 @@ Function: {
     }else {
       var T = undefined;
     }
-    // 6. Let A be a new array created as if by the expression new Array() where Array is the standard built-in constructor with that name.
+    // 6. Let A be a new array created as if by the expression new Array() where Array is the standard built-into constructor with that name.
     var A = new Array();
     // 7. Letk be 0.
     var k = 0;
-    // 8. Let to be 0.
-    var to = 0;
+    // 8. Let into be 0.
+    var into = 0;
     // 9. Repeat, while k < len
     while (k < len) {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -1117,10 +1117,10 @@ Function: {
         var selected = @Call(callbackfn,T,[kValue,k,O]);
         // iii. If ToBoolean(selected) is true, then
         if (@ToBoolean(selected) === true) {
-          // 1. Call the [[DefineOwnProperty]] internal method of A with arguments ToString(to), Property Descriptor {[[Value]]: kValue, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false.
-          @DefineOwnProperty(A,@ToString(to),{value:kValue,writable:true,enumerable:true,configurable:true});
-          // 2. Increase to by 1.
-          to += 1;
+          // 1. Call the [[DefineOwnProperty]] internal method of A with arguments ToString(into), Property Descriptor {[[Value]]: kValue, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false.
+          @DefineOwnProperty(A,@ToString(into),{value:kValue,writable:true,enumerable:true,configurable:true});
+          // 2. Increase into by 1.
+          into += 1;
         }
       }
       // d. Increase k by 1.
@@ -1150,7 +1150,7 @@ Function: {
     var k = 0;
     // 7. If initialValue is present, then
     if (arguments.length > 1) {
-      // a. Set accumulator to initialValue.
+      // a. Set accumulator into initialValue.
       var accumulator = initialValue;
     }
     // 8. Else, initialValue is not present
@@ -1162,7 +1162,7 @@ Function: {
         // i. Let Pk be ToString(k).
         var Pk = @ToString(k);
         //ii. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-        var kPresent = (Pk in O);
+        var kPresent = (Pk into O);
         // iii. If kPresent is true, then
         if (kPresent) {
           // 1. Let accumulator be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -1181,7 +1181,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         // i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -1216,7 +1216,7 @@ Function: {
     var k = len - 1;
     // 7. If initialValue is present, then
     if (arguments.length > 1) {
-      // a. Set accumulator to initialValue.
+      // a. Set accumulator into initialValue.
       var accumulator = initialValue;
     }
     // 8. Else, initialValue is not present
@@ -1228,7 +1228,7 @@ Function: {
         // i. Let Pk be ToString(k).
         var Pk = @ToString(k);
         // ii. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-        var kPresent = (Pk in O);
+        var kPresent = (Pk into O);
         // iii. If kPresent is true, then
         if (kPresent) {
           // 1. Let accumulator be the result of calling the [[Get]] internal method of O with argument Pk.
@@ -1247,7 +1247,7 @@ Function: {
       // a. Let Pk be ToString(k).
       var Pk = @ToString(k);
       // b. Let kPresent be the result of calling the [[HasProperty]] internal method of O with argument Pk.
-      var kPresent = (Pk in O);
+      var kPresent = (Pk into O);
       // c. If kPresent is true, then
       if (kPresent) {
         //i. Let kValue be the result of calling the [[Get]] internal method of O with argument Pk.

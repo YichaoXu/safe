@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -18,7 +18,7 @@ import kr.ac.kaist.safe.nodes.ir._
 import kr.ac.kaist.safe.SafeConfig
 import kr.ac.kaist.safe.phase.CFGBuildConfig
 
-// Collects captured variables in a given IRNode
+// Collects captured variables into a given IRNode
 // Used by cfg_builder/DefaultCFGBuilder.scala
 class CapturedVariableCollector(
   irRoot: IRRoot,
@@ -56,7 +56,7 @@ class CapturedVariableCollector(
     // IRFunctional
     override def walk(func: IRFunctional): CapturedNames = func match {
       case IRFunctional(_, _, name, params, args, fds, vds, body) =>
-        // flatten IRSeq in IRStmt list
+        // flatten IRSeq into IRStmt list
         def flatten(stmts: List[IRStmt]): List[IRStmt] = {
           stmts.foldRight(List[IRStmt]()) {
             case (seq: IRSeq, l) => seq.stmts ++ l

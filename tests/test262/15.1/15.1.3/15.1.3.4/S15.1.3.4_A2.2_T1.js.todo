@@ -52,7 +52,7 @@
       var hexP = decimalToHexString(indexP);
       $ERROR('#' + hexP + ' ');
     }
-    $ERROR('Total error: ' + errorCount + ' bad Unicode character in ' + count + ' ');
+    $ERROR('Total error: ' + errorCount + ' bad Unicode character into ' + count + ' ');
   }
   function decimalToHexString(n) 
   {

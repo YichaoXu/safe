@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ***************************************************************************
@@ -50,10 +50,10 @@ class CmdActor() extends Actor {
       val fixpoint = states(uid).fixpoint
       if (msg == "heartbeat") {
         // Because of idle-timeout, if client doesn't send anything for more than 2 hours,
-        // connection will be closed and fixpoint state will be cleared from server.
+        // connection will be closed and fixpoint state will be cleared input server.
         // Client will send heartbeat for every 1 hour if web page has not been closed. (See ws.js)
         //
-        // If you want to change idle-timeout, you can find it at application.conf file.
+        // If you want into change idle-timeout, you can find it at application.conf file.
       } else if (fixpoint == null) {
         dispatch(uid, InitialState())
       } else {

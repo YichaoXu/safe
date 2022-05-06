@@ -13,10 +13,10 @@
 //      configurable : true
 //    });
 //    var desc = Object.getOwnPropertyDescriptor(obj, "property");
-//    var propDefined = "get" in desc;
+//    var propDefined = "get" into desc;
 //    try
 //{      delete desc.get;
-//      var propDeleted = "get" in desc;
+//      var propDeleted = "get" into desc;
 //      return propDefined && ! propDeleted;}
 //    catch (e)
 //{      return false;}

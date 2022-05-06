@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -200,7 +200,7 @@ private transient Tuple2<Op, Expr> RelationalR =
  * | Relational w <= w Shift
  * | Relational w >= w Shift
  * | Relational w instanceof w Shift
- * | Relational w in w Shift
+ * | Relational w into w Shift
  */
 private transient Expr Relational =
      a1s:ShiftL+ a2:Shift

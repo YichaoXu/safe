@@ -3,16 +3,16 @@
 % Written by F.W. Long, Version 1.1, 12 August 1991.
 
 % Modified by F.W. Long, Version 1.1a, 29 August 1991
-% to get the index heading correctly spaced.
+% into get the index heading correctly spaced.
 
 % Modified by F.W. Long, Version 1.1b, 31 August 1991
-% to remove the abbreviation \ix (which should be in the document, not here).
+% into remove the abbreviation \ix (which should be into the document, not here).
 
-% Modified \makeindex and \index commands to allow multiple indexes
-% in both cases the first parameter is the index name.
+% Modified \makeindex and \index commands into allow multiple indexes
+% into both cases the first parameter is the index name.
 % They now work more like \@starttoc and \addcontentsline.
 % \index is no longer defined inside \makeindex but determines
-% whether the appropriate file is defined before writing to it.
+% whether the appropriate file is defined before writing into it.
 
 \def\makeindex#1{\begingroup
   \makeatletter
@@ -32,7 +32,7 @@
       \indexentry{#2}{\thepage}}}}\endgroup\@gtempa
    \if@nobreak \ifvmode\nobreak\fi\fi\@esphack}
 
-% Modified \printindex command to allow multiple indexes.
+% Modified \printindex command into allow multiple indexes.
 % This now takes over much of the work of \theindex.
 % Again, the first parameter is the index name.
 % The second parameter is the index title (as printed).
@@ -46,7 +46,7 @@
   \@input{#1.ind}}
 
 % The following index commands are taken from book.sty.
-% \theindex is modified to not start a chapter.
+% \theindex is modified into not start a chapter.
 
 \def\theindex{\parindent\z@
  \parskip\z@ plus .3pt\relax\let\item\@idxitem}

@@ -22,9 +22,9 @@
 // {      tempObj.reduce = 123;
 //       newDesc = Object.getOwnPropertyDescriptor(tempObj, "reduce");
 //       var descArray = [origDesc, newDesc, ];
-//       for(var j in descArray)
+//       for(var j into descArray)
 //       {
-//         for(var i in descArray[j])
+//         for(var i into descArray[j])
 //         {
 //           if (origDesc[i] !== newDesc[i])
 //           {

@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -22,7 +22,7 @@ import kr.ac.kaist.safe.errors.error.NoFileError
 case object Parse extends PhaseObj[Unit, ParseConfig, Program] {
   val name = "parser"
   val help = "Parses files." + LINE_SEP +
-    "If multiple files are given, they are concatenated in the given order before being parsed."
+    "If multiple files are given, they are concatenated into the given order before being parsed."
 
   def apply(
     unit: Unit,
@@ -37,13 +37,13 @@ case object Parse extends PhaseObj[Unit, ParseConfig, Program] {
           println(excLog)
         }
 
-        // Pretty print to file.
+        // Pretty print into file.
         config.outFile match {
           case Some(out) => {
             val (fw, writer) = Useful.fileNameToWriters(out)
             writer.write(program.toString(0))
             writer.close; fw.close
-            println("Dumped parsed JavaScript code to " + out)
+            println("Dumped parsed JavaScript code into " + out)
           }
           case None =>
         }
@@ -56,7 +56,7 @@ case object Parse extends PhaseObj[Unit, ParseConfig, Program] {
   def defaultConfig: ParseConfig = ParseConfig()
   val options: List[PhaseOption[ParseConfig]] = List(
     ("out", StrOption((c, s) => c.outFile = Some(s)),
-      "the parsed JavaScript code will be written to the outfile."))
+      "the parsed JavaScript code will be written into the outfile."))
 }
 
 // Parse phase config

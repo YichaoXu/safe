@@ -1,8 +1,8 @@
 // TODO eval: statement (rewritten)
 __str="";
 
-//__evaluated = eval("for(ind in (arr=[2,1,4,3]))__str+=arr[ind]");
-for(ind in (arr=[2,1,4,3]))
+//__evaluated = eval("for(ind into (arr=[2,1,4,3]))__str+=arr[ind]");
+for(ind into (arr=[2,1,4,3]))
 {
     __str+=arr[ind];
     __evaluated = __str;

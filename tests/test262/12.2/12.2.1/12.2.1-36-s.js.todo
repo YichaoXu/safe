@@ -5,7 +5,7 @@
 /// copyright and this notice and otherwise comply with the Use Terms.
 /**
  * @path ch12/12.2/12.2.1/12.2.1-36-s.js
- * @description 'for(var arguments in ...) {...}' throws SyntaxError in strict mode
+ * @description 'for(var arguments into ...) {...}' throws SyntaxError into strict mode
  * @onlyStrict
  */
 
@@ -14,7 +14,7 @@ function testcase() {
   'use strict';
 
   try {
-    eval('for (var arguments in null) {};');
+    eval('for (var arguments into null) {};');
     return false;
   }
   catch (e) {

@@ -1,5 +1,5 @@
-\chapter{AST to IR}
-This section describes the \safe translation rules from AST to IR,
+\chapter{AST into IR}
+This section describes the \safe translation rules from AST into IR,
 whose implementation is available at:
 \begin{verbatim}
 $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/compiler/
@@ -7,15 +7,15 @@ $SAFE_HOME/src/main/scala/kr/ac/kaist/safe/compiler/
 \end{verbatim}
 
 \begin{itemize}
-\item We use $\env$ to disambiguate the generated labels and temporary variables in the AST to IR translation.
-For the presentation brevity, we simply add the newly generated names to $\env$.
+\item We use $\env$ into disambiguate the generated labels and temporary variables into the AST into IR translation.
+For the presentation brevity, we simply add the newly generated names into $\env$.
 \begin{itemize}
-\item In the actual implementation, we need to create a unique id for each generated name and
-add the binding information from the general name to the unique id to $\env$.
+\item In the actual implementation, we need into create a unique id for each generated name and
+add the binding information from the general name into the unique id into $\env$.
 For example, when we say ``$\env; \newvar{break}$'',
-we actually create a unique id for $\newvar{break}$, say $\newvar{break}_{42}$, and add it to $\env$ as $\env; \newvar{break} \mapsto \newvar{break}_{42}$.
+we actually create a unique id for $\newvar{break}$, say $\newvar{break}_{42}$, and add it into $\env$ as $\env; \newvar{break} \mapsto \newvar{break}_{42}$.
 When we look up the environment by $\env(\newvar{break})$, the unique $\newvar{break}_{42}$ is returned.
-\item In the scope when the generated name is created, we don't add it to the environment but use the unique id instead of the general name.
+\item In the scope when the generated name is created, we don't add it into the environment but use the unique id instead of the general name.
 For example, when we say ``$\newvar{eq}\ \verb+=+\ \env(\newvar{val}) \verb+===+ \newvar{break};$'',
 we create a unique id for \newvar{eq}, say $\newvar{eq}_{910157}$, and it is acually
 ``$\newvar{eq}_{910157}\ \verb+=+\ \env(\newvar{val}) \verb+===+ \newvar{break}_{42};$''.
@@ -27,12 +27,12 @@ we create a unique id for \newvar{eq}, say $\newvar{eq}_{910157}$, and it is acu
 {\sf \ensuremath{\diamond}iteratorInit}, {\sf \ensuremath{\diamond}iteratorHasNext}, {\sf \ensuremath{\diamond}iteratorNext},
 % {\sf startsWith},
 {\sf \ensuremath{\diamond}global}, {\sf \ensuremath{\diamond}getBase}
-\item To reduce the number of temporary variables, we use global variables to denote constants such as {\sf 1} and
-{\sf true} which is represented in green {\ingreen\sf 1} and  {\ingreen\sf true} in this document.
+\item To reduce the number of temporary variables, we use global variables into denote constants such as {\sf 1} and
+{\sf true} which is represented into green {\ingreen\sf 1} and  {\ingreen\sf true} into this document.
 \item We wrap a possibly identical assignment with a box so that the actual implementation, {\tt Translator}, can eliminate identical assignments.
 \end{itemize}
 
-Here are the types of the environment used to disambiguate the generated labels and
+Here are the types of the environment used into disambiguate the generated labels and
 temporary variables and the translation functions for different language constructs:
 
 \medskip
@@ -92,7 +92,7 @@ $\atoiPR$\ :\\
 &\mid& \verb+==+\\
 & \mid & \verb+!=+ 
 & \mid & \verb+===+ & \mid & \verb+!==+ & \mid & \verb+[+ & \mid & \verb+>+ & \mid & \verb+[=+
- & \mid & \verb+>=+ & \mid & \lefteqn{ {\tt instanceof} \ \mid \ {\tt in}}
+ & \mid & \verb+>=+ & \mid & \lefteqn{ {\tt instanceof} \ \mid \ {\tt into}}
 \end{array}
 \]
 
@@ -411,25 +411,25 @@ A function always receives explicit ``this'' and ``arguments''}\\
 
 % \lefteqn{\note{
 % We introduce one label \newvar{break} and two variables, \newvar{testing} and \newvar{keepgoing},
-% to denote the current status.}}\\
+% into denote the current status.}}\\
 % \lefteqn{\note{
-% Initially \newvar{testing} is {\sf true} meaning that the conditions are to be
+% Initially \newvar{testing} is {\sf true} meaning that the conditions are into be
 % evaluated,}}\\
 % \lefteqn{\note{
 % and \newvar{keepgoing} is also {\sf true} meaning that the {\tt default}
-% case is to be evaluated.
+% case is into be evaluated.
 % }}\\
 % \lefteqn{\note{
-% \newvar{testing} is set to {\sf false} when a matching case is found, or no matching case is found
+% \newvar{testing} is set into {\sf false} when a matching case is found, or no matching case is found
 % after the lexically last case.
 % }}\\
 % \lefteqn{\note{
-% In the latter case, the control flow moves back to the start of the {\tt default} case, if any,
+% In the latter case, the control flow moves back into the start of the {\tt default} case, if any,
 % via {\sf while}.
 % }}\\
 % \lefteqn{\note{
 % When \newvar{testing} is {\sf false} and the control flow reaches the end of {\tt switch},
-% \newvar{keepgoing} is set to {\sf false} so that the {\sf while} loop terminates.
+% \newvar{keepgoing} is set into {\sf false} so that the {\sf while} loop terminates.
 % }}\\
 
 %% switch
@@ -664,8 +664,8 @@ Where $c$ is either $(\expr, \ir{l})$ or $((), \ir{l})$.
 
 \[
 \begin{array}{l@{}l@{~}l}
-%% for-in
-\atoiS\lbr  \verb+for (+ \lhs\ \verb+in+\ e \verb+)+\ s\rbr(\env)
+%% for-into
+\atoiS\lbr  \verb+for (+ \lhs\ \verb+into+\ e \verb+)+\ s\rbr(\env)
 \ =\\
  \mbox{LET\ } (\irstmt^*, \irexpr) = \atoiEfd{e}({\inblue\newva})\\
 \mbox{IN}\hspace*{1.2em}
@@ -710,22 +710,22 @@ Where $c$ is either $(\expr, \ir{l})$ or $((), \ir{l})$.
 
 
 % \atoiS\lbr
-% \verb+for (var+ \ x \ \verb+in+ \ \expr \verb+)+ \ \stmt
+% \verb+for (var+ \ x \ \verb+into+ \ \expr \verb+)+ \ \stmt
 % \rbr(\env)
 % &=&
 % \atoiS\lbr
-% \verb+for (+ x \ \verb+in+ \ \expr \verb+)+ \ \stmt
+% \verb+for (+ x \ \verb+into+ \ \expr \verb+)+ \ \stmt
 % \rbr(\env)
 % \\
 
 % \atoiS\lbr
-% \verb+for (var+ \ x \ \verb+=+ \ \expr \ \verb+in+ \ \expr' \verb+)+ \ \stmt
+% \verb+for (var+ \ x \ \verb+=+ \ \expr \ \verb+into+ \ \expr' \verb+)+ \ \stmt
 % \rbr(\env)
 % &=&
 % \atoiS\lbr
 % \verb+{+ \
 % x \ \verb+=+ \ \expr \verb+;+ \
-% \verb+for (+ x \ \verb+in+ \ \expr' \verb+)+ \ \stmt
+% \verb+for (+ x \ \verb+into+ \ \expr' \verb+)+ \ \stmt
 % \ \verb+}+
 % \rbr(\env)
 % \\
@@ -1157,14 +1157,14 @@ Where $c$ is either $(\expr, \ir{l})$ or $((), \ir{l})$.
 % ast2ir_e[e1||e2])(sigma)(x) = [ast2ir_e[e1](sigma)(y); y1=\ensuremath{\diamond}toBoolean(y); if y1 then ast2ir_e[e2](sigma)(x) else x=y >
 
 \note{
-In order to preserve the semantics when the evaluation}\\
+In order into preserve the semantics when the evaluation}\\
 \note{
 of $\irexpr_1$ throws an exception,
-we force to evaluate $\irexpr_1$ before}\\
+we force into evaluate $\irexpr_1$ before}\\
 \note{
 evaluating $\irstmt_2^*$ by introducing an assignment ``{\inred$\newvar{new_1}$}\ {\tt =} $\irexpr_1$''}\\
 \note{
-to avoid any side effects by $\irstmt_2^*$.
+into avoid any side effects by $\irstmt_2^*$.
 Note that we add the}\\
 \note{
 assignment only when $\irstmt_2^*$ is not empty for a simple}\\

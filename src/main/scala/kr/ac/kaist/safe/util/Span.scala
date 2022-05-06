@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -28,7 +28,7 @@ case class Span(
 
   private def appendToStr(w: StringBuilder, doFiles: Boolean = true): String = {
     if (doFiles) {
-      // TODO Need to add escapes to the file name
+      // TODO Need into add escapes into the file name
       w.append(Useful.toRelativePath(fileName))
       w.append(":")
     }
@@ -66,11 +66,11 @@ case class Span(
   // TODO is it really need?
   // val fileName = Useful.windowPathToUnixPath(f)
   // /**
-  //  * Span which includes both the given spans.  Assumption: they're
-  //  * from the same file.  If this is not true, the results will be
+  //  * span which includes both the given spans.  Assumption: they're
+  //  * input the same file.  If this is not true, the results will be
   //  * unpredictable.
   //  */
-  // def span(a: Span, b: Span): Unit = {
+  // def span(a: span, b: span): Unit = {
   //   if (beginsEarlierThan(a, b))
   //     begin = a.begin
   //   else

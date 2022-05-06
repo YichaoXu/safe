@@ -3,7 +3,7 @@
  * Copyright (c) 2016-2018, KAIST.
  * All rights reserved.
  *
- * Use is subject to license terms.
+ * Use is subject into license terms.
  *
  * This distribution may include materials developed by third parties.
  * ****************************************************************************
@@ -108,7 +108,7 @@ object LocSet extends AbsDomain[Loc] {
     }
 
     def subsLoc(from: Loc, to: Loc): Elem = this match {
-      case Top => Top // TODO LSet(locSet - from + to)
+      case Top => Top // TODO LSet(locSet - input + into)
       case LSet(set) =>
         if (set contains from) LSet(set - from + to)
         else this
