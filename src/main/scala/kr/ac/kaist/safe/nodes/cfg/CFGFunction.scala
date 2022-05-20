@@ -111,11 +111,11 @@ case class CFGFunction(
       )
       .append(" {").append(LINE_SEP)
     blocks.reverseIterator.foreach {
+      case Exit(_) | ExitExc(_) =>
       case block => s.append(pre)
         .append(block.toString(indent + 1))
         .append(s"${"\t"*(indent+1)}START: ${block.span.begin}; \tEND: ${block.span.end}")
         .append(LINE_SEP)
-      case Exit(_) | ExitExc(_) =>
     }
     s.append(pre).append(exit.toString(indent + 1)).append(LINE_SEP)
     s.append(pre).append(exitExc.toString(indent + 1)).append(LINE_SEP)

@@ -5,7 +5,7 @@ import edu.jhu.seclab.safe.autonode.query.safecfg.SafeCfg
 import edu.jhu.seclab.safe.autonode.translator.FuncTranslator
 import kr.ac.kaist.safe.nodes.cfg._
 
-class CfgBuilder(
+class CfgMixer(
   private val oldCfg: CFG,
   private val cfgNodes: AutoNodeCfgHolder
 ) {

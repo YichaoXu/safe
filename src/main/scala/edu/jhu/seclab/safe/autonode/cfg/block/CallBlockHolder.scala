@@ -21,6 +21,7 @@ class CallBlockHolder extends AbsBlockHolder {
   override def head: ModelNode = nodeCore.get
   override def last: ModelNode = nodeCore.get
 
+
   override def +=(node: ModelNode): Unit = (this append node)
   override def append(node: ModelNode): CallBlockHolder = _selfReturn {
     require(this.nodeCore.isEmpty && this.nonClosed)

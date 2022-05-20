@@ -8,7 +8,7 @@ import scala.util.Try
 
 abstract sealed class AbsEntity
 
-class ModelEdge(private val data: Map[String, String]) extends AbsEntity {
+class ModelEdge(val data: Map[String, String]) extends AbsEntity {
   val start: Int = data("start:START_ID").toInt
   val end: Int = data("end:END_ID").toInt
   val edge_var: String = data("var")
@@ -22,8 +22,10 @@ class ModelEdge(private val data: Map[String, String]) extends AbsEntity {
 }
 
 class ModelNode(
-  private val fileName: String,
-  private val data: Map[String, String]) extends AbsEntity {
+  val fileName: String,
+  val data: Map[String, String]
+) extends AbsEntity {
+
   val id: Int = data("id:ID").toInt
   val label: String = data("labels:label")
   val flags: Array[String] = data("flags:string[]").split(" ")
@@ -51,6 +53,8 @@ class ModelNode(
 
   def is(nType: NodeType): Boolean = nType == node_type
   def isNot(nTypes: NodeType*): Boolean = nTypes.forall(nType=> !this.is(nType))
+  def isInvocation:Boolean = (this is NodeType.AST_CALL) || (this is NodeType.AST_METHOD_CALL)
+  def nonInvocation:Boolean = !this.isInvocation
   def isFuncEnd: Boolean = (this is NodeType.CFG_FUNC_EXIT)
   def nonFuncEnd: Boolean = !this.isFuncEnd
   def isBlockEnd: Boolean = (this is NodeType.CFG_BLOCK_EXIT)

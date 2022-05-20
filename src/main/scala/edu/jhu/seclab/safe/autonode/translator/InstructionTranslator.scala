@@ -17,6 +17,7 @@ class InstructionTranslator extends AbsTranslator[CFGNormalInst]{
 
   override def translate(): Option[CFGNormalInst] =
     block.createInst( newBlock => instruction match {
+      case inst: CFGAlloc => inst.copy(block=newBlock)
       case inst: CFGAllocArray => inst.copy(block=newBlock)
       case inst: CFGAllocArg => inst.copy(block=newBlock)
       case inst: CFGEnterCode => inst.copy(block=newBlock)

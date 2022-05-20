@@ -4,6 +4,7 @@ import edu.jhu.seclab.safe.autonode.cfg.abs.{AbsBlockHolder, AbsHolder}
 import edu.jhu.seclab.safe.autonode.cfg.block.NormBlockHolder
 import edu.jhu.seclab.safe.autonode.cfg.block.CallBlockHolder
 import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
+import edu.jhu.seclab.safe.autonode.exts.syntax._
 import edu.jhu.seclab.safe.autonode.query.csv.AutoNodeCsv
 import edu.jhu.seclab.safe.autonode.query.csv.model.ModelNode
 import edu.jhu.seclab.safe.autonode.query.csv.model.NodeType.AST_TOP_LEVEL
@@ -22,49 +23,48 @@ class AutoNodeCfgHolder(
 
   def functions: Seq[FunctionHolder] = funcsMap.values.toSeq
 
-  private def newFunctionHolder(funcId: Int): Unit = AutoNodeCsv.query.node(id = funcId) match {
-    case Some(funcDef) =>
-      val funcName = funcDef.node_type match {
-        case AST_TOP_LEVEL => "top-level"
-        case _ => funcDef.code
-      }
-      val startNode = AutoNodeCsv.query.node(id = funcId + 1).get
-      val entryBlock = new NormBlockHolder().append(startNode)
-      val newBlock = new NormBlockHolder().flowFrom(entryBlock)
-      val newFunc = new FunctionHolder(funcDef).append(entryBlock).append(newBlock)
-      funcsMap(funcName) = newFunc
-      newBlockHolder(AutoNodeCsv.query.next(of = startNode).headOption, funcName, newBlock)
-    case None => print(s"CANNOT FIND FUNCTION WITH ID-$funcId")
+  private def newFunctionHolder(funcDef: ModelNode): Unit = {
+    val funcName = funcDef.node_type match {
+      case AST_TOP_LEVEL => "top-level"
+      case _ => funcDef.code
+    }
+    val startNode = AutoNodeCsv.query.entryOf(funcDef).get
+    val entryBlock = new NormBlockHolder().append(startNode)
+    val newBlock = new NormBlockHolder().flowFrom(entryBlock)
+    funcsMap(funcName) = new FunctionHolder(funcDef).append(entryBlock).append(newBlock)
+    newBlockHolder(AutoNodeCsv.query.flowFrom(startNode).headOption, funcName, newBlock)
   }
 
   private def newBlockHolder(from: Option[ModelNode], forFunc: String, curHolder: AbsBlockHolder): Unit = from match {
     case Some(nextStart) if curHolder.isClosed =>
       if (funcsMap(forFunc).exist(_.head == nextStart)) return ;
-      funcsMap(forFunc) += new NormBlockHolder().flowFrom(curHolder)
-      newBlockHolder(from, forFunc, funcsMap(forFunc).last)
-    case Some(funcNode) if funcNode isFuncEntry =>
-      if (!funcsMap.contains(funcNode.code)) newFunctionHolder(funcNode.id - 1)
-      val callNode = curHolder.last
-      val callHolder = new CallBlockHolder().append(callNode).flowFrom(curHolder).close()
-      funcsMap(forFunc) += callHolder
-      newBlockHolder(AutoNodeCsv.query.next(callNode).lift(1), forFunc, callHolder)
+      val newBlock = new NormBlockHolder().flowFrom(curHolder)
+      funcsMap(forFunc).append(newBlock)
+      newBlockHolder(from, forFunc, newBlock)
+    case Some(entry) if entry isFuncEntry =>
+      val signature = AutoNodeCsv.query.signatureOf(entry).get
+      if (!funcsMap.contains(signature.code)) newFunctionHolder(signature)
+      val callerHolder = funcsMap(forFunc).normBlocks.last
+      val caller = AutoNodeCsv.query.invocationsInChildrenOf(callerHolder.last)
+        .filter(_.code.contains(s"${signature.code}("))
+        .find(call=> !  funcsMap(forFunc).callBlocks.exists(_.head.id == call.id))
+      val preHolder = funcsMap(forFunc).blocks.last
+      funcsMap(forFunc).append{new CallBlockHolder().append(caller.get).flowFrom(preHolder).close()}
     case Some(funcExit) if funcExit isFuncEnd =>
       if(curHolder.nodes isEmpty) curHolder.append(funcExit).close()
       else funcsMap(forFunc) += new NormBlockHolder().flowFrom(curHolder).append(funcExit).close()
-    case Some(condNode) if condNode isConditional =>
-      curHolder.append(condNode).close()
-      AutoNodeCsv.query.next(condNode).foreach { node => newBlockHolder(Some(node), forFunc, curHolder) }
-    case Some(blockEnd) if blockEnd isBlockEnd =>
-      curHolder.append(blockEnd).close()
-      newBlockHolder(AutoNodeCsv.query.next(blockEnd).headOption, forFunc, curHolder)
-    case Some(normalNode) =>
-      curHolder.append(normalNode)
-      if (normalNode.isBlockEnd) curHolder.close()
-      newBlockHolder(AutoNodeCsv.query.next(normalNode).headOption, forFunc, curHolder)
+    case Some(node) =>
+      curHolder.append(node)
+      val (calls, norms) = AutoNodeCsv.query.flowFrom(node).partition(_.isFuncEntry)
+      calls.foreach{call => newBlockHolder(call, forFunc,curHolder)}
+      if(node.isBlockEnd || node.isConditional) curHolder.close()
+      val preHolder = if (calls.isEmpty) curHolder else funcsMap(forFunc).last
+      norms.foreach{norm => newBlockHolder(norm, forFunc, preHolder)}
     case None => ()
   }
   AutoNodeCsv.query.nodes.find(funDel => funDel.is(AST_TOP_LEVEL) && funDel.id != 1) match {
-    case Some(node) => if (!funcsMap.contains(node.code)) newFunctionHolder(node.id)
+    case Some(signature) => if (!funcsMap.contains(signature.code)) newFunctionHolder(signature)
+    case None => println(s"⚠️  Unexpected errors occurred in functions extraction ⚠️")
   }
 
   override def toString: String = {
