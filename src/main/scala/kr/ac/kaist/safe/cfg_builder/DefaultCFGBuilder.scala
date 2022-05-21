@@ -25,8 +25,7 @@ import kr.ac.kaist.safe.util.NodeUtil._
 class DefaultCFGBuilder(
   ir: IRRoot,
   safeConfig: SafeConfig,
-  config: CFGBuildConfig
-) extends CFGBuilder(ir, safeConfig, config) {
+  config: CFGBuildConfig) extends CFGBuilder(ir, safeConfig, config) {
   ////////////////////////////////////////////////////////////////
   // results
   ////////////////////////////////////////////////////////////////
@@ -182,8 +181,7 @@ class DefaultCFGBuilder(
     stmt: IRStmt,
     func: CFGFunction,
     blocks: List[CFGBlock],
-    lmap: LabelMap
-  ): (List[CFGBlock], LabelMap) = {
+    lmap: LabelMap): (List[CFGBlock], LabelMap) = {
     stmt match {
       case IRNoOp(_, desc) =>
         val tailBlock: NormalBlock = getTail(blocks, func)

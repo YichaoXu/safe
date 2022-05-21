@@ -22,8 +22,7 @@ case class CFGFunction(
   argVars: List[CFGId],
   localVars: List[CFGId],
   name: String,
-  isUser: Boolean
-) extends CFGNode {
+  isUser: Boolean) extends CFGNode {
 
   var id: FunctionId = 0 // XXX should be a value but for JS model for a while.
 
@@ -107,14 +106,13 @@ case class CFGFunction(
     s.append(pre).append(s"function[$id] ")
       .append(
         if (!NodeUtil.isInternal(name)) name
-        else name.dropRight(SIGNIFICANT_BITS)
-      )
+        else name.dropRight(SIGNIFICANT_BITS))
       .append(" {").append(LINE_SEP)
     blocks.reverseIterator.foreach {
       case Exit(_) | ExitExc(_) =>
       case block => s.append(pre)
         .append(block.toString(indent + 1))
-        .append(s"${"\t"*(indent+1)}START: ${block.span.begin}; \tEND: ${block.span.end}")
+        .append(s"${"\t" * (indent + 1)}START: ${block.span.begin}; \tEND: ${block.span.end}")
         .append(LINE_SEP)
     }
     s.append(pre).append(exit.toString(indent + 1)).append(LINE_SEP)

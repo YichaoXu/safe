@@ -85,7 +85,9 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.2",
   "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.9.1",
   "org.jline" % "jline" % "3.10.0",
-  "com.github.tototoshi" %% "scala-csv" % "1.3.10"
+  "com.github.tototoshi" %% "scala-csv" % "1.3.10",
+  "com.github.david-bouyssie" %% "sqlite4s" % "0.4.1"
+
 )
 
 javacOptions ++= Seq("-encoding", "UTF-8")

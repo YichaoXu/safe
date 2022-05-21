@@ -1,4 +1,4 @@
-package edu.jhu.seclab.safe.autonode.query.safecfg
+package edu.jhu.seclab.safe.autonode.query.safe
 
 import edu.jhu.seclab.safe.autonode.exts.span.Comparison
 import kr.ac.kaist.safe.nodes.cfg.{ CFG, CFGBlock, CFGFunction, CFGInst, Call => CallBlock }

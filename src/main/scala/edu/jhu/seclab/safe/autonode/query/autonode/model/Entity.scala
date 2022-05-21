@@ -1,8 +1,8 @@
-package edu.jhu.seclab.safe.autonode.query.csv.model
+package edu.jhu.seclab.safe.autonode.query.autonode.model
 
-import EdgeType.EdgeType
-import NodeType.NodeType
-import kr.ac.kaist.safe.util.{SourceLoc, Span}
+import edu.jhu.seclab.safe.autonode.query.autonode.model.EdgeType.EdgeType
+import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.NodeType
+import kr.ac.kaist.safe.util.{ SourceLoc, Span }
 
 import scala.util.Try
 
@@ -23,8 +23,7 @@ class ModelEdge(val data: Map[String, String]) extends AbsEntity {
 
 class ModelNode(
   val fileName: String,
-  val data: Map[String, String]
-) extends AbsEntity {
+  val data: Map[String, String]) extends AbsEntity {
 
   val id: Int = data("id:ID").toInt
   val label: String = data("labels:label")
@@ -40,8 +39,7 @@ class ModelNode(
     Span(
       fileName = fileName,
       begin = SourceLoc(strs(0), strs(1)),
-      end = SourceLoc(strs(2), strs(3))
-    )
+      end = SourceLoc(strs(2), strs(3)))
   }
 
   val name: String = data("name")
@@ -52,9 +50,9 @@ class ModelNode(
   val node_type: NodeType = NodeType(nodeTypeStr) getOrElse NodeType.NULL
 
   def is(nType: NodeType): Boolean = nType == node_type
-  def isNot(nTypes: NodeType*): Boolean = nTypes.forall(nType=> !this.is(nType))
-  def isInvocation:Boolean = (this is NodeType.AST_CALL) || (this is NodeType.AST_METHOD_CALL)
-  def nonInvocation:Boolean = !this.isInvocation
+  def isNot(nTypes: NodeType*): Boolean = nTypes.forall(nType => !this.is(nType))
+  def isInvocation: Boolean = (this is NodeType.AST_CALL) || (this is NodeType.AST_METHOD_CALL)
+  def nonInvocation: Boolean = !this.isInvocation
   def isFuncEnd: Boolean = (this is NodeType.CFG_FUNC_EXIT)
   def nonFuncEnd: Boolean = !this.isFuncEnd
   def isBlockEnd: Boolean = (this is NodeType.CFG_BLOCK_EXIT)

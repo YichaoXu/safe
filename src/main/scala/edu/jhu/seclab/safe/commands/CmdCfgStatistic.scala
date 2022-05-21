@@ -1,7 +1,7 @@
 package edu.jhu.seclab.safe.commands
 
-import edu.jhu.seclab.safe.phases.{PhsCfgStatistic, StatisticOutput}
-import kr.ac.kaist.safe.{CmdCFGBuild, CommandObj}
+import edu.jhu.seclab.safe.phases.{ PhsCfgStatistic, StatisticOutput }
+import kr.ac.kaist.safe.{ CmdCFGBuild, CommandObj }
 
 case object CmdCfgStatistic extends CommandObj("cfgStatistic", CmdCFGBuild >> PhsCfgStatistic) {
 

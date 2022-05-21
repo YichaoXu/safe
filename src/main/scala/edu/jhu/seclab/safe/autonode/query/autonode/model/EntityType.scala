@@ -1,4 +1,4 @@
-package edu.jhu.seclab.safe.autonode.query.csv.model
+package edu.jhu.seclab.safe.autonode.query.autonode.model
 
 abstract sealed class AbsType extends Enumeration
 

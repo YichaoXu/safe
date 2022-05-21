@@ -11,7 +11,7 @@
 
 package kr.ac.kaist.safe.phase
 
-import edu.jhu.seclab.safe.autonode.CfgMixer
+import edu.jhu.seclab.safe.autonode.FromAutoNodeCfgBuilder
 import edu.jhu.seclab.safe.autonode.cfg.AutoNodeCfgHolder
 import kr.ac.kaist.safe.SafeConfig
 import kr.ac.kaist.safe.cfg_builder.DefaultCFGBuilder
@@ -21,7 +21,7 @@ import kr.ac.kaist.safe.util._
 
 import java.io.File
 import java.nio.file.Paths
-import scala.util.{Properties, Success, Try}
+import scala.util.{ Properties, Success, Try }
 import scala.sys.process._
 
 // CFGBuild phase
@@ -31,18 +31,17 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
 
   private def autoNodeOptimize(safeCfg: CFG, safeConfig: SafeConfig, config: CFGBuildConfig): CFG = {
     if (!config.silent) println("⚠️  use AutoNode version of Control Flow Graph ⚠️")
-    if(!config.autoNodeUseCache){
+    if (!config.autoNodeUseCache) {
       val solverHome = Properties.envOrNone("SOLVER_HOME")
       if (solverHome isEmpty) throw new IllegalArgumentException("⚠️  Cannot find executable solver program ⚠️")
-      val solverPath = Paths.get(Properties.envOrNone("SOLVER_HOME").get,  "generate_graph.py")
+      val solverPath = Paths.get(Properties.envOrNone("SOLVER_HOME").get, "generate_graph.py")
       val output = s"$solverPath ${safeConfig.fileNames.head} -Csmpq".!!
-      if (! config.silent) println(output)
+      if (!config.silent) println(output)
     }
     val anCfgNodes = new AutoNodeCfgHolder(
       nodesCsv = new File(s"${safeConfig.fileNames.head}.nodes.csv"),
-      edgesCsv = new File(s"${safeConfig.fileNames.head}.rels.csv")
-    )
-    new CfgMixer(safeCfg, anCfgNodes).build()
+      edgesCsv = new File(s"${safeConfig.fileNames.head}.rels.csv"))
+    new FromAutoNodeCfgBuilder(safeCfg, anCfgNodes).build()
   }
 
   def apply(ir: IRRoot, safeConfig: SafeConfig, config: CFGBuildConfig): Try[CFG] = {
@@ -62,7 +61,7 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
       fw.close()
       println("Dumped CFG to " + out)
     })
-    if(! config.autoNode) Success(cfg)
+    if (!config.autoNode) Success(cfg)
     else Success(autoNodeOptimize(cfg, safeConfig, config))
   }
 
@@ -73,8 +72,7 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
     ("out", StrOption[CFGBuildConfig]((c, s) => c.outFile = Some(s)),
       "the resulting CFG will be written to the outfile."),
     ("auto-node", BoolOption[CFGBuildConfig](c => c.autoNode = true), "use auto node version cfg"),
-    ("use-cache", BoolOption[CFGBuildConfig](c => c.autoNodeUseCache = true), "use cached file during auto node cfg generate")
-  )
+    ("use-cache", BoolOption[CFGBuildConfig](c => c.autoNodeUseCache = true), "use cached file during auto node cfg generate"))
 }
 
 // CFGBuild phase config
@@ -82,5 +80,4 @@ case class CFGBuildConfig(
   var silent: Boolean = false,
   var outFile: Option[String] = None,
   var autoNode: Boolean = false,
-  var autoNodeUseCache: Boolean = false
-) extends Config
+  var autoNodeUseCache: Boolean = false) extends Config

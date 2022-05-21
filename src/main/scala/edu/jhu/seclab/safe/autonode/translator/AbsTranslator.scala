@@ -1,6 +1,6 @@
 package edu.jhu.seclab.safe.autonode.translator
 
-abstract class AbsTranslator[Target]{
+abstract class AbsTranslator[Target] {
 
   type InputType
   type DestinationType
