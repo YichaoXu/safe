@@ -85,9 +85,11 @@ libraryDependencies ++= Seq(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.9.2",
   "com.fasterxml.jackson.module" % "jackson-module-scala_2.12" % "2.9.1",
   "org.jline" % "jline" % "3.10.0",
-  "com.github.tototoshi" %% "scala-csv" % "1.3.10"
-//  "com.github.david-bouyssie" % "sqlite4s_native0.4_2.12" % "0.4.1"
-
+  "com.github.tototoshi" %% "scala-csv" % "1.3.10",
+  "com.typesafe.slick" %% "slick" % "3.3.3",
+  "org.slf4j" % "slf4j-nop" % "1.6.4",
+  "com.typesafe.slick" %% "slick-hikaricp" % "3.3.3",
+  "org.xerial" % "sqlite-jdbc" % "3.36.0.3"
 )
 
 javacOptions ++= Seq("-encoding", "UTF-8")

@@ -7,16 +7,11 @@ import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
 import edu.jhu.seclab.safe.autonode.exts.syntax._
 import edu.jhu.seclab.safe.autonode.query.autonode.model.ModelNode
 import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType._
-import edu.jhu.seclab.safe.autonode.{query => Querier}
+import edu.jhu.seclab.safe.autonode.{ query => Querier }
 
-import java.io.File
 import scala.collection.mutable
 
-class AutoNodeCfgHolder(
-  private val nodesCsv: File,
-  private val edgesCsv: File) extends AbsHolder {
-
-  Querier.sourceOfAutoNode(nodesCsv, edgesCsv)
+class AutoNodeCfgHolder extends AbsHolder {
 
   private val funcsMap = mutable.Map[String, FunctionHolder]()
 
@@ -27,11 +22,13 @@ class AutoNodeCfgHolder(
       case AST_TOP_LEVEL => "top-level"
       case _ => funcDef.code
     }
-    val startNode = Querier.autoNode.entryOf(funcDef).get
-    val entryBlock = new NormBlockHolder().append(startNode)
+
+    val startNode = Querier.autoNode.entryOf(funcDef)
+    if(startNode.isEmpty) throw new Exception(funcDef.toString)
+    val entryBlock = new NormBlockHolder().append(startNode.get)
     val newBlock = new NormBlockHolder().flowFrom(entryBlock)
     funcsMap(funcName) = new FunctionHolder(funcDef).append(entryBlock).append(newBlock)
-    newBlockHolder(Querier.autoNode.flowFrom(startNode).headOption, funcName, newBlock)
+    newBlockHolder(Querier.autoNode.flowFrom(startNode.get).headOption, funcName, newBlock)
   }
 
   private def newBlockHolder(from: Option[ModelNode], forFunc: String, curHolder: AbsBlockHolder): Unit = from match {
@@ -48,6 +45,7 @@ class AutoNodeCfgHolder(
         .filter(_.code.contains(s"${signature.code}("))
         .find(call => !funcsMap(forFunc).callBlocks.exists(_.head.id == call.id))
       val preHolder = funcsMap(forFunc).blocks.last
+      if(caller.isEmpty) throw new Exception(s"ENTRY: ${entry.toString}\n SIGNATURE: ${signature.toString}\n CALLER: ${callerHolder.last}")
       funcsMap(forFunc).append { new CallBlockHolder().append(caller.get).flowFrom(preHolder).close() }
     case Some(funcExit) if funcExit isFuncEnd =>
       if (curHolder.nodes isEmpty) curHolder.append(funcExit).close()
@@ -61,11 +59,10 @@ class AutoNodeCfgHolder(
       norms.foreach { norm => newBlockHolder(norm, forFunc, preHolder) }
     case None => ()
   }
-  // TODO: FINISH IT
-  //  Querier.autoNode.nodes.find(funDel => funDel.is(AST_TOP_LEVEL) && funDel.id != 1) match {
-  //    case Some(signature) => if (!funcsMap.contains(signature.code)) newFunctionHolder(signature)
-  //    case None => println(s"⚠️  Unexpected errors occurred in functions extraction ⚠️")
-  //  }
+  Querier.autoNode.fileEntry match {
+      case Some(signature) => if (!funcsMap.contains(signature.code)) newFunctionHolder(signature)
+      case None => println(s"⚠️  Unexpected errors occurred in functions extraction ⚠️")
+  }
 
   override def toString: String = {
     val sBuilder = new StringBuilder(s"CFG HOLDER: \n")

@@ -7,6 +7,7 @@ import kr.ac.kaist.safe.util.Span
 class SafeCfg(val core: CFG) {
 
   lazy val functions: List[CFGFunction] = core.getAllFuncs
+  def exists(funcName: String): Boolean = core.getAllFuncs.exists(func=> func.name == funcName)
   def function(whoseNameIs: String): Option[CFGFunction] = core.getAllFuncs.find(func => func.name == whoseNameIs)
 
   lazy val blocks: List[CFGBlock] = core.getAllBlocks
@@ -17,19 +18,22 @@ class SafeCfg(val core: CFG) {
   }
 
   lazy val instructions: List[CFGInst] = this.core.getAllFuncs.flatten { _.getAllBlocks }.flatten { _.getInsts }
-  def instructions(withIn: Span): List[CFGInst] = instructions.filter { _.span.isContained(into = withIn) }
 
-  def instructions(ofFuncName: String): List[CFGInst] = function(whoseNameIs = ofFuncName) match {
-    case Some(func) => func.getAllBlocks.flatten { _.getInsts }
-    case None => Nil
-  }
+  private var spanInstCache: Map[String, List[CFGInst]] = Map()
+  def instructions(withIn: Span): List[CFGInst] = namedInstCache.getOrElse(withIn.toString, {
+    val instructions = this.instructions.filter { _.span.isContained(into = withIn) }
+    this.spanInstCache = Map(withIn.toString -> instructions)
+    instructions
+  })
 
-}
+  private var namedInstCache: Map[String, List[CFGInst]] = Map()
+  def instructions(ofFuncName: String): List[CFGInst] = namedInstCache.getOrElse(ofFuncName, {
+    val instructions = this.function(whoseNameIs=ofFuncName) match {
+      case Some(func) => func.getAllBlocks.flatten { _.getInsts }
+      case None => Nil
+    }
+    this.namedInstCache = Map(ofFuncName -> instructions)
+    instructions
+  })
 
-object SafeCfg {
-  private var core: Option[SafeCfg] = None
-  def init(cfg: CFG): Unit = {
-    core = Some(new SafeCfg(cfg))
-  }
-  lazy val query: SafeCfg = core.get
 }

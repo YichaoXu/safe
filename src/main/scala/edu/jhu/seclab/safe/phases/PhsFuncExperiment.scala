@@ -1,23 +1,22 @@
 package edu.jhu.seclab.safe.phases
 
 import kr.ac.kaist.safe.SafeConfig
-import kr.ac.kaist.safe.nodes.cfg.CFG
 import kr.ac.kaist.safe.phase.{Config, PhaseObj}
 import kr.ac.kaist.safe.util.OptionKind
-//import com.github.sqlite4s.SQLiteConnection
+import edu.jhu.seclab.safe.autonode.{query => Querier}
 
 import java.io.File
 import scala.util.{Success, Try}
 
-case object PhsFuncExperiment extends PhaseObj[CFG, ExperimentConfig, String] {
+
+case object PhsFuncExperiment extends PhaseObj[Unit, ExperimentConfig, String] {
   val name: String = "experiment"
   val help: String = "run developing functions for experiment"
-  override def apply(in: CFG, safeConfig: SafeConfig, config: ExperimentConfig): Try[String] = {
-
-    val file = new File(s"${safeConfig.fileNames}.db")
-//    val db = new SQLiteConnection(file).open(allowCreate=false)
-//    Success(db.getTableColumnMetadata("main", "NodeTable", "id").toString)
-    Success("STRING")
+  override def apply(in: Unit, safeConfig: SafeConfig, config: ExperimentConfig): Try[String] = {
+    Querier.sourceOfAutoNode(new File(s"${safeConfig.fileNames.head}.db"))
+    val two = Querier.autoNode.fileEntry
+    println(s"NODE2: ${two.toString}")
+    Success(Querier.autoNode.flowFrom(two.get).toString)
   }
 
   override def defaultConfig: ExperimentConfig = ExperimentConfig()

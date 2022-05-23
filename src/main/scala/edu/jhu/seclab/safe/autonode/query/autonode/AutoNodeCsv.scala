@@ -1,8 +1,9 @@
 package edu.jhu.seclab.safe.autonode.query.autonode
 
-import com.github.tototoshi.csv.{ CSVReader, TSVFormat }
+import com.github.tototoshi.csv.{CSVReader, TSVFormat}
 import edu.jhu.seclab.safe.autonode.query.autonode.model.EdgeType._
-import edu.jhu.seclab.safe.autonode.query.autonode.model.{ ModelEdge, ModelNode }
+import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.AST_TOP_LEVEL
+import edu.jhu.seclab.safe.autonode.query.autonode.model.{ModelEdge, ModelNode}
 
 import java.io.File
 
@@ -24,6 +25,8 @@ class AutoNodeCsv(nodeFile: File, edgeFile: File) extends AbsAutoNode {
     eReader.toStreamWithHeaders.map(data => new ModelNode(fileName = nodeFile.getName, data)).toList
   }
 
+  override def fileEntry: Option[ModelNode] = nodes.find(funDel => funDel.is(AST_TOP_LEVEL) && funDel.id != 1)
+
   override def next(of: ModelNode, eType: Option[EdgeType] = None): Seq[ModelNode] = edges
     .filter { edge => edge.start == of.id && (eType.isEmpty || edge.is(eType.get)) }
     .map { edge => node(id = edge.end).get }
@@ -32,5 +35,4 @@ class AutoNodeCsv(nodeFile: File, edgeFile: File) extends AbsAutoNode {
     .map { edge => node(id = edge.start).get }
 
   override def node(id: Int): Option[ModelNode] = nodes.find(_.id == id)
-
 }

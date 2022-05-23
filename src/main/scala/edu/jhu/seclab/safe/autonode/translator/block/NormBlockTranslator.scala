@@ -5,7 +5,7 @@ import edu.jhu.seclab.safe.autonode.exts.syntax._
 import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType._
 import edu.jhu.seclab.safe.autonode.cfg.block.NormBlockHolder
 import edu.jhu.seclab.safe.autonode.query.autonode.model.ModelNode
-import edu.jhu.seclab.safe.autonode.query.safe.SafeCfg
+import edu.jhu.seclab.safe.autonode.{query => Querier}
 import edu.jhu.seclab.safe.autonode.translator.InstructionTranslator
 import kr.ac.kaist.safe.nodes.cfg._
 
@@ -20,8 +20,13 @@ class NormBlockTranslator extends AbsBlockTranslator[CFGBlock] {
   private def translateNormalBlockWithInstructions(label: LabelKind): NormalBlock = {
     val newBlock = destination.createBlock(label, None)
     val instrTranslator = new InstructionTranslator().output(to = newBlock)
-    SafeCfg.query.instructions(ofFuncName = destination.name)
-      .filter { oldInst => source.shouldContain(oldInst) && !oldInst.isInstanceOf[CFGCallInst] }.reverse
+    val oldInsts = if (Querier.safeCfg.exists(funcName = destination.name)) {
+      Querier.safeCfg.instructions(withIn = destination.span)
+    } else {
+      Querier.safeCfg.instructions(ofFuncName = destination.name)
+    }
+    oldInsts.reverse
+      .filter { oldInst => source.shouldContain(oldInst) && !oldInst.isInstanceOf[CFGCallInst] }
       .foreach { oldInst => instrTranslator.input(oldInst).translate() }
     newBlock
   }

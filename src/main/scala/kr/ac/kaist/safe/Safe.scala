@@ -12,7 +12,6 @@
 package kr.ac.kaist.safe
 
 import edu.jhu.seclab.safe.SafeSupplement
-
 import scala.util.{ Failure, Try }
 import kr.ac.kaist.safe.errors.SafeException
 import kr.ac.kaist.safe.errors.error.{ NoCmdError, NoInputError }
