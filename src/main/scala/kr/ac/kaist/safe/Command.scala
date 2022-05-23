@@ -65,7 +65,7 @@ class CommandObj[Result](
 case object CmdBase extends CommandObj("", PhaseNil)
 
 // parse
-case object CmdParse extends CommandObj("parse", CmdBase >> Parse) {
+case object CmdParse extends CommandObj("s", CmdBase >> Parse) {
   override def display(program: Program): Unit = println(program.toString(0))
 }
 
