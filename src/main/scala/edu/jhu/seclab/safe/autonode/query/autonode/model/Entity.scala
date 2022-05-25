@@ -2,8 +2,8 @@ package edu.jhu.seclab.safe.autonode.query.autonode.model
 
 import edu.jhu.seclab.safe.autonode.exts.span.Offset
 import edu.jhu.seclab.safe.autonode.query.autonode.model.EdgeType.EdgeType
-import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.{AST_TOP_LEVEL, NodeType}
-import kr.ac.kaist.safe.util.{SourceLoc, Span}
+import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.{ AST_TOP_LEVEL, NodeType }
+import kr.ac.kaist.safe.util.{ SourceLoc, Span }
 
 import scala.util.Try
 
@@ -73,6 +73,6 @@ class SignatureNode(val core: ModelNode) extends AbsEntity {
   val funcName: String = core.node_type match {
     case AST_TOP_LEVEL => "top-level"
     case _ if core.code nonEmpty => core.code
-    case _ if core.code isEmpty=> core.namespace.column(offset=1).toString
+    case _ if core.code isEmpty => core.namespace.column(offset = 1).toString
   }
 }

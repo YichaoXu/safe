@@ -1,9 +1,9 @@
 package edu.jhu.seclab.safe.autonode.query.autonode
 
 import edu.jhu.seclab.safe.autonode.exts.syntax._
-import edu.jhu.seclab.safe.autonode.query.autonode.model.{ModelNode, SignatureNode}
-import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.{AST_CLOSURE, STRING}
-import edu.jhu.seclab.safe.autonode.query.autonode.model.EdgeType.{ENTRY, EdgeType, FLOWS_TO, PARENT_OF}
+import edu.jhu.seclab.safe.autonode.query.autonode.model.{ ModelNode, SignatureNode }
+import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.{ AST_CLOSURE, STRING }
+import edu.jhu.seclab.safe.autonode.query.autonode.model.EdgeType.{ ENTRY, EdgeType, FLOWS_TO, PARENT_OF }
 
 abstract class AbsAutoNode {
 
@@ -22,9 +22,9 @@ abstract class AbsAutoNode {
         Range.inclusive(signature.id - 5, signature.id + 5)
           .map(id => this.node(id).get)
           .find(n => n.is(STRING) && n.name.nonEmpty)) match {
-            case Some(strNode) => new SignatureNode(new ModelNode(signature.fileName, signature.data.updated("code", strNode.name)))
-            case None => println(s"⚠️  CANNOT FOUND THE SIGNATURE NAME OF ${signature.toString} ⚠️")
-          }
+          case Some(strNode) => new SignatureNode(new ModelNode(signature.fileName, signature.data.updated("code", strNode.name)))
+          case None => println(s"⚠️  CANNOT FOUND THE SIGNATURE NAME OF ${signature.toString} ⚠️")
+        }
     case Some(signature) => new SignatureNode(signature)
     case None => println(s"⚠️  CANNOT FOUND THE SIGNATURE OF ENTRY ${entry.toString} ⚠️")
   }

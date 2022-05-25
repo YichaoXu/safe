@@ -1,10 +1,10 @@
 package edu.jhu.seclab.safe.autonode.query.autonode
 
-import com.github.tototoshi.csv.{CSVReader, TSVFormat}
+import com.github.tototoshi.csv.{ CSVReader, TSVFormat }
 import edu.jhu.seclab.safe.autonode.exts.syntax.autoWrapToOption
 import edu.jhu.seclab.safe.autonode.query.autonode.model.EdgeType._
 import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.AST_TOP_LEVEL
-import edu.jhu.seclab.safe.autonode.query.autonode.model.{ModelEdge, ModelNode, SignatureNode}
+import edu.jhu.seclab.safe.autonode.query.autonode.model.{ ModelEdge, ModelNode, SignatureNode }
 
 import java.io.File
 

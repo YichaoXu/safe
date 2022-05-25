@@ -3,7 +3,7 @@ package edu.jhu.seclab.safe.autonode.query.autonode
 import edu.jhu.seclab.safe.autonode.exts.database.mapResult
 import edu.jhu.seclab.safe.autonode.query.autonode.model.EdgeType.EdgeType
 import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.AST_TOP_LEVEL
-import edu.jhu.seclab.safe.autonode.query.autonode.model.{ModelNode, SignatureNode}
+import edu.jhu.seclab.safe.autonode.query.autonode.model.{ ModelNode, SignatureNode }
 import edu.jhu.seclab.safe.autonode.exts.syntax.autoWrapToOption
 import slick.jdbc.SQLActionBuilder
 import slick.jdbc.SQLiteProfile.api._

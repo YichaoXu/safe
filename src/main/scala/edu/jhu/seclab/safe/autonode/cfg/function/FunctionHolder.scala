@@ -2,8 +2,8 @@ package edu.jhu.seclab.safe.autonode.cfg.function
 
 import edu.jhu.seclab.safe.autonode.exts.span.Offset
 import edu.jhu.seclab.safe.autonode.query.autonode.model.SignatureNode
-import edu.jhu.seclab.safe.autonode.cfg.abs.{AbsBlockHolder, AbsMutableHolder}
-import edu.jhu.seclab.safe.autonode.cfg.block.{CallBlockHolder, NormBlockHolder}
+import edu.jhu.seclab.safe.autonode.cfg.abs.{ AbsBlockHolder, AbsMutableHolder }
+import edu.jhu.seclab.safe.autonode.cfg.block.{ CallBlockHolder, NormBlockHolder }
 import kr.ac.kaist.safe.util.Span
 
 import scala.collection.mutable.ListBuffer
@@ -17,7 +17,7 @@ class FunctionHolder(val signature: SignatureNode) extends AbsMutableHolder[AbsB
   def exist(anyBlockSatisfied: AbsBlockHolder => Boolean): Boolean = holderList.exists(anyBlockSatisfied)
 
   val funcName: String = signature.funcName
-  val namespace: Span = signature.core.namespace.column(offset=1)
+  val namespace: Span = signature.core.namespace.column(offset = 1)
 
   override def head: AbsBlockHolder = holderList.head
   override def last: AbsBlockHolder = holderList.last

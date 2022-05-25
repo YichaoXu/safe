@@ -1,14 +1,14 @@
 package edu.jhu.seclab.safe.autonode.cfg
 
-import edu.jhu.seclab.safe.autonode.cfg.abs.{AbsBlockHolder, AbsHolder}
+import edu.jhu.seclab.safe.autonode.cfg.abs.{ AbsBlockHolder, AbsHolder }
 import edu.jhu.seclab.safe.autonode.cfg.block.NormBlockHolder
 import edu.jhu.seclab.safe.autonode.cfg.block.CallBlockHolder
 import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
 import edu.jhu.seclab.safe.autonode.exts.span.Offset
 import edu.jhu.seclab.safe.autonode.exts.syntax._
-import edu.jhu.seclab.safe.autonode.query.autonode.model.{ModelNode, SignatureNode}
+import edu.jhu.seclab.safe.autonode.query.autonode.model.{ ModelNode, SignatureNode }
 import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType._
-import edu.jhu.seclab.safe.autonode.{query => Querier}
+import edu.jhu.seclab.safe.autonode.{ query => Querier }
 
 import scala.collection.mutable
 
