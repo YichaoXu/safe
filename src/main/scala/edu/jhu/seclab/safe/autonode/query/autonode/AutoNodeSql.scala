@@ -3,7 +3,7 @@ package edu.jhu.seclab.safe.autonode.query.autonode
 import edu.jhu.seclab.safe.autonode.exts.database.mapResult
 import edu.jhu.seclab.safe.autonode.query.autonode.model.EdgeType.EdgeType
 import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.AST_TOP_LEVEL
-import edu.jhu.seclab.safe.autonode.query.autonode.model.ModelNode
+import edu.jhu.seclab.safe.autonode.query.autonode.model.{ModelNode, SignatureNode}
 import edu.jhu.seclab.safe.autonode.exts.syntax.autoWrapToOption
 import slick.jdbc.SQLActionBuilder
 import slick.jdbc.SQLiteProfile.api._
@@ -24,8 +24,11 @@ class AutoNodeSql(sqlFile: File) extends AbsAutoNode {
     new ModelNode(jsName, result.get.head)
   }
 
-  override def fileEntry: Option[ModelNode] = __select_single_node {
+  override def fileEntry: Option[SignatureNode] = __select_single_node {
     sql"SELECT * FROM main.NodeTable WHERE id!=1 AND type=${AST_TOP_LEVEL.toString} LIMIT 1"
+  } match {
+    case None => None
+    case Some(node) => new SignatureNode(node)
   }
 
   override def node(id: Int): Option[ModelNode] = __select_single_node {

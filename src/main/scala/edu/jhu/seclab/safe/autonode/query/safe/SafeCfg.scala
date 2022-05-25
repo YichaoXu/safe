@@ -1,14 +1,20 @@
 package edu.jhu.seclab.safe.autonode.query.safe
 
+import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
 import edu.jhu.seclab.safe.autonode.exts.span.Comparison
-import kr.ac.kaist.safe.nodes.cfg.{ CFG, CFGBlock, CFGFunction, CFGInst, Call => CallBlock }
+import kr.ac.kaist.safe.nodes.cfg.{CFG, CFGBlock, CFGFunction, CFGInst, Call => CallBlock}
 import kr.ac.kaist.safe.util.Span
 
 class SafeCfg(val core: CFG) {
 
   lazy val functions: List[CFGFunction] = core.getAllFuncs
   def exists(funcName: String): Boolean = core.getAllFuncs.exists(func => func.name == funcName)
-  def function(whoseNameIs: String): Option[CFGFunction] = core.getAllFuncs.find(func => func.name == whoseNameIs)
+  def function(ofHolder: FunctionHolder): Option[CFGFunction] =
+    this.function(whoseNameIs=ofHolder.funcName) orElse this.function(whoseRangeIs=ofHolder.namespace)
+  def function(whoseNameIs: String): Option[CFGFunction] =
+    core.getAllFuncs.find(func => func.name == whoseNameIs)
+  def function(whoseRangeIs: Span): Option[CFGFunction] =
+    core.getAllFuncs.find(func => func.span.isSameLiterately(to=whoseRangeIs))
 
   lazy val blocks: List[CFGBlock] = core.getAllBlocks
 

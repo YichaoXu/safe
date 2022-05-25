@@ -60,6 +60,5 @@ class NormBlockTranslator extends AbsBlockTranslator[CFGBlock] {
   private val translateCore =
     translateConditional.orElse(translateTryCatch).orElse(translateTrivia).orElse(translateRemaining)
 
-  // TODO: OPTIMISATION FOR BINARY SEARCHING
   def translate(): Option[CFGBlock] = translateCore(source.head)
 }

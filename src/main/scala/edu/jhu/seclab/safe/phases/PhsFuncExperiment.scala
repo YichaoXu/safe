@@ -15,7 +15,7 @@ case object PhsFuncExperiment extends PhaseObj[Unit, ExperimentConfig, String] {
     Querier.sourceOfAutoNode(new File(s"${safeConfig.fileNames.head}.db"))
     val two = Querier.autoNode.fileEntry
     println(s"NODE2: ${two.toString}")
-    Success(Querier.autoNode.flowFrom(two.get).toString)
+    Success(Querier.autoNode.flowFrom(two.get.core).toString)
   }
 
   override def defaultConfig: ExperimentConfig = ExperimentConfig()

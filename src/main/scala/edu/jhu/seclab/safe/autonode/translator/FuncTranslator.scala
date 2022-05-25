@@ -23,7 +23,7 @@ class FuncTranslator extends AbsTranslator[CFGFunction] {
   override def input(is: FunctionHolder): FuncTranslator = _selfReturn { this.holder = is }
 
   override def translate(): Option[CFGFunction] = {
-    val newFunc = Querier.safeCfg.function(whoseNameIs = holder.funcName) match {
+    val newFunc = Querier.safeCfg.function(ofHolder = holder) match {
       case None =>
         newCfg.emptyFunctionSignature(basedOn = holder)
       case Some(oldFunc) =>

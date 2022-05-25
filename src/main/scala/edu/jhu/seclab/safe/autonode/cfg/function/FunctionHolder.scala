@@ -1,13 +1,14 @@
 package edu.jhu.seclab.safe.autonode.cfg.function
 
-import edu.jhu.seclab.safe.autonode.cfg.abs.{ AbsBlockHolder, AbsMutableHolder }
-import edu.jhu.seclab.safe.autonode.cfg.block.{ CallBlockHolder, NormBlockHolder }
-import edu.jhu.seclab.safe.autonode.query.autonode.model.ModelNode
-import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType.{ AST_CLOSURE, AST_FUNC_DECL, AST_TOP_LEVEL }
+import edu.jhu.seclab.safe.autonode.exts.span.Offset
+import edu.jhu.seclab.safe.autonode.query.autonode.model.SignatureNode
+import edu.jhu.seclab.safe.autonode.cfg.abs.{AbsBlockHolder, AbsMutableHolder}
+import edu.jhu.seclab.safe.autonode.cfg.block.{CallBlockHolder, NormBlockHolder}
+import kr.ac.kaist.safe.util.Span
 
-import scala.collection.mutable.ListBuffer;
+import scala.collection.mutable.ListBuffer
 
-class FunctionHolder(val funDef: ModelNode) extends AbsMutableHolder[AbsBlockHolder] {
+class FunctionHolder(val signature: SignatureNode) extends AbsMutableHolder[AbsBlockHolder] {
 
   private val holderList = ListBuffer[AbsBlockHolder]()
   def blocks: Seq[AbsBlockHolder] = holderList
@@ -15,10 +16,8 @@ class FunctionHolder(val funDef: ModelNode) extends AbsMutableHolder[AbsBlockHol
   def callBlocks: Seq[CallBlockHolder] = holderList.filter(_.isInstanceOf[CallBlockHolder]).map(_.asInstanceOf[CallBlockHolder])
   def exist(anyBlockSatisfied: AbsBlockHolder => Boolean): Boolean = holderList.exists(anyBlockSatisfied)
 
-  def funcName: String = funDef.node_type match {
-    case AST_TOP_LEVEL => "top-level"
-    case AST_FUNC_DECL | AST_CLOSURE => funDef.code
-  }
+  val funcName: String = signature.funcName
+  val namespace: Span = signature.core.namespace.column(offset=1)
 
   override def head: AbsBlockHolder = holderList.head
   override def last: AbsBlockHolder = holderList.last
@@ -26,7 +25,7 @@ class FunctionHolder(val funDef: ModelNode) extends AbsMutableHolder[AbsBlockHol
   override def append(newVal: AbsBlockHolder): FunctionHolder = this._selfReturn { holderList += newVal }
 
   override def toString: String = {
-    val sBuilder = new StringBuilder(s"FUNCTION: \tcode: ${funDef.code}; \tnamespace: ${funDef.namespace}\n\n")
+    val sBuilder = new StringBuilder(s"FUNCTION: \tname: ${this.funcName}; \tnamespace: ${this.namespace}\n\n")
     holderList.foreach { holder => sBuilder ++= s"${holder.toString}\n" }
     sBuilder.toString()
   }

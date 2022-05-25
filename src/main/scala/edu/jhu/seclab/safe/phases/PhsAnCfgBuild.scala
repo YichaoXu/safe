@@ -20,7 +20,7 @@ case object PhsAnCfgBuild extends PhaseObj[CFG, AnCfgBuildConfig, CFG] {
   val help: String = "generate cfg from csv files"
 
   override def apply(safeCfg: CFG, safeConfig: SafeConfig, config: AnCfgBuildConfig): Try[CFG] = Try {
-    if (config.nodesSource.isEmpty || config.nodesSource.get == "origin") safeCfg
+    if (config.nodesSource.isEmpty || config.nodesSource.get == "origin") return Try(safeCfg)
     if (!config.silent) println("⚠️  Use AutoNode to generate CFG ⚠️")
     val jsName = safeConfig.fileNames.head
     val (nCsv, eCsv) = (new File(s"testnodes.csv"), new File(s"testrels.csv"))
