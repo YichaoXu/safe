@@ -6,7 +6,7 @@ import kr.ac.kaist.safe.{ CmdCFGBuild, CommandObj }
 
 case object CmdAnCfgBuild extends CommandObj("anCfgBuild", CmdCFGBuild >> PhsAnCfgBuild) {
 
-  override def display(cfg: CFG): Unit = println(cfg.toString(0))
+  override def display(cfg: CFG): Unit = println(cfg.getAllFuncs.map(_.name).toString())
 
 }
 

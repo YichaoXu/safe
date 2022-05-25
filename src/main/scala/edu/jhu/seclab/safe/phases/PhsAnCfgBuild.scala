@@ -11,7 +11,7 @@ import edu.jhu.seclab.safe.autonode.{query => Querier}
 import scala.sys.process._
 import java.io.File
 import java.nio.file.Paths
-import scala.util.{Properties, Success, Try}
+import scala.util.{Properties, Try}
 
 case object PhsAnCfgBuild extends PhaseObj[CFG, AnCfgBuildConfig, CFG] {
 
@@ -42,13 +42,13 @@ case object PhsAnCfgBuild extends PhaseObj[CFG, AnCfgBuildConfig, CFG] {
       case _ => throw new UnsupportedOperationException("Unsupported value for {nodes}")
     }
     val autoCfg = new AutoNodeCfgHolder()
-    if(!config.silent) println(autoCfg.toString)
+    if(!config.silent) println(autoCfg.functions.map(_.funcName).toString)
     new FromAutoNodeCfgBuilder(safeCfg, autoCfg).build()
   }
 
-  override def apply(safeCfg: CFG, safeConfig: SafeConfig, config: AnCfgBuildConfig): Success[CFG] = {
-    val handledCfg = Try(autoNodeOptimize(safeCfg, safeConfig, config)).getOrElse(safeCfg)
-    Success(handledCfg)
+  override def apply(safeCfg: CFG, safeConfig: SafeConfig, config: AnCfgBuildConfig): Try[CFG] = Try{
+    if(config.nodesSource.isEmpty || config.nodesSource.get == "origin") safeCfg
+    else autoNodeOptimize(safeCfg, safeConfig, config)
   }
 
   def defaultConfig: AnCfgBuildConfig = AnCfgBuildConfig()
