@@ -14,7 +14,7 @@ object cfg {
 
     private def buildIrNode(holder: FunctionHolder): IRNode = {
       val astNode = new ASTNode {
-        override val info: ASTNodeInfo = ASTNodeInfo(holder.funDef.namespace, None)
+        override val info: ASTNodeInfo = ASTNodeInfo(holder.namespace, None)
         override def toString(indent: Int): String = info.toString
       }
       new IRNode(astNode) { override def toString(indent: Int): String = astNode.toString() }
