@@ -20,7 +20,7 @@ case object PhsAnCfgBuild extends PhaseObj[CFG, AnCfgBuildConfig, CFG] {
   val help: String = "generate cfg from csv files"
 
   override def apply(safeCfg: CFG, safeConfig: SafeConfig, config: AnCfgBuildConfig): Try[CFG] = Try {
-    if (config.nodesSource.isEmpty || config.nodesSource.get == "origin") safeCfg
+    if (config.nodesSource.isEmpty || config.nodesSource.get == "origin") return Try(safeCfg)
     if (!config.silent) println("⚠️  Use AutoNode to generate CFG ⚠️")
     val jsName = safeConfig.fileNames.head
     val (nCsv, eCsv) = (new File(s"testnodes.csv"), new File(s"testrels.csv"))
@@ -43,7 +43,7 @@ case object PhsAnCfgBuild extends PhaseObj[CFG, AnCfgBuildConfig, CFG] {
           if (!config.silent) println(output)
         }
         Querier.sourceOfAutoNode(sqlFile)
-      case _ => throw new UnsupportedOperationException("Unsupported value for {nodes}")
+      case _ | None => throw new UnsupportedOperationException(s"Unsupported value for nodes: ${config.nodesSource}")
     }
     val autoCfg = new AutoNodeCfgHolder()
     if (!config.silent) println(autoCfg.toString)
