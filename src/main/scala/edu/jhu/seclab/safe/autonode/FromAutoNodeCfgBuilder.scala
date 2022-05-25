@@ -1,7 +1,7 @@
 package edu.jhu.seclab.safe.autonode
 
 import edu.jhu.seclab.safe.autonode.cfg.AutoNodeCfgHolder
-import edu.jhu.seclab.safe.autonode.{query => Querier}
+import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import edu.jhu.seclab.safe.autonode.translator.FuncTranslator
 import kr.ac.kaist.safe.nodes.cfg._
 

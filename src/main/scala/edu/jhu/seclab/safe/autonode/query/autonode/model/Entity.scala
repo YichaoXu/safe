@@ -51,7 +51,7 @@ class ModelNode(
 
   def is(nType: NodeType): Boolean = nType.toString.capitalize == node_type.toString.capitalize
   def isNot(nTypes: NodeType*): Boolean = nTypes.forall(nType => !this.is(nType))
-  def isInvocation: Boolean = (this is NodeType.AST_CALL) || (this is NodeType.AST_METHOD_CALL)|| (this is NodeType.AST_NEW)
+  def isInvocation: Boolean = (this is NodeType.AST_CALL) || (this is NodeType.AST_METHOD_CALL) || (this is NodeType.AST_NEW)
   def nonInvocation: Boolean = !this.isInvocation
   def isFuncEnd: Boolean = (this is NodeType.CFG_FUNC_EXIT)
   def nonFuncEnd: Boolean = !this.isFuncEnd

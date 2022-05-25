@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/preset-react
+npx babel $1 --presets=@babel/preset-env,@babel/preset-react -o ${1}.babeled.js

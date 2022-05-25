@@ -5,7 +5,7 @@ import edu.jhu.seclab.safe.autonode.exts.span.Comparison
 import edu.jhu.seclab.safe.autonode.exts.cfg.CurryCallCreate
 import edu.jhu.seclab.safe.autonode.cfg.abs.AbsBlockHolder
 import edu.jhu.seclab.safe.autonode.cfg.block.CallBlockHolder
-import edu.jhu.seclab.safe.autonode.{query => Querier}
+import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import kr.ac.kaist.safe.nodes.cfg.{ CFGCall, CFGConstruct, CFGFunction, Call => CallBlock }
 
 class InvocationTranslator extends AbsBlockTranslator[CallBlock] {

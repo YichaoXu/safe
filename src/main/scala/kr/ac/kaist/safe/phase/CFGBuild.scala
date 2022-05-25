@@ -13,7 +13,7 @@ package kr.ac.kaist.safe.phase
 
 import edu.jhu.seclab.safe.autonode.FromAutoNodeCfgBuilder
 import edu.jhu.seclab.safe.autonode.cfg.AutoNodeCfgHolder
-import edu.jhu.seclab.safe.autonode.{query => Querier}
+import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import kr.ac.kaist.safe.SafeConfig
 import kr.ac.kaist.safe.cfg_builder.DefaultCFGBuilder
 import kr.ac.kaist.safe.nodes.cfg._
@@ -45,7 +45,7 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
       case Some("csv") => Querier.sourceOfAutoNode(nCsv, eCsv)
       case Some("sql") =>
         val sqlFile = new File(s"$jsFileName.db")
-        if(!sqlFile.isFile) {
+        if (!sqlFile.isFile) {
           val output = s"${Properties.envOrNone("SAFE_HOME")} $jsFileName.db -Csmpq".!!
           if (!config.silent) println(output)
         }
@@ -85,16 +85,13 @@ case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
     ("out", StrOption[CFGBuildConfig]((c, s) => c.outFile = Some(s)),
       "the resulting CFG will be written to the outfile."),
     ("nodes", StrOption((c, s) => c.nodesSource = Some(s)),
-        "origin: |default| use safe original cfg.\t" +
-        "csv: use autonode cfg from csv\t" +
-        "sql: like previous but using sql for optimisation"
-    )
-  )
+      "origin: |default| use safe original cfg.\t" +
+      "csv: use autonode cfg from csv\t" +
+      "sql: like previous but using sql for optimisation"))
 }
 
 // CFGBuild phase config
 case class CFGBuildConfig(
   var silent: Boolean = false,
   var outFile: Option[String] = None,
-  var nodesSource: Option[String] = None
-) extends Config
+  var nodesSource: Option[String] = None) extends Config

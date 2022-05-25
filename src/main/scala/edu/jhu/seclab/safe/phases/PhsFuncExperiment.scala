@@ -1,13 +1,12 @@
 package edu.jhu.seclab.safe.phases
 
 import kr.ac.kaist.safe.SafeConfig
-import kr.ac.kaist.safe.phase.{Config, PhaseObj}
+import kr.ac.kaist.safe.phase.{ Config, PhaseObj }
 import kr.ac.kaist.safe.util.OptionKind
-import edu.jhu.seclab.safe.autonode.{query => Querier}
+import edu.jhu.seclab.safe.autonode.{ query => Querier }
 
 import java.io.File
-import scala.util.{Success, Try}
-
+import scala.util.{ Success, Try }
 
 case object PhsFuncExperiment extends PhaseObj[Unit, ExperimentConfig, String] {
   val name: String = "experiment"

@@ -5,7 +5,7 @@ import edu.jhu.seclab.safe.autonode.exts.syntax._
 import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType._
 import edu.jhu.seclab.safe.autonode.cfg.block.NormBlockHolder
 import edu.jhu.seclab.safe.autonode.query.autonode.model.ModelNode
-import edu.jhu.seclab.safe.autonode.{query => Querier}
+import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import edu.jhu.seclab.safe.autonode.translator.InstructionTranslator
 import kr.ac.kaist.safe.nodes.cfg._
 

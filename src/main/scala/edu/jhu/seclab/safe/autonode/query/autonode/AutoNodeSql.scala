@@ -16,26 +16,26 @@ import scala.util.Try
 class AutoNodeSql(sqlFile: File) extends AbsAutoNode {
 
   private val jsName = sqlFile.getName.replace(".db", "")
-  private val dbCore = Database.forURL(s"jdbc:sqlite:${sqlFile.getAbsolutePath}", driver="org.sqlite.JDBC")
+  private val dbCore = Database.forURL(s"jdbc:sqlite:${sqlFile.getAbsolutePath}", driver = "org.sqlite.JDBC")
 
   private def __select_single_node(statement: SQLActionBuilder): Option[ModelNode] = {
-    val result = Try{ Await.result(dbCore.run(statement.resultAsCsvMap),Duration.Inf) }
+    val result = Try { Await.result(dbCore.run(statement.resultAsCsvMap), Duration.Inf) }
     if (result.isFailure || result.get.isEmpty) return None
     new ModelNode(jsName, result.get.head)
   }
 
-  override def fileEntry: Option[ModelNode] = __select_single_node{
+  override def fileEntry: Option[ModelNode] = __select_single_node {
     sql"SELECT * FROM main.NodeTable WHERE id!=1 AND type=${AST_TOP_LEVEL.toString} LIMIT 1"
   }
 
-  override def node(id: Int): Option[ModelNode] = __select_single_node{
+  override def node(id: Int): Option[ModelNode] = __select_single_node {
     sql"SELECT * FROM main.NodeTable WHERE id=${id.toString}"
   }
 
   private def __select_all_nodes(statement: SQLActionBuilder): Seq[ModelNode] = {
-    val result = Try{ Await.result(dbCore.run(statement.resultAsCsvMap),Duration.Inf) }
+    val result = Try { Await.result(dbCore.run(statement.resultAsCsvMap), Duration.Inf) }
     if (result.isFailure || result.get.isEmpty) return Nil
-    result.get.map(data=>new ModelNode(jsName, data))
+    result.get.map(data => new ModelNode(jsName, data))
   }
 
   override def next(of: ModelNode, eType: Option[EdgeType]): Seq[ModelNode] = __select_all_nodes(sql"""
@@ -44,7 +44,6 @@ class AutoNodeSql(sqlFile: File) extends AbsAutoNode {
     WHERE edge.start=${of.id}
         AND edge.type=${eType.getOrElse("NONE").toString}
   """)
-
 
   override def prev(of: ModelNode, eType: Option[EdgeType]): Seq[ModelNode] = __select_all_nodes(sql"""
     SELECT node.* FROM main.EdgeTable AS edge

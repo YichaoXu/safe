@@ -5,7 +5,7 @@ import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
 import edu.jhu.seclab.safe.autonode.cfg.block.{ CallBlockHolder, NormBlockHolder }
 import edu.jhu.seclab.safe.autonode.exts.cfg.{ BlockLink, FuncCopy }
 import edu.jhu.seclab.safe.autonode.exts.syntax.autoWrapToOption
-import edu.jhu.seclab.safe.autonode.{query => Querier}
+import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import edu.jhu.seclab.safe.autonode.translator.block.{ InvocationTranslator, NormBlockTranslator }
 import kr.ac.kaist.safe.nodes.cfg.{ CFG, CFGBlock, CFGFunction, Call }
 
@@ -25,9 +25,9 @@ class FuncTranslator extends AbsTranslator[CFGFunction] {
   override def translate(): Option[CFGFunction] = {
     val newFunc = Querier.safeCfg.function(whoseNameIs = holder.funcName) match {
       case None =>
-        newCfg.emptyFunctionSignature(basedOn=holder)
+        newCfg.emptyFunctionSignature(basedOn = holder)
       case Some(oldFunc) =>
-        val newFunc = newCfg.copyFunctionSignature(from=oldFunc)
+        val newFunc = newCfg.copyFunctionSignature(from = oldFunc)
         oldFunc.getCaptured.foreach(newFunc.addCaptured)
         newFunc
     }

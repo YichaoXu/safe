@@ -13,7 +13,6 @@ abstract class AbsAutoNode {
   def next(of: ModelNode, eType: Option[EdgeType] = None): Seq[ModelNode]
   def prev(of: ModelNode, eType: Option[EdgeType] = None): Seq[ModelNode]
 
-
   def flowFrom(target: ModelNode): Seq[ModelNode] = this.next(of = target, eType = FLOWS_TO)
   def flowTo(target: ModelNode): Seq[ModelNode] = this.prev(of = target, eType = FLOWS_TO)
 
@@ -22,8 +21,7 @@ abstract class AbsAutoNode {
       this.next(of = signature, PARENT_OF).find(_ is STRING).orElse(
         Range.inclusive(signature.id - 5, signature.id + 5)
           .map(id => this.node(id).get)
-          .find(n => n.is(STRING) && n.name.nonEmpty)
-      ) match {
+          .find(n => n.is(STRING) && n.name.nonEmpty)) match {
           case Some(strNode) => new ModelNode(signature.fileName, signature.data.updated("code", strNode.name))
           case None => println(s"⚠️  CANNOT FOUND THE SIGNATURE NAME OF ${signature.toString} ⚠️")
         }

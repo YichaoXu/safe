@@ -7,7 +7,7 @@ import kr.ac.kaist.safe.util.Span
 class SafeCfg(val core: CFG) {
 
   lazy val functions: List[CFGFunction] = core.getAllFuncs
-  def exists(funcName: String): Boolean = core.getAllFuncs.exists(func=> func.name == funcName)
+  def exists(funcName: String): Boolean = core.getAllFuncs.exists(func => func.name == funcName)
   def function(whoseNameIs: String): Option[CFGFunction] = core.getAllFuncs.find(func => func.name == whoseNameIs)
 
   lazy val blocks: List[CFGBlock] = core.getAllBlocks
@@ -28,7 +28,7 @@ class SafeCfg(val core: CFG) {
 
   private var namedInstCache: Map[String, List[CFGInst]] = Map()
   def instructions(ofFuncName: String): List[CFGInst] = namedInstCache.getOrElse(ofFuncName, {
-    val instructions = this.function(whoseNameIs=ofFuncName) match {
+    val instructions = this.function(whoseNameIs = ofFuncName) match {
       case Some(func) => func.getAllBlocks.flatten { _.getInsts }
       case None => Nil
     }

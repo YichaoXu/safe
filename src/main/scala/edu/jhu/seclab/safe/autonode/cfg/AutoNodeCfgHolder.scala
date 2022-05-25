@@ -24,7 +24,7 @@ class AutoNodeCfgHolder extends AbsHolder {
     }
 
     val startNode = Querier.autoNode.entryOf(funcDef)
-    if(startNode.isEmpty) throw new Exception(funcDef.toString)
+    if (startNode.isEmpty) throw new Exception(funcDef.toString)
     val entryBlock = new NormBlockHolder().append(startNode.get)
     val newBlock = new NormBlockHolder().flowFrom(entryBlock)
     funcsMap(funcName) = new FunctionHolder(funcDef).append(entryBlock).append(newBlock)
@@ -45,7 +45,7 @@ class AutoNodeCfgHolder extends AbsHolder {
         .filter(_.code.contains(s"${signature.code}("))
         .find(call => !funcsMap(forFunc).callBlocks.exists(_.head.id == call.id))
       val preHolder = funcsMap(forFunc).blocks.last
-      if(caller.isEmpty) throw new Exception(s"ENTRY: ${entry.toString}\n SIGNATURE: ${signature.toString}\n CALLER: ${callerHolder.last}")
+      if (caller.isEmpty) throw new Exception(s"ENTRY: ${entry.toString}\n SIGNATURE: ${signature.toString}\n CALLER: ${callerHolder.last}")
       funcsMap(forFunc).append { new CallBlockHolder().append(caller.get).flowFrom(preHolder).close() }
     case Some(funcExit) if funcExit isFuncEnd =>
       if (curHolder.nodes isEmpty) curHolder.append(funcExit).close()
@@ -60,8 +60,8 @@ class AutoNodeCfgHolder extends AbsHolder {
     case None => ()
   }
   Querier.autoNode.fileEntry match {
-      case Some(signature) => if (!funcsMap.contains(signature.code)) newFunctionHolder(signature)
-      case None => println(s"⚠️  Unexpected errors occurred in functions extraction ⚠️")
+    case Some(signature) => if (!funcsMap.contains(signature.code)) newFunctionHolder(signature)
+    case None => println(s"⚠️  Unexpected errors occurred in functions extraction ⚠️")
   }
 
   override def toString: String = {

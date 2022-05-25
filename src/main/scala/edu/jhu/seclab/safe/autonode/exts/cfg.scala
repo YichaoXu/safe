@@ -1,8 +1,8 @@
 package edu.jhu.seclab.safe.autonode.exts
 
 import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
-import kr.ac.kaist.safe.nodes.ast.{ASTNode, ASTNodeInfo}
-import kr.ac.kaist.safe.nodes.cfg.{CFG, CFGBlock, CFGCallInst, CFGEdgeNormal, CFGFunction, CFGId, Call, LoopHead}
+import kr.ac.kaist.safe.nodes.ast.{ ASTNode, ASTNodeInfo }
+import kr.ac.kaist.safe.nodes.cfg.{ CFG, CFGBlock, CFGCallInst, CFGEdgeNormal, CFGFunction, CFGId, Call, LoopHead }
 import kr.ac.kaist.safe.nodes.ir.IRNode
 
 object cfg {
@@ -21,8 +21,7 @@ object cfg {
     }
 
     def emptyFunctionSignature(basedOn: FunctionHolder): CFGFunction = self.createFunction(
-      name=basedOn.funcName, ir = buildIrNode(basedOn), argVars = Nil, localVars = Nil, argName = ""
-    )
+      name = basedOn.funcName, ir = buildIrNode(basedOn), argVars = Nil, localVars = Nil, argName = "")
   }
 
   implicit class BlockLink(self: CFGBlock) {
