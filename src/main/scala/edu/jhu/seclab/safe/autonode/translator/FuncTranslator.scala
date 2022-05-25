@@ -39,6 +39,7 @@ class FuncTranslator extends AbsTranslator[CFGFunction] {
         case _: NormBlockHolder => normTranslator
         case _: CallBlockHolder => callTranslator
       }
+      if (from.nodes.isEmpty) throw new Exception(from.toString)
       val safeBlock = translator.input(from).translate()
       if (safeBlock nonEmpty) blocksMap.put(from, safeBlock.get)
     }

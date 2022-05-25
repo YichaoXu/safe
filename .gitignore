@@ -26,6 +26,9 @@ lib_managed
 doc/safe.pdf
 doc/icse-demo/main.pdf
 .idea/
+.bloop/
+.metals/
+.vscode/
 safe.iml
 debugger
 /.bsp/

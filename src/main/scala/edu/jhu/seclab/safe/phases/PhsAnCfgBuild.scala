@@ -11,7 +11,8 @@ import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import scala.sys.process._
 import java.io.File
 import java.nio.file.Paths
-import scala.util.{ Properties, Success, Try }
+
+import scala.util.{ Properties, Try }
 
 case object PhsAnCfgBuild extends PhaseObj[CFG, AnCfgBuildConfig, CFG] {
 
@@ -19,6 +20,7 @@ case object PhsAnCfgBuild extends PhaseObj[CFG, AnCfgBuildConfig, CFG] {
   val help: String = "generate cfg from csv files"
 
   override def apply(safeCfg: CFG, safeConfig: SafeConfig, config: AnCfgBuildConfig): Try[CFG] = Try {
+    if (config.nodesSource.isEmpty || config.nodesSource.get == "origin") safeCfg
     if (!config.silent) println("⚠️  Use AutoNode to generate CFG ⚠️")
     val jsName = safeConfig.fileNames.head
     val (nCsv, eCsv) = (new File(s"testnodes.csv"), new File(s"testrels.csv"))
@@ -41,7 +43,6 @@ case object PhsAnCfgBuild extends PhaseObj[CFG, AnCfgBuildConfig, CFG] {
           if (!config.silent) println(output)
         }
         Querier.sourceOfAutoNode(sqlFile)
-      case None | Some("origin") => throw new UnsupportedOperationException("IMPOSSIBLE")
       case _ => throw new UnsupportedOperationException("Unsupported value for {nodes}")
     }
     val autoCfg = new AutoNodeCfgHolder()
