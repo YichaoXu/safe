@@ -1,13 +1,14 @@
 package edu.jhu.seclab.safe.autonode
 
+import edu.jhu.seclab.safe.autonode.{query => Querier}
 import edu.jhu.seclab.safe.autonode.cfg.AutoNodeCfgHolder
-import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import edu.jhu.seclab.safe.autonode.translator.FuncTranslator
 import kr.ac.kaist.safe.nodes.cfg._
 
 class FromAutoNodeCfgBuilder(
   private val oldCfg: CFG,
-  private val cfgNodes: AutoNodeCfgHolder) {
+  private val cfgNodes: AutoNodeCfgHolder
+) {
 
   Querier.sourceOfSafeCfg(oldCfg)
   private var target: Option[CFG] = None
@@ -20,4 +21,5 @@ class FromAutoNodeCfgBuilder(
     target = Some(newCfg)
     newCfg
   }
+
 }

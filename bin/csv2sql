@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import sys, getopt, csv, sqlite3
+import os, sys, getopt, csv, sqlite3
 from pathlib import Path
 
 if __name__ != '__main__': exit(1)
@@ -11,7 +11,9 @@ javascript = None
 for opt, val in opts: 
     if opt in ['-j', '--javascript']: javascript = val 
 if javascript is None: raise Exception("INVALID ARGSs")
-Path(f'{javascript}.db').touch()
+
+file_name = os.path.basename(javascript)
+Path(f'./logs/{file_name}.db').touch()
 
 create_nodes_table = ''' CREATE TABLE IF NOT EXISTS main.NodeTable(
     id                VARCHAR(64)             PRIMARY KEY,
@@ -52,11 +54,11 @@ insert_edge = ''' INSERT INTO main.EdgeTable(
     start, end, type, var, taint_src, taint_dst
 ) VALUES (?, ?, ?, ?, ?, ?); '''
 
-connection = sqlite3.connect(f'{javascript}.db')
+connection = sqlite3.connect(f'./logs/{file_name}.db')
 cursor:sqlite3.Cursor = connection.cursor()
 cursor.execute(create_nodes_table)
 if(not cursor.execute(is_empty_node).fetchone()[0]):
-    with open(f'testnodes.csv', 'r') as csvfile:
+    with open(f'./logs/nodes.csv', 'r') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader: cursor.execute(insert_node, list(row.values()))
 cursor.close()
@@ -64,7 +66,7 @@ connection.commit()
 cursor = connection.cursor()
 cursor.execute(create_edges_table)
 if(not cursor.execute(is_empty_edge).fetchone()[0]):
-    with open(f'testrels.csv', 'r') as csvfile:
+    with open(f'./logs/rels.csv', 'r') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader: cursor.execute(insert_edge, list(row.values()))
 connection.commit()

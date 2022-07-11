@@ -6,7 +6,7 @@ import edu.jhu.seclab.safe.autonode.cfg.block.{ CallBlockHolder, NormBlockHolder
 import edu.jhu.seclab.safe.autonode.exts.cfg.{ BlockLink, FuncCopy }
 import edu.jhu.seclab.safe.autonode.exts.syntax.autoWrapToOption
 import edu.jhu.seclab.safe.autonode.{ query => Querier }
-import edu.jhu.seclab.safe.autonode.translator.block.{ InvocationTranslator, NormBlockTranslator }
+import edu.jhu.seclab.safe.autonode.translator.block.{ CallBlockTranslator, NormBlockTranslator }
 import kr.ac.kaist.safe.nodes.cfg.{ CFG, CFGBlock, CFGFunction, Call }
 
 import scala.collection.mutable
@@ -33,7 +33,7 @@ class FuncTranslator extends AbsTranslator[CFGFunction] {
     }
     val blocksMap = new mutable.HashMap[AbsBlockHolder, CFGBlock]()
     lazy val normTranslator = new NormBlockTranslator().output(into = newFunc)
-    lazy val callTranslator = new InvocationTranslator().output(into = newFunc)
+    lazy val callTranslator = new CallBlockTranslator().output(into = newFunc)
     def createSafeBlock(from: AbsBlockHolder): Unit = {
       val translator = from match {
         case _: NormBlockHolder => normTranslator

@@ -1,9 +1,9 @@
 package edu.jhu.seclab.safe.autonode.exts
 
+import kr.ac.kaist.safe.nodes.ir.IRNode
 import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
 import kr.ac.kaist.safe.nodes.ast.{ ASTNode, ASTNodeInfo }
 import kr.ac.kaist.safe.nodes.cfg.{ CFG, CFGBlock, CFGCallInst, CFGEdgeNormal, CFGFunction, CFGId, Call, LoopHead }
-import kr.ac.kaist.safe.nodes.ir.IRNode
 
 object cfg {
 

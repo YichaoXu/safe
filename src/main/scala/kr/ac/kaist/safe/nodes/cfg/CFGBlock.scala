@@ -150,6 +150,7 @@ case class Call(func: CFGFunction) extends CFGBlock {
   def span: Span = callInst.span
   override def getInsts: List[CFGInst] = List(callInst)
 }
+
 object Call {
   def apply(func: CFGFunction, callInstCons: Call => CFGCallInst, retVar: CFGId): Call = {
     val call = Call(func)

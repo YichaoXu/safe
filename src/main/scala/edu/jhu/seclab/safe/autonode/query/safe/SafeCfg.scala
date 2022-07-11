@@ -1,9 +1,9 @@
 package edu.jhu.seclab.safe.autonode.query.safe
 
-import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
 import edu.jhu.seclab.safe.autonode.exts.span.Comparison
-import kr.ac.kaist.safe.nodes.cfg.{ CFG, CFGBlock, CFGFunction, CFGInst, Call => CallBlock }
+import edu.jhu.seclab.safe.autonode.cfg.function.FunctionHolder
 import kr.ac.kaist.safe.util.Span
+import kr.ac.kaist.safe.nodes.cfg.{ CFG, CFGBlock, CFGFunction, CFGInst, Call => CallBlock }
 
 class SafeCfg(val core: CFG) {
 
@@ -18,7 +18,7 @@ class SafeCfg(val core: CFG) {
 
   lazy val blocks: List[CFGBlock] = core.getAllBlocks
 
-  def calls(ofFuncName: String): List[CallBlock] = function(whoseNameIs = ofFuncName) match {
+  def calls(inside: String): List[CallBlock] = function(whoseNameIs = inside) match {
     case Some(func) => func.getAllBlocks.filter(_.isInstanceOf[CallBlock]).map(_.asInstanceOf[CallBlock])
     case None => Nil
   }

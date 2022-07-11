@@ -8,18 +8,18 @@ import edu.jhu.seclab.safe.autonode.cfg.block.CallBlockHolder
 import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import kr.ac.kaist.safe.nodes.cfg.{ CFGCall, CFGConstruct, CFGFunction, Call => CallBlock }
 
-class InvocationTranslator extends AbsBlockTranslator[CallBlock] {
+class CallBlockTranslator extends AbsBlockTranslator[CallBlock] {
 
-  private var source: CallBlockHolder = _ // NULLABLE
-  private var destination: CFGFunction = _ // NULLABLE
+  private var dataFrom: CallBlockHolder = _ // NULLABLE
+  private var storeInto: CFGFunction = _ // NULLABLE
 
-  override def input(is: AbsBlockHolder): InvocationTranslator = _selfReturn { this.source = is.asInstanceOf[CallBlockHolder] }
-  override def output(into: CFGFunction): InvocationTranslator = _selfReturn { this.destination = into }
+  override def input(is: AbsBlockHolder): CallBlockTranslator = _selfReturn { this.dataFrom = is.asInstanceOf[CallBlockHolder] }
+  override def output(into: CFGFunction): CallBlockTranslator = _selfReturn { this.storeInto = into }
 
   override def translate(): Option[CallBlock] = {
-    val oldCall = Querier.safeCfg.calls(ofFuncName = destination.name).find(_.span.isCrossover(source.head.namespace))
+    val oldCall = Querier.safeCfg.calls(inside = storeInto.name).find(_.span.isCrossover(dataFrom.head.namespace))
     if (oldCall isEmpty) return None
-    destination.createCallBlock(oldCall.get.afterCall.retVar)(newCall => oldCall.get.callInst match {
+    storeInto.createCallBlock(oldCall.get.afterCall.retVar)(newCall => oldCall.get.callInst match {
       case call: CFGCall => call.copy(block = oldCall.get)
       case construct: CFGConstruct => construct.copy(block = oldCall.get)
     })

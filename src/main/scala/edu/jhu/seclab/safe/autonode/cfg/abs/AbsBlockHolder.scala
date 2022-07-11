@@ -1,10 +1,10 @@
 package edu.jhu.seclab.safe.autonode.cfg.abs
 
+import kr.ac.kaist.safe.util.Span
 import edu.jhu.seclab.safe.autonode.exts.span.Comparison
 import edu.jhu.seclab.safe.autonode.query.autonode.model.ModelNode
 import edu.jhu.seclab.safe.autonode.query.autonode.model.NodeType._
 import kr.ac.kaist.safe.nodes.cfg.{ CFGFunExpr, CFGInst, CFGNoOp }
-import kr.ac.kaist.safe.util.Span
 
 abstract class AbsBlockHolder extends AbsMutableHolder[ModelNode] {
   def parents: Seq[AbsBlockHolder]

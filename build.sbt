@@ -89,7 +89,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % "3.3.3",
   "org.slf4j" % "slf4j-nop" % "1.6.4",
   "com.typesafe.slick" %% "slick-hikaricp" % "3.3.3",
-  "org.xerial" % "sqlite-jdbc" % "3.36.0.3"
+  "org.xerial" % "sqlite-jdbc" % "3.36.0.3", // Java-based Sqlite Library
+  "org.jgrapht" % "jgrapht-core" % "1.5.1" // Java-based Graph Library
 )
 
 javacOptions ++= Seq("-encoding", "UTF-8")

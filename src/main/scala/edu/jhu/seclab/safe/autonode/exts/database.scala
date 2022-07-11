@@ -1,8 +1,8 @@
 package edu.jhu.seclab.safe.autonode.exts
 
 import slick.dbio.Effect
-import slick.jdbc.{ GetResult, SQLActionBuilder }
 import slick.sql.SqlStreamingAction
+import slick.jdbc.{ GetResult, SQLActionBuilder }
 
 object database {
   implicit class mapResult(self: SQLActionBuilder) {

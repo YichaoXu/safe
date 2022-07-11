@@ -11,19 +11,13 @@
 
 package kr.ac.kaist.safe.phase
 
-import edu.jhu.seclab.safe.autonode.FromAutoNodeCfgBuilder
-import edu.jhu.seclab.safe.autonode.cfg.AutoNodeCfgHolder
-import edu.jhu.seclab.safe.autonode.{ query => Querier }
 import kr.ac.kaist.safe.SafeConfig
 import kr.ac.kaist.safe.cfg_builder.DefaultCFGBuilder
 import kr.ac.kaist.safe.nodes.cfg._
 import kr.ac.kaist.safe.nodes.ir.IRRoot
 import kr.ac.kaist.safe.util._
 
-import java.io.File
-import java.nio.file.Paths
-import scala.util.{ Properties, Success, Try }
-import scala.sys.process._
+import scala.util.{ Success, Try }
 
 // CFGBuild phase
 case object CFGBuild extends PhaseObj[IRRoot, CFGBuildConfig, CFG] {
